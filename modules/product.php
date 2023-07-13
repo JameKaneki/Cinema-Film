@@ -34,5 +34,10 @@ function   update_film( $idFilm , $nameFilm, $director, $performer,$duration,$la
 
     pdo_execute($sql);
 }
+function loadall_sp_home(){
+    $sql ="SELECT * FROM `film` WHERE 1 ORDER BY `idFilm` DESC LIMIT 0,12";
+    $listsp=pdo_query($sql);
+    return $listsp;
+}
 ?>
 
