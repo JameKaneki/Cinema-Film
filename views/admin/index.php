@@ -32,7 +32,7 @@
               $thongbao = "Thêm thành công";
             }
             
-            include "views/admimn/../product/add.php";
+            include "views/admin/../product/add.php";
     }
   }
 ?> 
