@@ -10,7 +10,7 @@
             include "home.php";
             break;
             //controller sản phẩm
-        case 'addsp':
+        case 'film-add':
             // kiem tra nguoi dung click vao nut add
             if(isset($_POST['addnew'])&& $_POST['addnew']){
                 $name_film = $_POST['name_film'];
@@ -29,7 +29,7 @@
               } else {
               }
               insert_film($nameFilm,$director,$performer,$duration,$language,$description,$trailer,$poster,$rate,$note,$cagetory);
-              $thongbao = "Thêm thành công";
+              $result = "Create successfully";
             }
             
             include "views/admimn/../product/add.php";
