@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../view/../admin/css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
@@ -26,10 +26,10 @@
                     + khi "cờ" có thêm chức năng gọi tới : vào chức năng ví dụ : ctx=film-add => vào phần add film
             -->
                 <li><a href="index.php?act=home">Home</a></li>
-                <li><a href="index.php?act=film">Film</a></li>
+                <li><a href="index.php?act=film-add">Film</a></li>
                 <li><a href="index.php?act=user">User</a></li>
                 <li><a href="index.php?act=room">Room</a></li>
-                <li><a href="index.php?act=schedule">Schedules</a></li>
+                <li><a href="index.php?act=schedules">Schedules</a></li>
                 <li><a href="index.php?act=ticket">Ticket</a></li>
                 <li><a href="index.php?act=cinema">Cinema</a></li>
             </ul>
