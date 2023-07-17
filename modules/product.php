@@ -27,8 +27,9 @@ function delete_film($idFilm)
 function loadone_film($idFilm)
 {
     $sql = "select * from films where idFilm=". $idFilm;
-    $listfilm = pdo_query_one($sql);
-    return $listfilm;
+    echo $sql;
+
+    return pdo_query_one($sql);
 }
 
 function update_film($idFilm,$nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate,$likeAmount){

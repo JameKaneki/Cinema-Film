@@ -65,18 +65,19 @@
         }
         break;
         case 'film_edit':{
+          $id = $_GET['id'];
+          $idInfo =loadone_film($id);
+          print_r($idInfo);
+          die;
           if (isset($_GET['idFilm ']) && ($_GET['idFilm '] > 0)) {
             $listfilm = loadone_film($_GET['idFilm ']);
         }
         $listfilm = loadall_film("", 0);
         include "./product/update.php";
-        break;
         }
+        break;
         case 'film_update':{
-          $id = $_GET['id'];
-          $idInfo =loadone_film($id);
-          print_r($idInfo);
-          die;
+
           if(isset($_POST['capnhat'])&& $_POST['capnhat']){
             $idFilm = $_POST['idFilm'];
             $nameFilm = $_POST['nameFilm'];
