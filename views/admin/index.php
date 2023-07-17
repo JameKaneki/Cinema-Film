@@ -21,37 +21,95 @@
             include "home.php";
             break;
 //controller film
-        case 'film-add':{
+        case 'film_add':{
             // kiem tra nguoi dung click vao nut add
           if(isset($_POST['addnew'])&& $_POST['addnew']){
-            $name_film = $_POST['name_film'];
+            $nameFilm = $_POST['nameFilm'];
             $director = $_POST['director'];
             $performer = $_POST['performer'];
             $premiere = $_POST['premiere'];
             $duration = $_POST['duration'];
             $language = $_POST['language'];
             $description = $_POST['description'];
-            $Trailer = $_POST['Trailer'];
+            $category = $_POST['category'];
+            $trailer = $_POST['trailer'];
             $poster = $_FILES['poster']['tmp_name'];
-            $target_dir = "../upload/";
+            $target_dir = "./upload/";
             $target_file = $target_dir . basename($_FILES['poster']['name']);
             if (move_uploaded_file($_FILES["poster"]["tmp_name"], $target_file)) {
               // echo"The file". htmlspecialchars(basename($_FILES['img_sp']['name'])) . "has been upload ";
           } else {
           }
-          insert_film($nameFilm,$director,$performer,$duration,$language,$description,$trailer,$poster,$rate,$note,$cagetory);
+            $rate = $_POST['rate'];
+            $likeAmount = $_POST['likeAmount'];
+          insert_film($nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate,$likeAmount);
           $result = "Create successfully";
         }
-        
-        include "views/admimn/../product/add.php";
+      }
+        $listfilm = loadall_film();
+        include "./product/add.php"; 
+        break;
+        // List film
+        case 'film':{
+          $listfilm = loadall_film();
+          include "./product/list.php";
         }
         break;
-        
+        // Delete film
+        case 'film_delete':{
+          if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+            delete_film($_GET['id']);
+        }
+        $listfilm = loadall_film("", 0);
+        include "./product/list.php";
+        }
+        break;
+        case 'film_edit':{
+          if (isset($_GET['idFilm ']) && ($_GET['idFilm '] > 0)) {
+            $listfilm = loadone_film($_GET['idFilm ']);
+        }
+        $listfilm = loadall_film("", 0);
+        include "./product/update.php";
+        break;
+        }
+        case 'film_update':{
+          $id = $_GET['id'];
+          $idInfo =loadone_film($id);
+          print_r($idInfo);
+          die;
+          if(isset($_POST['capnhat'])&& $_POST['capnhat']){
+            $idFilm = $_POST['idFilm'];
+            $nameFilm = $_POST['nameFilm'];
+            $director = $_POST['director'];
+            $performer = $_POST['performer'];
+            $premiere = $_POST['premiere'];
+            $duration = $_POST['duration'];
+            $language = $_POST['language'];
+            $description = $_POST['description'];
+            $category = $_POST['category'];
+            $trailer = $_POST['trailer'];
+            $poster = $_FILES['poster']['tmp_name'];
+            $target_dir = "./upload/";
+            $target_file = $target_dir . basename($_FILES['poster']['name']);
+            if (move_uploaded_file($_FILES["poster"]["tmp_name"], $target_file)) {
+              // echo"The file". htmlspecialchars(basename($_FILES['img_sp']['name'])) . "has been upload ";
+          } else {
+          }
+            $rate = $_POST['rate'];
+            $likeAmount = $_POST['likeAmount'];
+          update_film($idFilm,$nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate,$likeAmount);
+          $result = "Update successfully";
+        }
+        $listfilm = loadall_film("", 0);
+        include "./product/list.php";
+        }
+
 // controller film
 
 
 // controller user
-
+      
+          
 // controller user
 
 

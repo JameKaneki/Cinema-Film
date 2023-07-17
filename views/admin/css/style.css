@@ -8,7 +8,6 @@
     width: 70%;
     margin: 0 auto;
 }
-
 .row {
     float: left;
     width: 100%;
@@ -297,6 +296,7 @@
 }
 
 .fromcontent {
+    overflow-y: scroll; 
     padding: 20px 0;
 
 }

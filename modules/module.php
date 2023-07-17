@@ -61,7 +61,7 @@ function pdo_query($sql){
     try{
         $conn = pdo_get_connection();
         $stmt = $conn->prepare($sql);
-        $stmt->execute($sql_args);
+        $stmt-> execute($sql_args);
         $rows = $stmt->fetchAll();
         return $rows;
     }

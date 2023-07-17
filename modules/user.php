@@ -15,4 +15,10 @@ function delete_account($idUser){
     $sql = "DELETE FROM `user` WHERE `idUser`=".$idUser;
     pdo_execute($sql);
 }
+
+function loadall_acount(){
+    $sql = "SELECT * FROM `khachhang` ORDER BY id_kh DESC";
+    $list_acount=pdo_query($sql);
+    return $list_acount;
+}
 ?>
