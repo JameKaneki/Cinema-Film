@@ -89,9 +89,36 @@
           break;
 // controller schedules
 // controller scheduleHours
-          case 'scheduleHours':
+          case 'schedule_hours':
+            {
+              $schedule_hours = [];
+              $date = '';$idRoom = '';$idFilm = '';
+              if(isset($_POST['search'])){
+                $date = $_POST['date'];
+                $idFilm = empty($_POST['$idFilm']) ? "" : $_POST['$idFilm'];
+                $idRoom = empty($_POST['idRoom']) ? "" : $_POST['idRoom'];
+              }
+              $schedule_hours = getScheduleHoursWithDateIdFilmIdRoom($date,$idFilm,$idRoom);
+
+              include "./scheduleHours/scheduleHoursList.php";
+            }
+          break;
+          case 'schedule_hours-delete':
+            {
+              $id = $_POST['id'];
+              removeScheduleHoursById($id);
+              header("Location:index.php?act=schedule_hours");
+            }
+          break;
+          case "schedule_hours-edit" :
             {
               
+            }
+          break;
+          case 'schedule_hours-create':
+            {
+              $scheduleList = getAllSchedule('','');
+              include "./scheduleHours/scheduleHoursAdd.php";
             }
           break;
 // controller scheduleHours

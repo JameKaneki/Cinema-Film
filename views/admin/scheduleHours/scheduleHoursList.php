@@ -1,15 +1,63 @@
 
-<?php 
-
+<?php
 
 ?>
 
 <div class='wrapper'>
     <h2>Schedule Hours List</h2>
-    <form>
-        
+    <div style="display: flex;">
+        <div class="btn btn-blue"><a href="index.php?act=schedule_hours-create">Add new Schedule hours</a></div>
+        <div class='search-bar'>
+            <form action='index.php?act=schedule_hours' method="POST">
+                <select name="idFilm" placeholder="Film">
+                    <option value="">----------</option>
+                    <option value="1">Tà chú cấm</option>
+                    <option value="2">Ma sơ trục quỷ</option>
+                    <option value="3">Doraemon:Vùng đắt lý tưởng</option>
+                    <option value="4">TRANSFỎMER</option>
+                    <option value="5">jujutsu kaisen</option>
+                </select>
+                <select name='idRoom'>
+                    <option value="">-------</option>
+                    <option value='1'>BetaMD1</option>
+                    <option value="2">BetaMD2</option>
+                    <option value="3">BetaGP1</option>
+                    <option value='4'>BetaGP2</option>
+                </select>
+                <input name="date" type="date" value="<?php echo $date?>"/>
+                <button class="btn btn-blue" type="submit" name="search">Search</button>
+            </form>
+        </div>
+    </div>
+    <table>
+       <thead>
+            <tr>
+                <th>Film name</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Room name</th>
+                <th>Action</th>
+            </tr>
+       </thead>
+       <tbody>
 
-    </form>
+        <?php 
+            foreach($schedule_hours as $sHour){
+                echo 
+                "<tr>
+                    <td>{$sHour['nameFilm']}</td>
+                    <td>{$sHour['date']}</td>
+                    <td>{$sHour['time']}</td>
+                    <td>{$sHour['nameRoom']}</td>
+                    <td class='action-box'>
+                        <div class='btn btn-red'><a href='index.php?act=schedule_hours-delete&id={$sHour['idScheduleHour']}' >Remove</a></div>
+                        <div class='btn btn-blue'><a href='index.php?act=schedule_hours-edit&id={$sHour['idScheduleHour']}' >Edit</a></div>
+                    </td>
+                </tr>";
+            }
+        ?>
+       </tbody>
+    </table>
 
 </div>
 <style>

@@ -30,6 +30,7 @@
                 <li><a href="index.php?act=user">User</a></li>
                 <li><a href="index.php?act=room">Room</a></li>
                 <li><a href="index.php?act=schedules">Schedules</a></li>
+                <li><a href="index.php?act=schedule_hours">Schedule Hours</a></li>
                 <li><a href="index.php?act=ticket">Ticket</a></li>
                 <li><a href="index.php?act=cinema">Cinema</a></li>
             </ul>

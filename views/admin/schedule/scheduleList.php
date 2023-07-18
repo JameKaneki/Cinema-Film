@@ -44,7 +44,6 @@
         </thead>
         <tbody>
             <?php 
-                $confirm = "return confirm('Are you sure!')";
                 foreach($schedules as $schedule){
                     // $date = date_format($schedule['date'],"Y-m-d");
                     echo "

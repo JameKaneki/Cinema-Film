@@ -7,17 +7,19 @@
         $sql = "SELECT sh.idScheduleHour, s.date,sh.time,f.nameFilm,r.nameRoom FROM `schedule_hours` as sh INNER JOIN schedules as s ON sh.idSchedule = s.idSchedule INNER JOIN films as f ON f.idFilm = s.idSchedule INNER JOIN rooms as r on r.idRoom = sh.idRoom";
         return pdo_query($sql);
     }
-    function filterScheduleHours($date,$idFilm,$idRoom){
-        $sql = "SELECT sh.idScheduleHour, s.date,sh.time,f.nameFilm,r.nameRoom,f.idFilm FROM `schedule_hours` as sh INNER JOIN schedules as s ON sh.idSchedule = s.idSchedule INNER JOIN films as f ON f.idFilm = s.idSchedule INNER JOIN rooms as r on r.idRoom = sh.idRoom";
-        if(empty($date)){
-            $sql .= " AND s.date = $date";
+    function getScheduleHoursWithDateIdFilmIdRoom($date,$idFilm,$idRoom){
+      
+        $sql = "SELECT sh.idScheduleHour, s.date,sh.time,f.nameFilm,r.nameRoom,f.idFilm FROM `schedule_hours` as sh INNER JOIN schedules as s ON sh.idSchedule = s.idSchedule INNER JOIN films as f ON f.idFilm = s.idSchedule INNER JOIN rooms as r on r.idRoom = sh.idRoom WHERE 1";
+        if(!empty($date)){
+            $sql .= " AND s.date = '$date'";
         }
-        if(empty($idFilm)){
+        if(!empty($idFilm)){
             $sql .= " AND f.idFilm = $idFilm";
         }
-        if(empty($idRoom)){
-            $sql .= " AND  "
+        if(!empty($idRoom)){
+            $sql .= " AND  r.idRoom = $idRoom";
         }
+        return pdo_query($sql);
     }
     function getAllScheduleHours($date,$idFilm){
         $sql = "SELECT * FROM `schedule_hours` as sh INNER JOIN `schedules` as s ON sh.idSchedule = s.idSchedule ";
