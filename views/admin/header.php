@@ -32,3 +32,4 @@
                 <li><a href="index.php?act=cinema">Cinema</a></li>
             </ul>
         </div>
+</body>

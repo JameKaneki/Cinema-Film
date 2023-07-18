@@ -316,19 +316,23 @@
 .content table th,
 .fromlist table th {
     padding: 10px;
-    background: #090;
+    background: gray;
     border: none;
 }
 
-/* .fromlist table th:nth-child(2){
+
+
+/* .fromlist table th:nth-child(2) {
     width: 20%;
     background: #090;
 }
-.fromlist table th:nth-child(3){
+
+.fromlist table th:nth-child(3) {
     width: 40%;
     background: #090;
 }
-.fromlist table th:nth-child(4){
+
+.fromlist table th:nth-child(4) {
     width: 20%;
     background: #090;
 } */
@@ -574,28 +578,33 @@ form .name_tk {
 .detail h2 {
     font-size: 2rem;
 }
- i{
+
+i {
     width: 150px;
     height: 40px;
     border: 1px solid orangered;
     text-align: center;
     padding-top: 10px;
     background-color: #ec6c58;
- }
- i input{
+}
+
+i input {
     background-color: #ec6c58;
     border: 0;
 }
-i input:hover{
-    background-color:#ee4d2d;
+
+i input:hover {
+    background-color: #ee4d2d;
 
 }
-i:hover{
+
+i:hover {
     color: #fff;
-    background-color:#ee4d2d;
+    background-color: #ee4d2d;
     box-shadow: rgba(244, 3, 3, 0.973) 0 8px 15px;
     transform: translateY(-2px)
 }
+
 .edit input {
     width: 50px;
     height: 30px;
@@ -620,23 +629,30 @@ i:hover{
     box-shadow: rgba(240, 3, 3, 0.978) 0 8px 15px;
     transform: translateY(-2px)
 }
-.edit input:hover{
+
+.edit input:hover {
     color: #fff;
-    background-color:blue;
+    background-color: blue;
     box-shadow: rgba(9, 1, 240, 0.978) 0 8px 15px;
     transform: translateY(-2px)
 }
 
-.statistical input{
+.statistical input {
     width: 150px;
     height: 40px;
     background-color: red;
     border: 1px solid red;
     border-radius: 4px;
 }
-.statistical input:hover{
+
+.statistical input:hover {
     color: #fff;
     background-color: rgb(141, 16, 116);
     box-shadow: rgba(216, 32, 237, 0.978) 0 8px 15px;
     transform: translateY(-2px)
+}
+
+.input {
+    padding: 10px;
+    margin: 10px;
 }
