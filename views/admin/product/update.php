@@ -1,10 +1,9 @@
+
 <?php
-if (is_array($listfilm)) {
-    extract($listfilm);
-}
-
+    if(is_array($film)){
+        extract($film);
+    }
 ?>
-
 <div class="row">
     <div class="row fromtitle">
         <h1>Cập nhật Phim</h1>
@@ -13,15 +12,6 @@ if (is_array($listfilm)) {
         <form action="index.php?act=film_update" method="post" enctype="multipart/form-data">
             <div class="row mb">
             Danh Mục Phim<br>
-                <!-- <input type="text" name="id_sp" disabled>
-                <select name="id_dm" id="">
-                    <option value="0" selected>--Chọn--</option> -->
-                    <?php
-                    foreach($listfilm as $films){
-                        extract($films);
-                    }
-                //     ?>
-                 </select>
             </div>
             <div class="row mb">
                 Name<br>
@@ -49,7 +39,7 @@ if (is_array($listfilm)) {
             </div>
             <div class="row mb">
                 Description <br>
-               <textarea name="description" id="" cols="30" rows="10"></textarea <?=$description?>>
+               <textarea name="description" id="" cols="50" rows="15"><?=$description?></textarea>
             </div>
             <div class="row mb">
                 Category<br>

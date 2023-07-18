@@ -39,9 +39,9 @@
                       $film_edit = "return confirm('Bạn có chắc chắn muốn sửa')";
                 foreach ($listfilm as $films) {
                     extract($films);
-                    $deletefilm = "index.php?act=film_delete&id=" . $idFilm;
-                    $editfilm = "index.php?act=film_edit&id=" . $idFilm;
-                    
+                    $deletefilm = "index.php?act=film_delete&idFilm=" . $idFilm;
+                    $editfilm = "index.php?act=film_edit&idFilm=" . $idFilm;
+                        
                     // $anh_sp = "../upload/" . $img;
                     // if (is_file($anh_sp)) {
                     //     $anh = "<img src='" . $anh_sp . "' height='80'>";
