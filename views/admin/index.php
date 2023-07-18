@@ -68,7 +68,6 @@
           if (isset($_GET['idFilm']) && ($_GET['idFilm'] > 0)){
             $film=loadone_film($_GET['idFilm']);
         }
-        $listfilm = loadall_film("", 0);
         include "./product/update.php";
         break;
         }

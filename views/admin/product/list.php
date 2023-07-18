@@ -2,6 +2,23 @@
     <div class="row fromtitle mb">
         <h1>Danh sách film</h1>
     </div>
+<style>
+
+    td,th{
+        
+        overflow-x: hidden;
+        text-align: start;
+        min-width: 90px;
+        max-width: 150px;
+    }
+    td.desc{
+        min-width: 300px;
+    }
+    td.rate{
+        text-align: center;
+    }
+
+</style>
     <form action="index.php?act=film" method="post">
         <!-- <input type="text" name="kyw">
         <select name="id_dm" id="">
@@ -19,7 +36,6 @@
         <div class="row mb10 fromlist">
             <table>
                 <tr>
-                    <th></th>
                     <th>Id Film</th>
                     <th>Name Film</th>
                     <th>Director</th>
@@ -27,12 +43,12 @@
                     <th>premiere</th>
                     <th>duration</th>
                     <th>language</th>
-                    <th>description</th>
-                    <th>category</th>
+                    <th class="desc">description</th>
+                    <th>Category</th>
+                    <th>Trailer</th>
                     <th>poster</th>
-                    <th>rate</th>
+                    <th class="rate">rate</th>
                     <th>likeAmount</th>
-                    <th></th>
                 </tr>
                 <?php
                       $confirm = "return confirm('Bạn có chắc chắn muốn xóa')";
@@ -49,7 +65,6 @@
                     //     $anh = "Không có hình ảnh ";
                     // }
                     echo '<tr >
-                            <td ><input type="checkbox"></td>
                             <td >' . $idFilm . '</td>
                             <td >' . $nameFilm . '</td>
                             <td >' . $director . '</td>
@@ -57,11 +72,11 @@
                             <td >' . $premiere . '</td>
                             <td >' . $duration . '</td>
                             <td >' . $language . '</td>
-                            <td >' . $description . '</td>
+                            <td class="desc">' . $description . '</td>
                             <td >' . $category . '</td>
                             <td >' . $trailer . '</td>
                             <td >' . $poster . '</td>
-                            <td >' . $rate . '</td>
+                            <td class="rate" >' . $rate . '</td>
                             <td >' . $likeAmount . '</td>
                             <td > <a href="' . $editfilm . '" class="edit"><input type="button" value="Sửa" onclick="'. $film_edit.'">
                             </a>  |  <a href="' . $deletefilm . '" class="delete" ><input type="button" value="Xóa" onclick="'. $confirm.'"
