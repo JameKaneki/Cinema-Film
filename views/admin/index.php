@@ -13,6 +13,7 @@
   include "../../modules/module.php";
   include "header.php";
   include "../../modules/product.php";
+  include "../../modules/user.php";
   //controller
   if(isset($_GET['act'])){
     $act = $_GET['act'];
@@ -57,8 +58,8 @@
         break;
         // Delete film
         case 'film_delete':{
-          if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-            delete_film($_GET['id']);
+          if (isset($_GET['idFilm']) && ($_GET['idFilm'] > 0)) {
+            delete_film($_GET['idFilm']);
         }
         $listfilm = loadall_film("", 0);
         include "./product/list.php";
@@ -97,13 +98,22 @@
         }
         $listfilm = loadall_film("", 0);
         include "./product/list.php";
+        break;
         }
-
-// controller film
-
-
 // controller user
-      
+          case 'user':{
+            $list_user=loadall_acount();
+            include "./user/list.php";
+          }
+          break;
+          case 'user_delete':{
+            if (isset($_GET['idUser']) && ($_GET['idUser'] > 0)) {
+              delete_account($_GET['idUser']);
+          }
+          $list_user=loadall_acount();
+          include "./user/list.php";
+          }
+          break;
           
 // controller user
 

@@ -1,7 +1,7 @@
 <?php
     /**
      * Thêm loại mới
-     * @param String $name_dm là tên loại
+     * @param String  là tên loại
      * @throws PDOException lỗi thêm mới
      */
 
