@@ -1,41 +1,84 @@
 <?php   
-
-
-
+    $scheduleList = getAllSchedule('','');
+    $roomList = getAllRoom();
+    $errors = [];
+    $schedule = "";
+    $room = "";
+    $time = "";
+    if(isset($_POST['create'])){
+        $check = true;
+        $schedule = $_POST['idSchedule'];
+        $room = $_POST['idRoom'];
+        $time = $_POST['time'];
+        // đoạn này cần vaildate thêm
+        if(!empty($schedule) && !empty($room) && !empty($time)){
+            if(in_array($room,$roomList)){
+                $check = false;
+                $errors['room'] = "invalidate room Infomation";
+            }
+            if(in_array($schedule,$scheduleList)){
+                $check = false;
+                $errors['schedule'] = "invalidate schedule Infomation";
+            }
+        }
+        if($check){
+            createScheduleHours($schedule,$time,$room);
+            echo '<script>alert("Create successfully")</script>';
+            header("Location:index.php?act=schedule_hours");
+        }
+    }
 ?>
 
 
 <div class=''>
     <h1>Add schedule Hours</h1>
     <div class='form-content'>
-        <form  action="index.php?act=schedule-create" method="POST">
-            <div class="input-wrap">
-                <label>Date</label>
-                <input type="date" name="date" required/>
-                <!-- <?php 
-                    if(isset($errors['date'])){
-                        echo "<span style='color: red;'>{$errors['date']}</span> ";
-                    }
-                ?> -->
-            </div>
+        <form  action="index.php?act=schedule_hours-create" method="POST">
             <div class="input-wrap">
                 <label>Schedule</label>
                 <select name="idSchedule"  required>
-                        <option value="">----------</option>
-                       
+                        <option value="">----------</option>     
                 <?php 
                     foreach($scheduleList as $schedule){
                         echo "
-                            <option value='{$schedule['idSchedule']}'>{$schedule['nameFilm']} - {$schedule['date']}</option>
+                            <option value='{$schedule['idSchedule']}'>{$schedule['date']} - {$schedule['nameFilm']} </option>
                         ";
                     }
                 ?> 
                 </select>
                 <?php 
-                    if(isset($errors['idFilm'])){
-                        echo "<span style='color: red;'>{$errors['idFilm']}</span> ";
+                    if(isset($errors['schedule'])){
+                        echo "<span style='color: red;'>{$errors['schedule']}</span> ";
                     }
                 ?>
+            </div>
+            <div class="input-wrap">
+                <label>Room</label>
+                <select name="idRoom"required>
+                    <option value="">------</option>
+                    <?php 
+                        foreach($roomList as $room){
+                            echo "
+                                <option value='{$room['idRoom']}'>{$room['nameRoom']} - {$room['nameCinema']}</option>
+                            ";
+                        }
+                    
+                    ?>
+                </select>
+                <?php 
+                    if(isset($errors['room'])){
+                        echo "<span style='color: red;'>{$errors['room']}</span> ";
+                    }
+                ?>
+            </div>
+            <div class="input-wrap">
+                <label>Time</label>
+                <input type="time" name="time" required/>
+                <!-- <?php 
+                    if(isset($errors['time'])){
+                        echo "<span style='color: red;'>{$errors['time']}</span> ";
+                    }
+                ?> -->
             </div>
             <div class='input-wrap'>
                 <button class="btn btn-blue" name="create">Create</button>

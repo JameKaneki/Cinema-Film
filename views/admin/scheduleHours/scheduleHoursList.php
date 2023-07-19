@@ -24,7 +24,7 @@
                     <option value="3">BetaGP1</option>
                     <option value='4'>BetaGP2</option>
                 </select>
-                <input name="date" type="date" value="<?php echo $date?>"/>
+                <input name="time" type="time" value="<?php echo $date?>"/>
                 <button class="btn btn-blue" type="submit" name="search">Search</button>
             </form>
         </div>

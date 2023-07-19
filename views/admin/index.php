@@ -14,6 +14,7 @@
   include "../../modules/product.php";  
   include "../../modules/moduleSchedule.php";
   include "../../modules/moduleScheduleHours.php";
+  include "../../modules/moduleRoom.php";
   //controller
   if(isset($_GET['act'])){
     $act = $_GET['act'];
@@ -117,7 +118,6 @@
           break;
           case 'schedule_hours-create':
             {
-              $scheduleList = getAllSchedule('','');
               include "./scheduleHours/scheduleHoursAdd.php";
             }
           break;
