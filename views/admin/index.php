@@ -93,13 +93,13 @@
           case 'schedule_hours':
             {
               $schedule_hours = [];
-              $date = '';$idRoom = '';$idFilm = '';
+              $time = '';$idRoom = '';$idFilm = '';
               if(isset($_POST['search'])){
-                $date = $_POST['date'];
+                $time = $_POST['time'];
                 $idFilm = empty($_POST['$idFilm']) ? "" : $_POST['$idFilm'];
                 $idRoom = empty($_POST['idRoom']) ? "" : $_POST['idRoom'];
               }
-              $schedule_hours = getScheduleHoursWithDateIdFilmIdRoom($date,$idFilm,$idRoom);
+              $schedule_hours = getScheduleHoursWithDateIdFilmIdRoom($time,$idFilm,$idRoom);
 
               include "./scheduleHours/scheduleHoursList.php";
             }
