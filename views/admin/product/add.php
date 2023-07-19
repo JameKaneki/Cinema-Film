@@ -68,7 +68,7 @@
             <div class="row mb20">
                 <input type="submit" name="addnew" value="Thêm Mới">
                 <input type="reset" value="Nhập Lại">
-                <a href="index.php?act=film-list"> <input type="button" value="Danh Sách"></a>
+                <a href="index.php?act=film"> <input type="button" value="Danh Sách"></a>
             </div>
             <?php
             if (isset($thongbao) && ($thongbao != ""))

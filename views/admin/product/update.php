@@ -62,7 +62,7 @@
                 <input type="text" name="likeAmount" id="" value="<?=$likeAmount?>" >
             </div>
             <div class="row mb20">
-                <input type="hidden" name="idFilm" value="<?= $idFilm ?>">
+                <input type="hidden" name="idFilm" value="<?=$idFilm?>">
                 <input type="submit" name="capnhat" value="Cập nhật">
                 <input type="reset" value="Nhập Lại">
                 <a href="index.php?act=film"> <input type="button" value="Danh Sách"></a>

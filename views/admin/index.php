@@ -14,6 +14,7 @@
   include "header.php";
   include "../../modules/product.php";
   include "../../modules/user.php";
+  include "../../modules/seat.php";
   //controller
   if(isset($_GET['act'])){
     $act = $_GET['act'];
@@ -117,7 +118,52 @@
           
 // controller user
 
+// controller seat
 
+          case 'seat':{
+            $listseat=loadall_seat();
+            include "./seat/list.php";
+          }
+          break;
+          case 'seat_add':{
+            if(isset($_POST['addnew'])&& $_POST['addnew']){
+              $seat_key = $_POST['seat_key'];
+              $idRoom = $_POST['idRoom'];
+              insert_seat($seat_key,$idRoom);
+            $result = "Create successfully";
+          }
+          }
+          include "./seat/add.php";
+          break;
+
+          case 'seat_delete':{
+            if (isset($_GET['id_seat']) && ($_GET['id_seat'] > 0)) {
+              delete_seat($_GET['id_seat']);
+          }
+          $listseat = loadall_seat();
+          include "./seat/list.php";
+          }
+          break;
+          case 'seat_edit':{
+            if (isset($_GET['id_seat']) && ($_GET['id_seat'] > 0)){
+          $listseat = loadone_seat($_GET['id_seat']);
+          }
+          include "./seat/update.php";
+          break;
+          }
+          case 'seat_update':{
+            if(isset($_POST['capnhat'])&& $_POST['capnhat']){
+              $id_seat = $_POST['id_seat'];
+              $seat_key = $_POST['seat_key'];
+              $idRoom  = $_POST['idRoom'];
+              update_seat($id_seat,$seat_key,$idRoom);
+            $result = "Update successfully";
+          }
+          $listseat=loadall_seat();
+          include "./seat/list.php";
+          break;
+          }
+// controller seat
 
 // controller room
 
