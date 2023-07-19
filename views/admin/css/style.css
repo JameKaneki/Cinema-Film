@@ -3,6 +3,10 @@
     font-family: sans-serif;
     font-size: 0.9vw;
 }
+a,li{
+    text-decoration: none;
+    list-style-type: none;
+}
 
 .boxcenter {
     width: 70%;
@@ -640,3 +644,109 @@ i:hover{
     box-shadow: rgba(216, 32, 237, 0.978) 0 8px 15px;
     transform: translateY(-2px)
 }
+
+
+
+/* css from Minh */
+/* table css */
+:root{
+    --red--color : rgb(223,69,45);
+    --blue-color : rgb(65,99,232);
+}
+a,li{
+text-decoration: none;
+list-style-type: none;
+}
+.wrapper{
+    width: 70%;
+    margin: 0px auto;
+}
+table{
+    margin: 40px auto;
+    padding: 12px;
+    box-shadow: 1px 1px 1px 1px #999;
+    border-radius: 6px;
+    max-width: 100%;
+    overflow-y: scroll;
+    /* width: 90%; */
+}
+td,th{
+    padding: 8px 4px;
+    text-align: start;
+    min-width: 120px;
+    max-width: 300px;
+    border: 1px solid #999;
+}
+th{
+    border: 1px solid;
+}
+tr{
+    border: 1px solid #000;
+}
+td.bigCol{
+    width: 500px;
+}
+.showTime{
+    display: flex;
+    justify-content: start; 
+    flex-wrap: wrap;
+}
+.showTime-box{
+    margin: 2px 4px;
+    border: 2px solid ;
+    padding: 4px 8px;
+    border-radius: 3px;
+    background-color: #666;
+}
+.action-box{
+    display: flex;
+}
+.btn{
+    padding: 6px 16px;
+    margin: 2px 4px;
+    border-radius: 3px;
+    cursor: pointer;
+    border: none;
+}
+.btn a {
+    color:white;
+}
+.btn-red{
+    color: white;
+    background-color: var(--red--color);
+}
+.btn-blue{
+    color: white;
+    background-color: var(--blue-color);
+}
+/* form css */
+.form-content{
+    width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    box-shadow: 1px 2px 2px 1px #999;
+    border-radius: 12px;
+    }
+    .input-wrap{
+      margin: 20px 10px;
+    }
+    .input-wrap label{
+        display: block;
+        margin: 10px 0px;
+        padding: 0 12px;
+        font-size: 1rem;
+        font-weight: 700;
+    }
+    .input-wrap input{
+        outline: none;
+        padding: 12px;
+        font-size: 1.2rem;
+        width: 100%;
+        border-radius: 12px;
+        border: none;
+        background-color: rgba(153, 153, 153,0.1);
+    }
+    .input-wrap select{
+        width: 100%;
+        padding: 6px 2px;
+    }

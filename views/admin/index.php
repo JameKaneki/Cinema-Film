@@ -9,10 +9,12 @@
   //   trước mắt mình sẽ hoàn thành phần admin trước ngày 16/7, sau 16/7 mình sẽ quay qua làm client và nó sẽ cần cháy hơn nhiều. MÌnh sẽ code base header và footer trước cho mn nên cứ yên tâm
   // phần admin chỉ là xúc miệng để mn chuẩn bị cho client thôi nên cứ là clear nhất có thể nha
   // mong ae hợp tác , đúng giờ, mọi thắc mắc hay cần giúp đỡ có thể hỏi lại mình qua zalo trực mọi lúc có thể và rep sớm nhất cso thể
-          
   include "../../modules/module.php";
   include "header.php";
-  include "../../modules/product.php";
+  include "../../modules/product.php";  
+  include "../../modules/moduleSchedule.php";
+  include "../../modules/moduleScheduleHours.php";
+  include "../../modules/moduleRoom.php";
   //controller
   if(isset($_GET['act'])){
     $act = $_GET['act'];
@@ -43,7 +45,7 @@
           $result = "Create successfully";
         }
         
-        include "views/admimn/../product/add.php";
+        include "views/admin/../product/add.php";
         }
         break;
         
@@ -62,8 +64,64 @@
 
 
 // controller schedules
-
+        case 'schedules' :
+          {
+            include "./schedule/scheduleList.php";
+          }
+          break;
+        case "schedule-delete":
+          {
+            $id = $_GET['id'];
+            removeSchedule($id);
+            header('Location:index.php?ctx=schedules');
+          }
+         break;
+        case "schedule-create":
+          {
+            include "./schedule/scheduleAdd.php";
+          }
+         break;
+        case "schedule-edit":
+          {
+              $id=$_GET['id'];
+              $scheduleInfo = getOneSchedule($id,'','');
+              include "./schedule/scheduleEdit.php";
+          }
+          break;
 // controller schedules
+// controller scheduleHours
+          case 'schedule_hours':
+            {
+              $schedule_hours = [];
+              $date = '';$idRoom = '';$idFilm = '';
+              if(isset($_POST['search'])){
+                $date = $_POST['date'];
+                $idFilm = empty($_POST['$idFilm']) ? "" : $_POST['$idFilm'];
+                $idRoom = empty($_POST['idRoom']) ? "" : $_POST['idRoom'];
+              }
+              $schedule_hours = getScheduleHoursWithDateIdFilmIdRoom($date,$idFilm,$idRoom);
+
+              include "./scheduleHours/scheduleHoursList.php";
+            }
+          break;
+          case 'schedule_hours-delete':
+            {
+              $id = $_POST['id'];
+              removeScheduleHoursById($id);
+              header("Location:index.php?act=schedule_hours");
+            }
+          break;
+          case "schedule_hours-edit" :
+            {
+              
+            }
+          break;
+          case 'schedule_hours-create':
+            {
+              include "./scheduleHours/scheduleHoursAdd.php";
+            }
+          break;
+// controller scheduleHours
 
 
 // controller ticket
@@ -71,7 +129,8 @@
 // controller ticket
 
 
-///
-    }
+          default :
+          echo "unKnow router";
+            }
   }
 ?> 

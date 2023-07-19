@@ -1,9 +1,5 @@
-<?php
-function insert_user($userName,$password,$email,$name,$phoneNumber,$address)
-{
-    $sql = "INSERT INTO `user`(`userName`,`password`,`email`,`name`,`phoneNumber`,`address`) VALUES('$userName','$password','$email','$name','$phoneNumber','$address')";
-    pdo_execute($sql);
-}
+<?php 
+    
 
 function update_account($idUser,$userName,$password,$email,$name,$phoneNumber,$address){
     $sql="UPDATE `user` SET `userName`='$userName',`password`='$password',`email`='$email',`name`='$name',
