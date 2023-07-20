@@ -12,7 +12,6 @@ a,li{
     width: 70%;
     margin: 0 auto;
 }
-
 .row {
     float: left;
     width: 100%;
@@ -301,6 +300,7 @@ a,li{
 }
 
 .fromcontent {
+    overflow-y: scroll;
     padding: 20px 0;
 
 }
@@ -319,7 +319,7 @@ a,li{
 
 .content table th,
 .fromlist table th {
-    padding: 10px;
+    padding: 6px 2px;
     background: #090;
     border: none;
 }
@@ -339,7 +339,7 @@ a,li{
 
 .content table td,
 .fromlist table td {
-    padding: 15px 20px;
+    padding: 6px 2px;
     border: 1px #999 solid;
     border: none;
 }
