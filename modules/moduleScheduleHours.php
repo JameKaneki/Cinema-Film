@@ -7,11 +7,11 @@
         $sql = "SELECT sh.idScheduleHour, s.date,sh.time,f.nameFilm,r.nameRoom FROM `schedule_hours` as sh INNER JOIN schedules as s ON sh.idSchedule = s.idSchedule INNER JOIN films as f ON f.idFilm = s.idSchedule INNER JOIN rooms as r on r.idRoom = sh.idRoom";
         return pdo_query($sql);
     }
-    function getScheduleHoursWithDateIdFilmIdRoom($date,$idFilm,$idRoom){
-      
+    function getScheduleHoursWithDateIdFilmIdRoom($time,$idFilm,$idRoom){
         $sql = "SELECT sh.idScheduleHour, s.date,sh.time,f.nameFilm,r.nameRoom,f.idFilm FROM `schedule_hours` as sh INNER JOIN schedules as s ON sh.idSchedule = s.idSchedule INNER JOIN films as f ON f.idFilm = s.idSchedule INNER JOIN rooms as r on r.idRoom = sh.idRoom WHERE 1";
-        if(!empty($date)){
-            $sql .= " AND s.date = '$date'";
+        if(!empty($time)){
+            $hour = substr($time,0,2);
+            $sql .= " AND sh.time like '$hour%'";
         }
         if(!empty($idFilm)){
             $sql .= " AND f.idFilm = $idFilm";
