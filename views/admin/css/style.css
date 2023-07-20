@@ -3,7 +3,9 @@
     font-family: sans-serif;
     font-size: 0.9vw;
 }
-a,li{
+
+a,
+li {
     text-decoration: none;
     list-style-type: none;
 }
@@ -12,6 +14,7 @@ a,li{
     width: 70%;
     margin: 0 auto;
 }
+
 .row {
     float: left;
     width: 100%;
@@ -307,7 +310,7 @@ a,li{
 
 .fromlist table {
     width: 100%;
-
+    overflow-x: scroll;
 }
 
 .content table {
@@ -319,20 +322,26 @@ a,li{
 
 .content table th,
 .fromlist table th {
+    padding: 10px;
+    background: gray;
     padding: 6px 2px;
     background: #090;
     border: none;
 }
 
-/* .fromlist table th:nth-child(2){
+
+
+/* .fromlist table th:nth-child(2) {
     width: 20%;
     background: #090;
 }
-.fromlist table th:nth-child(3){
+
+.fromlist table th:nth-child(3) {
     width: 40%;
     background: #090;
 }
-.fromlist table th:nth-child(4){
+
+.fromlist table th:nth-child(4) {
     width: 20%;
     background: #090;
 } */
@@ -578,28 +587,33 @@ form .name_tk {
 .detail h2 {
     font-size: 2rem;
 }
- i{
+
+i {
     width: 150px;
     height: 40px;
     border: 1px solid orangered;
     text-align: center;
     padding-top: 10px;
     background-color: #ec6c58;
- }
- i input{
+}
+
+i input {
     background-color: #ec6c58;
     border: 0;
 }
-i input:hover{
-    background-color:#ee4d2d;
+
+i input:hover {
+    background-color: #ee4d2d;
 
 }
-i:hover{
+
+i:hover {
     color: #fff;
-    background-color:#ee4d2d;
+    background-color: #ee4d2d;
     box-shadow: rgba(244, 3, 3, 0.973) 0 8px 15px;
     transform: translateY(-2px)
 }
+
 .edit input {
     width: 50px;
     height: 30px;
@@ -624,44 +638,54 @@ i:hover{
     box-shadow: rgba(240, 3, 3, 0.978) 0 8px 15px;
     transform: translateY(-2px)
 }
-.edit input:hover{
+
+.edit input:hover {
     color: #fff;
-    background-color:blue;
+    background-color: blue;
     box-shadow: rgba(9, 1, 240, 0.978) 0 8px 15px;
     transform: translateY(-2px)
 }
 
-.statistical input{
+.statistical input {
     width: 150px;
     height: 40px;
     background-color: red;
     border: 1px solid red;
     border-radius: 4px;
 }
-.statistical input:hover{
+
+.statistical input:hover {
     color: #fff;
     background-color: rgb(141, 16, 116);
     box-shadow: rgba(216, 32, 237, 0.978) 0 8px 15px;
     transform: translateY(-2px)
 }
 
+.input {
+    padding: 10px;
+    margin: 10px;
+}
 
 
 /* css from Minh */
 /* table css */
-:root{
-    --red--color : rgb(223,69,45);
-    --blue-color : rgb(65,99,232);
+:root {
+    --red--color: rgb(223, 69, 45);
+    --blue-color: rgb(65, 99, 232);
 }
-a,li{
-text-decoration: none;
-list-style-type: none;
+
+a,
+li {
+    text-decoration: none;
+    list-style-type: none;
 }
-.wrapper{
+
+.wrapper {
     width: 70%;
     margin: 0px auto;
 }
-table{
+
+table {
     margin: 40px auto;
     padding: 12px;
     box-shadow: 1px 1px 1px 1px #999;
@@ -670,83 +694,100 @@ table{
     overflow-y: scroll;
     /* width: 90%; */
 }
-td,th{
+
+td,
+th {
     padding: 8px 4px;
     text-align: start;
     min-width: 120px;
     max-width: 300px;
     border: 1px solid #999;
 }
-th{
+
+th {
     border: 1px solid;
 }
-tr{
+
+tr {
     border: 1px solid #000;
 }
-td.bigCol{
+
+td.bigCol {
     width: 500px;
 }
-.showTime{
+
+.showTime {
     display: flex;
-    justify-content: start; 
+    justify-content: start;
     flex-wrap: wrap;
 }
-.showTime-box{
+
+.showTime-box {
     margin: 2px 4px;
-    border: 2px solid ;
+    border: 2px solid;
     padding: 4px 8px;
     border-radius: 3px;
     background-color: #666;
 }
-.action-box{
+
+.action-box {
     display: flex;
 }
-.btn{
+
+.btn {
     padding: 6px 16px;
     margin: 2px 4px;
     border-radius: 3px;
     cursor: pointer;
     border: none;
 }
+
 .btn a {
-    color:white;
+    color: white;
 }
-.btn-red{
+
+.btn-red {
     color: white;
     background-color: var(--red--color);
 }
-.btn-blue{
+
+.btn-blue {
     color: white;
     background-color: var(--blue-color);
 }
+
 /* form css */
-.form-content{
+.form-content {
     width: 600px;
     margin: 30px auto;
     padding: 20px;
     box-shadow: 1px 2px 2px 1px #999;
     border-radius: 12px;
-    }
-    .input-wrap{
-      margin: 20px 10px;
-    }
-    .input-wrap label{
-        display: block;
-        margin: 10px 0px;
-        padding: 0 12px;
-        font-size: 1rem;
-        font-weight: 700;
-    }
-    .input-wrap input{
-        outline: none;
-        padding: 12px;
-        font-size: 1.2rem;
-        width: 100%;
-        border-radius: 12px;
-        border: none;
-        background-color: rgba(153, 153, 153,0.1);
-    }
-    .input-wrap select{
-        width: 100%;
-        padding: 6px 2px;
-    }
+}
+
+.input-wrap {
+    margin: 20px 10px;
+}
+
+.input-wrap label {
+    display: block;
+    margin: 10px 0px;
+    padding: 0 12px;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.input-wrap input {
+    outline: none;
+    padding: 12px;
+    font-size: 1.2rem;
+    width: 100%;
+    border-radius: 12px;
+    border: none;
+    background-color: rgba(153, 153, 153, 0.1);
+}
+
+.input-wrap select {
+    width: 100%;
+    padding: 6px 2px;
+}
