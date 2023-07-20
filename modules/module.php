@@ -8,7 +8,7 @@ function pdo_get_connection(){
     $username = 'root';
     $password = '';
 
-    $conn = new PDO($dburl, $username, $password);
+    $conn = new PDO($dburl,$username,$password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $conn;
 }
