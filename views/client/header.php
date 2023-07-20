@@ -58,12 +58,11 @@
                         <a href="#0">Move</a>
                         <ul class="submenu">
                             <li>
-                                <a href="movie-grid.html?ctx=playing">Movie playing now</a>
+                                <a href="movie-grid.html?act=playing">Movie playing now</a>
                             </li>
                             <li>
-                                <a href="movie-grid.html?ctx=coming">Movie coming soon</a>
+                                <a href="movie-grid.html?act=coming">Movie coming soon</a>
                             </li>
-                         
                         </ul>
                     </li>
                     <li>

@@ -4485,9 +4485,9 @@ input[type="submit"] {
 }
 
 .screen-thumb {
-  width: 100%;
-  max-width: 730px;
-  margin: 0 auto 30px;
+  width: 70%;
+  max-width: 530px;
+  margin: 0 auto ;
 }
 
 .screen-thumb img {
