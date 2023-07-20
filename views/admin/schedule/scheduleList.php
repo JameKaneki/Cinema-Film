@@ -55,7 +55,8 @@
                     ";
                     if(isset($showTimeList[$schedule["idFilm"]])){    
                         foreach($showTimeList[$schedule["idFilm"]] as $item){
-                            echo " <div class='showTime-box'>$item</div>";
+                            $time = substr($item,0,5);
+                            echo " <div class='showTime-box'>$time</div>";
                         }
                     }else{
                         echo "<div>No schedule hour info</div>";

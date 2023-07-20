@@ -43,11 +43,12 @@
 
         <?php 
             foreach($schedule_hours as $sHour){
+                $time = substr($sHour['time'],0,5);
                 echo 
                 "<tr>
                     <td>{$sHour['nameFilm']}</td>
                     <td>{$sHour['date']}</td>
-                    <td>{$sHour['time']}</td>
+                    <td>$time</td>
                     <td>{$sHour['nameRoom']}</td>
                     <td class='action-box'>
                         <div class='btn btn-red'><a href='index.php?act=schedule_hours-delete&id={$sHour['idScheduleHour']}' >Remove</a></div>
