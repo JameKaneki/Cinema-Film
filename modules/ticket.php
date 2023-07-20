@@ -13,9 +13,13 @@
     }
 
     function selectAll_ticket(){
-        $sql="SELECT `tickets`.`idTicket`,`price`,`seat`,`schedule_hours`.`idScheduleHour`,`time`,`users`.`idUser`,`name` FROM `tickets`
+        $sql="SELECT `tickets`.`idTicket`,`price`,`seat`,`schedule_hours`.`idScheduleHour`,`time`,`users`.`idUser`,`name`,`cinemas`.`idCinema`,`nameCinema`,`films`.`idFilm`,`nameFilm`,`schedules`.`idSchedule`,`date`,`rooms`.`idRoom`,`nameRoom` FROM `tickets`
         Inner join `schedule_hours` On `schedule_hours`.`idScheduleHour` = `tickets`.`idScheduleHour`
-        Inner join `users` On `users`.`idUser` = `tickets`.`idUser`  Order by 'idTicket' desc";
+        Inner join `users` On `users`.`idUser` = `tickets`.`idUser`
+        Inner join `schedules` On `schedule_hours`.`idSchedule` = `schedules`.`idSchedule`
+        Inner join `films` On `schedules`.`idFilm` = `films`.`idFilm`
+        Inner join `rooms` On `schedule_hours`.`idRoom` = `rooms`.`idRoom`
+        Inner join `cinemas`On `rooms`.`idCinema` = `cinemas`.`idCinema`  Order by 'idTicket' desc";
         return pdo_query($sql);
         // $sql="SELECT * From `tickets` Order by 'idTicket' desc";
         // return pdo_query($sql);

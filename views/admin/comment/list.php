@@ -1,30 +1,35 @@
-    <div class="row">
+<div class="row">
         <div class="row fromtitle">
-            <h1>Danh sách rạp phim</h1>
+            <h1>Danh sách bình luận</h1>
         </div>
         <div class="row fromcontent">
     <div class="row mb10 fromlist">
         <table>
             <tr>
                 <th></th>
-                <th>Mã Rạp</th>
-                <th>Tên Tên Rạp</th>
-                <th>Địa chỉ</th>
+                <th>Mã Comment</th>
+                <th>Người bình luận</th>
+                <th>Nội dung</th>
+                <th>Thời gian</th>
+                <th>Tên phim</th>
                 <th></th>
             </tr>
             <?php
-                $listCinema = selectAll_cinema();
-                foreach ( $listCinema as $list){
+                $listComment = selectAll_comment();
+                foreach ( $listComment as $list){
                     extract($list);
-                    $updateCinema= "index.php?act=cinema-edit&idCinema=".$idCinema;
-                    $deleteCinema= "index.php?act=cinema-delete&idCinema=".$idCinema;
+                    $deleteComment= "index.php?act=comment-delete&idComment=".$idComment;
                     echo '<tr>
                     <td><input type="checkbox"></td>
-                    <td>'.$idCinema.'</td>
-                    <td>'.$nameCinema.'</td>
-                    <td>'.$addressCinema.'</td>
-                    <td><a href="'.$updateCinema.'"><input type="button" value="Sửa"></a> <a href="'.$deleteCinema.'"> <input type="button" value="xóa"></a></td>
+                    <td>'.$idComment.'</td>
+                    <td>'.$name.'</td>
+                    <td>'.$content.'</td>
+                    <td>'.$timeComment.'</td>
+                    <td>'.$nameFilm.'</td>
+                    <td>
+                    <a href="'.$deleteComment.'"> <input type="button" value="xóa"></a></td>
                 </tr>';
+                // <a href="'.$updateTicket.'"><input type="button" value="Sửa"></a> 
                 }
             ?>
             
@@ -33,8 +38,8 @@
     <div class="row mb10 ">
         <input type="button" id='select-all' value="Chọn tất cả">
         <input type="button" id='deselect-all' value="Bỏ chọn tất cả">
-        <a href="index.php?act=cinema-delete"><input type="button" value="Xóa các mục đã chọn"></a>
-        <a href="index.php?act=cinema-add"><input type="button" value="Nhập thêm"></a>
+        <a href="index.php?act=comment-delete"><input type="button" value="Xóa các mục đã chọn"></a>
+        <a href="index.php?act=comment-add"><input type="button" value="Nhập thêm"></a>
     </div>
     <script>
             const checkboxes = document.querySelectorAll('input[type="checkbox"]');

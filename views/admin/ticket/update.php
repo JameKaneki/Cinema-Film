@@ -8,7 +8,7 @@
 ?>
 <div class="row">
 <div class="row fromtitle">
-            <h1>Thêm vé phim</h1>
+            <h1>Sửa vé phim</h1>
         </div>
         <div class="row fromcontent">
                 <form action="index.php?act=ticket-update" method="post">
