@@ -1546,6 +1546,7 @@ input[type="submit"] {
   top: 0;
   left: 0;
   z-index: 99;
+  
 }
 
 .header-section.header-active {
@@ -4485,9 +4486,9 @@ input[type="submit"] {
 }
 
 .screen-thumb {
-  width: 100%;
-  max-width: 730px;
-  margin: 0 auto 30px;
+  width: 70%;
+  max-width: 530px;
+  margin: 0 auto ;
 }
 
 .screen-thumb img {
@@ -4711,6 +4712,7 @@ input[type="submit"] {
 .proceed-book {
   padding: 32px 40px 32px;
   position: relative;
+  margin: 50px;
 }
 
 .proceed-book::before {
