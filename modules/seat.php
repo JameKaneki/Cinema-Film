@@ -24,4 +24,20 @@
     $listseat = pdo_query_one($sql);
     return $listseat;
     }
+    function getSeatListByIdRoom($idRoom){
+        $sql = "SELECT * FROM `seats` WHERE idRoom = 1";
+        return pdo_query($sql);
+    }
+    function groupScheduleHoursById($idRoom){
+        $seatList = getSeatListByIdRoom($idRoom);
+        $groupedSeatList = array_reduce($seatList,function (array $carry,array $item){
+            $seatKey = $item['seat_key'];
+            if(isset($carry[substr($seatKey,0,1)])){
+                return [...$carry,substr($seatKey,0,1) => [...$carry[substr($seatKey,0,1)],$seatKey]];
+            }else{
+                return [...$carry,substr($seatKey,0,1) =>[$seatKey]];
+            }
+        },[]);
+        return $groupedSeatList;
+    }
 ?>

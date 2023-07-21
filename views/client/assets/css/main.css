@@ -1546,6 +1546,7 @@ input[type="submit"] {
   top: 0;
   left: 0;
   z-index: 99;
+  
 }
 
 .header-section.header-active {
@@ -4711,6 +4712,7 @@ input[type="submit"] {
 .proceed-book {
   padding: 32px 40px 32px;
   position: relative;
+  margin: 50px;
 }
 
 .proceed-book::before {

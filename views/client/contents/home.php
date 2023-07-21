@@ -13,7 +13,7 @@
                 <div class="col-lg-3 col-sm-10  mt-50 mt-lg-0">
                     <div class="widget-1 widget-banner">
                         <div class="widget-1-body">
-                            <a href="#0">
+                            <a href="index.php?act=movie-detail&id=2">
                                 <img src="assets/images/sidebar/banner/banner01.jpg" alt="banner">
                             </a>
                         </div>
@@ -25,7 +25,7 @@
                                
                                 <li>
                                     <h6 class="sub-title">
-                                        <a href="#0">film hot</a>
+                                        <a href="index.php?act=movie-detail&id=2">film hot</a>
                                     </h6>
                                 </li>
                             </ul>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="widget-1 widget-banner">
                         <div class="widget-1-body">
-                            <a href="#0">
+                            <a href="index.php?act=movie-detail&id=2">
                                 <img src="assets/images/sidebar/banner/banner02.jpg" alt="banner">
                             </a>
                         </div>
@@ -49,13 +49,13 @@
                             <div class="col-sm-6 col-lg-4">
                                 <div class="movie-grid">
                                     <div class="movie-thumb c-thumb">
-                                        <a href="#0">
+                                        <a href="index.php?act=movie-detail&id=2">
                                             <img src="assets/images/movie/movie01.jpg" alt="movie">
                                         </a>
                                     </div>
                                     <div class="movie-content bg-one">
                                         <h5 class="title m-0">
-                                            <a href="#0">alone</a>
+                                            <a href="index.php?act=movie-detail&id=2">alone</a>
                                         </h5>
                                         <ul class="movie-rating-percent">
                                             <li>
@@ -77,13 +77,13 @@
                             <div class="col-sm-6 col-lg-4">
                                 <div class="movie-grid">
                                     <div class="movie-thumb c-thumb">
-                                        <a href="#0">
+                                        <a href="index.php?act=movie-detail&id=2">
                                             <img src="assets/images/movie/movie02.jpg" alt="movie">
                                         </a>
                                     </div>
                                     <div class="movie-content bg-one">
                                         <h5 class="title m-0">
-                                            <a href="#0">mars</a>
+                                            <a href="index.php?act=movie-detail&id=2">mars</a>
                                         </h5>
                                         <ul class="movie-rating-percent">
                                             <li>
@@ -105,13 +105,13 @@
                             <div class="col-sm-6 col-lg-4">
                                 <div class="movie-grid">
                                     <div class="movie-thumb c-thumb">
-                                        <a href="#0">
+                                        <a href="index.php?act=movie-detail&id=2">
                                             <img src="assets/images/movie/movie03.jpg" alt="movie">
                                         </a>
                                     </div>
                                     <div class="movie-content bg-one">
                                         <h5 class="title m-0">
-                                            <a href="#0">venus</a>
+                                            <a href="index.php?act=movie-detail&id=2">venus</a>
                                         </h5>
                                         <ul class="movie-rating-percent">
                                             <li>
@@ -141,13 +141,13 @@
                                 <div class="col-sm-6 col-lg-4">
                                     <div class="movie-grid">
                                         <div class="movie-thumb c-thumb">
-                                            <a href="movie-details.html?ctx=tenphim">
+                                            <a href="index.php?act=movie-detail&id=2">
                                                 <img src="assets/images/movie/movie01.jpg" alt="movie">
                                             </a>
                                         </div>
                                         <div class="movie-content bg-one">
                                             <h5 class="title m-0">
-                                                <a href="#0">alone</a>
+                                                <a href="index.php?act=movie-detail&id=2">alone</a>
                                             </h5>
                                             <ul class="movie-rating-percent">
                                                 <li>
@@ -169,13 +169,13 @@
                                 <div class="col-sm-6 col-lg-4">
                                     <div class="movie-grid">
                                         <div class="movie-thumb c-thumb">
-                                            <a href="movie-details.html?ctx=tenphim">
+                                            <a href="index.php?act=movie-detail&id=2">
                                                 <img src="assets/images/movie/movie01.jpg" alt="movie">
                                             </a>
                                         </div>
                                         <div class="movie-content bg-one">
                                             <h5 class="title m-0">
-                                                <a href="#0">alone</a>
+                                                <a href="index.php?act=movie-detail&id=2">alone</a>
                                             </h5>
                                             <ul class="movie-rating-percent">
                                                 <li>
@@ -197,13 +197,13 @@
                                 <div class="col-sm-6 col-lg-4">
                                     <div class="movie-grid">
                                         <div class="movie-thumb c-thumb">
-                                            <a href="movie-details.html?ctx=tenphim">
+                                            <a href="index.php?act=movie-detail&id=2">
                                                 <img src="assets/images/movie/movie01.jpg" alt="movie">
                                             </a>
                                         </div>
                                         <div class="movie-content bg-one">
                                             <h5 class="title m-0">
-                                                <a href="#0">alone</a>
+                                                <a href="index.php?act=movie-detail&id=2">alone</a>
                                             </h5>
                                             <ul class="movie-rating-percent">
                                                 <li>

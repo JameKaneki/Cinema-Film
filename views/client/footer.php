@@ -19,7 +19,7 @@
         <div class="container">
             <div class="footer-top">
                 <div class="logo">
-                    <a href="index-1.html">
+                    <a href="index.php">
                         <img src="assets/images/footer/footer-logo.png" alt="footer">
                     </a>
                 </div>
@@ -81,18 +81,17 @@
 
 
     <script src="assets/js/jquery-3.3.1.min.js"></script>
-    <!-- <script src="assets/js/modernizr-3.6.0.min.js"></script>
+    <!-- <script src="assets/js/isotope.pkgd.min.js"></script> -->
+    <!-- <script src="assets/js/magnific-popup.min.js"></script> -->
+     <!-- <script src="assets/js/modernizr-3.6.0.min.js"></script> -->
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/heandline.js"></script>
-    <script src="assets/js/isotope.pkgd.min.js"></script>
-    <script src="assets/js/magnific-popup.min.js"></script>
     <script src="assets/js/owl.carousel.min.js"></script>
     <script src="assets/js/wow.min.js"></script>
     <script src="assets/js/countdown.min.js"></script>
     <script src="assets/js/odometer.min.js"></script>
     <script src="assets/js/viewport.jquery.js"></script>
-    <script src="assets/js/nice-select.js"></script> -->
-    <script src="assets/js/customer.js"></script>
+    <script src="assets/js/nice-select.js"></script> 
     <script src="assets/js/main.js"></script>
 </body>

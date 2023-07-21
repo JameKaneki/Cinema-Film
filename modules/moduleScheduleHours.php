@@ -36,6 +36,10 @@
         $sql = "SELECT * FROM `schedule_hours` WHERE `idSchedule` = $idSchedule";
         return pdo_query($sql);
     }
+    function getScheduleHoursById($idScheduleHour){
+        $sql = "SELECT sh.idScheduleHour,sh.time,sh.idSchedule,sh.idRoom,s.date,f.nameFilm FROM `schedule_hours` as sh INNER JOIN schedules as s ON s.idSchedule=sh.idSchedule INNER JOIN films as f ON f.idFilm = s.idFilm INNER JOIN rooms as r on r.idRoom = sh.idRoom WHERE sh.idScheduleHour = $idScheduleHour";
+        return pdo_query_one($sql);
+    }
     function createScheduleHours($idSchedule,$hour,$idRoom){
         $sql = "INSERT INTO `schedule_hours`('time', 'idSchedule', 'idRoom') VALUES ($idSchedule,$hour,$idRoom)";
         return pdo_execute(($sql));
