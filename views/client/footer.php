@@ -81,9 +81,9 @@
 
 
     <script src="assets/js/jquery-3.3.1.min.js"></script>
-    <!-- <script src="assets/js/isotope.pkgd.min.js"></script> -->
-    <!-- <script src="assets/js/magnific-popup.min.js"></script> -->
-     <!-- <script src="assets/js/modernizr-3.6.0.min.js"></script> -->
+    <script src="assets/js/isotope.pkgd.min.js"></script>
+    <script src="assets/js/magnific-popup.min.js"></script>
+     <script src="assets/js/modernizr-3.6.0.min.js"></script>
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/heandline.js"></script>

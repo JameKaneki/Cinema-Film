@@ -8,7 +8,6 @@
         <!-- trả ra idSchedulehour  -->
 
 <?php 
-    
-    
+
     
 ?>

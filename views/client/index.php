@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 
 include "./header.php";
 include "../../modules/module.php";
@@ -37,19 +37,30 @@ if(isset($_GET['act'])){
             break;
         case "ticket-plant":
             {
+
                 include "./contents/movie-ticket-plan.php";
             }
-            break;
+            break;  
         case 'seat-plan' :
             {
                 // nhận vào idshedulehour 
                 $idScheduleHour = 17;
                 $scheduleHourInfo = getScheduleHoursById($idScheduleHour);
                 $seatList = groupScheduleHoursById($scheduleHourInfo['idRoom']);
-                $booedSeat = getBookedSeat($idScheduleHour,$scheduleHourInfo['idRoom']);
+                $bookedSeat = getBookedSeat($idScheduleHour,$scheduleHourInfo['idRoom']);
                 include "./contents/movie-seat-plan.php";
             } 
-            break;
+        break;
+        case 'movie-checkout':
+            {
+                $seatList=$_GET['s'];
+                
+                $idScheduleHour = $_GET['sh'];
+                $idRoom = $_GET['r'];
+                $MovieCheckout = getMovieCheckoutInfo($idScheduleHour,$idRoom);
+                include "./contents/movie-checkout.php";
+            }
+        break;
         default :
             include "./contents/home.php";
         break;
