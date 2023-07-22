@@ -30,7 +30,7 @@
                     <td>'.$price.' $</td>
                     <td>'.$name.'</td>
                     <td>'.$time.' '.$date.'</td>
-                    <td>'.$seat.'</td>
+                    <td>'.$seat_key.'</td>
                     <td>'.$nameRoom.'</td>
                     <td>'.$nameCinema.'</td>
                     <td>

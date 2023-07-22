@@ -56,7 +56,7 @@
                 <ul class="menu">
                     <li>
                         <a href="#0">Move</a>
-                        <ul class="submenu">
+                        <ul class="submenu" style="z-index:10;">
                             <li>
                                 <a href="index.php?act=playing">Movie playing now</a>
                             </li>

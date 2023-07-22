@@ -25,7 +25,7 @@
                 <div class="col-lg-3 col-sm-10  mt-50 mt-lg-0">
                     <div class="widget-1 widget-banner">
                         <div class="widget-1-body">
-                            <a href="index.php?act=movie-detail&id=2">
+                            <a href="index.php?act=movie-detail&idFilm=1">
                                 <img src="assets/images/sidebar/banner/banner01.jpg" alt="banner">
                             </a>
                         </div>
@@ -34,20 +34,18 @@
                         <h3 class="title">Hot Movies</h3>
                         <div class="widget-1-body">
                             <ul>
-                               
-                                <li>
-                                    <h6 class="sub-title">
-                                        <a href="index.php?act=movie-detail&id=2">film hot</a>
-                                    </h6>
-                                </li>
+                               <?php
+                                    $list5Film = loadtop5_film();
+                                    foreach ($list5Film as $list){
+                                        extract($list);
+                                        echo '<li>
+                                        <h6 class="sub-title" style="text-transform: uppercase;">
+                                            <a href="index.php?act=movie-detail&idFilm='.$idFilm.'">'.$nameFilm.'</a>
+                                        </h6>
+                                    </li>';
+                                    }
+                               ?>
                             </ul>
-                        </div>
-                    </div>
-                    <div class="widget-1 widget-banner">
-                        <div class="widget-1-body">
-                            <a href="index.php?act=movie-detail&id=2">
-                                <img src="assets/images/sidebar/banner/banner02.jpg" alt="banner">
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -55,185 +53,73 @@
                     <div class="article-section padding-bottom">
                         <div class="section-header-1">
                             <h2 class="title">movies</h2>
-                            <a class="view-all" href="movie-grid.html?ctx=playing">View All</a>
+                            <a class="view-all" href="index.php?act=playing">View All</a>
                         </div>
                         <div class="row mb-30-none justify-content-center">
-                            <div class="col-sm-6 col-lg-4">
-                                <div class="movie-grid">
-                                    <div class="movie-thumb c-thumb">
-                                        <a href="index.php?act=movie-detail&id=2">
-                                            <img src="assets/images/movie/movie01.jpg" alt="movie">
-                                        </a>
+                            <?php
+                                $listFilm = loadtop3playing_film();
+                                foreach ($listFilm as $list){
+                                    extract($list);
+                                    echo '<div class="col-sm-6 col-lg-4">
+                                    <div class="movie-grid">
+                                        <div class="movie-thumb c-thumb">
+                                            <a href="index.php?act=movie-detail&idFilm='.$idFilm.'">
+                                                <img src="'.$poster.'" style="max-height: 330px;" alt="movie">
+                                            </a>
+                                        </div>
+                                        <div class="movie-content bg-one">
+                                            <h5 class="title m-0" style="font-size: large;  height: 120px;">
+                                                <a href="index.php?act=movie-detail&idFilm='.$idFilm.'" >'.$nameFilm.'</a>
+                                            </h5>
+                                            <ul class="movie-rating-percent">
+                                                <li>
+                                                    <span class="content">'.$premiere.'</span>
+                                                </li>
+                                                <li>
+                                                    <span class="content" style="margin-left: 20px;">'.$duration.' mins</span>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div class="movie-content bg-one">
-                                        <h5 class="title m-0">
-                                            <a href="index.php?act=movie-detail&id=2">alone</a>
-                                        </h5>
-                                        <ul class="movie-rating-percent">
-                                            <li>
-                                                <div class="thumb">
-                                                    <img src="assets/images/movie/tomato.png" alt="movie">
-                                                </div>
-                                                <span class="content">88%</span>
-                                            </li>
-                                            <li>
-                                                <div class="thumb">
-                                                    <img src="assets/images/movie/cake.png" alt="movie">
-                                                </div>
-                                                <span class="content">88%</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-4">
-                                <div class="movie-grid">
-                                    <div class="movie-thumb c-thumb">
-                                        <a href="index.php?act=movie-detail&id=2">
-                                            <img src="assets/images/movie/movie02.jpg" alt="movie">
-                                        </a>
-                                    </div>
-                                    <div class="movie-content bg-one">
-                                        <h5 class="title m-0">
-                                            <a href="index.php?act=movie-detail&id=2">mars</a>
-                                        </h5>
-                                        <ul class="movie-rating-percent">
-                                            <li>
-                                                <div class="thumb">
-                                                    <img src="assets/images/movie/tomato.png" alt="movie">
-                                                </div>
-                                                <span class="content">88%</span>
-                                            </li>
-                                            <li>
-                                                <div class="thumb">
-                                                    <img src="assets/images/movie/cake.png" alt="movie">
-                                                </div>
-                                                <span class="content">88%</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-4">
-                                <div class="movie-grid">
-                                    <div class="movie-thumb c-thumb">
-                                        <a href="index.php?act=movie-detail&id=2">
-                                            <img src="assets/images/movie/movie03.jpg" alt="movie">
-                                        </a>
-                                    </div>
-                                    <div class="movie-content bg-one">
-                                        <h5 class="title m-0">
-                                            <a href="index.php?act=movie-detail&id=2">venus</a>
-                                        </h5>
-                                        <ul class="movie-rating-percent">
-                                            <li>
-                                                <div class="thumb">
-                                                    <img src="assets/images/movie/tomato.png" alt="movie">
-                                                </div>
-                                                <span class="content">88%</span>
-                                            </li>
-                                            <li>
-                                                <div class="thumb">
-                                                    <img src="assets/images/movie/cake.png" alt="movie">
-                                                </div>
-                                                <span class="content">88%</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                                </div>';
+                                }
+                            ?>
                         </div>
                     </div>
                     <div class="article-section padding-bottom">
                         <div class="section-header-1">
                             <h2 class="title">Coming soon</h2>
-                            <a class="view-all" href="movie-grid.html?ctx=coming">View All</a>
+                            <a class="view-all" href="index.php?act=coming">View All</a>
                         </div>
                             <div class="row mb-30-none justify-content-center">
-                                <div class="col-sm-6 col-lg-4">
-                                    <div class="movie-grid">
-                                        <div class="movie-thumb c-thumb">
-                                            <a href="index.php?act=movie-detail&id=2">
-                                                <img src="assets/images/movie/movie01.jpg" alt="movie">
-                                            </a>
+                                <?php
+                                    $listFilm = loadtop3coming_film();
+                                    foreach ($listFilm as $list){
+                                        extract($list);
+                                        echo '<div class="col-sm-6 col-lg-4">
+                                        <div class="movie-grid">
+                                            <div class="movie-thumb c-thumb">
+                                                <a href="index.php?act=movie-detail&idFilm='.$idFilm.'">
+                                                    <img src="'.$poster.'" style="max-height: 330px;" alt="movie">
+                                                </a>
+                                            </div>
+                                            <div class="movie-content bg-one">
+                                                <h5 class="title m-0" style="font-size: large; height: 120px;">
+                                                    <a href="index.php?act=movie-detail&idFilm='.$idFilm.'">'.$nameFilm.'</a>
+                                                </h5>
+                                                <ul class="movie-rating-percent">
+                                                    <li>
+                                                        <span class="content">'.$premiere.'</span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="content" style="margin-left: 20px;">'.$duration.' mins</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                        <div class="movie-content bg-one">
-                                            <h5 class="title m-0">
-                                                <a href="index.php?act=movie-detail&id=2">alone</a>
-                                            </h5>
-                                            <ul class="movie-rating-percent">
-                                                <li>
-                                                    <div class="thumb">
-                                                        <img src="assets/images/movie/tomato.png" alt="movie">
-                                                    </div>
-                                                    <span class="content">88%</span>
-                                                </li>
-                                                <li>
-                                                    <div class="thumb">
-                                                        <img src="assets/images/movie/cake.png" alt="movie">
-                                                    </div>
-                                                    <span class="content">88%</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-4">
-                                    <div class="movie-grid">
-                                        <div class="movie-thumb c-thumb">
-                                            <a href="index.php?act=movie-detail&id=2">
-                                                <img src="assets/images/movie/movie01.jpg" alt="movie">
-                                            </a>
-                                        </div>
-                                        <div class="movie-content bg-one">
-                                            <h5 class="title m-0">
-                                                <a href="index.php?act=movie-detail&id=2">alone</a>
-                                            </h5>
-                                            <ul class="movie-rating-percent">
-                                                <li>
-                                                    <div class="thumb">
-                                                        <img src="assets/images/movie/tomato.png" alt="movie">
-                                                    </div>
-                                                    <span class="content">88%</span>
-                                                </li>
-                                                <li>
-                                                    <div class="thumb">
-                                                        <img src="assets/images/movie/cake.png" alt="movie">
-                                                    </div>
-                                                    <span class="content">88%</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-4">
-                                    <div class="movie-grid">
-                                        <div class="movie-thumb c-thumb">
-                                            <a href="index.php?act=movie-detail&id=2">
-                                                <img src="assets/images/movie/movie01.jpg" alt="movie">
-                                            </a>
-                                        </div>
-                                        <div class="movie-content bg-one">
-                                            <h5 class="title m-0">
-                                                <a href="index.php?act=movie-detail&id=2">alone</a>
-                                            </h5>
-                                            <ul class="movie-rating-percent">
-                                                <li>
-                                                    <div class="thumb">
-                                                        <img src="assets/images/movie/tomato.png" alt="movie">
-                                                    </div>
-                                                    <span class="content">88%</span>
-                                                </li>
-                                                <li>
-                                                    <div class="thumb">
-                                                        <img src="assets/images/movie/cake.png" alt="movie">
-                                                    </div>
-                                                    <span class="content">88%</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                    </div>';
+                                    }
+                                ?>
                             </div>
                            
                         </div>
