@@ -14,20 +14,23 @@ include "../../modules/moduleSchedule.php";
 include "../../modules/moduleScheduleHours.php";
 include "../../modules/moduleRoom.php";
 
+
 if(isset($_GET['act'])){
     $feature = $_GET['act'];
 
     switch($feature){
        
         case 'playing':
-            {
-                include "./contents/movie-grid.php";
-            }
+                include "./contents/movie-grid-1.php";
+            // {
+            //     include "./contents/movie-grid.php";
+            // }
             break;
 
         case 'coming':
             {
-                include "./contents/movie-grid.php";
+                include "./contents/movie-grid-2.php";
+                // include "./contents/movie-grid.php";
             }
             break;
         case 'movie-detail':
@@ -68,9 +71,6 @@ if(isset($_GET['act'])){
 }else{
     include "./contents/home.php";
 }
-
-
-
 
 
 
