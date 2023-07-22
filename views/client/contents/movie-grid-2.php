@@ -66,7 +66,7 @@
                 </div>
                 <div class="col-lg-9 mb-50 mb-lg-0">
                     <div class="filter-tab tab">
-                        <div class="" style="margin-bottom: 30px;">
+                        <div class="" style="margin-bottom: 30px; text-transform: uppercase;">
                             <div class="pb-10">
                                 <h2>Comming soon</h2>
                            </div>
@@ -81,7 +81,7 @@
                                             echo ' <div class="col-sm-6 col-lg-4">
                                             <div class="movie-grid">
                                                 <div class="movie-thumb c-thumb">
-                                                    <a href="index.php?act=movie-details&idFilm='.$idFilm.'">
+                                                    <a href="index.php?act=movie-detail&idFilm='.$idFilm.'">
                                                         <img src="'.$poster.'" style="max-height: 330px;" alt="movie">
                                                     </a>
                                                 </div>

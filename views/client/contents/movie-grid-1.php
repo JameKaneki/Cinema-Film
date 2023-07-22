@@ -67,8 +67,8 @@
                 </div>
                 <div class="col-lg-9 mb-50 mb-lg-0">
                     <div class="filter-tab tab">
-                        <div class="" style="margin-bottom: 30px;" >
-                            <div class="pb-10 ">
+                        <div class="" style="margin-bottom: 30px; text-transform: uppercase;" >
+                            <div class="pb-10">
                                 <h2>Playing now</h2>
                            </div>
                         </div>
