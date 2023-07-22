@@ -1743,11 +1743,12 @@ input[type="submit"] {
 .header-section {
   border-bottom: 1px solid rgba(255, 255, 255, 0.102);
   padding: 21px 0;
-  position: fixed;
+  /* position: fixed; */
   width: 100%;
   top: 0;
   left: 0;
   z-index: 99;
+  
 }
 
 .header-section.header-active {
@@ -4751,9 +4752,9 @@ input[type="submit"] {
 }
 
 .screen-thumb {
-  width: 100%;
-  max-width: 730px;
-  margin: 0 auto 30px;
+  width: 70%;
+  max-width: 530px;
+  margin: 0 auto ;
 }
 
 .screen-thumb img {
@@ -4983,6 +4984,7 @@ input[type="submit"] {
 .proceed-book {
   padding: 32px 40px 32px;
   position: relative;
+  margin: 50px;
 }
 
 .proceed-book::before {

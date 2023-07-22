@@ -25,7 +25,6 @@
         // $sql="SELECT * From `tickets` Order by 'idTicket' desc";
         // return pdo_query($sql);
     }
-
     function selectOne_ticket($idTicket){
         $sql="SELECT `tickets`.`idTicket`,`price`,`seat`,`schedule_hours`.`idScheduleHour`,`time`,`users`.`idUser`,`name` FROM `tickets`
         Inner join `schedule_hours` On `schedule_hours`.`idScheduleHour` = `tickets`.`idScheduleHour`
@@ -41,6 +40,15 @@
     function selectAll_user(){
         $sql="SELECT * FROM `users` Order by 'idUser' desc";
         return pdo_query($sql);
+    }
+    function getMovieCheckoutInfo($idScheduleHour,$idRoom){
+        $sql = "SELECT f.nameFilm,c.nameCinema,r.nameRoom,s.date,sh.time,f.language FROM schedule_hours as sh 
+        INNER JOIN schedules as s ON s.idSchedule = sh.idScheduleHour
+        INNER JOIN rooms as r ON r.idRoom = sh.idRoom
+        INNER JOIN films as f ON f.idFilm = s.idFilm
+        INNER JOIN cinemas as c ON c.idCinema = r.idCinema
+        WHERE sh.idScheduleHour = $idScheduleHour AND r.idRoom = $idRoom";
+        return pdo_query_one($sql);
     }
 
 ?>
