@@ -1,40 +1,40 @@
 (function ($) {
   "user strict";
   // Preloader Js
-  $(window).on('load', function () {
-      $('.preloader').fadeOut(1000);
-      var img = $('.bg_img');
-      img.css('background-image', function () {
-        var bg = ('url(' + $(this).data('background') + ')');
-        return bg;
-      });
-      // filter functions
-      var $grid = $(".grid-area");
-      var filterFns = {};
-      $grid.isotope({
-        itemSelector: '.grid-item',
-        masonry: {
-          columnWidth: 0,
-        }
-      });
-      // bind filter button click
-      $('ul.filter').on('click', 'li', function () {
-        var filterValue = $(this).attr('data-filter');
-        // use filterFn if matches value
-        filterValue = filterFns[filterValue] || filterValue;
-        $grid.isotope({
-          filter: filterValue
-        });
-      });
-      // change is-checked class on buttons
-      $('ul.filter').each(function (i, buttonGroup) {
-        var $buttonGroup = $(buttonGroup);
-        $buttonGroup.on('click', 'li', function () {
-          $buttonGroup.find('.active').removeClass('active');
-          $(this).addClass('active');
-        });
-      });
-  });
+  // $(window).on('load', function () {
+  //     $('.preloader').fadeOut(1000);
+  //     var img = $('.bg_img');
+  //     img.css('background-image', function () {
+  //       var bg = ('url(' + $(this).data('background') + ')');
+  //       return bg;
+  //     });
+  //     // filter functions
+  //     var $grid = $(".grid-area");
+  //     var filterFns = {};
+  //     $grid.isotope({
+  //       itemSelector: '.grid-item',
+  //       masonry: {
+  //         columnWidth: 0,
+  //       }
+  //     });
+  //     // bind filter button click
+  //     $('ul.filter').on('click', 'li', function () {
+  //       var filterValue = $(this).attr('data-filter');
+  //       // use filterFn if matches value
+  //       filterValue = filterFns[filterValue] || filterValue;
+  //       $grid.isotope({
+  //         filter: filterValue
+  //       });
+  //     });
+  //     // change is-checked class on buttons
+  //     $('ul.filter').each(function (i, buttonGroup) {
+  //       var $buttonGroup = $(buttonGroup);
+  //       $buttonGroup.on('click', 'li', function () {
+  //         $buttonGroup.find('.active').removeClass('active');
+  //         $(this).addClass('active');
+  //       });
+  //     });
+  // });
   $(document).ready(function () {
     // Nice Select
     $('.select-bar').niceSelect();
@@ -136,9 +136,9 @@
     $('.window-warning .lay').on('click', function() {
       $('.window-warning').addClass('inActive');
     })
-    $('.seat-plan-wrapper li .movie-schedule .item').on('click', function() {
-      $('.window-warning').removeClass('inActive');
-    })
+    // $('.seat-plan-wrapper li .movie-schedule .item').on('click', function() {
+    //   $('.window-warning').removeClass('inActive');
+    // })
     //Tab Section
     $('.tab ul.tab-menu li').on('click', function (g) {
       var tab = $(this).closest('.tab'),
@@ -343,27 +343,27 @@
       }
     });
     var book = 0;
-    $(".seat-free img").on('click', function(e) {
-      if(book == 0) {
-        $(this).attr("src","./assets/images/movie/seat01-free.png");
-        book = 1;
-      }
-      else if(book == 1) {
-        $(this).attr("src","./assets/images/movie/seat01-booked.png");
-        book = 0;
-      }
-    });
+    // $(".seat-free img").on('click', function(e) {
+    //   if(book == 0) {
+    //     $(this).attr("src","./assets/images/movie/seat01-free.png");
+    //     book = 1;
+    //   }
+    //   else if(book == 1) {
+    //     $(this).attr("src","./assets/images/movie/seat01-booked.png");
+    //     book = 0;
+    //   }
+    // });
     var bookTwo = 1;  
-    $(".seat-free-two img").on('click', function(e) {
-      if(bookTwo == 0) {
-        $(this).attr("src","./assets/images/movie/seat02-free.png");
-        bookTwo = 1;
-      }
-      else if(bookTwo == 1) {
-        $(this).attr("src","./assets/images/movie/seat02-booked.png");
-        bookTwo = 0;
-      }
-    });
+    // $(".seat-free-two img").on('click', function(e) {
+    //   if(bookTwo == 0) {
+    //     $(this).attr("src","./assets/images/movie/seat02-free.png");
+    //     bookTwo = 1;
+    //   }
+    //   else if(bookTwo == 1) {
+    //     $(this).attr("src","./assets/images/movie/seat02-booked.png");
+    //     bookTwo = 0;
+    //   }
+    // });
     // shop cart + - start here
     var CartPlusMinus = $('.cart-plus-minus');
     CartPlusMinus.prepend('<div class="dec qtybutton">-</div>');

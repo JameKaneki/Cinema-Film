@@ -52,16 +52,15 @@ khi ấn proceed thì kiểm tra xem đã đăng nhập chưa nếu chauw thì r
                           <ul class='seat-line'>
                        ";
                         foreach($seats as $seat){
-                            if(in_array($seat,$booedSeat)){
+                            if(in_array($seat['seat_key'],$bookedSeat)){
                                 echo "
-                                  <li class='seat booked'><div class='seat-index' id='E1'>$seat</div></li>
+                                  <li class='seat booked'><div class='seat-index' >{$seat['seat_key']}</div></li>
                                 ";
+                            }else{
+                                echo "
+                                <li class='seat ' id='{$seat['seat_key']} - {$seat['price']}'><div class='seat-index'>{$seat['seat_key']}</div></li>
+                             ";
                             }
-                            else{
-                                echo "
-                                   <li class='seat'><div class='seat-index' id='E1'>$seat</div></li>
-                                ";
-                        }
                         }
                        echo "</ul>
                        </div>
@@ -75,20 +74,20 @@ khi ấn proceed thì kiểm tra xem đã đăng nhập chưa nếu chauw thì r
                 <div class="proceed-to-book">
                     <div class="book-item">
                         <span>You have Choosed Seat</span>
-                        <h3 class="title">d9, d10</h3>
+                        <h4 class="title selected-seat" id='selected-seat'>No think being selected</h4>
                     </div>
                     <div class="book-item">
                         <span>total price</span>
-                        <h3 class="title">$150</h3>
+                        <h3 class="title" id='total-price'>0$</h3>
                     </div>
                     <div class="book-item">
-                        <a href="movie-checkout.html" class="custom-button">proceed</a>
+                        <button <?php echo " onclick='postData($idScheduleHour,{$scheduleHourInfo['idRoom']})'"; ?> class="custom-button">proceed</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="../assets/js/customer.js"></script>
+    <script src="./assets/js/customer.js"></script>
 
     <style>
         .seat-wrapper{
@@ -132,6 +131,9 @@ khi ấn proceed thì kiểm tra xem đã đăng nhập chưa nếu chauw thì r
         .seat.selected{
             background-image: url("assets/images/movie/seat01-free.png");
         }
+        .seat.selected .seat-index{
+            opacity: 1;
+        }
         .seat-index{
             position: absolute;
             transform: translateX(-42%) translateY(-50%);
@@ -143,5 +145,9 @@ khi ấn proceed thì kiểm tra xem đã đăng nhập chưa nếu chauw thì r
             font-weight: 700;
             margin-top: 10px;
         }
-
+        .selected-seat{
+            font-size: 1.6rem;
+            max-width: 250px;
+            overflow-wrap:break-word;
+        }
     </style>

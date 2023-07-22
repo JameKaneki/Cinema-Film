@@ -83,7 +83,10 @@
             </div>
         </div>
     </header>
-    <section class="banner-section">
+  
+<!-- movie cái đoạn anyf tới trang nào cần thêm nhá . xem thêm ở giao diện -->
+
+    <!-- <section class="banner-section">
         <div class="banner-bg bg_img bg-fixed" data-background="assets/images/banner/banner01.jpg"></div>
         <div class="container">
             <div class="banner-content">
@@ -95,4 +98,4 @@
                 <p>Safe, secure, reliable ticketing.Your ticket to live entertainment!</p>
             </div>
         </div>
-    </section>
+    </section> -->

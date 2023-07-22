@@ -40,17 +40,14 @@
         $sql="SELECT * FROM `users` Order by 'idUser' desc";
         return pdo_query($sql);
     }
-    function getBookedSeat($idScheduleHour,$idRoom){
-        $sql =
-        "SELECT seats.seat_key FROM `tickets` as t 
-        INNER JOIN users as u on t.idUser=u.idUser 
-        INNER JOIN schedule_hours as sh ON t.idScheduleHour=sh.idScheduleHour 
-        INNER JOIN seats ON seats.id_seat = t.id_seat 
-        INNER JOIN schedules as s on s.idSchedule = sh.idSchedule 
-        INNER JOIN rooms as r ON r.idRoom = seats.idRoom WHERE sh.idScheduleHour = $idScheduleHour AND r.idRoom = $idRoom";
-        $result = pdo_query($sql);
-        return array_map(function($seat){
-            return $seat['seat_key'];
-        },$result);
+    function getMovieCheckoutInfo($idScheduleHour,$idRoom){
+        $sql = "SELECT f.nameFilm,c.nameCinema,r.nameRoom,s.date,sh.time,f.language FROM schedule_hours as sh 
+        INNER JOIN schedules as s ON s.idSchedule = sh.idScheduleHour
+        INNER JOIN rooms as r ON r.idRoom = sh.idRoom
+        INNER JOIN films as f ON f.idFilm = s.idFilm
+        INNER JOIN cinemas as c ON c.idCinema = r.idCinema
+        WHERE sh.idScheduleHour = $idScheduleHour AND r.idRoom = $idRoom";
+        return pdo_query_one($sql);
     }
+
 ?>
