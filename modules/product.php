@@ -26,9 +26,9 @@ function delete_film($idFilm)
 }
 function loadone_film($idFilm)
 {
-    $sql = "select * from films where idFilm=". $idFilm;
-    $listfilm = pdo_query_one($sql);
-    return $listfilm;
+    $sql = "SELECT * from `films` where `idFilm`=". $idFilm;
+    return pdo_query_one($sql);
+    
 }
 
 function   update_film($idFilm,$nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate,$likeAmount){
@@ -38,9 +38,34 @@ function   update_film($idFilm,$nameFilm,$director,$performer,$premiere,$duratio
     pdo_execute($sql);
 }
 function loadall_film(){
-    $sql="SELECT * FROM `films` WHERE 1 ORDER BY `idFilm` DESC"; 
+    $sql="SELECT * FROM `films` ORDER BY `idFilm` DESC"; 
     $listfilm = pdo_query($sql);
     return $listfilm;
+}
+
+function loadtop5_film(){
+    $sql="SELECT * FROM `films` Order by `premiere` desc limit 0,5 ";
+    return pdo_query($sql);
+}
+
+function loadtop3playing_film(){
+    $sql="SELECT * FROM `films` WHERE `premiere` < NOW() Order by `premiere` desc limit 0,3";
+    return pdo_query($sql);
+}
+
+function loadtop3coming_film(){
+    $sql="SELECT * FROM `films` WHERE `premiere` > NOW() Order by `premiere` asc limit 0,3";
+    return pdo_query($sql);
+}
+
+function loadall_playing_film(){
+    $sql="SELECT * FROM `films` WHERE `premiere` < NOW() ORDER BY `premiere` ASC";
+    return  pdo_query($sql);
+}
+
+function loadall_coming_film(){
+    $sql="SELECT * FROM `films` WHERE `premiere` > NOW() ORDER BY `premiere` deSC";
+    return pdo_query($sql);
 }
 ?>
 

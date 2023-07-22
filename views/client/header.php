@@ -49,7 +49,7 @@
         <div class="container">
             <div class="header-wrapper">
                 <div class="logo">
-                    <a href="index.html">
+                    <a href="index.php">
                         <img src="assets/images/logo/logo.png" alt="logo">
                     </a>
                 </div>
@@ -58,10 +58,10 @@
                         <a href="#0">Move</a>
                         <ul class="submenu">
                             <li>
-                                <a href="movie-grid.html?ctx=playing">Movie playing now</a>
+                                <a href="index.php?act=playing">Movie playing now</a>
                             </li>
                             <li>
-                                <a href="movie-grid.html?ctx=coming">Movie coming soon</a>
+                                <a href="index.php?act=coming">Movie coming soon</a>
                             </li>
                          
                         </ul>
