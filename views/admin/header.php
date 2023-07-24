@@ -11,10 +11,13 @@
 
 <body>
     <div class="boxcenter">
-        <div class="row mb headeraddmin">
+        <div class="row mb headeraddmin" style="display:flex;justify-content: space-between;">
             <h1>
                 Admin
             </h1>
+            <li style="margin-top:20px;">
+                <a href="index.php?act=user_exit" style="font-size: 2vw;color: #666;">Logout</a>
+            </li>
         </div>
         <div class="row mb menu">
             <ul>
@@ -26,15 +29,6 @@
                     + khi "cờ" có thêm chức năng gọi tới : vào chức năng ví dụ : act=film-add => vào phần add film
             -->
                 <li><a href="index.php?act=home">Home</a></li>
-                <li><a href="index.php?act=film">Film</a></li>
-                <li><a href="index.php?act=user">User</a></li>
-                <li><a href="index.php?act=room">Room</a></li>
-                <li><a href="index.php?act=seat">Seat</a></li>
-                <li><a href="index.php?act=schedules">Schedules</a></li>
-                <li><a href="index.php?act=schedule_hours">Schedule Hours</a></li>
-                <li><a href="index.php?act=ticket">Ticket</a></li>
-                <li><a href="index.php?act=cinema">Cinema</a></li>
-                <li><a href="index.php?act=comment">Comment</a></li>
             </ul>
         </div>
 </body>
