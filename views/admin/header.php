@@ -31,3 +31,4 @@
                 <li><a href="index.php?act=home">Home</a></li>
             </ul>
         </div>
+</body>

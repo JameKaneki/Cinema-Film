@@ -49,21 +49,20 @@
         <div class="container">
             <div class="header-wrapper">
                 <div class="logo">
-                    <a href="index.html">
+                    <a href="index.php">
                         <img src="assets/images/logo/logo.png" alt="logo">
                     </a>
                 </div>
                 <ul class="menu">
                     <li>
                         <a href="#0">Move</a>
-                        <ul class="submenu">
+                        <ul class="submenu" style="z-index:10;">
                             <li>
-                                <a href="movie-grid.html?act=playing">Movie playing now</a>
+                                <a href="index.php?act=playing">Movie playing now</a>
                             </li>
                             <li>
-                                <a href="movie-grid.html?act=coming">Movie coming soon</a>
+                                <a href="index.php?act=coming">Movie coming soon</a>
                             </li>
-                         
                         </ul>
                     </li>
                     <li>
@@ -84,7 +83,10 @@
             </div>
         </div>
     </header>
-    <section class="banner-section">
+  
+<!-- movie cái đoạn anyf tới trang nào cần thêm nhá . xem thêm ở giao diện -->
+
+    <!-- <section class="banner-section">
         <div class="banner-bg bg_img bg-fixed" data-background="assets/images/banner/banner01.jpg"></div>
         <div class="container">
             <div class="banner-content">
@@ -96,4 +98,4 @@
                 <p>Safe, secure, reliable ticketing.Your ticket to live entertainment!</p>
             </div>
         </div>
-    </section>
+    </section> -->
