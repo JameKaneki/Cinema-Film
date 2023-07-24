@@ -21,4 +21,9 @@ function loadall_acount(){
     $list_acount=pdo_query($sql);
     return $list_acount;
 }
+function check_acount($userName,$password){
+    $sql="SELECT * FROM users WHERE `userName`='".$userName."' AND password='".$password."'";
+    $user=pdo_query_one($sql);
+    return $user;
+}
 ?>
