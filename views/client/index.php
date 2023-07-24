@@ -19,7 +19,14 @@ if(isset($_GET['act'])){
     $feature = $_GET['act'];
 
     switch($feature){
-       
+        case 'movie-grid':{
+            $param = $_GET['p'];
+            $filmList = [];
+            if('playing'){
+                
+            }
+        }
+        break;
         case 'playing':
                 include "./contents/movie-grid-1.php";
             // {
@@ -56,13 +63,32 @@ if(isset($_GET['act'])){
         break;
         case 'movie-checkout':
             {
-                $seatList=$_GET['s'];
-                
-                $idScheduleHour = $_GET['sh'];
-                $idRoom = $_GET['r'];
-                $MovieCheckout = getMovieCheckoutInfo($idScheduleHour,$idRoom);
+                $check = true;
+                if(isset($_GET['s'])&& isset($_GET['sh'])  && isset($_GET['r'])){
+                    $seatList= explode(',',$_GET['s']);
+                    $idScheduleHour = $_GET['sh'];
+                    $idRoom = intval($_GET['r']);
+                    $total ;
+                        $seatList = array_reduce($seatList,function ($carry,$item){
+                            global $idRoom,$check,$total;
+                            $seatInfo = getSeatByIdRoomAndKey($idRoom,$item);
+                            if(empty($seatInfo)){
+                                $check = false;
+                            }else if($carry == []){
+                                $total += intval($seatInfo['price']);
+                                return [$item =>[...$seatInfo]];
+                            }else{
+                                $total += intval($seatInfo['price']);
+                                return [...$carry,$item =>[...$seatInfo]];
+                            }
+                        } ,[]);
+                    $MovieCheckout = getMovieCheckoutInfo($idScheduleHour,$idRoom);
+                    
+                    if(!$check){
+                        include "./contents/invalidateData.php";
+                    }
                 include "./contents/movie-checkout.php";
-            }
+            }}
         break;
         default :
             include "./contents/home.php";

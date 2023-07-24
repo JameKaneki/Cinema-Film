@@ -1955,22 +1955,12 @@ input[type="submit"] {
 
 /*Details-Banner Section Starts Here*/
 .details-banner {
-  padding-top: 235px;
+  padding-top: 120px;
   padding-bottom: 20px;
   position: relative;
 }
 
-.details-banner:before {
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 18, 50, 0.134891)), color-stop(90%, #001232));
-  background: linear-gradient(180deg, rgba(0, 18, 50, 0.134891) 0%, #001232 90%);
-  background: -webkit-linear-gradient(180deg, rgba(0, 18, 50, 0.134891) 0%, #001232 90%);
-}
+
 
 .details-banner.seat-plan-banner::before {
   background: -webkit-gradient(linear, right top, left top, from(rgba(0, 18, 50, 0.134891)), to(#001232));
@@ -2247,7 +2237,7 @@ input[type="submit"] {
 }
 
 .details-banner.hero-area {
-  padding-top: 212px;
+  padding-top: 120px;
   padding-bottom: 112px;
 }
 
