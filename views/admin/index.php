@@ -67,7 +67,7 @@
             break;
 
           case 'cinema-delete':
-          if(isset($_GET['idCinema'])&&(int ($_GET['idCinema']>0))){
+          if(isset($_GET['idCinema'])&&(($_GET['idCinema']>0))){
             $idCinema = $_GET['idCinema'];
             delete_cinema($idCinema);
           }

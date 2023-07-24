@@ -20,9 +20,13 @@
     }
     function loadone_seat($id_seat)
     {
-    $sql = "select * from seats where id_seat=". $id_seat;
+    $sql = "select * from seats where id_seat= $id_seat";
     $listseat = pdo_query_one($sql);
     return $listseat;
+    }
+    function getSeatByIdRoomAndKey($idRoom,$seat_key){
+        $sql = "SELECT * FROM seats as s WHERE s.idRoom = $idRoom AND s.seat_key = '$seat_key'";
+        return pdo_query_one($sql);
     }
     function getSeatListByIdRoom($idRoom){
         $sql = "SELECT * FROM `seats` WHERE idRoom = 1";

@@ -81,7 +81,7 @@
                                             echo ' <div class="col-sm-6 col-lg-4">
                                             <div class="movie-grid">
                                                 <div class="movie-thumb c-thumb">
-                                                    <a href="index.php?act=movie-details&idFilm='.$idFilm.'">
+                                                    <a href="index.php?act=movie-detail&idFilm='.$idFilm.'">
                                                         <img src="'.$poster.'" style="max-height: 330px;" alt="movie">
                                                     </a>
                                                 </div>
