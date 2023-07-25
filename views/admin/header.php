@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="css/themify-icons/themify-icons.css">
 </head>
 
 <body>
@@ -16,25 +17,56 @@
                 Admin
             </h1>
         </div>
-        <div class="row mb menu">
-            <ul>
-            <!-- phần act này cần clear để mn cùng làm việc 
-            việc này hơi mất công một chú nhưng nó sẽ giúp cả nhóm làm việc hiệu quả hơn
-                - act = <cờ> :
-                    + cờ ở đây sẽ bao gồm tên bảng - chức năng sẽ sử dụng 
-                    + khi "cờ" chỉ có tên bảng : => vào thẳng list của bảng ví dụ: act=film => vào list film
-                    + khi "cờ" có thêm chức năng gọi tới : vào chức năng ví dụ : act=film-add => vào phần add film
-            -->
-                <li><a href="index.php?act=home">Home</a></li>
-                <li><a href="index.php?act=film">Film</a></li>
-                <li><a href="index.php?act=user">User</a></li>
-                <li><a href="index.php?act=room">Room</a></li>
-                <li><a href="index.php?act=seat">Seat</a></li>
-                <li><a href="index.php?act=schedules">Schedules</a></li>
-                <li><a href="index.php?act=schedule_hours">Schedule Hours</a></li>
-                <li><a href="index.php?act=ticket">Ticket</a></li>
-                <li><a href="index.php?act=cinema">Cinema</a></li>
-                <li><a href="index.php?act=comment">Comment</a></li>
-            </ul>
-        </div>
+        <div class="sidebar">
+            <div class="information">
+                <h2>nameUser</h2>
+                <p>email</p>
+            </div>
+            <div class="manager">
+                <h2></i> Manager </h2>
+                <ul class="nav">
+                    <li><a href="index.php?act=home">
+                            <i class="nav-arrow-down ti-bag"></i>
+                            Home
+                        </a></li>
+                    <li><a href="index.php?act=film">
+                            <i class="nav-arrow-down ti-bag"></i>
+                            film
+                        </a></li>
+                    <li><a href="index.php?act=user">
+                            <i class="nav-arrow-down ti-bag"></i>
+                            User
+                        </a></li>
+                    <li><a href="index.php?act=room">
+                            <i class="nav-arrow-down ti-bag"></i>
+                            Room
+                        </a></li>
+                    <li><a href="index.php?act=seat">
+                            <i class="nav-arrow-down ti-bag"></i>
+                            Seat
+                        </a></li>
+                    <li><a href="index.php?act=schedules">
+                            <i class="nav-arrow-down ti-bag"></i>
+                            Schedules
+                        </a></li>
+                    <li><a href="index.php?act=schedule_hours">
+                            <i class="nav-arrow-down ti-bag"></i>
+                            Schedule Hours
+                        </a></li>
+                    <li><a href="index.php?act=ticket">
+                            <i class="nav-arrow-down ti-bag"></i>
+                            Ticket
+                        </a></li>
+                    <li><a href="index.php?act=cinema">
+                            <i class="nav-arrow-down ti-bag"></i>
+                            Cinema
+                        </a></li>
+                    <li><a href="index.php?act=comment">
+                            <i class="nav-arrow-down ti-bag"></i>
+                            Comment
+                        </a></li>
+                    </li>
+
+                </ul>
+            </div>
 </body>

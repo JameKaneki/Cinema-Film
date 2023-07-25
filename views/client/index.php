@@ -1,7 +1,7 @@
 <?php 
-session_start();
+ session_start();
 
-include "./header.php";
+//include "./header.php";
 include "../../modules/module.php";
 include "../../modules/cinema.php";
 include "../../modules/ticket.php";
@@ -15,22 +15,39 @@ include "../../modules/moduleScheduleHours.php";
 include "../../modules/moduleRoom.php";
 
 
+
 if(isset($_GET['act'])){
     $feature = $_GET['act'];
 
     switch($feature){
+
+        // case 'movie-grid':
+        //     {
+        //         $pra=$_GET['ct'];
+        //         if($pra='playing'){
+        //             include "./contents/movie-grid.php";
+        //         }
+        //         else{
+        //             include "./contents/movie-grid.php";
+        //         }
+
+        //     }
+        
+        //     break;
        
         case 'playing':
+            {
                 include "./contents/movie-grid-1.php";
             // {
             //     include "./contents/movie-grid.php";
             // }
+            }
             break;
 
         case 'coming':
             {
                 include "./contents/movie-grid-2.php";
-                // include "./contents/movie-grid.php";
+                //  include "./contents/movie-grid.php";
             }
             break;
         case 'movie-detail':
