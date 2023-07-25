@@ -9,63 +9,6 @@
     margin: 0 auto;
 }
 
-.header {
-    height: 46px;
-    background-color: #000;
-    width: 130px;
-}
-
-.sidebar {
-    max-width: 300px;
-    border: 1px solid gray;
-    box-shadow: 2px 2px 2px gray;
-}
-
-.information {
-    margin: 20px 50px;
-    font-size: 20px;
-}
-
-.information p {
-    margin-top: 10px;
-    font-size: 20px;
-}
-
-.manager h2 {
-    margin-left: 30px;
-}
-
-.nav-arrow-down {
-    font-size: 28px;
-    margin-right: 15px;
-}
-
-.nav {
-    list-style: none;
-}
-
-.nav li {
-    padding: 15px;
-    padding-left: 15px;
-}
-
-.nav {
-    margin-top: 20px;
-}
-
-.nav li a {
-    text-decoration: none;
-    font-size: 24px;
-    color: black;
-}
-
-.nav li:hover {
-    background-color: rgba(244, 228, 244, 0.833);
-}
-
-.nav li a:hover {
-    color: blue;
-}
 
 .row {
     float: left;

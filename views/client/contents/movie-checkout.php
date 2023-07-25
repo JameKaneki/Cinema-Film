@@ -4,10 +4,10 @@
 
 ?>
 
-<div class="movie-facility padding-bottom padding-top mt">
+<div class="movie-facility padding-bottom padding-top ">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 details-banner hero-area bg_img seat-plan-banner" data-background="assets/images/banner/banner04.jpg">
+                <div class="col-lg-6 details-banner hero-area bg_img seat-plan-banner" data-background="assets/images/banner/banner04.jpg">
                     <div class="container">
                         <div class="details-banner-wrapper">
                             <div class="details-banner-content style-two">
@@ -19,7 +19,7 @@
                                         <p >{$MovieCheckout['nameCinema']}</p>
                                     </div>
                                     <div>
-                                        <span class='date'>{$MovieCheckout['date']}--{$time}</span>
+                                        <span class='date'>{$MovieCheckout['date']}-{$time}</span>
                                     </div>
                                     <div class='item md-order-1 pt-4'>
                                         <a href='javascript:history.back()' class='custom-button back-button'>
@@ -27,45 +27,57 @@
                                         </a>
                                     </div>
                                 ";
-                            
                             ?>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8">
+                <div class="col-lg-6">
                     <div class="booking-summery bg-one">
+                         <h4 class='title'>booking summery</h4>
                        <?php 
                         echo "
-                            <h4 class='title'>booking summery</h4>
                             <ul>
                                 <li>
-                                    <h4 class=''>{$MovieCheckout['nameFilm']}</h4>
-                                    <span class='info'>{$MovieCheckout['language']}</span>
-                                </li>
-                                <li>
-                                    <h6 class='subtitle'><span>{$MovieCheckout['nameCinema']}<span> </h6>
-                                    <div class='info'><span>{$MovieCheckout['date']} -- $time</span> </div>
-                                </li>
-                                <li>
-                                    <h6 class='subtitle mb-0'><span>Tickets  Price</span></h6><br>
-                                    <h6 class='info'><span>$seatList</span><span>$150</span></h6>
+                                    <h6 class='subtitle'><span>{$MovieCheckout['nameCinema']}<h6><br>
+                                    <div class='info'><span>{$MovieCheckout['date']}  $time</span> </div>
                                 </li>
                             </ul>
-                            <ul>
-                                <li>
-                                    <span class='info'><span>price</span><span>under input</span></span>
-                                    <span class='info'><span>vat</span><span>under input</span></span>
-                                </li>
-                            </ul>
-                        
                         ";
-                       
+                        echo "<ul>
+                                <li>
+                                  <h6 class='subtitle'><span>Ticket Price<h6>
+                                </li>
+                               <li>
+                        ";
+                        foreach($seatList as $seat){
+                            echo "
+                                <span class='info'><span>{$seat['seat_key']}</span><span>{$seat['price']} $</span></span>
+                            ";
+                            }
+                            echo "
+                                </li>                               
+                            </ul>";
+                            $vat = $total*1/10;
+                            echo "
+                            <ul>
+                                <li>
+                                    <span class='info'><span>Total</span><span>$ $total</span></span>
+                                    <span class='info'><span>vat</span><span>$ $vat</span></span>
+                                </li>
+                            </ul>
+                            ";
                        ?>
+                        
                     </div>
                     <div class="proceed-area  text-center">
-                        <h6 class="subtitle"><span>Amount Payable</span><span>$222</span></h6>
-                        <a href="#0" class="custom-button back-button">proceed</a>
+                            <?php 
+                            $amountPayable = $total + $vat;
+                                echo "
+                                    <h6 class='subtitle'><span>Amount Payable</span><span>$ {$amountPayable}</span></h6>
+                                ";
+                            ?>
+                                <a href="#0" class="custom-button back-button">proceed</a>
                     </div>
                 </div>
             </div>

@@ -13,8 +13,8 @@
                     <th>Name</th>
                     <th>PhoneNumber</th>
                     <th>Address</th>
-                    <th>Delete</th>
                     <th>Role</th>
+                    <th>Delete</th>
                 </tr>
                 <?php
                 $confilm = "return confirm('Bạn có chắc chắn muốn xóa')";
@@ -41,8 +41,7 @@
         <div class="row mb20">
             <input type="button" id="select-all" value="Chọn tất cả" >
             <input type="button" id="deselect-all" value="Bỏ chọn tất cả">
-            <a href="index.php?act=delete_kh"> <input type="button" value="Xóa các mục chọn"></a>
-            <a href="index.php?act=adddm"><input type="button" value="Nhập thêm"></a>
+            <a href="index.php?act=user_signin"><input type="button" value="Đăng nhập trang admin"></a>
 
 
         </div>
