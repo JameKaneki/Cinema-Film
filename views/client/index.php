@@ -108,3 +108,12 @@ if(isset($_GET['act'])){
 
 include "./footer.php";
 ?>
+class husman {
+    name : ? 
+    age : ? 
+} 
+
+minh = {
+    name : '''',
+    age : ''''
+}
