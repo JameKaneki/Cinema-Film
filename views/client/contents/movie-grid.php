@@ -19,7 +19,8 @@
 </section>
 
 
-<section class="movie-section padding-top padding-bottom" action="playing">
+
+<section class="movie-section padding-top padding-bottom" action='playing'>
         <div class="container">
             <div class="row flex-wrap-reverse justify-content-center">
                 <div class="col-sm-10 col-md-8 col-lg-3">
@@ -30,40 +31,7 @@
                             </a>
                         </div>
                     </div>
-                    <!-- <div class="widget-1 widget-check">
-                        <div class="widget-header">
-                            <h5 class="m-title">Filter By</h5> <a href="#0" class="clear-check">Clear All</a>
-                        </div>
-                        <div class="widget-1-body">
-                            <h6 class="subtitle">Category</h6>
-                           // php
-                                $listFilm = loadall_playing_film();
-                                foreach ($listFilm as $list){
-                                    extract($list);
-                                    echo '<div class="check-area">
-                                    <h3> '.$category.' </h3>
-                                    <div class="form-group">
-                                        <input type="checkbox" name="lang" id="lang1"><label for="lang1">Tamil</label>
-                                    </div>
-                                </div>';
-                                }
-                             // /php
-                        </div>
-                    </div>
-                    <div class="widget-1 widget-check">
-                        <div class="widget-1-body">
-                            <h6 class="subtitle"> Tìm Theo số độ tuổi </h6>
-                            <div class="check-area">
-                                <div class="form-group">
-                                    <input type="checkbox" name="genre" id="genre1"><label for="genre1">thriller</label>
-                                </div>
-                                        <h3>Mọi độ tuổi</h3>
-                                    </div>
-                            <div class="add-check-area">
-                                <a href="#0">view more <i class="plus"></i></a>
-                            </div>
-                        </div>
-                    </div> -->
+                    
                     <div class="widget-1 widget-banner">
                         <div class="widget-1-body">
                             <a href="index.php?act=movie-detail&idFilm=2">
@@ -112,7 +80,6 @@
                                         }
                                    ?>
                                 </div>
-                        <!-- <h3> đoạn này sẽ có 1 cái nó lăn ra nhưng mà sễ sử lý sau tạm thời cứ đổ ra hết đi đã</h3> -->
                     </div>
                 </div>
             </div>
@@ -120,7 +87,7 @@
     </section>
 
    
-    <section class="movie-section padding-top padding-bottom" action="coming">
+    <section class="movie-section padding-top padding-bottom" action='coming'>
         <div class="container">
             <div class="row flex-wrap-reverse justify-content-center">
                 <div class="col-sm-10 col-md-8 col-lg-3">
@@ -131,40 +98,6 @@
                             </a>
                         </div>
                     </div>
-                    <!-- <div class="widget-1 widget-check">
-                        <div class="widget-header">
-                            <h5 class="m-title">Filter By</h5> <a href="#0" class="clear-check">Clear All</a>
-                        </div>
-                        <div class="widget-1-body">
-                            <h6 class="subtitle">Category</h6>
-                            // php
-                                // $listFilm = loadall_coming_film();
-                                // foreach ($listFilm as $list){
-                                //     extract($list);
-                                //     echo '<div class="check-area">
-                                //     <h3> '.$category.' </h3>
-                                //     <div class="form-group">
-                                //         <input type="checkbox" name="lang" id="lang1"><label for="lang1">Tamil</label>
-                                //     </div>
-                                // </div>';
-                                // }
-                            // /php
-                        </div>
-                    </div>
-                     <div class="widget-1 widget-check"> -->
-                        <!-- <div class="widget-1-body">
-                            <h6 class="subtitle"> Tìm Theo số độ tuổi </h6>
-                            <div class="check-area">
-                                <div class="form-group">
-                                    <input type="checkbox" name="genre" id="genre1"><label for="genre1">thriller</label>
-                                </div>
-                                        <h3>Mọi độ tuổi</h3>
-                                    </div>
-                            <div class="add-check-area">
-                                <a href="#0">view more <i class="plus"></i></a>
-                            </div>
-                        </div>
-                    </div> --> 
                     <div class="widget-1 widget-banner">
                         <div class="widget-1-body">
                             <a href="index.php?act=movie-detail&idFilm=2">
@@ -212,7 +145,6 @@
                                         }
                                    ?>
                                 </div>
-                        <!-- <h3> đoạn này sẽ có 1 cái nó lăn ra nhưng mà sễ sử lý sau tạm thời cứ đổ ra hết đi đã</h3> -->
                     </div>
                 </div>
             </div>

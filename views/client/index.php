@@ -1,7 +1,7 @@
 <?php 
  session_start();
 
-//include "./header.php";
+ include "./header.php";
 include "../../modules/module.php";
 include "../../modules/cinema.php";
 include "../../modules/ticket.php";
@@ -18,33 +18,29 @@ include "../../modules/moduleRoom.php";
 
 if(isset($_GET['act'])){
     $feature = $_GET['act'];
-
     switch($feature){
         case 'movie-grid':{
-            $param = $_GET['p'];
+            $param = $_GET['id'];
             if($param === 'playing'){
-                include ""
+                include "./contents/movie-grid.php";
             }
-            else{
-
+            if($param ==='coming'){
+                include "./contents/movie-grid.php";
             }
         }
         break;
-        case 'playing':
-            {
-                include "./contents/movie-grid-1.php";
-            // {
-            //     include "./contents/movie-grid.php";
-            // }
-            }
-            break;
+        //  case 'playing':
+        //      {
+        //          include "./contents/movie-grid.php";
+        //      }
+        //     }
+        //     break;
 
-        case 'coming':
-            {
-                include "./contents/movie-grid-2.php";
-                //  include "./contents/movie-grid.php";
-            }
-            break;
+        // case 'coming':
+        //     {
+        //       include "./contents/movie-grid.php";
+        //     }
+        //      break;
         case 'movie-detail':
             {
                 include "./contents/movie-detail.php";

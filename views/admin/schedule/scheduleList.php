@@ -14,10 +14,10 @@
 
  
 ?>
-<div class=""> 
-    <h2>Schedule List</h2>
-    <div style="display: flex;">
-        <div class="btn btn-blue"><a href="index.php?act=schedule-create">Add new Schedule</a></div>
+<div class="wrapper"> 
+    <h1>Schedule List</h1>
+        <div class="select">
+        <div class="btn btn-blue" style="text-align: center;"><a href="index.php?act=schedule-create">Add new Schedule</a></div>
         <div class='search-bar'>
             <form action='index.php?act=schedules' method="POST">
                 <select name="idFilm" placeholder="Film">
@@ -64,7 +64,7 @@
                     echo " </div>
                     </td>";
                     echo "
-                        <td class='action-box'>
+                        <td >
                             <div class='btn btn-red'><a href='index.php?act=schedule-delete&id={$schedule['idSchedule']}' >Remove</a></div>
                             <div class='btn btn-blue'><a href='index.php?act=schedule-edit&id={$schedule['idSchedule']}' >Edit</a></div>
                         </td>
@@ -89,8 +89,26 @@
         width: 70%;
         margin: 0px auto;
     }
+    h1{
+        margin-top: 30px;
+        margin-left: 600px;
+    }
+    .select{
+        margin-left: 350px;
+        margin-top: 10px;
+        display: flex;
+        font-size: 16px;
+    }
+    select{
+        padding: 3px 0px 7px 0px;
+        font-size: 16px;
+    }
+    .select input{
+        font-size: 16px;
+        padding-bottom: 5px;
+    }
     table{
-        margin: 40px auto;
+        margin: 10px auto;
         padding: 12px;
         box-shadow: 1px 1px 1px 1px #999;
         border-radius: 6px;
@@ -103,13 +121,20 @@
         text-align: start;
         min-width: 120px;
         max-width: 300px;
-        border: 1px solid #999;
     }
     th{
-        border: 1px solid;
+        background-color: rgb(158, 105, 105);
+        color: white;
+        text-shadow: 1px 1px 1px gray;
+        font-size: 18px;
+
     }
-    tr{
-        border: 1px solid #000;
+    td{
+        font-size: 16px;
+        font-weight: bold;
+    }
+    table tr:nth-child(odd){
+        background-color: rgb(228, 234, 241);
     }
     td.bigCol{
         width: 500px;
@@ -125,6 +150,7 @@
         padding: 4px 8px;
         border-radius: 3px;
         background-color: #666;
+        color: white;
     }
     .action-box{
         display: flex;
