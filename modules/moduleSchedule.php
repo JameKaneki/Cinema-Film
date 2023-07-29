@@ -1,8 +1,7 @@
 <?php 
     function createSchedule($date,$idFilm){
         $sql = "INSERT INTO `schedules`( `date`, `idFilm`) VALUES ($date,$idFilm)";
-        echo $sql;
-        return pdo_execute($sql);
+        return  pdo_execute_return($sql);
     }
     function removeSchedule($idSchedule) {
         $sql = "DELETE FROM 'schedules' WHERE 'idSchedule' = $idSchedule";

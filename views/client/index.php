@@ -1,7 +1,10 @@
 <?php 
 session_start();
 
-include "./header.php";
+
+
+
+// include "./header.php";
 include "../../modules/module.php";
 include "../../modules/cinema.php";
 include "../../modules/ticket.php";
@@ -13,7 +16,7 @@ include "../../modules/product.php";
 include "../../modules/moduleSchedule.php";
 include "../../modules/moduleScheduleHours.php";
 include "../../modules/moduleRoom.php";
-
+include "../../modules/module_bill.php";
 
 if(isset($_GET['act'])){
     $feature = $_GET['act'];
@@ -57,18 +60,20 @@ if(isset($_GET['act'])){
                 $idScheduleHour = 17;
                 $scheduleHourInfo = getScheduleHoursById($idScheduleHour);
                 $seatList = groupScheduleHoursById($scheduleHourInfo['idRoom']);
-                $bookedSeat = getBookedSeat($idScheduleHour,$scheduleHourInfo['idRoom']);
+                $bookedSeat = getBookedSeat($idScheduleHour);
                 include "./contents/movie-seat-plan.php";
             } 
         break;
         case 'movie-checkout':
             {
+
                 $check = true;
                 if(isset($_GET['s'])&& isset($_GET['sh'])  && isset($_GET['r'])){
                     $seatList= explode(',',$_GET['s']);
+
                     $idScheduleHour = $_GET['sh'];
                     $idRoom = intval($_GET['r']);
-                    $total ;
+                    $total = 0;
                         $seatList = array_reduce($seatList,function ($carry,$item){
                             global $idRoom,$check,$total;
                             $seatInfo = getSeatByIdRoomAndKey($idRoom,$item);
@@ -82,13 +87,21 @@ if(isset($_GET['act'])){
                                 return [...$carry,$item =>[...$seatInfo]];
                             }
                         } ,[]);
-                    $MovieCheckout = getMovieCheckoutInfo($idScheduleHour,$idRoom);
-                    
+                    $vat = intval($total*1/10);
+                    $amountPayable = intval($total + $vat);
+                    $MovieCheckout = getMovieCheckoutInfo($idScheduleHour);
+                    // echo "<script>console.log('Debug Objects:$amountPayable');</script>";
                     if(!$check){
                         include "./contents/invalidateData.php";
                     }
                 include "./contents/movie-checkout.php";
             }}
+        break;
+
+        case 'my-ticket':
+            {
+                include "./contents/my-ticket.php";
+            }
         break;
         default :
             include "./contents/home.php";
@@ -106,5 +119,8 @@ if(isset($_GET['act'])){
 
 
 
-include "./footer.php";
+// include "./footer.php";
+
+
+
 ?>
