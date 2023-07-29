@@ -4,7 +4,7 @@ session_start();
 
 
 
-// include "./header.php";
+include "./header.php";
 include "../../modules/module.php";
 include "../../modules/cinema.php";
 include "../../modules/ticket.php";
@@ -119,7 +119,7 @@ if(isset($_GET['act'])){
 
 
 
-// include "./footer.php";
+include "./footer.php";
 
 
 
