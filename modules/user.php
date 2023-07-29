@@ -1,7 +1,7 @@
 <?php
-function insert_user($userName,$password,$email,$name,$phoneNumber,$address)
+function insert_user($email,$password)
 {
-    $sql = "INSERT INTO `users`(`userName`,`password`,`email`,`name`,`phoneNumber`,`address`) VALUES('$userName','$password','$email','$name','$phoneNumber','$address')";
+    $sql = "INSERT INTO `users`(`email`,`password`) VALUES('$email','$password')";
     pdo_execute($sql);
 }
 
@@ -23,6 +23,11 @@ function loadall_acount(){
 }
 function check_acount($userName,$password){
     $sql="SELECT * FROM users WHERE `userName`='".$userName."' AND password='".$password."'";
+    $user=pdo_query_one($sql);
+    return $user;
+}
+function check_client_acount($email,$password){
+    $sql="SELECT * FROM users WHERE `email`='".$email."' AND password='".$password."'";
     $user=pdo_query_one($sql);
     return $user;
 }
