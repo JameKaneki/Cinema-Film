@@ -28,85 +28,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <title>Boleto - Online Ticket Booking Website HTML Template</title>
-
-    <style>
-        .navbar {
-            /* overflow: hidden; */
-            background-color: #333;
-        }
-
-        .navbar a {
-            float: left;
-            font-size: 16px;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }ikjjmj        .subnav {
-            float: left;
-            /* overflow: hidden; */
-        }
-
-        .navbar:hover{
-            background: gray;
-        }
-
-        .subnav .subnavbtn {
-            font-size: 16px;
-            border: none;
-            outline: none;
-            color: white;
-            padding: 14px 16px;
-            background-color: inherit;
-            font-family: inherit;
-            margin: 0;
-        }
-
-        .navbar a:hover,
-        .subnav:hover .subnavbtn {
-            background-color: gray;
-        }
-
-        .subnav-content {
-            display: none;
-            position: absolute;
-            right: 0;
-            background: transparent;
-            width: 100%;
-            z-index: 1;
-            /* margin-top: 8px; */
-        }
-
-        .subnav-content:hover {
-            display: block;
-            z-index: 9999;
-        }
-
-        .subnav-content a {
-            padding: 1px;
-            float: left;
-            color: white;
-            text-decoration: none;
-        }
-
-        .subnav-content a:hover {
-            background-color: #eee !important;
-            color: black !important;
-            border: none !important;
-            box-shadow: none !important;
-            --webkit-box-shadow: none !important;
-        }
-
-        .subnav:hover .subnav-content {
-            display: block;
-            z-index: 9999;
-            background-color: gray;
-        }
-
-        .subnav:hover .subnav-content a {
-            background: none !important;
-        }
-    </style>
 </head>
 
 <body>
@@ -137,7 +58,8 @@
                 </div>
                 <ul class="menu">
                     <li>
-                        <a href="#0">Move</a>
+                        
+                        <a href="#0">Movie</a>
                         <ul class="submenu" style="z-index:10;">
                             <li>
                                 <a href="index.php?act=playing">Movie playing now</a>
@@ -155,8 +77,8 @@
                     </li>
                     <li class="header-button pr-0">
                         <?php
-                        if (isset($_SESSION['email'])) {
-                            extract($_SESSION['email']);
+                        if (isset($_SESSION['userName'])) {
+                            extract($_SESSION['userName']);
                         ?>
                             <!-- <div>
                             
@@ -168,7 +90,7 @@
                             <a href="index.php?act=exit">Thoát</a>
                         </li> -->
                     <li>
-                        <a href="#0"><?= $email ?></a>
+                        <a href="#0"><?= $userName ?></a>
                         <ul class="submenu" style="z-index:10;">
                             <li>
                                 <a href="index.php?act=my-ticket">My ticket</a>
@@ -176,12 +98,13 @@
                             <li>
                                 <a href="index.php?act=exit">Logout</a>
                             </li>
+                            <a href=""></a>
                         </ul>
                     </li>
                         <?php
                         } else {
                         ?>
-                            <a href="index.php?act=sign-up">join us</a>
+                            <a href="index.php?act=sign-in">join us</a>
                         <?php
                         }
                         ?>
