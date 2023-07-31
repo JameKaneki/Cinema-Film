@@ -52,13 +52,15 @@ khi ấn proceed thì kiểm tra xem đã đăng nhập chưa nếu chauw thì r
                           <ul class='seat-line'>
                        ";
                         foreach($seats as $seat){
-                            if(in_array($seat['seat_key'],$bookedSeat)){
+                            $seatKey = $seat['seat_key'];
+                            $price = $seat['price'];
+                            if(in_array($seatKey,$bookedSeat)){
                                 echo "
-                                  <li class='seat booked'><div class='seat-index' >{$seat['seat_key']}</div></li>
+                                  <li class='seat booked'><div class='seat-index' >$seatKey</div></li>
                                 ";
                             }else{
                                 echo "
-                                <li class='seat ' id='{$seat['seat_key']} - {$seat['price']}'><div class='seat-index'>{$seat['seat_key']}</div></li>
+                                <li class='seat ' id='$seatKey-$price'><div class='seat-index'>$seatKey</div></li>
                              ";
                             }
                         }
@@ -78,7 +80,7 @@ khi ấn proceed thì kiểm tra xem đã đăng nhập chưa nếu chauw thì r
                     </div>
                     <div class="book-item">
                         <span>total price</span>
-                        <h3 class="title" id='total-price'>0$</h3>
+                        <h3 class="title" id='total-price'>0 VND</h3>
                     </div>
                     <div class="book-item">
                         <button <?php echo " onclick='postData($idScheduleHour,{$scheduleHourInfo['idRoom']})'"; ?> class="custom-button">proceed</button>

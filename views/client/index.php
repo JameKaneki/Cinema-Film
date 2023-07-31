@@ -113,39 +113,19 @@ if(isset($_GET['act'])){
             } 
         break;
         case 'movie-checkout':
-            {
-
-                $check = true;
-                if(isset($_GET['s'])&& isset($_GET['sh'])  && isset($_GET['r'])){
-                    $seatList= explode(',',$_GET['s']);
-
+        {
+            if(isset($_GET['s'])&& isset($_GET['sh'])  && isset($_GET['r']) && isset($_GET['total'])){
+                    $seatList= $_GET['s'];
                     $idScheduleHour = $_GET['sh'];
                     $idRoom = intval($_GET['r']);
-                    $total = 0;
-                        $seatList = array_reduce($seatList,function ($carry,$item){
-                            global $idRoom,$check,$total;
-                            $seatInfo = getSeatByIdRoomAndKey($idRoom,$item);
-                            if(empty($seatInfo)){
-                                $check = false;
-                            }else if($carry == []){
-                                $total += intval($seatInfo['price']);
-                                return [$item =>[...$seatInfo]];
-                            }else{
-                                $total += intval($seatInfo['price']);
-                                return [...$carry,$item =>[...$seatInfo]];
-                            }
-                        } ,[]);
+                    $total = $_GET['total'];
                     $vat = intval($total*1/10);
                     $amountPayable = intval($total + $vat);
                     $MovieCheckout = getMovieCheckoutInfo($idScheduleHour);
-                    // echo "<script>console.log('Debug Objects:$amountPayable');</script>";
-                    if(!$check){
-                        include "./contents/invalidateData.php";
-                    }
                 include "./contents/movie-checkout.php";
-            }}
+            }
+        }
         break;
-
         case 'my-ticket':
             {
                 include "./contents/my-ticket.php";

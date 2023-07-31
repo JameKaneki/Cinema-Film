@@ -8,5 +8,12 @@
         $sql = "DELETE FROM `bill` WHERE id_bill = $id";
         pdo_execute($sql);
     }
-
+    function update_status_bill ($id_bill,$status){
+        $sql = "UPDATE `bill` SET `status`='$status' WHERE id_bill = '$id_bill'";
+        pdo_execute($sql);
+    }
+    function select_by_id_bill($id_bill){
+        $sql = "SELECT * FROM `bill` WHERE id_bill = $id_bill";
+        return pdo_query_one($sql);
+    }
 ?>

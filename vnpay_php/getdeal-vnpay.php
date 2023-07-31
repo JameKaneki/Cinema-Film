@@ -1,9 +1,7 @@
 <?php
-error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 date_default_timezone_set('Asia/Ho_Chi_Minh');
-
 $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-$vnp_Returnurl = "https://localhost/duan1/vnpay_php/vnpay_return.php";
+$vnp_Returnurl = "http://localhost/duan1/vnpay_php/vnpay_return.php";
 $vnp_TmnCode = "D7GEL8KH";//Mã website tại VNPAY 
 $vnp_HashSecret = "SOEALHLHQFMXSHXYZXFBZQRKXFOAYMST"; //Chuỗi bí mật
 

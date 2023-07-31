@@ -55,7 +55,7 @@
         INNER JOIN rooms as r ON r.idRoom = seats.idRoom
         INNER JOIN cinemas as c ON r.idCinema = c.idCinema
         INNER JOIN bill as b ON t.id_bill = b.id_bill
-        WHERE sh.idScheduleHour = $idScheduleHour  AND b.status = 'paid'";
+        WHERE sh.idScheduleHour = $idScheduleHour  AND b.status = '1'";
         // sử lí thêm đoạn vé đã đã đặt chưa bằng cách innerjoin vào bill 
         $result = pdo_query($sql);
         return array_map(function($seat){

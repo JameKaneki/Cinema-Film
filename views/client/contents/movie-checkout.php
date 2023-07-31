@@ -22,7 +22,21 @@
         'redirect' => 1
     );
 // create ticket
-    foreach($seatList as $seat){
+    $seatArray = explode(',',$seatList);
+    $seatArray = array_reduce($seatArray,function ($carry,$item){
+        global $idRoom,$check,$total;
+        $seatInfo = getSeatByIdRoomAndKey($idRoom,$item);
+        if(empty($seatInfo)){
+            $check = false;
+        }else if($carry == []){
+            $total += intval($seatInfo['price']);
+            return [$item =>[...$seatInfo]];
+        }else{
+            $total += intval($seatInfo['price']);
+            return [...$carry,$item =>[...$seatInfo]];
+        }
+    } ,[]);
+    foreach($seatArray as $seat){
     insert_ticket($idUser,$idScheduleHour,$seat['id_seat'],$id_bill);
     }
 
@@ -67,22 +81,14 @@
                                     <div class='info'><span>{$MovieCheckout['date']}  $time</span> </div>
                                 </li>
                             </ul>
-                        ";
-                        echo "<ul>
+                            <ul>
                                 <li>
                                   <h6 class='subtitle'><span>Ticket Price<h6>
                                 </li>
-                               <li>
-                        ";
-                        foreach($seatList as $seat){
-                            echo "
-                                <span class='info'><span>{$seat['seat_key']}</span><span>{$seat['price']} VND</span></span>
-                            ";
-                            }
-                            echo "
+                                <li>
+                                  <span class='info'><span>$seatList</span><span>$total VND</span></span>
                                 </li>                               
-                            </ul>";
-                            echo "
+                            </ul>
                             <ul>
                                 <li>
                                     <span class='info'><span>Total</span><span> $total VND</span></span>
