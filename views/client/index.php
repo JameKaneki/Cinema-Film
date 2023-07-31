@@ -1,9 +1,6 @@
 <?php 
+
 session_start();
-
-
-
-
 include "./header.php";
 include "../../modules/module.php";
 include "../../modules/cinema.php";
@@ -29,6 +26,57 @@ if(isset($_GET['act'])){
                 
             }
         }
+        break;
+        case 'sign-up':
+            include "./contents/sign-up.php";
+            if(isset($_POST['sign-up']) && ($_POST['sign-up'])){
+                $email = $_POST['email'];
+                $password = $_POST['password'];
+                $password2 = $_POST['password2'];
+                if($email == ""){   
+                    $errors['email'] = "email ko dc de rong";
+                }   
+                if($password == ""){
+                    $errors['password'] = "password ko dc de rong";
+                }
+                if($password2 == ""){
+                    $errors['password2'] = "Password nhap lai ko dc de rong";
+                }
+                if(!isset($errors)){
+                    insert_user($email,$password);
+                }else{
+                    include "./contents/sign-up.php";           
+                }
+            }
+        break;
+        case 'sign-in':
+            if (isset($_POST['sign-in']) && ($_POST['sign-in'])) {
+                $email = $_POST['email'];
+                $password = $_POST['password'];
+                $check = check_client_acount($email,$password);
+                if($email == ""){   
+                    $errors['email'] = "email ko dc de rong";
+                }   
+                if($password == ""){
+                    $errors['password'] = "password ko dc de rong";
+                }
+                if(!isset($errors)){
+                if (is_array($check)) {
+                    $_SESSION['email'] = $check;
+                    header('Location: index.php');
+                } else {
+                    $thongbao = "Tài khoản không tồn tại. Vui lòng kiểm tra lại";
+                }
+                $thongbao = "Chúc mừng bạn. Đã đăng ký thành công";
+            }
+        }else{
+                include "./contents/sign-in.php";
+        }
+            break;
+        break;
+        case 'exit':
+            unset($_SESSION['email']);
+            header("location:index.php");
         break;
         case 'playing':
                 include "./contents/movie-grid-1.php";
