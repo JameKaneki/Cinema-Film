@@ -19,13 +19,18 @@ include "../../modules/moduleRoom.php";
 
 if(isset($_GET['act'])){
     $feature = $_GET['act'];
-    
     switch($feature){
         case 'movie-grid':{
-            $param = $_GET['p'];
-            $filmList = [];
-            if('playing'){
-                
+            $param = $_GET['id'];
+            if($param === 'playing'){
+                $listFilm = loadall_playing_film();
+                $name='Playing Now';
+                include "./contents/movie-grid.php";
+            }
+            if($param ==='coming'){
+                $name='Coming Soon';
+                $listFilm = loadall_coming_film();
+                include "./contents/movie-grid.php";
             }
         }
         break;
@@ -68,12 +73,11 @@ if(isset($_GET['act'])){
             // }
             break;
 
-        case 'coming':
-            {
-                include "./contents/movie-grid-2.php";
-                // include "./contents/movie-grid.php";
-            }
-            break;
+        // case 'coming':
+        //     {
+        //       include "./contents/movie-grid.php";
+        //     }
+        //      break;
         case 'movie-detail':
             {
                 include "./contents/movie-detail.php";
@@ -84,6 +88,21 @@ if(isset($_GET['act'])){
                 include "./contents/movie-ticket-plan.php";
             }
             break;  
+
+        // case 'date-search':
+        //     {
+        //     $schedule_hours = [];
+        //     $group = [];
+        //     $date = '';$idFilm = '';
+        //       if(isset($_POST['search'])){
+        //         $date = $_POST['date'];
+        //         $idFilm =$_POST['$idFilm'];
+        //       }
+        //       $schedule_hours = getAllScheduleHours($date,$idFilm);
+        //       $group = groupScheduleHours($date,$idFilm,'');
+        //     }
+        //     include "./contents/movie-ticket-plan.php";
+        //     break;
         case 'seat-plan' :
             {
                 // nhận vào idshedulehour 

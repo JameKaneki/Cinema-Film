@@ -21,7 +21,8 @@
     <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/jquery.animatedheadline.css">
-
+    <!-- <link rel="stylesheet" href="assets/css/main.css"> -->
+    <link rel="stylesheet" href="assets/css/abc.css">
 
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
 
@@ -62,10 +63,10 @@
                         <a href="#0">Movie</a>
                         <ul class="submenu" style="z-index:10;">
                             <li>
-                                <a href="index.php?act=playing">Movie playing now</a>
+                                <a href="index.php?act=movie-grid&id=playing">Movie playing now</a>
                             </li>
                             <li>
-                                <a href="index.php?act=coming">Movie coming soon</a>
+                                <a href="index.php?act=movie-grid&id=coming">Movie coming soon</a>
                             </li>
                         </ul>
                     </li>

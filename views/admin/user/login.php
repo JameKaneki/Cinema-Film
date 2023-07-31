@@ -1,82 +1,87 @@
-<div class="row mb ">
-    <div class="title">
-        ACCOUNT
-    </div>
+
     <style>
-        li a{
-            text-decoration: none; 
+        .box{
+            width: 450px;
+            border: 1px solid gray;
+            position: relative;
+            left: 700px;
+            top: 150px;
+            border-radius: 20px;
+            padding: 10px;  
         }
-        .sign_in li a{
-            border:1px solid gray;
-            border-radius:8px;
-            padding: 5px 13px;  
+        .title{
+            font-size: 32px;
+            font-weight: 600;
+        }
+        .title p{
+            margin-left: 175px;
+            color: gray;
+        }
+        .input input{
+            width: 320px;
+            height: 40px;
+            margin-left: 55px;
+            margin-bottom: 20px;
+            border:none;
+            border-bottom: 3px solid gray; 
+            font-size: 16px;
+            margin-top: 10px;
         }
 
+        .forgot a{
+            font-size: 22px;
+            margin-left: 155px;
+            margin-top: 10px;
+            color: gray;
+            text-decoration: none;
+        }
+        .forgot a:hover{
+            color: blue;
+        }
+        .submit input{
+            width: 400px;
+            background-color:  rgb(61, 133, 242);
+            height: 50px;
+            margin: 30px 25px;
+            font-size: 20px;
+            color: white;
+            font-weight: bold;
+            border-radius: 15px;
+            cursor: pointer;}
+        .submit input:hover{
+            background-color:  red;
+        }
     </style>
-    <div class="content sign_in">
-        <?php
+    
+        <?php   
         if (isset($_SESSION['userName'])) {
             extract($_SESSION['userName']);
-        ?>
-            <div class="row mb10">
-                WELCOME
-            <?=$userName?>
-            </div>
-            <div class="row mb10" style="display:flex;
-            justify-content:space-evenly;margin-top:54px;
-            ">
-                <?php   
-                if($role == 1){
-                ?>
-                <li><a href="index.php?act=film">Film</a></li>
-                <li><a href="index.php?act=user">User</a></li>
-                <li><a href="index.php?act=room">Room</a></li>  
-                <li><a href="index.php?act=seat">Seat</a></li>
-                <li><a href="index.php?act=schedules">Schedules</a></li>
-                <li><a href="index.php?act=schedule_hours">Schedule Hours</a></li>
-                <li><a href="index.php?act=ticket">Ticket</a></li>
-                <li><a href="index.php?act=cinema">Cinema</a></li>
-                <?php
-                } 
-                ?>
-                <?php
-                if($role == 2){
-                ?>
-                <li><a href="index.php?act=film">Film</a></li>
-                <li><a href="index.php?act=room">Room</a></li>
-                <li><a href="index.php?act=schedules">Schedules</a></li>
-                <li><a href="index.php?act=schedule_hours">Schedule Hours</a></li>
-                <li><a href="index.php?act=ticket">Ticket</a></li>
-                <?php
-                }
-                ?>
-            </div>
-        <?php
-        } else {
-        ?>
-            <form action="index.php?act=user_login" method="post">
-                <div class="row mb10">
-                    Tên Đăng Nhập
-                    <input type="text" name="userName" id="">
-                </div>
-
-                <div class="row mb10">
-                    Mật Khẩu <br>
-                    <input type="password" name="password" id="">
-                </div>
-                <div class="row mb10">
-                    <input type="submit" value="Đăng Nhập" name="signin">
-                </div>
-            </form>
-        <?php
         }
-        ?>
-                <h2 class="notify">
-                    <?php
-                    if (isset($thongbao) && ($thongbao != "")) {
-                        echo $thongbao;
-                    }
-                    ?>
-                </h2>
-    </div>
-</div>
+        else{
+            echo '<div class="box">
+            <div class="title">
+                <p>Login</p>
+            </div>
+            <hr> </hr>
+            <div class="content sign_in">
+            <form action="index.php?act=user_login" method="post">
+            <div class="input">
+                <input type="text" name="userName" id="" placeholder="UserName">
+               
+            </div>
+
+            <div class="input">
+                <input type="password" name="password" id="" placeholder="Password">
+                
+            </div>
+            <div class="forgot">
+            <a href="#">Forgot Password?</a>
+            </div>
+            <div class="submit">
+                <input type="submit" value="Login" name="signin">
+            </div>
+        </form>
+        </div>
+        </div>';
+        }
+        ?> 
