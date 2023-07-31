@@ -476,4 +476,10 @@
                 </div>
             </div>
         </div>
+
+        <script>
+function myFunction() {
+  confirm("Please login first!");
+}
+</script>
     </section>

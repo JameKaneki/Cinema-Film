@@ -1,7 +1,8 @@
 <?php 
- session_start();
 
- include "./header.php";
+session_start();
+ob_start();
+include "./header.php";
 include "../../modules/module.php";
 include "../../modules/cinema.php";
 include "../../modules/ticket.php";
@@ -33,12 +34,44 @@ if(isset($_GET['act'])){
             }
         }
         break;
-        //  case 'playing':
-        //      {
-        //          
-        //      }
-        //     }
-        //     break;
+        case 'sign-up':
+            include "./contents/sign-up.php";
+        break;
+        case 'sign-in':
+            if (isset($_POST['sign-in']) && ($_POST['sign-in'])) {
+                $userName = $_POST['userName'];
+                $password = $_POST['password'];
+                $check = check_acount($userName,$password);
+                if($userName == ""){   
+                    $errors['userName'] = "Username can not be blank";
+                }   
+                if($password == ""){
+                    $errors['password'] = "password can not be blank";
+                }
+                if(!isset($errors)){
+                if (is_array($check)) {
+                    $_SESSION['userName'] = $check;
+                    header('Location: index.php');
+                } else {
+                    $thongbao = "Tài khoản không tồn tại. Vui lòng kiểm tra lại";
+                }
+                $thongbao = "Chúc mừng bạn. Đã đăng ký thành công";
+            }
+        }else{
+                include "./contents/sign-in.php";
+        }
+            break;
+        break;
+        case 'exit':
+            unset($_SESSION['userName']);
+            header("location:index.php");
+        break;
+        case 'playing':
+                include "./contents/movie-grid-1.php";
+            // {
+            //     include "./contents/movie-grid.php";
+            // }
+            break;
 
         // case 'coming':
         //     {
@@ -101,8 +134,7 @@ if(isset($_GET['act'])){
                                 return [...$carry,$item =>[...$seatInfo]];
                             }
                         } ,[]);
-                    $MovieCheckout = getMovieCheckoutInfo($idScheduleHour,$idRoom);
-                    
+                    $MovieCheckout = getMovieCheckoutInfo($idScheduleHour,$idRoom);               
                     if(!$check){
                         include "./contents/invalidateData.php";
                     }

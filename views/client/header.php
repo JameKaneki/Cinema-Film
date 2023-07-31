@@ -3,11 +3,14 @@
 
 
 <!-- Mirrored from pixner.net/boleto/demo/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Jul 2023 02:50:25 GMT -->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <!-- <link rel="stylesheet" href="assets/css/main.css"> -->
+    <link rel="stylesheet" href="assets/css/abc.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/all.min.css">
     <link rel="stylesheet" href="assets/css/animate.css">
@@ -23,13 +26,13 @@
 
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
 
-    <title>Boleto  - Online Ticket Booking Website HTML Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
+    <title>Boleto - Online Ticket Booking Website HTML Template</title>
 </head>
 
 <body>
-<div class="preloader">
+    <div class="preloader">
         <div class="preloader-inner">
             <div class="preloader-icon">
                 <span></span>
@@ -56,7 +59,8 @@
                 </div>
                 <ul class="menu">
                     <li>
-                        <a href="#0">Move</a>
+                        
+                        <a href="#0">Movie</a>
                         <ul class="submenu" style="z-index:10;">
                             <li>
                                 <a href="index.php?act=movie-grid&id=playing">Movie playing now</a>
@@ -73,19 +77,50 @@
                         <a href="#0">Contact Us</a>
                     </li>
                     <li class="header-button pr-0">
-                        <a href="sign-up.html">join us</a>
+                        <?php
+                        if (isset($_SESSION['userName'])) {
+                            extract($_SESSION['userName']);
+                        ?>
+                            <!-- <div>
+                            
+                        </div>
+                        <li>
+                            <a href="">My ticket</a>
+                        </li>
+                        <li>
+                            <a href="index.php?act=exit">Thoát</a>
+                        </li> -->
+                    <li>
+                        <a href="#0"><?= $userName ?></a>
+                        <ul class="submenu" style="z-index:10;">
+                            <li>
+                                <a href="index.php?act=my-ticket">My ticket</a>
+                            </li> 
+                            <li>
+                                <a href="index.php?act=exit">Logout</a>
+                            </li>
+                            <a href=""></a>
+                        </ul>
+                    </li>
+                        <?php
+                        } else {
+                        ?>
+                            <a href="index.php?act=sign-in">join us</a>
+                        <?php
+                        }
+                        ?>
                     </li>
                 </ul>
                 <div class="header-bar d-lg-none">
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </div>
     </header>
-  
-<!-- movie cái đoạn anyf tới trang nào cần thêm nhá . xem thêm ở giao diện -->
+
+    <!-- movie cái đoạn anyf tới trang nào cần thêm nhá . xem thêm ở giao diện -->
 
     <!-- <section class="banner-section">
         <div class="banner-bg bg_img bg-fixed" data-background="assets/images/banner/banner01.jpg"></div>
