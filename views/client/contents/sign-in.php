@@ -9,10 +9,10 @@
                     </div>
                     <form class="account-form" action="index.php?act=sign-in" method="post">
                         <div class="form-group">
-                            <label for="email">Email<span>*</span></label>
-                            <input type="text" placeholder="Enter Your Email" id="email" name="email"  required >
+                            <label for="userName">Username<span>*</span></label>
+                            <input type="text" placeholder="Enter Your userName" id="userName" name="userName"  required >
                             <span style="color:red">
-                                <?=$errors['email'] ?? '' ?>
+                                <?=$errors['userName'] ?? '' ?>
                             </span>
                         </div>
                         <div class="form-group">
@@ -57,23 +57,3 @@
         </div>
     </section>
     <!-- ==========Sign-In-Section========== -->
-
-
-    <script src="assets/js/jquery-3.3.1.min.js"></script>
-    <script src="assets/js/modernizr-3.6.0.min.js"></script>
-    <script src="assets/js/plugins.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/isotope.pkgd.min.js"></script>
-    <script src="assets/js/magnific-popup.min.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/countdown.min.js"></script>
-    <script src="assets/js/odometer.min.js"></script>
-    <script src="assets/js/viewport.jquery.js"></script>
-    <script src="assets/js/nice-select.js"></script>
-    <script src="assets/js/main.js"></script>
-</body>
-
-
-<!-- Mirrored from pixner.net/boleto/demo/sign-in.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Jul 2023 02:53:58 GMT -->
-</html>

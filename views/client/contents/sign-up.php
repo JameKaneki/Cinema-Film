@@ -1,44 +1,47 @@
+<?php
+     $errors = [];
+     $values = [
+        'user_name' => '',
+        'email' => '',
+        'password' => '',
+        're_password' => '',
+     ];
+     if(isset($_POST['sign-up'])){ 
+        $values['user_name'] = $_POST['user_name'];
+        $values['email']= $_POST['email'];
+        $values['password'] = $_POST['password'];
+        $values['re_password'] = $_POST['re_password'];
 
-<!DOCTYPE html>
-<html lang="en">
-
-
-<!-- Mirrored from pixner.net/boleto/demo/sign-up.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Jul 2023 02:53:58 GMT -->
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet" href="assets/css/flaticon.css">
-    <link rel="stylesheet" href="assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/odometer.css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="assets/css/nice-select.css">
-    <link rel="stylesheet" href="assets/css/abc.css">
-
-    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
-
-    <title>Boleto  - Online Ticket Booking Website HTML Template</title>
-
-
-</head>
-
-<body>
-    <!-- ==========Preloader========== -->
-    <div class="preloader">
-        <div class="preloader-inner">
-            <div class="preloader-icon">
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </div>
-    <!-- ==========Preloader========== -->
-    
+        $checkaccount = check_acount($values['user_name'],$values['email']);
+        $email_regex = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/';
+         // user Name validate
+        if(preg_match('/ ^.{5,50}$/',$values['user_name'])){   
+            $errors['user_name'] = "userName lenght should between 3-50 character";
+        }
+         // password validate
+        if(strlen($values['password']) < 6){
+            $errors['password'] = "password length should longer more than 6 character";
+        }
+        if(strlen($values['password']) >50){
+            $errors['password'] = "password length has a maximum  of 50 character";
+        }
+        if($values['re_password'] == ""){
+             $errors['re_password'] = "re_password should match Password";
+        }
+         // email validate
+        // if(preg_match($email_regex, $values['email'])){
+        //     $errors['email'] = "invalidate email";
+        // }
+        if($checkaccount != []){   
+            $errors['user_name'] = "your userName or email has already used";
+            $errors['email'] = "your userName or email has already used";
+        }
+        if($errors == []){
+            $insert = insert_user($values['user_name'],$values['password'],$values['email']);
+            header("Location:http://localhost/Cinema-Film/views/client/index.php?act=sign-in");
+       }
+     }
+?> 
     <!-- ==========Sign-In-Section========== -->
     <section class="account-section bg_img" data-background="assets/images/account/account-bg.jpg">
         <div class="container">
@@ -49,33 +52,35 @@
                         <h2 class="title">to Boleto </h2>
                     </div>  
                     <form class="account-form" action="index.php?act=sign-up" method="post">
-                        <div class="form-group">
-                            <label for="email">email<span>*</span></label>
-                            <input type="email" placeholder="Enter Your email" id="email" name="email" value ="" required>
-                            <span style="color:red">
-                                <?=$errors['email'] ?? ''?>
-                            </span>
+
+                        <div>
+                            <label >userName</label>
+                            <input type='text' placeholder='Enter Your userName' id='userName' name='user_name' 
+                            value ='<?php
+                            if(isset($values['user_name']))  echo $values['user_name'];
+                            ?>' required>
+                            <?php if(isset($errors['user_name'])) echo "<span>{$errors['user_name']}</span>"?>
                         </div>
-                        <div class="form-group">
-                            <label for="pass1">Password<span>*</span></label>
-                            <input type="password" placeholder="Password" id="password" name="password" required>
-                        </div>
-                        <span style="color:red">
-                                <?=$errors['password'] ?? ''?>
-                            </span>
-                        <div class="form-group">
-                            <label for="pass2">Confirm Password<span>*</span></label>
-                            <input type="password" placeholder="Password" id="password2" name="password2" required>
-                        </div>
-                        <span style="color:red">
-                                <?=$errors['password2'] ?? ''?>
-                            </span>
-                        <div class="form-group checkgroup">
-                            <input type="checkbox" id="bal" required checked>
-                            <label for="bal">I agree to the <a href="#0">Terms, Privacy Policy</a> and <a href="#0">Fees</a></label>
+                        <div>
+                            <label >Email</label>
+                            <input type='text' placeholder='Enter Your Email' id='email' name='email'                             value ='<?php
+                              if(isset($values['email'])) echo $values['email'];
+                            ?>' required>
+                            <?php if(isset($errors['email'])) echo "<span>{$errors['email']}</span>"?>
+                        </div>     
+                         <div>
+                            <label >Password</label>
+                            <input type='password' placeholder='Enter Your Password' id='password' name='password'  required>
+                            <?php if(isset($errors['password'])) echo "<span>{$errors['password']}</span>"?>
+                        </div>     
+                         <div>
+                            <label >re-Password</label>
+                            <input type='password' placeholder='Enter Your userName' id='userName' name='re_password'  required>
+                            <?php if(isset($errors['re_password'])) echo "<span>{$errors['re_password']}</span>"?>
+
                         </div>
                         <div class="form-group text-center">
-                            <input type="submit" value="Sign Up" name="sign-up">
+                            <input type="submit" name="sign-up">
                         </div>
                     </form>
                     <div class="option">
@@ -104,23 +109,3 @@
         </div>
     </section>
     <!-- ==========Sign-In-Section========== -->
-
-
-    <script src="assets/js/jquery-3.3.1.min.js"></script>
-    <script src="assets/js/modernizr-3.6.0.min.js"></script>
-    <script src="assets/js/plugins.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/isotope.pkgd.min.js"></script>
-    <script src="assets/js/magnific-popup.min.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/countdown.min.js"></script>
-    <script src="assets/js/odometer.min.js"></script>
-    <script src="assets/js/viewport.jquery.js"></script>
-    <script src="assets/js/nice-select.js"></script>
-    <script src="assets/js/main.js"></script>
-</body>
-
-
-<!-- Mirrored from pixner.net/boleto/demo/sign-up.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Jul 2023 02:53:58 GMT -->
-</html>

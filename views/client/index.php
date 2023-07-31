@@ -15,9 +15,11 @@ include "../../modules/moduleScheduleHours.php";
 include "../../modules/moduleRoom.php";
 include "../../modules/module_bill.php";
 
+
+
 if(isset($_GET['act'])){
     $feature = $_GET['act'];
-
+    
     switch($feature){
         case 'movie-grid':{
             $param = $_GET['p'];
@@ -29,40 +31,21 @@ if(isset($_GET['act'])){
         break;
         case 'sign-up':
             include "./contents/sign-up.php";
-            if(isset($_POST['sign-up']) && ($_POST['sign-up'])){
-                $email = $_POST['email'];
-                $password = $_POST['password'];
-                $password2 = $_POST['password2'];
-                if($email == ""){   
-                    $errors['email'] = "email ko dc de rong";
-                }   
-                if($password == ""){
-                    $errors['password'] = "password ko dc de rong";
-                }
-                if($password2 == ""){
-                    $errors['password2'] = "Password nhap lai ko dc de rong";
-                }
-                if(!isset($errors)){
-                    insert_user($email,$password);
-                }else{
-                    include "./contents/sign-up.php";           
-                }
-            }
         break;
         case 'sign-in':
             if (isset($_POST['sign-in']) && ($_POST['sign-in'])) {
-                $email = $_POST['email'];
+                $userName = $_POST['userName'];
                 $password = $_POST['password'];
-                $check = check_client_acount($email,$password);
-                if($email == ""){   
-                    $errors['email'] = "email ko dc de rong";
+                $check = check_acount($userName,$password);
+                if($userName == ""){   
+                    $errors['userName'] = "Username can not be blank";
                 }   
                 if($password == ""){
-                    $errors['password'] = "password ko dc de rong";
+                    $errors['password'] = "password can not be blank";
                 }
                 if(!isset($errors)){
                 if (is_array($check)) {
-                    $_SESSION['email'] = $check;
+                    $_SESSION['userName'] = $check;
                     header('Location: index.php');
                 } else {
                     $thongbao = "Tài khoản không tồn tại. Vui lòng kiểm tra lại";
@@ -72,10 +55,9 @@ if(isset($_GET['act'])){
         }else{
                 include "./contents/sign-in.php";
         }
-            break;
-        break;
+         break;
         case 'exit':
-            unset($_SESSION['email']);
+            unset($_SESSION['userName']);
             header("location:index.php");
         break;
         case 'playing':
@@ -98,7 +80,6 @@ if(isset($_GET['act'])){
             break;
         case "ticket-plant":
             {
-
                 include "./contents/movie-ticket-plan.php";
             }
             break;  
