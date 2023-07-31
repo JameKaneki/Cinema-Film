@@ -1,8 +1,7 @@
 <?php 
 
 session_start();
-ob_start();
-include "./header.php";
+// include "./header.php";
 include "../../modules/module.php";
 include "../../modules/cinema.php";
 include "../../modules/ticket.php";
@@ -15,9 +14,11 @@ include "../../modules/moduleSchedule.php";
 include "../../modules/moduleScheduleHours.php";
 include "../../modules/moduleRoom.php";
 
+
+
 if(isset($_GET['act'])){
     $feature = $_GET['act'];
-
+    
     switch($feature){
         case 'movie-grid':{
             $param = $_GET['p'];
@@ -28,41 +29,57 @@ if(isset($_GET['act'])){
         }
         break;
         case 'sign-up':
-            include "./contents/sign-up.php";
+            $errors = [];
             if(isset($_POST['sign-up']) && ($_POST['sign-up'])){
-                $email = $_POST['email'];
+                
+                $userName = $_POST['userName'];
                 $password = $_POST['password'];
                 $password2 = $_POST['password2'];
-                if($email == ""){   
-                    $errors['email'] = "email ko dc de rong";
-                }   
+                $checkaccount = checkaccount($userName);
+                if(is_array($checkaccount)){   
+                    $errors['userName'] = "tai khoan da ton tai";
+                }
+                if($userName == ""){   
+                    $errors['userName'] = "email ko dc de rong";
+                }
                 if($password == ""){
                     $errors['password'] = "password ko dc de rong";
                 }
                 if($password2 == ""){
                     $errors['password2'] = "Password nhap lai ko dc de rong";
                 }
-                if(!isset($errors)){
-                    insert_user($email,$password);
+                // if(!is_array($checkaccount)){
+                //     insert_user($userName,$password);
+                //     header("Location: http://localhost/Cinema-Film/views/client/index.php?act=sign-in");
+                // }else{
+                //     $notify = "Tai khoan da ton tai";
+                //     header("Location: index.php?act=sign-up&notify=$notify");
+                // }
+                if($errors != []){
+                    $insert = insert_user($userName,$password);
+                    // header("Location: http://localhost/Cinema-Film/views/client/index.php?act=sign-in");
                 }else{
-                    include "./contents/sign-up.php";           
+                    include "./contents/sign-up.php";
                 }
+            }else{
+                include "./contents/sign-up.php";
             }
+                    
         break;
         case 'sign-in':
             if (isset($_POST['sign-in']) && ($_POST['sign-in'])) {
-                $email = $_POST['email'];
+                $userName = $_POST['userName'];
                 $password = $_POST['password'];
-                $check = check_client_acount($email,$password);
-                if($email == ""){   
-                    $errors['email'] = "email ko dc de rong";
+                $check = check_acount($userName,$password);
+                if($userName == ""){   
+                    $errors['userName'] = "Username can not be blank";
                 }   
                 if($password == ""){
-                    $errors['password'] = "password ko dc de rong";
+                    $errors['password'] = "password can not be blank";
                 }
                 if(!isset($errors)){
                 if (is_array($check)) {
-                    $_SESSION['email'] = $check;
+                    $_SESSION['userName'] = $check;
                     header('Location: index.php');
                 } else {
                     $thongbao = "Tài khoản không tồn tại. Vui lòng kiểm tra lại";
@@ -75,7 +92,7 @@ if(isset($_GET['act'])){
             break;
         break;
         case 'exit':
-            unset($_SESSION['email']);
+            unset($_SESSION['userName']);
             header("location:index.php");
         break;
         case 'playing':
