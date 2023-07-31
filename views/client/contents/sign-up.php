@@ -6,7 +6,6 @@
         'password' => '',
         're_password' => '',
      ];
-
      if(isset($_POST['sign-up'])){ 
         $values['user_name'] = $_POST['user_name'];
         $values['email']= $_POST['email'];
@@ -42,7 +41,6 @@
             header("Location:http://localhost/Cinema-Film/views/client/index.php?act=sign-in");
        }
      }
-     print_r($errors);
 ?> 
     <!-- ==========Sign-In-Section========== -->
     <section class="account-section bg_img" data-background="assets/images/account/account-bg.jpg">

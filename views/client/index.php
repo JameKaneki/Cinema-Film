@@ -1,6 +1,7 @@
 <?php 
 
 session_start();
+ob_start();
 include "./header.php";
 include "../../modules/module.php";
 include "../../modules/cinema.php";
@@ -29,10 +30,7 @@ if(isset($_GET['act'])){
         }
         break;
         case 'sign-up':
-           {
             include "./contents/sign-up.php";
-           }
-                    
         break;
         case 'sign-in':
             if (isset($_POST['sign-in']) && ($_POST['sign-in'])) {
@@ -58,6 +56,7 @@ if(isset($_GET['act'])){
                 include "./contents/sign-in.php";
         }
             break;
+        break;
         case 'exit':
             unset($_SESSION['userName']);
             header("location:index.php");
@@ -68,6 +67,7 @@ if(isset($_GET['act'])){
             //     include "./contents/movie-grid.php";
             // }
             break;
+
         case 'coming':
             {
                 include "./contents/movie-grid-2.php";
@@ -81,7 +81,6 @@ if(isset($_GET['act'])){
             break;
         case "ticket-plant":
             {
-
                 include "./contents/movie-ticket-plan.php";
             }
             break;  
@@ -116,15 +115,13 @@ if(isset($_GET['act'])){
                                 return [...$carry,$item =>[...$seatInfo]];
                             }
                         } ,[]);
-                    $MovieCheckout = getMovieCheckoutInfo($idScheduleHour,$idRoom);
-                    
+                    $MovieCheckout = getMovieCheckoutInfo($idScheduleHour,$idRoom);               
                     if(!$check){
                         include "./contents/invalidateData.php";
                     }
                 include "./contents/movie-checkout.php";
             }}
         break;
-
         default :
             include "./contents/home.php";
         break;
@@ -132,6 +129,12 @@ if(isset($_GET['act'])){
 }else{
     include "./contents/home.php";
 }
+
+
+
+// content heaar
+
+
 
 
 
