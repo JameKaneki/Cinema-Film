@@ -63,7 +63,7 @@
                         <p>Users Rating</p>
                     </div>
                 </div>
-                <a href="movie-ticket-plan.html" class="custom-button">book tickets</a>
+                <a href="index.php?act=ticket-plant&idFilm=<?php echo $idFilm ?>" class="custom-button">book tickets</a>
             </div>
         </div>
     </section>

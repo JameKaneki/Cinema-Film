@@ -7,6 +7,8 @@
         $id = $_POST['idFilm'];
         $showTimeList = groupScheduleHours($date,$id);
         $schedules = getAllSchedule($date,$id);  
+        // print_r($schedules);
+        // print_r($showTimeList);
     }else{
         $showTimeList = groupScheduleHours('','');
         $schedules = getAllSchedule('','');
@@ -44,6 +46,7 @@
         </thead>
         <tbody>
             <?php 
+                
                 foreach($schedules as $schedule){
                     // $date = date_format($schedule['date'],"Y-m-d");
                     echo "

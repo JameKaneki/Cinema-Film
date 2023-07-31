@@ -47,6 +47,35 @@
         return pdo_query($sql);
     }
     
+    function getAllSchedule_dateTime($date,$idFilm){
+        $sql = "SELECT DiSTINCT s.date,f.nameFilm,f.idFilm,c.nameCinema,c.idCinema FROM `schedules` as s  
+        INNER JOIN `films` as f ON f.idFilm = s.idFilm
+        INNER JOIN `schedule_hours` as sh On sh.idSchedule = s.idSchedule
+        INNER JOIN `rooms` as r ON r.idRoom = sh.idRoom
+        INNER JOIN `cinemas` as c ON c.idCinema = r.idCinema";
+        if($date != ''){
+            $sql .= " AND s.date = '$date' ";
+        }
+        if($idFilm != ''){
+            $sql .= " AND s.idFilm = '$idFilm' ";
+        }
+        // $sql .= " ORDER BY c.nameCinema";
+        return pdo_query($sql);
+    }
+
+    // function groupAllSchedule_dateTime($date, $idFilm){
+    //     $data= getAllSchedule_dateTime($date,$idFilm);
+    //     return array_reduce($data,"groupSchedule_dateTime",[]);
+    // } 
+
+    // function groupSchedule_dateTime(array $carry , array $current){
+    //     if(isset($carry[$current["idCinema"]]) ){
+    //         return [...$carry,$current['idCinema']=> [...$carry,$current['idCinema']],$current['nameCinema']];
+    //     }else{
+    //         return [...$carry,$current["idCinema"]=>[$current['nameCinema']]];
+    //     }
+    //     }
+
     function getScheduleByFilm($idFilm){
         $sql = "SELECT * FROM 'schedules' as s INNER JOIN 'schedule_hours' as sh ON s.idSchedule = sh.idScheduleHour INNER JOIN 'films' as f ON f.idFilm = s.idFilm WHERE s.idFilm = 6";
         return pdo_query($sql);

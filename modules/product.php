@@ -28,8 +28,34 @@ function loadone_film($idFilm)
 {
     $sql = "SELECT * from `films` where `idFilm`=". $idFilm;
     return pdo_query_one($sql);
-    
 }
+
+function load_id_film($idFilm){
+    $sql = "SELECT f.idFilm,s.date from `films` as f
+    Inner join `schedules` as s On s.idFilm = f.idFilm
+    WHERE f.idFilm = $idFilm Order by s.date  asc";
+    return pdo_query($sql);
+}
+
+function group_id_film($idFilm){
+    $data = load_id_film($idFilm);
+    return array_reduce($data,"groupData_id_film",[]);
+}
+
+function groupData_id_film($carry, array $current){
+    if(isset($carry[$current['idFilm']])){
+        return [...$carry,$current['idFilm']=> [$current['date']]];
+    }
+    else{
+        return [...$carry,$current['idFilm']=> [$current['date']]];
+    }
+}
+
+// function load_date_film($idFilm){
+//     $sql = "SELECT DISTINCT f.idFilm,s.date from `films` as f
+//     inner join `schedules` as s on f.idFilm = s.idFilm where f.idFilm= $idFilm";
+//     return pdo_query($sql);
+// }
 
 function   update_film($idFilm,$nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate,$likeAmount){
     $sql = "UPDATE `films` SET `nameFilm`='".$nameFilm."',`director`='".$director."',`performer`='".$performer."',`premiere`='".$premiere."',
