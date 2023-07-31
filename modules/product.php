@@ -33,7 +33,7 @@ function loadone_film($idFilm)
 function load_id_film($idFilm){
     $sql = "SELECT f.idFilm,s.date from `films` as f
     Inner join `schedules` as s On s.idFilm = f.idFilm
-    WHERE f.idFilm = $idFilm Order by s.date  asc";
+    WHERE f.idFilm = $idFilm  Order by s.date  asc";
     return pdo_query($sql);
 }
 
@@ -53,9 +53,14 @@ function groupData_id_film($carry, array $current){
 
 // function load_date_film($idFilm){
 //     $sql = "SELECT DISTINCT f.idFilm,s.date from `films` as f
-//     inner join `schedules` as s on f.idFilm = s.idFilm where f.idFilm= $idFilm";
+//     inner join `schedules` as s on f.idFilm = s.idFilm where f.idFilm= $idFilm and s.date = now()";
 //     return pdo_query($sql);
 // }
+
+function getDateTimeNow(){
+    $now= new DateTime('now');
+    return $now->format('Y-m-d');
+}
 
 function   update_film($idFilm,$nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate,$likeAmount){
     $sql = "UPDATE `films` SET `nameFilm`='".$nameFilm."',`director`='".$director."',`performer`='".$performer."',`premiere`='".$premiere."',

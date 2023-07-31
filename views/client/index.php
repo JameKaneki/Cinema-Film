@@ -22,16 +22,20 @@ if(isset($_GET['act'])){
         case 'movie-grid':{
             $param = $_GET['id'];
             if($param === 'playing'){
+                $listFilm = loadall_playing_film();
+                $name='Playing Now';
                 include "./contents/movie-grid.php";
             }
             if($param ==='coming'){
+                $name='Coming Soon';
+                $listFilm = loadall_coming_film();
                 include "./contents/movie-grid.php";
             }
         }
         break;
         //  case 'playing':
         //      {
-        //          include "./contents/movie-grid.php";
+        //          
         //      }
         //     }
         //     break;
@@ -48,7 +52,6 @@ if(isset($_GET['act'])){
             break;
         case "ticket-plant":
             {
-
                 include "./contents/movie-ticket-plan.php";
             }
             break;  

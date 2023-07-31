@@ -6,7 +6,7 @@
                 $showDateList = [];
                 $listDate=[];
                 $showDateList=group_id_film($idFilm);
-                print_r($showDateList);
+                // print_r($showDateList);
                 $listDate=load_id_film($idFilm);
                 // print_r($listDate);
             }
@@ -24,10 +24,13 @@
            $showTimeList = groupScheduleHours_dateTime($date,$id);
            $schedules = getAllSchedule_dateTime($date, $id);  
         //    print_r($schedules);
-        //  print_r($showTimeList);
+        //   print_r($showTimeList);
        }else{
-           $showTimeList = groupScheduleHours_dateTime('','');
-           $schedules = getAllSchedule_dateTime('','');
+           $date = getDateTimeNow();
+           $id = $_GET['idFilm'];
+           $showTimeList = groupScheduleHours_dateTime($date,$id);
+           $schedules = getAllSchedule_dateTime($date, $id);
+           
        }
             }
         }
@@ -76,7 +79,10 @@
                     </div>
                     <span class="type">date</span>
                     <select class="select-bar" name="date">
-                        <?php         
+                        <?php   
+                                // $now = getDateTimeNow();
+                                echo '<option value="'.$date.'" >'.$date.'</option>';
+                                echo '<option value="" >-----------------</option>';
                                 foreach($listDate as $list){              
                                         extract($list);
                                 if(isset($showDateList[$list['idFilm']])){
@@ -103,37 +109,45 @@
                 <div class="col-lg-12 mb-5 mb-lg-0">
                     <ul class="seat-plan-wrapper bg-five">
                         <?php
+                            if($schedules!=[]){
                             foreach ($schedules as $schedule){
-                                //    print_r($schedule);
                                  extract($schedule);
-                                echo '<li>
-                                <div class="movie-name">
-                                    <div class="icons">
-                                        <i class="far fa-heart"></i>
-                                        <i class="fas fa-heart"></i>
-                                    </div>
-                                    <a href="#0" class="name">'.$nameCinema.'</a>
-                                    <div class="location-icon">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                    </div>
-                                </div>';
-                                echo '<div class="movie-schedule">';
-                                //   print_r($showTimeList[$schedule['nameCinema']]);
-                                if(isset($showTimeList[$schedule['nameCinema']])){
-                                    foreach($showTimeList[$schedule['nameCinema']] as $item){
-                                        // extract($item);
-                                        // print_r($item);
-                                        $time = substr($item,0,5);
-                                        echo '
-                                        <div class="item">
-                                        <a href="#0" class="time" style="color: white;">'.$time.'</a>
+                                //  echo "$nameCinema";
+                                    echo '<li>
+                                    <div class="movie-name">
+                                        <div class="icons">
+                                            <i class="far fa-heart"></i>
+                                            <i class="fas fa-heart"></i>
                                         </div>
-                                        ';
+                                        <a href="#0" class="name">'.$nameCinema.'</a>
+                                        <div class="location-icon">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                        </div>
+                                    </div>';
+                                    echo '<div class="movie-schedule">';
+                                    //   print_r($showTimeList[$schedule['nameCinema']]);
+                                    if(isset($showTimeList[$schedule['nameCinema']])){
+                                        foreach($showTimeList[$schedule['nameCinema']] as $item){
+                                            // extract($item);
+                                            // print_r($item);
+                                            $time = substr($item,0,5);
+                                            echo '
+                                            <div class="item">
+                                            <a href="#0" class="time" style="color: white;">'.$time.'</a>
+                                            </div>
+                                            ';
+                                        }
                                     }
-                                }
-                                echo '</div>
-                                </li>';
+                                    echo '</div>
+                                    </li>';    
                             }
+                        }
+                        else{
+                            echo '<li style="
+                            width: 490px;margin-left: 400px;">
+                                <h5 style="background: -webkit-linear-gradient(180deg, rgba(0, 18, 50, 0.134891) 0%, #001232 90%);">Chưa có lịch chiếu trong hôm nay </h5>
+                                </li>';
+                        }
                         ?>
                     </ul>
                 </div>
