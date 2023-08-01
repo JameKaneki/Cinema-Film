@@ -30,4 +30,8 @@ function checkaccount($userName){
     $list_acount=pdo_query($sql);
     return $list_acount;
 }
+function login_acount($userName,$password){
+    $sql = "SELECT * FROM `users` WHERE userName = '$userName' AND `password` = '$password'";
+    return pdo_query_one($sql);
+}
 ?>

@@ -6,6 +6,7 @@
         'password' => '',
         're_password' => '',
      ];
+
      if(isset($_POST['sign-up'])){ 
         $values['user_name'] = $_POST['user_name'];
         $values['email']= $_POST['email'];

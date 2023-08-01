@@ -36,7 +36,7 @@ if(isset($_GET['act'])){
             if (isset($_POST['sign-in']) && ($_POST['sign-in'])) {
                 $userName = $_POST['userName'];
                 $password = $_POST['password'];
-                $check = check_acount($userName,$password);
+                $check = login_acount($userName,$password);
                 if($userName == ""){   
                     $errors['userName'] = "Username can not be blank";
                 }   
@@ -46,7 +46,7 @@ if(isset($_GET['act'])){
                 if(!isset($errors)){
                 if (is_array($check)) {
                     $_SESSION['userName'] = $check;
-                    header('Location: index.php');
+                    header('Location:http://localhost/Cinema-Film/views/client/index.php');
                 } else {
                     $thongbao = "Tài khoản không tồn tại. Vui lòng kiểm tra lại";
                 }
@@ -58,7 +58,7 @@ if(isset($_GET['act'])){
          break;
         case 'exit':
             unset($_SESSION['userName']);
-            header("location:index.php");
+            header("Location:http://localhost/Cinema-Film/views/client/index.php");
         break;
         case 'playing':
                 include "./contents/movie-grid-1.php";
