@@ -32,6 +32,22 @@
         $sql .= " ORDER BY s.idFilm";
         return pdo_query($sql);
     }
+
+    function getAllScheduleHours_dateTime($date,$idFilm){
+        $sql = "SELECT sh.`time`,s.`idFilm`,s.`date`,c.`nameCinema`,c.`idCinema` FROM `schedule_hours` as sh INNER JOIN `schedules` as s ON sh.idSchedule = s.idSchedule INNER JOIN `films` as f On s.idFilm = f.idFilm INNER JOIN `rooms` as r On r.idRoom =sh.idRoom INNER JOIN `cinemas` as c ON r.idCinema =c.idCinema";
+          
+        if($date != ''){
+            $sql .= " AND s.date = '$date' ";
+        }
+        if($idFilm != ''){
+            $sql .= " AND s.idFilm = '$idFilm' ";
+        }
+        $sql .= " ORDER BY sh.time";
+        return pdo_query($sql);
+    }
+
+    
+
     function getScheduleHoursByIdSchedule($idSchedule){
         $sql = "SELECT * FROM `schedule_hours` WHERE `idSchedule` = $idSchedule";
         return pdo_query($sql);
@@ -56,6 +72,19 @@
     function groupScheduleHours($date,$idFilm){
             $data  = getAllScheduleHours($date,$idFilm);
             return array_reduce($data,"groupData",[]); 
+    }
+
+    function groupScheduleHours_dateTime($date,$idFilm){
+        $data  = getAllScheduleHours_dateTime($date,$idFilm);
+        return array_reduce($data,"groupData_dateTime",[]);
+}
+
+    function groupData_dateTime(array $carry,array $current){
+        if(isset($carry[$current['nameCinema']])){
+            return [...$carry,$current['nameCinema']=>[...$carry[$current['nameCinema']],$current['time']]];
+        }else{
+            return [...$carry,$current["nameCinema"]=>[$current['time']]];
+        }
     }
 
     function groupData( array $carry,array $current){
