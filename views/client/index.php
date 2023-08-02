@@ -1,6 +1,7 @@
 <?php 
 
 session_start();
+ob_start();
 include "./header.php";
 include "../../modules/module.php";
 include "../../modules/cinema.php";
@@ -88,20 +89,6 @@ if(isset($_GET['act'])){
             }
             break;  
 
-        // case 'date-search':
-        //     {
-        //     $schedule_hours = [];
-        //     $group = [];
-        //     $date = '';$idFilm = '';
-        //       if(isset($_POST['search'])){
-        //         $date = $_POST['date'];
-        //         $idFilm =$_POST['$idFilm'];
-        //       }
-        //       $schedule_hours = getAllScheduleHours($date,$idFilm);
-        //       $group = groupScheduleHours($date,$idFilm,'');
-        //     }
-        //     include "./contents/movie-ticket-plan.php";
-        //     break;
         case 'seat-plan' :
             {
                 // nhận vào idshedulehour 

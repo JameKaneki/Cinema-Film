@@ -1,7 +1,7 @@
 <?php 
-    function create_bill (int $price){
+    function create_bill (int $price,int $idUser){
         $now = date("Y-m-d H:i:s");
-        $sql = "INSERT INTO `bill`(`create_at`,`price`) VALUES ('$now' ,$price)";
+        $sql = "INSERT INTO `bill`(`create_at`,`price`,`idUser`) VALUES ('$now' ,$price,$idUser)";
         return pdo_execute_return($sql);
     }
     function remove_bill($id){

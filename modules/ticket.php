@@ -31,17 +31,17 @@
     }
 
     function select_ticket_by_user_id($id){
-        $sql = "SELECT c.nameCinema,s.date,sh.time,seats.seat_key,f.nameFilm,b.status,b.id_bill
+        $sql = "SELECT c.nameCinema,s.date,sh.time,seats.seat_key,f.nameFilm,b.status,b.id_bill,r.nameRoom
         FROM `tickets` as t 
         INNER JOIN schedule_hours as sh ON t.idScheduleHour = sh.idScheduleHour 
+        INNER JOIN bill as b ON b.id_bill = t.id_bill
         INNER JOIN rooms as r ON r.idRoom = sh.idRoom 
         INNER JOIN schedules as s ON s.idSchedule = sh.idSchedule
         INNER JOIN films as f ON f.idFilm = s.idFilm
         INNER JOIN seats ON seats.id_seat = t.id_seat
         INNER JOIN users as u ON u.idUser = t.idUser
         INNER JOIN cinemas as c ON c.idCinema = r.idCinema
-        INNER JOIN bill as b ON b.id_bill = t.id_bill
-        WHERE t.idUser = $id  ORDER BY id_bill DESC";
+        WHERE t.idUser = $id AND b.status = 1 ORDER BY id_bill DESC";
         return pdo_query($sql);
     }
     function selectOne_ticket($idTicket){

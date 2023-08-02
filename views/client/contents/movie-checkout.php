@@ -1,7 +1,7 @@
 
 <?php  
-
-    $id_bill =  create_bill($amountPayable);
+    $idUser = 1;
+    $id_bill =  create_bill($amountPayable,$idUser);
     $_SESSION['id_bill'] = $id_bill;
     $orderType = 190000;
     $lang = 'vn';
@@ -9,7 +9,6 @@
     $time = date("Y-m-d H:i:s");
     $order_des = 'MS:' .$id_bill.' ' .$_GET['s']. ' ' . $time ;
 // get userinfo form SESSION
-    $idUser = 1;
     $userName = "NGUYEN VAN A";
     $sendData = array(
         'order_id' => $id_bill,
