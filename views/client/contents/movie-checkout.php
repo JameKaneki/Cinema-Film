@@ -1,9 +1,9 @@
-
-<?php  
-
-
+<?php
+if (!isset($_SESSION['userName'])) {
+    header("location: http://localhost/Cinema-Film/views/client/index.php?act=sign-in");
+    die;
+}
 ?>
-
 <div class="movie-facility padding-bottom padding-top ">
         <div class="container">
             <div class="row">

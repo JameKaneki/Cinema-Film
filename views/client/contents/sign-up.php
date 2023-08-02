@@ -1,22 +1,22 @@
 <?php
      $errors = [];
      $values = [
-        'user_name' => '',
+        'userName' => '',
         'email' => '',
         'password' => '',
         're_password' => '',
      ];
      if(isset($_POST['sign-up'])){ 
-        $values['user_name'] = $_POST['user_name'];
+        $values['userName'] = $_POST['userName'];
         $values['email']= $_POST['email'];
         $values['password'] = $_POST['password'];
         $values['re_password'] = $_POST['re_password'];
 
-        $checkaccount = check_acount($values['user_name'],$values['email']);
+        $checkaccount = check_acount($values['userName'],$values['email']);
         $email_regex = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/';
          // user Name validate
-        if(preg_match('/ ^.{5,50}$/',$values['user_name'])){   
-            $errors['user_name'] = "userName lenght should between 3-50 character";
+        if(preg_match('/ ^.{5,50}$/',$values['userName'])){   
+            $errors['userName'] = "userName lenght should between 3-50 character";
         }
          // password validate
         if(strlen($values['password']) < 6){
@@ -33,11 +33,11 @@
         //     $errors['email'] = "invalidate email";
         // }
         if($checkaccount != []){   
-            $errors['user_name'] = "your userName or email has already used";
+            $errors['userName'] = "your userName or email has already used";
             $errors['email'] = "your userName or email has already used";
         }
         if($errors == []){
-            $insert = insert_user($values['user_name'],$values['password'],$values['email']);
+            $insert = insert_user($values['userName'],$values['password'],$values['email']);
             header("Location:http://localhost/Cinema-Film/views/client/index.php?act=sign-in");
        }
      }
@@ -55,11 +55,11 @@
 
                         <div>
                             <label >userName</label>
-                            <input type='text' placeholder='Enter Your userName' id='userName' name='user_name' 
+                            <input type='text' placeholder='Enter Your userName' id='userName' name='userName' 
                             value ='<?php
-                            if(isset($values['user_name']))  echo $values['user_name'];
+                            if(isset($values['userName']))  echo $values['userName'];
                             ?>' required>
-                            <?php if(isset($errors['user_name'])) echo "<span>{$errors['user_name']}</span>"?>
+                            <?php if(isset($errors['userName'])) echo "<span>{$errors['userName']}</span>"?>
                         </div>
                         <div>
                             <label >Email</label>

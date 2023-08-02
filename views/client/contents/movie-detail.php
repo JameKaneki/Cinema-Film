@@ -63,18 +63,7 @@
                         <p>Users Rating</p>
                     </div>
                 </div>
-                <?php if(!isset($_SESSION['userName'])){      
-                ?>
-                <a href="index.php?act=seat-plan" class="custom-button" onclick="myFunction()" >book tickets</a>
-                <?php
-                }else{          
-                ?>
-
-                <a href="index.php?act=seat-plan" class="custom-button">book tickets</a>
-                <?php
-                }
-                ?>
-
+                <a href="index.php?act=ticket-plant" class="custom-button">book tickets</a>
             </div>
         </div>
     </section>
@@ -487,10 +476,4 @@
                 </div>
             </div>
         </div>
-
-        <script>
-function myFunction() {
-  confirm("Please login first!");
-}
-</script>
     </section>
