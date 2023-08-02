@@ -36,7 +36,7 @@ function postData(idSchedule,idRoom){
     //     body:  data,
     // })
     // .then()
-    location.href =`http://localhost/duan1/views/client/index.php?act=movie-checkout`
+    location.href =`http://localhost/Cinema-Film/views/client/index.php?act=movie-checkout`
     +`&s=${selectedSeatList}`
     +`&sh=${idSchedule}`
     +`&r=${idRoom}`

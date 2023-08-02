@@ -1,9 +1,13 @@
+<?php
+    if (isset($_GET['popup'])) {
+        $popup = $_GET['popup'];
+        echo '<script type="text/javascript">
 
-<?php  
+            window.onload = function () { alert("' . $popup . '"); }
 
-
-?>
-
+</script>';
+    }
+    ?>
 <div class="movie-facility padding-bottom padding-top ">
         <div class="container">
             <div class="row">
