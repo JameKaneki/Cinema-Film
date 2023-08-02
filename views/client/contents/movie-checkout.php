@@ -1,9 +1,13 @@
 <?php
-if (!isset($_SESSION['userName'])) {
-    header("location: http://localhost/Cinema-Film/views/client/index.php?act=sign-in");
-    die;
-}
-?>
+    if (isset($_GET['popup'])) {
+        $popup = $_GET['popup'];
+        echo '<script type="text/javascript">
+
+            window.onload = function () { alert("' . $popup . '"); }
+
+</script>';
+    }
+    ?>
 <div class="movie-facility padding-bottom padding-top ">
         <div class="container">
             <div class="row">
