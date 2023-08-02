@@ -290,7 +290,7 @@
           break;
           case 'user_exit':{
             session_unset();
-            header("Location:index.php?act=home");
+            header("Location:index.php?act=login");
           }
           break;
           
@@ -429,6 +429,7 @@
         $_SESSION['userName'] = $check;
         header("Location:index.php?act=home");
       }else{
+        header("Location:index.php?act=login");
         $thongbao = "Tài khoản không tồn tại. Vui lòng kiểm tra lại tài khoản hoặc mật khẩu";
   }              
 

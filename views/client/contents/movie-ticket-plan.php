@@ -1,24 +1,67 @@
-        
-     
-        
-        
-        
-        
-        <!-- tạm thời thì chỉ co người dùng chọn thời gian chiếu của film ấn vào thì gọi ra movie-seat-plan  -->
-        <!-- trả ra idSchedulehour  -->
+<?php
+        if(isset($_GET['idFilm'])&&$_GET['idFilm']){
+            $idFilm = $_GET['idFilm'];
+            if(is_array(load_id_film($idFilm))){
+                extract(load_id_film($idFilm));
+                $showDateList = [];
+                $listDate=[];
+                $showDateList=group_id_film($idFilm);
+                // print_r($showDateList);
+                $listDate=load_id_film($idFilm);
+                // print_r($listDate);
+            }
+            if(is_array(loadone_film($_GET['idFilm']))){
+                extract(loadone_film($_GET['idFilm']));
 
+               
+                           
+        $showTimeList = [];
+        $schedules = [];
+       if(isset($_POST['search']))
+       {
+           $date = $_POST['date'];
+           $id = $_GET['idFilm'];
+           $showTimeList = groupScheduleHours_dateTime($date,$id);
+           $schedules = getAllSchedule_dateTime($date, $id);  
+        //    print_r($schedules);
+        //   print_r($showTimeList);
+       }else{
+           $date = getDateTimeNow();
+           $id = $_GET['idFilm'];
+           $showTimeList = groupScheduleHours_dateTime($date,$id);
+           $schedules = getAllSchedule_dateTime($date, $id);
+           
+       }
+            }
+        }
+        
+       
+
+?>
+
+<div class="act" action="index.php?act=movie-ticket-plan">
+   <!-- ==========Window-Warning-Section========== -->
+    <!-- <section class="window-warning inActive">
+        <div class="lay"></div>
+        <div class="warning-item">
+            <h6 class="subtitle">Welcome! </h6>
+            <h4 class="title">Select Your Seats</h4>
+            <div class="thumb">
+                <img src="assets/images/movie/seat-plan.png" alt="movie">
+            </div>
+            <a href="movie-seat-plan.html" class="custom-button seatPlanButton">Seat Plans<i class="fas fa-angle-right"></i></a>
+        </div>
+    </section> -->
+    <!-- ==========Window-Warning-Section========== -->
 
     <!-- ==========Banner-Section========== -->
-    <section class="details-banner hero-area bg_img" data-background="assets/images/banner/banner03.jpg">
+    <section class="details-banner hero-area bg_img" data-background="<?=$poster?>">
         <div class="container">
             <div class="details-banner-wrapper">
                 <div class="details-banner-content">
-                    <h3 class="title">Venus</h3>
+                    <h3 class="title"><?php echo $nameFilm?></h3>
                     <div class="tags">
-                        <a href="#0">English</a>
-                        <a href="#0">Hindi</a>
-                        <a href="#0">Telegu</a>
-                        <a href="#0">Tamil</a>
+                        <a href="#0"><?=$language?></a>
                     </div>
                 </div>
             </div>
@@ -29,34 +72,31 @@
     <!-- ==========Book-Section========== -->
     <section class="book-section bg-one">
         <div class="container">
-            <form class="ticket-search-form ">
-                <div class="form-group">
+            <form class="ticket-search-form " method="post">
+                <div class="form-group" style="margin-left: 370px;">
                     <div class="thumb">
                         <img src="assets/images/ticket/date.png" alt="ticket">
                     </div>
                     <span class="type">date</span>
-                    <select class="select-bar">
-                        <option value="26-12-19">23/10/2020</option>
-                        <option value="26-12-19">24/10/2020</option>
-                        <option value="26-12-19">25/10/2020</option>
-                        <option value="26-12-19">26/10/2020</option>
-                    </select>
+                    <select class="select-bar" name="date">
+                        <?php   
+                                // $now = getDateTimeNow();
+                                echo '<option value="'.$date.'" >'.$date.'</option>';
+                                echo '<option value="" >-----------------</option>';
+                                foreach($listDate as $list){              
+                                        extract($list);
+                                if(isset($showDateList[$list['idFilm']])){
+                                foreach($showDateList[$list['idFilm']] as $item){
+                                    // extract($item);
+                                    // $date = substr($item,0,10);
+                                    echo '<option value="'.$date.'" >'.$date.'</option>';
+                                }
+                            }
+                        }
+                         ?>                         
+                    </select>               
                 </div>
-                <div class="form-group">
-                    <div class="thumb">
-                        <img src="assets/images/ticket/cinema.png" alt="ticket">
-                    </div>
-                    <span class="type">cinema</span>
-                    <select class="select-bar">
-                        <option value="Awaken">Awaken</option>
-                        <option value="Venus">Venus</option>
-                        <option value="wanted">wanted</option>
-                        <option value="joker">joker</option>
-                        <option value="fid">fid</option>
-                        <option value="kidio">kidio</option>
-                        <option value="mottus">mottus</option>
-                    </select>
-                </div>
+                <button type="submit" name="search" style="width: 100px; height: 30px; color: green; margin-right: 430px; margin-top:5px;">Search</button>
             </form>
         </div>
     </section>
@@ -68,165 +108,51 @@
             <div class="row justify-content-center">
                 <div class="col-lg-12 mb-5 mb-lg-0">
                     <ul class="seat-plan-wrapper bg-five">
-                        <li>
-                            <div class="movie-name">
-                                <div class="icons">
-                                    <i class="far fa-heart"></i>
-                                    <i class="fas fa-heart"></i>
-                                </div>
-                                <a href="#0" class="name">Genesis Cinema</a>
-                                <div class="location-icon">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                            </div>
-                            <div class="movie-schedule">
-                                <div class="item">
-                                    09:40
-                                </div>
-                                <div class="item">
-                                    13:45
-                                </div>
-                                <div class="item">
-                                    15:45
-                                </div>
-                                <div class="item">
-                                    19:50
-                                </div>
-                            </div>
-                        </li>                        
-                        <li>
-                            <div class="movie-name">
-                                <div class="icons">
-                                    <i class="far fa-heart"></i>
-                                    <i class="fas fa-heart"></i>
-                                </div>
-                                <a href="#0" class="name">the beach</a>
-                                <div class="location-icon">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                            </div>
-                            <div class="movie-schedule">
-                                <div class="item">
-                                    09:40
-                                </div>
-                                <div class="item">
-                                    13:45
-                                </div>
-                                <div class="item">
-                                    15:45
-                                </div>
-                                <div class="item">
-                                    19:50
-                                </div>
-                            </div>
-                        </li>                        
-                        <li  class="active">
-                            <div class="movie-name">
-                                <div class="icons">
-                                    <i class="far fa-heart"></i>
-                                    <i class="fas fa-heart"></i>
-                                </div>
-                                <a href="#0" class="name">city work</a>
-                                <div class="location-icon">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                            </div>
-                            <div class="movie-schedule">
-                                <div class="item">
-                                    09:40
-                                </div>
-                                <div class="item active">
-                                    13:45
-                                </div>
-                                <div class="item">
-                                    15:45
-                                </div>
-                                <div class="item">
-                                    19:50
-                                </div>
-                            </div>
-                        </li>                        
-                        <li>
-                            <div class="movie-name">
-                                <div class="icons">
-                                    <i class="far fa-heart"></i>
-                                    <i class="fas fa-heart"></i>
-                                </div>
-                                <a href="#0" class="name">box park</a>
-                                <div class="location-icon">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                            </div>
-                            <div class="movie-schedule">
-                                <div class="item">
-                                    09:40
-                                </div>
-                                <div class="item">
-                                    13:45
-                                </div>
-                                <div class="item">
-                                    15:45
-                                </div>
-                                <div class="item">
-                                    19:50
-                                </div>
-                            </div>
-                        </li>                        
-                        <li>
-                            <div class="movie-name">
-                                <div class="icons">
-                                    <i class="far fa-heart"></i>
-                                    <i class="fas fa-heart"></i>
-                                </div>
-                                <a href="#0" class="name">la mer</a>
-                                <div class="location-icon">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                            </div>
-                            <div class="movie-schedule">
-                                <div class="item">
-                                    09:40
-                                </div>
-                                <div class="item">
-                                    13:45
-                                </div>
-                                <div class="item">
-                                    15:45
-                                </div>
-                                <div class="item">
-                                    19:50
-                                </div>
-                            </div>
-                        </li>                        
-                        <li>
-                            <div class="movie-name">
-                                <div class="icons">
-                                    <i class="far fa-heart"></i>
-                                    <i class="fas fa-heart"></i>
-                                </div>
-                                <a href="#0" class="name">wanted</a>
-                                <div class="location-icon">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                            </div>
-                            <div class="movie-schedule">
-                                <div class="item">
-                                    09:40
-                                </div>
-                                <div class="item">
-                                    13:45
-                                </div>
-                                <div class="item">
-                                    15:45
-                                </div>
-                                <div class="item">
-                                    19:50
-                                </div>
-                            </div>
-                        </li>
+                        <?php
+                            if($schedules!=[]){
+                            foreach ($schedules as $schedule){
+                                 extract($schedule);
+                                //  echo "$nameCinema";
+                                    echo '<li>
+                                    <div class="movie-name">
+                                        <div class="icons">
+                                            <i class="far fa-heart"></i>
+                                            <i class="fas fa-heart"></i>
+                                        </div>
+                                        <a href="#0" class="name">'.$nameCinema.'</a>
+                                        <div class="location-icon">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                        </div>
+                                    </div>';
+                                    echo '<div class="movie-schedule">';
+                                    //   print_r($showTimeList[$schedule['nameCinema']]);
+                                    if(isset($showTimeList[$schedule['nameCinema']])){
+                                        foreach($showTimeList[$schedule['nameCinema']] as $item){
+                                            // extract($item);
+                                            // print_r($item);
+                                            $time = substr($item,0,5);
+                                            echo '
+                                            <div class="item">
+                                            <a href="#0" class="time" style="color: white;">'.$time.'</a>
+                                            </div>
+                                            ';
+                                        }
+                                    }
+                                    echo '</div>
+                                    </li>';    
+                            }
+                        }
+                        else{
+                            echo '<li style="
+                            width: 490px;margin-left: 400px;">
+                                <h5 style="background: -webkit-linear-gradient(180deg, rgba(0, 18, 50, 0.134891) 0%, #001232 90%);">Chưa có lịch chiếu trong hôm nay </h5>
+                                </li>';
+                        }
+                        ?>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
     <!-- ==========Movie-Section========== -->
+    </div>
