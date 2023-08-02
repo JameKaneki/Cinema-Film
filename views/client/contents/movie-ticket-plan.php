@@ -22,9 +22,9 @@
            $date = $_POST['date'];
            $id = $_GET['idFilm'];
            $showTimeList = groupScheduleHours_dateTime($date,$id);
-           $schedules = getAllSchedule_dateTime($date, $id);  
+           $schedules = getAllSchedule_dateTime($date, $id);
         //    print_r($schedules);
-        //   print_r($showTimeList);
+        //    print_r($showTimeList);
        }else{
            $date = getDateTimeNow();
            $id = $_GET['idFilm'];
@@ -32,6 +32,8 @@
            $schedules = getAllSchedule_dateTime($date, $id);
            
        }
+        
+
             }
         }
         
@@ -112,7 +114,6 @@
                             if($schedules!=[]){
                             foreach ($schedules as $schedule){
                                  extract($schedule);
-                                //  echo "$nameCinema";
                                     echo '<li>
                                     <div class="movie-name">
                                         <div class="icons">
@@ -125,15 +126,16 @@
                                         </div>
                                     </div>';
                                     echo '<div class="movie-schedule">';
-                                    //   print_r($showTimeList[$schedule['nameCinema']]);
                                     if(isset($showTimeList[$schedule['nameCinema']])){
                                         foreach($showTimeList[$schedule['nameCinema']] as $item){
                                             // extract($item);
-                                            // print_r($item);
-                                            $time = substr($item,0,5);
+                                            $scheduleHourInfo =  explode(",",$item);
+                                            $idScheduleHour = $scheduleHourInfo[0];
+                                            $time = $scheduleHourInfo[1];
+                                            $time_four= substr($time,0,5);
                                             echo '
                                             <div class="item">
-                                            <a href="#0" class="time" style="color: white;">'.$time.'</a>
+                                             <a href="index.php?act=seat-plan&idScheduleHour='.$idScheduleHour.'" class="time" style="color: white;">'.$time_four.'</a>
                                             </div>
                                             ';
                                         }

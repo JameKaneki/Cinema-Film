@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <link rel="stylesheet" href="./css/style.css"> -->
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="css/themify-icons/themify-icons.css">
     <style>  
 .boxcenter{
@@ -142,10 +142,10 @@
                 <a href="index.php?act=user_exit">Logout</a>
             </div>
         </div>
-        <?php
+        <?php   
         if (isset($_SESSION['userName'])) {
             extract($_SESSION['userName']);
-        ?>
+                ?>
         <div class="sidebar">
             <div class="information">
                 <h2><span class="user">User: </span><?=$name?></h2>

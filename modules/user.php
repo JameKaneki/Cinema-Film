@@ -25,9 +25,8 @@ function check_acount($userName,$email){
     $sql="SELECT * FROM `users` WHERE userName = '$userName' OR email = '$email'";
     return pdo_query($sql);
 }
-function checkaccount($userName){
-    $sql = "SELECT * FROM `users` WHERE `userName`='$userName'";
-    $list_acount=pdo_query($sql);
-    return $list_acount;
+function login_acount($userName,$password){
+    $sql="SELECT * FROM `users` WHERE userName = '$userName' and `password` = '$password'";
+    return pdo_query_one($sql);
 }
 ?>

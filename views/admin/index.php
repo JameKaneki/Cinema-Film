@@ -10,6 +10,7 @@
   // phần admin chỉ là xúc miệng để mn chuẩn bị cho client thôi nên cứ là clear nhất có thể nha
   // mong ae hợp tác , đúng giờ, mọi thắc mắc hay cần giúp đỡ có thể hỏi lại mình qua zalo trực mọi lúc có thể và rep sớm nhất cso thể
   session_start();
+  ob_start();
   include "../../modules/module.php";
   include "header.php";
   include "../../modules/cinema.php";
@@ -424,13 +425,14 @@
      if (isset($_POST['signin']) && ($_POST['signin'] > 0)) {
       $userName = $_POST['userName'];
       $password = $_POST['password'];
-      $check = check_acount($userName,$password);
+      $check = login_acount($userName,$password);
       if(is_array($check)){
         $_SESSION['userName'] = $check;
         header("Location:index.php?act=home");
       }else{
-        header("Location:index.php?act=login");
         $thongbao = "Tài khoản không tồn tại. Vui lòng kiểm tra lại tài khoản hoặc mật khẩu";
+        header("Location:index.php?act=login");
+        
   }              
 
 }
