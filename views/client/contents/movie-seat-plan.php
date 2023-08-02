@@ -75,15 +75,17 @@ khi ấn proceed thì kiểm tra xem đã đăng nhập chưa nếu chauw thì r
                     </div>
                     <div class="book-item">
                         
-                        <?php if(!isset($_SESSION['userName'])){      
+                        <?php if(isset($_SESSION['userName'])){      
                         ?>
+                        <a href="index.php?act=movie-checkout"><button <?php echo " onclick='postData($idScheduleHour,{$scheduleHourInfo['idRoom']})'";
+                         ?> class="custom-button">proceed</button></a>
                         <a href="index.php?act=sign-in"><button onclick="myFunction()" <?php echo " onclick='postData($idScheduleHour,{$scheduleHourInfo['idRoom']})'";
                          ?> class="custom-button">proceed</button></a>       
                         <?php
                         }else{          
                         ?>
-                        <button <?php echo " onclick='postData($idScheduleHour,{$scheduleHourInfo['idRoom']})'";
-                         ?> class="custom-button">proceed</button>
+                        <a href="index.php?act=sign-in"><button onclick="myFunction()" <?php echo " onclick='postData($idScheduleHour,{$scheduleHourInfo['idRoom']})'";
+                         ?> class="custom-button">proceed</button></a>
                         <?php
                         }
                         ?>

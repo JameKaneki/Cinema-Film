@@ -29,4 +29,8 @@ function login_account($userName,$password){
     $sql="SELECT * FROM `users` WHERE userName = '$userName' AND `password` = '$password'";
     return pdo_query_one($sql);
 }
+function admin_login($email,$password){
+    $sql="SELECT * FROM `users` WHERE email = '$email' AND `password` = '$password'";
+    return pdo_query_one($sql);
+}
 ?>
