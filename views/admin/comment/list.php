@@ -1,6 +1,6 @@
 <div class="wrapper">
             <h1>Comment List</h1>
-    <div style="display: flex;">
+    <div class="df">
         <table>
             <tr>
                 <th></th>
@@ -69,6 +69,9 @@
     }
     .wd{
         width: 120px;
+    }
+    .df{
+        display: flex;
     }
     .wrapper{
         width: 85%;

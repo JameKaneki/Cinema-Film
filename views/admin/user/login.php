@@ -76,7 +76,7 @@
             </div>
             <hr> </hr>
             <div class="content sign_in">
-            <form action="index.php?act=user_login" method="post">
+            <form action="index.php?act=login" method="post">
             <div class="input">
                 <input type="text" name="email" id="" placeholder="Email">
                
