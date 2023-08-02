@@ -1,76 +1,91 @@
-<?php  
- if (isset($_POST['signin']) && ($_POST['signin'] > 0)) {
+<?php
+if (isset($_GET['alert'])) {
+    $alert = $_GET['alert'];
+    echo '<script type="text/javascript">
+    
+                window.onload = function () { alert("' . $alert . '"); }
+    
+    </script>';
+}
+if (isset($_POST['signin']) && ($_POST['signin'] > 0)) {
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $login = admin_login($email,$password);
-    if(!empty($login)){
-      $_SESSION['email'] = $login;
-      header("Location:index.php?act=home");
-    }else{
-      header("Location:index.php?act=login");
-}
+    $login = admin_login($email, $password);
+    if (!empty($login)) {
+        $_SESSION['email'] = $login;
+        header("Location:index.php?act=home");
+    } else {
+        $alert = "Email or password incorrect.Please check again";
+        header("Location:index.php?act=login&alert=".$alert);
+    }
 }
 ?>
-    <style>
-        .box{
-            width: 450px;
-            border: 1px solid gray;
-            position: relative;
-            left: 700px;
-            top: 150px;
-            border-radius: 20px;
-            padding: 10px;  
-        }
-        .title{
-            font-size: 32px;
-            font-weight: 600;
-        }
-        .title p{
-            margin-left: 175px;
-            color: gray;
-        }
-        .input input{
-            width: 320px;
-            height: 40px;
-            margin-left: 55px;
-            margin-bottom: 20px;
-            border:none;
-            border-bottom: 3px solid gray; 
-            font-size: 16px;
-            margin-top: 10px;
-        }
+<style>
+    .box {
+        width: 450px;
+        border: 1px solid gray;
+        position: relative;
+        left: 700px;
+        top: 150px;
+        border-radius: 20px;
+        padding: 10px;
+    }
 
-        .forgot a{
-            font-size: 22px;
-            margin-left: 155px;
-            margin-top: 10px;
-            color: gray;
-            text-decoration: none;
-        }
-        .forgot a:hover{
-            color: blue;
-        }
-        .submit input{
-            width: 400px;
-            background-color:  rgb(61, 133, 242);
-            height: 50px;
-            margin: 30px 25px;
-            font-size: 20px;
-            color: white;
-            font-weight: bold;
-            border-radius: 15px;
-            cursor: pointer;}
-        .submit input:hover{
-            background-color:  red;
-        }
-    </style>
-    
-        <?php   
-        if (isset($_SESSION['email'])) {
-            extract($_SESSION['email']);
-        }
-        else{
-            echo '<div class="box">
+    .title {
+        font-size: 32px;
+        font-weight: 600;
+    }
+
+    .title p {
+        margin-left: 175px;
+        color: gray;
+    }
+
+    .input input {
+        width: 320px;
+        height: 40px;
+        margin-left: 55px;
+        margin-bottom: 20px;
+        border: none;
+        border-bottom: 3px solid gray;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    .forgot a {
+        font-size: 22px;
+        margin-left: 155px;
+        margin-top: 10px;
+        color: gray;
+        text-decoration: none;
+    }
+
+    .forgot a:hover {
+        color: blue;
+    }
+
+    .submit input {
+        width: 400px;
+        background-color: rgb(61, 133, 242);
+        height: 50px;
+        margin: 30px 25px;
+        font-size: 20px;
+        color: white;
+        font-weight: bold;
+        border-radius: 15px;
+        cursor: pointer;
+    }
+
+    .submit input:hover {
+        background-color: red;
+    }
+</style>
+
+<?php
+if (isset($_SESSION['email'])) {
+    extract($_SESSION['email']);
+} else {
+    echo '<div class="box">
             <div class="title">
                 <p>Login</p>
             </div>
@@ -95,5 +110,5 @@
         </form> 
         </div>
         </div>';
-        }
-        ?> 
+}
+?>

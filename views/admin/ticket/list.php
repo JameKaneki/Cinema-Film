@@ -1,7 +1,7 @@
  <div class="wrapper">
             <h1>Ticket List</h1>
     <div style="display: flex;">
-        <table>
+        <table style="min-width: 1500px;">
             <tr>
                 <th></th>
                 <th>Mã Vé</th>

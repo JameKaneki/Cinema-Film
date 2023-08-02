@@ -80,7 +80,6 @@ if (isset($_GET['act'])) {
             break;
         case 'movie-checkout': {
                 router_login();
-
                 $check = true;
                 if (isset($_GET['s']) && isset($_GET['sh'])  && isset($_GET['r'])) {
                     $seatList = explode(',', $_GET['s']);
@@ -97,7 +96,7 @@ if (isset($_GET['act'])) {
                             return [$item => [...$seatInfo]];
                         } else {
                             $total += intval($seatInfo['price']);
-                            return [...$carry, $item => [...$seatInfo]];
+                            return [...$carry, $item => [...$seatInfo]];    
                         }
                     }, []);
                     $MovieCheckout = getMovieCheckoutInfo($idScheduleHour, $idRoom);

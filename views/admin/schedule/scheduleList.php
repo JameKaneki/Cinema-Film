@@ -35,7 +35,7 @@
             </form>
         </div>
     </div>
-    <table>
+    <table style="min-width: 1500px;">
         <thead>
             <tr>
                 <th>Film</th>

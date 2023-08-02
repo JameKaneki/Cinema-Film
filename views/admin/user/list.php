@@ -1,8 +1,8 @@
 
-<div class="wrapper">
+<div class="wrapper" >
         <h1>User List</h1>
-    <div style="display: flex">
-            <table>
+    <div style="display: flex;">
+            <table style="min-width: 1500px;">
                 <tr>
                     <th>User ID</th>
                     <th>UserName</th>
