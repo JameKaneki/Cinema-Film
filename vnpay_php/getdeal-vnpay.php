@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-$vnp_Returnurl = "http://localhost/duan1/vnpay_php/vnpay_return.php";
+$vnp_Returnurl = "http://localhost/Cinema-Film/vnpay_php/vnpay_return.php";
 $vnp_TmnCode = "D7GEL8KH";//Mã website tại VNPAY 
 $vnp_HashSecret = "SOEALHLHQFMXSHXYZXFBZQRKXFOAYMST"; //Chuỗi bí mật
 

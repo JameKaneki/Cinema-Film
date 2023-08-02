@@ -92,11 +92,15 @@ if(isset($_GET['act'])){
         case 'seat-plan' :
             {
                 // nhận vào idshedulehour 
-                $idScheduleHour = 17;
-                $scheduleHourInfo = getScheduleHoursById($idScheduleHour);
-                $seatList = groupScheduleHoursById($scheduleHourInfo['idRoom']);
-                $bookedSeat = getBookedSeat($idScheduleHour);
-                include "./contents/movie-seat-plan.php";
+                if(isset($_GET['idScheduleHour'])){
+                    $idScheduleHour = $_GET['idScheduleHour'];
+                    $scheduleHourInfo = getScheduleHoursById($idScheduleHour);
+                    $seatList = groupScheduleHoursById($scheduleHourInfo['idRoom']);
+                    $bookedSeat = getBookedSeat($idScheduleHour);
+                    include "./contents/movie-seat-plan.php";
+                }else{
+                    include "./contents/invalidateData.php";
+                }
             } 
         break;
         case 'movie-checkout':

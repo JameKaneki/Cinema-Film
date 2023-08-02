@@ -85,7 +85,7 @@ try {
         echo "
         <script type='text/javascript'>
             alert('Payment success, back to home page !!');
-            location.href =`http://localhost/duan1/views/client/index.php`
+            location.href =`http://localhost/Cinema-Film/views/client/index.php`
         </script>
         "; 
     }else{

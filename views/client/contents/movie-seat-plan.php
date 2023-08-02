@@ -4,12 +4,6 @@ chọn ghế xong thì trả ra giá luôn - giá để default cũng đc
 
 khi ấn proceed thì kiểm tra xem đã đăng nhập chưa nếu chauw thì ra màn login  -->
 
-<?php 
-if (!isset($_SESSION['userName'])) {
-    header("Location: http://localhost/Cinema-Film/views/client/index.php?act=sign-in");
-    die;
-}?>
-
 
 
 <section class="details-banner hero-area bg_img seat-plan-banner" data-background="assets/images/banner/banner04.jpg">

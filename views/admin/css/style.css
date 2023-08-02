@@ -4,12 +4,64 @@
     padding: 0;
 }
 
-.logo {
-    background-color: rgb(228, 234, 241);
+:root {
+    --red--color: rgb(223, 69, 45);
+    --blue-color: rgb(65, 99, 232);
+}
+
+a,
+li {
     text-decoration: none;
-    font-weight: bold;
-    font-size: 20px;
-    color: rgb(158, 105, 105);
-    position: fixed;
-    color: rgb(61, 133, 242);
+    list-style-type: none;
+}
+
+.wd {
+    width: 120px;
+}
+
+.df {
+    display: flex;
+}
+
+.wrapper {
+    width: 85%;
+    margin: 0px auto;
+    float: right;
+    margin-right: 50px;
+}
+
+h1 {
+    margin-left: 700px;
+    margin-top: 50px;
+}
+
+.box {
+    width: 450px;
+    border: 1px solid gray;
+    position: relative;
+    left: 700px;
+    top: 150px;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.title p {
+    margin-left: 175px;
+    color: gray;
+}
+
+.input input {
+    width: 320px;
+    height: 40px;
+    margin-left: 55px;
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 3px solid gray;
+    font-size: 16px;
+    margin-top: 10px;
 }
