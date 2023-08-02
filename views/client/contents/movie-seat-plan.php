@@ -3,15 +3,6 @@
 chọn ghế xong thì trả ra giá luôn - giá để default cũng đc
 
 khi ấn proceed thì kiểm tra xem đã đăng nhập chưa nếu chauw thì ra màn login  -->
-
-<?php 
-if (!isset($_SESSION['userName'])) {
-    header("Location: http://localhost/Cinema-Film/views/client/index.php?act=sign-in");
-    die;
-}?>
-
-
-
 <section class="details-banner hero-area bg_img seat-plan-banner" data-background="assets/images/banner/banner04.jpg">
         <div class="container">
             <div class="details-banner-wrapper">
@@ -83,14 +74,30 @@ if (!isset($_SESSION['userName'])) {
                         <h3 class="title" id='total-price'>0$</h3>
                     </div>
                     <div class="book-item">
-                        <button <?php echo " onclick='postData($idScheduleHour,{$scheduleHourInfo['idRoom']})'"; ?> class="custom-button">proceed</button>
+                        
+                        <?php if(!isset($_SESSION['userName'])){      
+                        ?>
+                        <a href="index.php?act=sign-in"><button onclick="myFunction()" <?php echo " onclick='postData($idScheduleHour,{$scheduleHourInfo['idRoom']})'";
+                         ?> class="custom-button">proceed</button></a>       
+                        <?php
+                        }else{          
+                        ?>
+                        <button <?php echo " onclick='postData($idScheduleHour,{$scheduleHourInfo['idRoom']})'";
+                         ?> class="custom-button">proceed</button>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <script src="./assets/js/customer.js"></script>
-
+    <script>
+function myFunction() {
+  confirm("Please login first!");
+}
+</script>
     <style>
         .seat-wrapper{
             max-width: 80%;

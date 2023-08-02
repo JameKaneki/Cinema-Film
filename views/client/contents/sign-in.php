@@ -1,3 +1,13 @@
+<?php
+    if (isset($_GET['popup'])) {
+        $popup = $_GET['popup'];
+        echo '<script type="text/javascript">
+
+            window.onload = function () { alert("' . $popup . '"); }
+
+</script>';
+    }
+    ?>
     <!-- ==========Sign-In-Section========== -->
     <section class="account-section bg_img" data-background="assets/images/account/account-bg.jpg">
         <div class="container">
