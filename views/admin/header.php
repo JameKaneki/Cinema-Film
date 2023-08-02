@@ -138,18 +138,21 @@
                 Beta Admin
             </a>
             </div>
-        </div>
-        <?php
-        if (isset($_SESSION['email'])) {
-            extract($_SESSION['email']);
-        ?>
-                    <div class="logout">
+            <div class="logout">
                 <a href="index.php?act=user_exit">Logout</a>
             </div>
+        </div>
+        <?php
+        if (isset($_SESSION['userName'])) {
+            extract($_SESSION['userName']);
+        ?>
         <div class="sidebar">
             <div class="information">
-                <h2><span class="user">User: </span><?=$userName?></h2>
-            </div>  
+                <h2><span class="user">User: </span><?=$name?></h2>
+            </div>
+                <?php   
+                if($role == 1){
+                ?>
                 <div class="manager">
                 <h2> Manager </h2> 
                 <ul class="nav">
@@ -199,5 +202,44 @@
             </div>
                 <?php
                 } 
-                ?>          
+                ?>
+                <?php
+                if($role == 2){
+                ?>
+                <div class="manager">
+                <ul class="nav">
+                <li><a href="index.php?act=home">
+                            <i class="nav-arrow-down-head ti-home"></i>
+                            Home
+                        </a></li>
+                <li><a href="index.php?act=film">
+                            <i class="nav-arrow-down-head ti-video-clapper"></i>
+                            film
+                        </a></li>
+                <li><a href="index.php?act=room">
+                            <i class="nav-arrow-down-head ti-layout-sidebar-2"></i>
+                            Room
+                        </a></li>
+                <li><a href="index.php?act=schedules">
+                            <i class="nav-arrow-down-head ti-time"></i>
+                            Schedules
+                        </a></li>
+                <li><a href="index.php?act=schedule_hours">
+                            <i class="nav-arrow-down-head ti-timer"></i>
+                            Schedule Hours
+                        </a></li>
+                <li><a href="index.php?act=ticket">
+                            <i class="nav-arrow-down-head ti-ticket"></i>
+                            Ticket
+                        </a></li>
+                </ul>
+                        </div>
+                <?php
+                }
+                ?>
+            
+            </div>
+            <?php }
+            ?>
+            
 </body>

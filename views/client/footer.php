@@ -94,4 +94,5 @@
     <script src="assets/js/viewport.jquery.js"></script>
     <script src="assets/js/nice-select.js"></script> 
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/customer.js"></script>
 </body>

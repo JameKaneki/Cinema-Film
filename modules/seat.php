@@ -44,7 +44,7 @@
         },[]);
         return $groupedSeatList;
     }
-    function getBookedSeat($idScheduleHour,$idRoom){
+    function getBookedSeat($idScheduleHour){
         $sql =
         "SELECT seats.seat_key,seats.price,seats.id_seat,sh.idScheduleHour,sh.time,f.nameFilm,s.date,r.idRoom,c.nameCinema FROM `tickets` as t 
         INNER JOIN users as u on t.idUser=u.idUser 
@@ -54,7 +54,9 @@
         INNER JOIN films as f on f.idFilm = s.idFilm
         INNER JOIN rooms as r ON r.idRoom = seats.idRoom
         INNER JOIN cinemas as c ON r.idCinema = c.idCinema
-        WHERE sh.idScheduleHour = $idScheduleHour AND r.idRoom = $idRoom";
+        INNER JOIN bill as b ON t.id_bill = b.id_bill
+        WHERE sh.idScheduleHour = $idScheduleHour  AND b.status = '1'";
+        // sử lí thêm đoạn vé đã đã đặt chưa bằng cách innerjoin vào bill 
         $result = pdo_query($sql);
         return array_map(function($seat){
             return $seat['seat_key'];

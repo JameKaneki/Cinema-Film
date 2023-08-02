@@ -1,16 +1,4 @@
-<?php  
- if (isset($_POST['signin']) && ($_POST['signin'] > 0)) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $login = admin_login($email,$password);
-    if(!empty($login)){
-      $_SESSION['email'] = $login;
-      header("Location:index.php?act=home");
-    }else{
-      header("Location:index.php?act=login");
-}
-}
-?>
+
     <style>
         .box{
             width: 450px;
@@ -66,8 +54,8 @@
     </style>
     
         <?php   
-        if (isset($_SESSION['email'])) {
-            extract($_SESSION['email']);
+        if (isset($_SESSION['userName'])) {
+            extract($_SESSION['userName']);
         }
         else{
             echo '<div class="box">
@@ -78,7 +66,7 @@
             <div class="content sign_in">
             <form action="index.php?act=login" method="post">
             <div class="input">
-                <input type="text" name="email" id="" placeholder="Email">
+                <input type="text" name="userName" id="" placeholder="UserName">
                
             </div>
 
@@ -92,7 +80,7 @@
             <div class="submit">
                 <input type="submit" value="Login" name="signin">
             </div>
-        </form> 
+        </form>
         </div>
         </div>';
         }

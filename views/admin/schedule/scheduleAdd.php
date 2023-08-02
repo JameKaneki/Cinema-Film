@@ -16,15 +16,7 @@
                 $errors['date'] = "already has a schedule on this day";
             }else{
                 createSchedule($date,$idFilm);
-                
-                echo "Create successFully";
-                echo "
-                    <div class='wrapper'> 
-                        <div class='btn btn-blue'><a href='index.php?act=schedules'>show Schedule List<a/></div>
-                        <div class='btn btn-blue'><a href='index.php?act=schedule-create'>add more Schedule <a/></div>
-                    </div>
-                ";
-                die;
+              
             }   
         }
 

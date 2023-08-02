@@ -14,7 +14,6 @@
         $schedules = getAllSchedule('','');
     }
 
- 
 ?>
 <div class="wrapper"> 
     <h1>Schedule List</h1>

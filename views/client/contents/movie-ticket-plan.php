@@ -23,6 +23,7 @@
            $id = $_GET['idFilm'];
            $showTimeList = groupScheduleHours_dateTime($date,$id);
            $schedules = getAllSchedule_dateTime($date, $id);
+
         //    print_r($schedules);
         //    print_r($showTimeList);
        }else{
@@ -30,13 +31,10 @@
            $id = $_GET['idFilm'];
            $showTimeList = groupScheduleHours_dateTime($date,$id);
            $schedules = getAllSchedule_dateTime($date, $id);
-           
        }
-        
-
             }
         }
-        
+    
        
 
 ?>
