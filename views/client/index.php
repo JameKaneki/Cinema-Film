@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 session_start();
 ob_start();
@@ -10,14 +10,15 @@ include "../../modules/comment.php";
 include "../../modules/room.php";
 include "../../modules/user.php";
 include "../../modules/seat.php";
-include "../../modules/product.php";
+include "../../modules/product.php";  
 include "../../modules/moduleSchedule.php";
 include "../../modules/moduleScheduleHours.php";
 include "../../modules/moduleRoom.php";
+include "../../modules/module_bill.php";
 
 
 
-if (isset($_GET['act'])) {
+if(isset($_GET['act'])){
     $feature = $_GET['act'];
     switch ($feature) {
         case 'movie-grid':{
@@ -36,91 +37,83 @@ if (isset($_GET['act'])) {
         break;
         case 'sign-up':
             include "./contents/sign-up.php";
-            break;
+        break;
         case 'sign-in':
             if (isset($_POST['sign-in']) && ($_POST['sign-in'])) {
                 $userName = $_POST['userName'];
                 $password = $_POST['password'];
-                $login = login_account($userName, $password);
-                if ($userName == "") {
+                $check = login_acount($userName,$password);
+                if($userName == ""){   
                     $errors['userName'] = "Username can not be blank";
-                }
-                if ($password == "") {
+                }   
+                if($password == ""){
                     $errors['password'] = "password can not be blank";
                 }
-                if (!isset($errors)) {
-                    if (is_array($login)) {
-                        $_SESSION['userName'] = $login;
-                        header('Location: http://localhost/Cinema-Film/views/client/index.php');
-                    } else {
-                        $popup = "User name or password invalid";
-                        header("Location: index.php?act=sign-in&popup=$popup");
-                    }
+                if(!isset($errors)){
+                if (is_array($check)) {
+                    $_SESSION['userName'] = $check;
+                    header('Location:http://localhost/Cinema-Film/views/client/index.php');
                 } else {
-                    $popup = "User name or password invalid";
-                    header("Location: index.php?act=sign-in&popup=$popup");
+                    $thongbao = "Tài khoản không tồn tại. Vui lòng kiểm tra lại";
                 }
-            } 
+                $thongbao = "Chúc mừng bạn. Đã đăng ký thành công";
+            }
+        }else{
                 include "./contents/sign-in.php";
+        }
             break;
         case 'movie-detail': {
                 include "./contents/movie-detail.php";
             }
             break;
-        case "ticket-plant": {
+        case "ticket-plant":
+            {
                 include "./contents/movie-ticket-plan.php";
             }
-            break;
-        case 'seat-plan': {
-                // nhận vào idshedulehour 
-                $idScheduleHour = 17;
-                $scheduleHourInfo = getScheduleHoursById($idScheduleHour);
-                $seatList = groupScheduleHoursById($scheduleHourInfo['idRoom']);
-                $bookedSeat = getBookedSeat($idScheduleHour, $scheduleHourInfo['idRoom']);
-                include "./contents/movie-seat-plan.php";
-            }
-            break;
-        case 'movie-checkout': {
-                router_login();
+            break;  
 
-                $check = true;
-                if (isset($_GET['s']) && isset($_GET['sh'])  && isset($_GET['r'])) {
-                    $seatList = explode(',', $_GET['s']);
+        case 'seat-plan':
+            {
+                // nhận vào idshedulehour 
+                if(isset($_GET['idScheduleHour'])){
+                    $idScheduleHour = $_GET['idScheduleHour'];
+                    $scheduleHourInfo = getScheduleHoursById($idScheduleHour);
+                    $seatList = groupScheduleHoursById($scheduleHourInfo['idRoom']);
+                    $bookedSeat = getBookedSeat($idScheduleHour);
+                    include "./contents/movie-seat-plan.php";
+                }else{
+                    include "./contents/invalidateData.php";
+                }
+            } 
+        break;
+        case 'movie-checkout':
+        {
+            if(isset($_GET['s'])&& isset($_GET['sh'])  && isset($_GET['r']) && isset($_GET['total'])){
+                    $seatList= $_GET['s'];
                     $idScheduleHour = $_GET['sh'];
                     $idRoom = intval($_GET['r']);
-                    $total;
-                    $seatList = array_reduce($seatList, function ($carry, $item) {
-                        global $idRoom, $check, $total;
-                        $seatInfo = getSeatByIdRoomAndKey($idRoom, $item);
-                        if (empty($seatInfo)) {
-                            $check = false;
-                        } else if ($carry == []) {
-                            $total += intval($seatInfo['price']);
-                            return [$item => [...$seatInfo]];
-                        } else {
-                            $total += intval($seatInfo['price']);
-                            return [...$carry, $item => [...$seatInfo]];
-                        }
-                    }, []);
-                    $MovieCheckout = getMovieCheckoutInfo($idScheduleHour, $idRoom);
-                    if (!$check) {
-                        include "./contents/invalidateData.php";
-                    }
-                    include "./contents/movie-checkout.php";
-                }
+                    $total = $_GET['total'];
+                    $vat = intval($total*1/10);
+                    $amountPayable = intval($total + $vat);
+                    $MovieCheckout = getMovieCheckoutInfo($idScheduleHour);
+                include "./contents/movie-checkout.php";
             }
-            break;
-        case 'exit':
-            session_unset();
-            header("Location:http://localhost/Cinema-Film/views/client/index.php");
-            break;
-        default:
+        }
+        break;
+        case 'my-ticket':
+            {
+                include "./contents/my-ticket.php";
+            }
+        break;
+        default :
             include "./contents/home.php";
-            break;
+        break;
     }
-} else {
+}else{
     include "./contents/home.php";
 }
+
+
 
 
 
@@ -131,11 +124,7 @@ if (isset($_GET['act'])) {
 
 
 include "./footer.php";
-function router_login()
-{
-    
-    if (empty($_SESSION['userName'])){
-        $alert = "Please login first";
-        header('Location: index.php?act=sign-in&alert='.$alert);
-    }
-}
+
+
+
+?>

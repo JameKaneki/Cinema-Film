@@ -71,7 +71,7 @@
 
     function groupScheduleHours($date,$idFilm){
             $data  = getAllScheduleHours($date,$idFilm);
-            return array_reduce($data,"groupData",[]);
+            return array_reduce($data,"groupData",[]); 
     }
 
     function groupScheduleHours_dateTime($date,$idFilm){
