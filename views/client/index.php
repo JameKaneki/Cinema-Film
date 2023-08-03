@@ -20,6 +20,20 @@ include "../../modules/moduleRoom.php";
 if (isset($_GET['act'])) {
     $feature = $_GET['act'];
     switch ($feature) {
+        case 'movie-grid':{
+        $praham= $_GET['id'];
+        if($praham === 'playing'){
+            $listFilm = loadall_playing_film();
+            $name = "playing now";
+            include "./contents/movie-grid.php";
+        }
+        if($praham === 'coming'){
+                    $listFilm = loadall_coming_film();
+                    $name = "coming soon";
+                    include "./contents/movie-grid.php";
+                }
+        }
+        break;
         case 'sign-up':
             include "./contents/sign-up.php";
             break;
@@ -48,18 +62,6 @@ if (isset($_GET['act'])) {
                 }
             } 
                 include "./contents/sign-in.php";
-            break;
-        case 'playing':
-            include "./contents/movie-grid-1.php";
-            // {
-            //     include "./contents/movie-grid.php";
-            // }
-            break;
-
-        case 'coming': {
-                include "./contents/movie-grid-2.php";
-                // include "./contents/movie-grid.php";
-            }
             break;
         case 'movie-detail': {
                 include "./contents/movie-detail.php";

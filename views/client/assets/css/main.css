@@ -513,7 +513,7 @@ select {
 button,
 [type="button"],
 [type="reset"],
-[type="submit"] {
+[type="submit"]::-webkit-search-decoration {
     -webkit-appearance: button;
 }
 
@@ -606,7 +606,7 @@ textarea {
  * 1. Correct the odd appearance in Chrome and Safari.
  * 2. Correct the outline style in Safari.
  */
-[type="search"] {
+[type="search"]::-webkit-search-decoration {
     -webkit-appearance: textfield;
     /* 1 */
     outline-offset: -2px;
@@ -9505,7 +9505,6 @@ aside {
     animation-delay: -0.8s;
     -webkit-animation-delay: -0.8s;
 } */
-
 @keyframes preloader-fx {
     0% {
         -webkit-transform: scale(0, 0);

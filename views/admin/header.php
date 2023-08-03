@@ -130,7 +130,12 @@
 
 
 <body>
-    <div class="boxcenter">
+    
+        <?php
+        if (isset($_SESSION['email'])) {
+            extract($_SESSION['email']);
+        ?>
+        <div class="boxcenter">
         <div class="header">
             <div class="logo">
             <a href="index.php?act=home">
@@ -138,13 +143,10 @@
                 Beta Admin
             </a>
             </div>
-        </div>
-        <?php
-        if (isset($_SESSION['email'])) {
-            extract($_SESSION['email']);
-        ?>
-                    <div class="logout">
+        
+            <div class="logout">
                 <a href="index.php?act=user_exit">Logout</a>
+            </div>
             </div>
         <div class="sidebar">
             <div class="information">
