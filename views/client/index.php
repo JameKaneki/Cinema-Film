@@ -20,19 +20,19 @@ include "../../modules/module_bill.php";
 
 if(isset($_GET['act'])){
     $feature = $_GET['act'];
-    switch($feature){
+    switch ($feature) {
         case 'movie-grid':{
-            $param = $_GET['id'];
-            if($param === 'playing'){
-                $listFilm = loadall_playing_film();
-                $name='Playing Now';
-                include "./contents/movie-grid.php";
-            }
-            if($param ==='coming'){
-                $name='Coming Soon';
-                $listFilm = loadall_coming_film();
-                include "./contents/movie-grid.php";
-            }
+        $praham= $_GET['id'];
+        if($praham === 'playing'){
+            $listFilm = loadall_playing_film();
+            $name = "playing now";
+            include "./contents/movie-grid.php";
+        }
+        if($praham === 'coming'){
+                    $listFilm = loadall_coming_film();
+                    $name = "coming soon";
+                    include "./contents/movie-grid.php";
+                }
         }
         break;
         case 'sign-up':
@@ -61,25 +61,8 @@ if(isset($_GET['act'])){
         }else{
                 include "./contents/sign-in.php";
         }
-         break;
-        case 'exit':
-            unset($_SESSION['userName']);
-            header("Location:http://localhost/Cinema-Film/views/client/index.php");
-        break;
-        case 'playing':
-                include "./contents/movie-grid-1.php";
-            // {
-            //     include "./contents/movie-grid.php";
-            // }
             break;
-
-        // case 'coming':
-        //     {
-        //       include "./contents/movie-grid.php";
-        //     }
-        //      break;
-        case 'movie-detail':
-            {
+        case 'movie-detail': {
                 include "./contents/movie-detail.php";
             }
             break;
@@ -89,7 +72,7 @@ if(isset($_GET['act'])){
             }
             break;  
 
-        case 'seat-plan' :
+        case 'seat-plan':
             {
                 // nhận vào idshedulehour 
                 if(isset($_GET['idScheduleHour'])){
@@ -129,6 +112,8 @@ if(isset($_GET['act'])){
 }else{
     include "./contents/home.php";
 }
+
+
 
 
 

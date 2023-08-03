@@ -6,7 +6,7 @@
                 $showDateList = [];
                 $listDate=[];
                 $showDateList=group_id_film($idFilm);
-                // print_r($showDateList);
+                //  print_r($showDateList);
                 $listDate=load_id_film($idFilm);
                 // print_r($listDate);
             }
@@ -80,15 +80,12 @@
                     <span class="type">date</span>
                     <select class="select-bar" name="date">
                         <?php   
-                                // $now = getDateTimeNow();
                                 echo '<option value="'.$date.'" >'.$date.'</option>';
-                                echo '<option value="" >-----------------</option>';
+                                echo '<option value="#" >-----------------</option>';
                                 foreach($listDate as $list){              
                                         extract($list);
                                 if(isset($showDateList[$list['idFilm']])){
                                 foreach($showDateList[$list['idFilm']] as $item){
-                                    // extract($item);
-                                    // $date = substr($item,0,10);
                                     echo '<option value="'.$date.'" >'.$date.'</option>';
                                 }
                             }
@@ -123,7 +120,7 @@
                                             <i class="fas fa-map-marker-alt"></i>
                                         </div>
                                     </div>';
-                                    echo '<div class="movie-schedule">';
+                                    echo '<div class="movie-schedule justify-content-start" >';
                                     if(isset($showTimeList[$schedule['nameCinema']])){
                                         foreach($showTimeList[$schedule['nameCinema']] as $item){
                                             // extract($item);
@@ -132,7 +129,7 @@
                                             $time = $scheduleHourInfo[1];
                                             $time_four= substr($time,0,5);
                                             echo '
-                                            <div class="item">
+                                            <div class="item" style="margin-left: 20px;">
                                              <a href="index.php?act=seat-plan&idScheduleHour='.$idScheduleHour.'" class="time" style="color: white;">'.$time_four.'</a>
                                             </div>
                                             ';
