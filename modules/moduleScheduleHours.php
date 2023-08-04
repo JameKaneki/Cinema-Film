@@ -34,7 +34,7 @@
     }
 
     function getAllScheduleHours_dateTime($date,$idFilm){
-        $sql = "SELECT sh.`time`,s.`idFilm`,s.`date`,c.`nameCinema`,c.`idCinema` FROM `schedule_hours` as sh INNER JOIN `schedules` as s ON sh.idSchedule = s.idSchedule INNER JOIN `films` as f On s.idFilm = f.idFilm INNER JOIN `rooms` as r On r.idRoom =sh.idRoom INNER JOIN `cinemas` as c ON r.idCinema =c.idCinema";
+        $sql = "SELECT sh.time,s.idFilm,s.date,c.nameCinema,c.idCinema,sh.idScheduleHour FROM `schedule_hours` as sh INNER JOIN `schedules` as s ON sh.idSchedule = s.idSchedule INNER JOIN `films` as f On s.idFilm = f.idFilm INNER JOIN `rooms` as r On r.idRoom =sh.idRoom INNER JOIN `cinemas` as c ON r.idCinema =c.idCinema";
           
         if($date != ''){
             $sql .= " AND s.date = '$date' ";
@@ -71,7 +71,7 @@
 
     function groupScheduleHours($date,$idFilm){
             $data  = getAllScheduleHours($date,$idFilm);
-            return array_reduce($data,"groupData",[]);
+            return array_reduce($data,"groupData",[]); 
     }
 
     function groupScheduleHours_dateTime($date,$idFilm){
@@ -81,9 +81,9 @@
 
     function groupData_dateTime(array $carry,array $current){
         if(isset($carry[$current['nameCinema']])){
-            return [...$carry,$current['nameCinema']=>[...$carry[$current['nameCinema']],$current['time']]];
+            return [...$carry,$current['nameCinema']=>[...$carry[$current['nameCinema']],"{$current['idScheduleHour']},{$current['time']}"]];
         }else{
-            return [...$carry,$current["nameCinema"]=>[$current['time']]];
+            return [...$carry,$current["nameCinema"]=>["{$current['idScheduleHour']},{$current['time']}"]];
         }
     }
 

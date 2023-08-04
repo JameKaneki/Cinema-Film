@@ -33,7 +33,7 @@ function loadone_film($idFilm)
 function load_id_film($idFilm){
     $sql = "SELECT f.idFilm,s.date from `films` as f
     Inner join `schedules` as s On s.idFilm = f.idFilm
-    WHERE f.idFilm = $idFilm  Order by s.date  asc";
+    WHERE f.idFilm = $idFilm and s.date >= now()  Order by s.date  asc";
     return pdo_query($sql);
 }
 
@@ -75,12 +75,14 @@ function loadall_film(){
 }
 
 function loadtop5_film(){
-    $sql="SELECT * FROM `films` Order by `premiere` desc limit 0,5 ";
+    $sql="SELECT DISTINCT f.nameFilm,f.idFilm,f.director,f.performer,f.premiere,f.duration,f.language,f.description,f.category,f.trailer,f.poster,f.rate,f.likeAmount from `films` as f
+    inner join `schedules` as s on s.idFilm = f.idFilm  WHERE s.date >= NOW() and f.premiere <= now() Order by `premiere` asc limit 0,5";
     return pdo_query($sql);
 }
 
 function loadtop3playing_film(){
-    $sql="SELECT * FROM `films` WHERE `premiere` < NOW() Order by `premiere` desc limit 0,3";
+    $sql="SELECT DISTINCT f.nameFilm,f.idFilm,f.director,f.performer,f.premiere,f.duration,f.language,f.description,f.category,f.trailer,f.poster,f.rate,f.likeAmount from `films` as f
+    inner join `schedules` as s on s.idFilm = f.idFilm  WHERE s.date >= NOW() and f.premiere <= now() Order by `premiere` desc limit 0,3";
     return pdo_query($sql);
 }
 
@@ -90,12 +92,13 @@ function loadtop3coming_film(){
 }
 
 function loadall_playing_film(){
-    $sql="SELECT * FROM `films` WHERE `premiere` < NOW() ORDER BY `premiere` ASC";
+    $sql="SELECT DISTINCT f.nameFilm,f.idFilm,f.director,f.performer,f.premiere,f.duration,f.language,f.description,f.category,f.trailer,f.poster,f.rate,f.likeAmount from `films` as f
+    inner join `schedules` as s on s.idFilm = f.idFilm  WHERE s.date >= NOW() and f.premiere <= now() Order by `premiere` desc";
     return  pdo_query($sql);
 }
 
 function loadall_coming_film(){
-    $sql="SELECT * FROM `films` WHERE `premiere` > NOW() ORDER BY `premiere` deSC";
+    $sql="SELECT * FROM `films` WHERE `premiere` > NOW() ORDER BY `premiere` asc";
     return pdo_query($sql);
 }
 ?>

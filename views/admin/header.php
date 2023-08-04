@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <link rel="stylesheet" href="./css/style.css"> -->
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="css/themify-icons/themify-icons.css">
     <style>
         .boxcenter {
@@ -16,8 +16,8 @@
 
         .sidebar {
             max-width: 30%;
-            border: 1px solid gray;
-            box-shadow: 2px 2px 2px gray;
+            /* border: 1px solid gray;
+            box-shadow: 2px 2px 2px gray; */
             margin-right: 20px;
             position: fixed;
         }
@@ -31,7 +31,7 @@
             margin: 20px 50px;
             margin-left: 20px;
         }
-
+        
         .information h2 {
             font-size: 20px;
         }
@@ -149,7 +149,7 @@
                     <a href="index.php?act=user_exit">Logout</a>
                 </div>
             </div>
-            <div class="sidebar">
+            <div class="sidebar" style="margin-left: 40px; margin-top: 40px;">      
                 <div class="information">
                     <h2><span class="user">User: </span><?= $userName ?></h2>
                 </div>

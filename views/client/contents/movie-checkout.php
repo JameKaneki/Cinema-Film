@@ -1,13 +1,53 @@
-<?php
-    if (isset($_GET['popup'])) {
-        $popup = $_GET['popup'];
-        echo '<script type="text/javascript">
 
-            window.onload = function () { alert("' . $popup . '"); }
+<?php 
+ if (isset($_GET['alert'])) {
+    $alert = $_GET['alert'];
+    echo '<script type="text/javascript">
+
+        window.onload = function () { alert("' . $alert . '"); }
 
 </script>';
+}
+    $idUser = 1;
+    $id_bill =  create_bill($amountPayable,$idUser);
+    $_SESSION['id_bill'] = $id_bill;
+    $orderType = 190000;
+    $lang = 'vn';
+    $bankCode = 'NCB';
+    $time = date("Y-m-d H:i:s");
+    $order_des = 'MS:' .$id_bill.' ' .$_GET['s']. ' ' . $time ;
+// get userinfo form SESSION
+    $userName = "NGUYEN VAN A";
+    $sendData = array(
+        'order_id' => $id_bill,
+        'order_desc' => $order_des,
+        'order_type' => $orderType,
+        'amount' => $amountPayable ,
+        'language' => $lang,
+        'bank_code'=> $bankCode,
+        'txt_billing_fullname' => $userName,
+        'redirect' => 1
+    );
+// create ticket
+    $seatArray = explode(',',$seatList);
+    $seatArray = array_reduce($seatArray,function ($carry,$item){
+        global $idRoom,$check,$total;
+        $seatInfo = getSeatByIdRoomAndKey($idRoom,$item);
+        if(empty($seatInfo)){
+            $check = false;
+        }else if($carry == []){
+            $total += intval($seatInfo['price']);
+            return [$item =>[...$seatInfo]];
+        }else{
+            $total += intval($seatInfo['price']);
+            return [...$carry,$item =>[...$seatInfo]];
+        }
+    } ,[]);
+    foreach($seatArray as $seat){
+    insert_ticket($idUser,$idScheduleHour,$seat['id_seat'],$id_bill);
     }
-    ?>
+?>
+
 <div class="movie-facility padding-bottom padding-top ">
         <div class="container">
             <div class="row">
@@ -23,7 +63,7 @@
                                         <p >{$MovieCheckout['nameCinema']}</p>
                                     </div>
                                     <div>
-                                        <span class='date'>{$MovieCheckout['date']}-{$time}</span>
+                                        <span class='date'>{$MovieCheckout['date']} {$time}</span>
                                     </div>
                                     <div class='item md-order-1 pt-4'>
                                         <a href='javascript:history.back()' class='custom-button back-button'>
@@ -47,27 +87,18 @@
                                     <div class='info'><span>{$MovieCheckout['date']}  $time</span> </div>
                                 </li>
                             </ul>
-                        ";
-                        echo "<ul>
+                            <ul>
                                 <li>
                                   <h6 class='subtitle'><span>Ticket Price<h6>
                                 </li>
-                               <li>
-                        ";
-                        foreach($seatList as $seat){
-                            echo "
-                                <span class='info'><span>{$seat['seat_key']}</span><span>{$seat['price']} $</span></span>
-                            ";
-                            }
-                            echo "
+                                <li>
+                                  <span class='info'><span>$seatList</span><span>$total VND</span></span>
                                 </li>                               
-                            </ul>";
-                            $vat = $total*1/10;
-                            echo "
+                            </ul>
                             <ul>
                                 <li>
-                                    <span class='info'><span>Total</span><span>$ $total</span></span>
-                                    <span class='info'><span>vat</span><span>$ $vat</span></span>
+                                    <span class='info'><span>Total</span><span> $total VND</span></span>
+                                    <span class='info'><span>vat</span><span> $vat VND</span></span>
                                 </li>
                             </ul>
                             ";
@@ -75,13 +106,27 @@
                         
                     </div>
                     <div class="proceed-area  text-center">
+                    <!-- handle -->
                             <?php 
-                            $amountPayable = $total + $vat;
+                            // $amountPayable = $total + $vat;
                                 echo "
-                                    <h6 class='subtitle'><span>Amount Payable</span><span>$ {$amountPayable}</span></h6>
+                                    <h6 class='subtitle'><span>Amount Payable</span><span>{$amountPayable}</span></h6>
                                 ";
                             ?>
-                                <a href="#0" class="custom-button back-button">proceed</a>
+                                
+                        <!-- handle post data  -->
+                       
+                            <?php 
+                                echo "<form action = '../../vnpay_php/getdeal-vnpay.php' method='POST'>";
+                                foreach($sendData as $key => $value ){
+                                    echo "<input name={$key} value={$value} type='hidden'/>";
+                                }
+                                    
+                                echo "
+                                   <button type='submit' class='custom-button back-button'>proceed</button>
+                                </form>";
+                            ?>
+                                
                     </div>
                 </div>
             </div>

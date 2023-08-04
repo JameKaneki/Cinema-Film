@@ -39,7 +39,7 @@
               insert_cinema($nameCinema,$addressCinema);
               $tb="Thành công";
             }          
-            include "cinema/add.php";
+            include "cinema/add.php";         
             break;
 
           case 'cinema':
@@ -167,7 +167,7 @@
                 insert_room($nameRoom,$idCinema,$seatList);
               }
               include "room/add.php";
-              break;
+              break;    
 
             case 'room-delete':
               if(isset($_GET['idRoom'])&&($_GET['idRoom'])){
@@ -209,13 +209,13 @@
             $description = $_POST['description'];
             $category = $_POST['category'];
             $trailer = $_POST['trailer'];
-            $poster = $_FILES['poster']['tmp_name'];
-            $target_dir = "./upload/";
-            $target_file = $target_dir . basename($_FILES['poster']['name']);
-            if (move_uploaded_file($_FILES["poster"]["tmp_name"], $target_file)) {
-              // echo"The file". htmlspecialchars(basename($_FILES['img_sp']['name'])) . "has been upload ";
-          } else {
-          }
+            $poster = $_POST['poster'];
+            // $target_dir = "./upload/";
+            // $target_file = $target_dir . basename($_FILES['poster']['name']);
+          //   if (move_uploaded_file($_FILES["poster"]["tmp_name"], $target_file)) {
+          //     // echo"The file". htmlspecialchars(basename($_FILES['img_sp']['name'])) . "has been upload ";
+          // } else {
+          // }
             $rate = $_POST['rate'];
             $likeAmount = $_POST['likeAmount'];
           insert_film($nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate,$likeAmount);
@@ -259,13 +259,13 @@
             $description = $_POST['description'];
             $category = $_POST['category'];
             $trailer = $_POST['trailer'];
-            $poster = $_FILES['poster']['tmp_name'];
-            $target_dir = "./upload/";
-            $target_file = $target_dir . basename($_FILES['poster']['name']);
-            if (move_uploaded_file($_FILES["poster"]["tmp_name"], $target_file)) {
-              // echo"The file". htmlspecialchars(basename($_FILES['img_sp']['name'])) . "has been upload ";
-          } else {
-          }
+            $poster = $_POST['poster'];
+          //   $target_dir = "./upload/";
+          //   $target_file = $target_dir . basename($_FILES['poster']['name']);
+          //   if (move_uploaded_file($_FILES["poster"]["tmp_name"], $target_file)) {
+          //     // echo"The file". htmlspecialchars(basename($_FILES['img_sp']['name'])) . "has been upload ";
+          // } else {
+          // }
             $rate = $_POST['rate'];
             $likeAmount = $_POST['likeAmount'];
           update_film($idFilm,$nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate,$likeAmount);
@@ -289,16 +289,16 @@
           include "./user/list.php";
           }
           break;
-
           case 'user_login':{
-            include "./user/login.php";
+            include "./user/login.php"; 
           }
           break;
           case 'user_exit':{
             session_unset();
-            header('Location: http://localhost/Cinema-Film/views/admin/');
+            header("Location:index.php?act=login");
           }
           break;
+
           
 
 // controller user
@@ -425,7 +425,5 @@
           echo "unKnow router";
           }
   }
-  else{
-      include "./user/login.php";
-  }
+  include 'user/login.php';
 ?> 

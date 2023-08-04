@@ -25,7 +25,7 @@
         </div>
         
     </div>
-    <table style="min-width: 1500px;">
+    <table style="min-width: 1400px;">
        <thead>
             <tr>
                 <th>Film name</th>
@@ -62,13 +62,14 @@
         --red--color : rgb(223,69,45);
         --blue-color : rgb(65,99,232);
     }
-    a,li{
+    a,li{   
     text-decoration: none;
     list-style-type: none;
     }
     .wrapper{
         width: 70%;
-        margin: 0px auto;
+        margin-left: 400px;
+        float: none !important;
     }
     h1{
         margin-top: 30px;

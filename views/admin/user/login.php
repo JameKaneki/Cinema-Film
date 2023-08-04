@@ -25,9 +25,9 @@ if (isset($_POST['signin']) && ($_POST['signin'] > 0)) {
         width: 450px;
         border: 1px solid gray;
         position: relative;
-        left: 700px;
-        top: 150px;
-        border-radius: 20px;
+        left: 850px;
+        top: 280px;
+            border-radius: 20px;
         padding: 10px;
     }
 
@@ -100,14 +100,11 @@ if (isset($_SESSION['email'])) {
             <div class="input">
                 <input type="password" name="password" id="" placeholder="Password">
                 
-            </div>
-            <div class="forgot">
-            <a href="#">Forgot Password?</a>
-            </div>
+            </div>  
             <div class="submit">
                 <input type="submit" value="Login" name="signin">
             </div>
-        </form> 
+        </form>
         </div>
         </div>';
 }

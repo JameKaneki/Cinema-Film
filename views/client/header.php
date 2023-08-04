@@ -9,8 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <!-- <link rel="stylesheet" href="assets/css/main.css"> -->
-    <link rel="stylesheet" href="assets/css/abc.css">
+    
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/all.min.css">
     <link rel="stylesheet" href="assets/css/animate.css">
@@ -21,8 +20,8 @@
     <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/jquery.animatedheadline.css">
-    <!-- <link rel="stylesheet" href="assets/css/main.css"> -->
-    <link rel="stylesheet" href="assets/css/abc.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <!-- <link rel="stylesheet" href="assets/css/abc.css"> -->
 
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
 
@@ -91,7 +90,7 @@
                             <a href="index.php?act=exit">Thoát</a>
                         </li> -->
                     <li>
-                        <a href="#0"><?= $userName ?></a>
+                        <a href="#0"><?=$userName?></a>
                         <ul class="submenu" style="z-index:10;">
                             <li>
                                 <a href="index.php?act=my-ticket">My ticket</a>
@@ -99,7 +98,7 @@
                             <li>
                                 <a href="index.php?act=exit">Logout</a>
                             </li>
-                            <a href=""></a>
+                           
                         </ul>
                     </li>
                         <?php

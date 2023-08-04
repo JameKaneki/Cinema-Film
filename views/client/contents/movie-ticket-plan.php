@@ -6,7 +6,7 @@
                 $showDateList = [];
                 $listDate=[];
                 $showDateList=group_id_film($idFilm);
-                // print_r($showDateList);
+                //  print_r($showDateList);
                 $listDate=load_id_film($idFilm);
                 // print_r($listDate);
             }
@@ -22,19 +22,19 @@
            $date = $_POST['date'];
            $id = $_GET['idFilm'];
            $showTimeList = groupScheduleHours_dateTime($date,$id);
-           $schedules = getAllSchedule_dateTime($date, $id);  
+           $schedules = getAllSchedule_dateTime($date, $id);
+
         //    print_r($schedules);
-        //   print_r($showTimeList);
+        //    print_r($showTimeList);
        }else{
            $date = getDateTimeNow();
            $id = $_GET['idFilm'];
            $showTimeList = groupScheduleHours_dateTime($date,$id);
            $schedules = getAllSchedule_dateTime($date, $id);
-           
        }
             }
         }
-        
+    
        
 
 ?>
@@ -80,15 +80,12 @@
                     <span class="type">date</span>
                     <select class="select-bar" name="date">
                         <?php   
-                                // $now = getDateTimeNow();
                                 echo '<option value="'.$date.'" >'.$date.'</option>';
-                                echo '<option value="" >-----------------</option>';
+                                echo '<option value="#" >-----------------</option>';
                                 foreach($listDate as $list){              
                                         extract($list);
                                 if(isset($showDateList[$list['idFilm']])){
                                 foreach($showDateList[$list['idFilm']] as $item){
-                                    // extract($item);
-                                    // $date = substr($item,0,10);
                                     echo '<option value="'.$date.'" >'.$date.'</option>';
                                 }
                             }
@@ -112,7 +109,6 @@
                             if($schedules!=[]){
                             foreach ($schedules as $schedule){
                                  extract($schedule);
-                                //  echo "$nameCinema";
                                     echo '<li>
                                     <div class="movie-name">
                                         <div class="icons">
@@ -124,16 +120,17 @@
                                             <i class="fas fa-map-marker-alt"></i>
                                         </div>
                                     </div>';
-                                    echo '<div class="movie-schedule">';
-                                    //   print_r($showTimeList[$schedule['nameCinema']]);
+                                    echo '<div class="movie-schedule justify-content-start" >';
                                     if(isset($showTimeList[$schedule['nameCinema']])){
                                         foreach($showTimeList[$schedule['nameCinema']] as $item){
                                             // extract($item);
-                                            // print_r($item);
-                                            $time = substr($item,0,5);
+                                            $scheduleHourInfo =  explode(",",$item);
+                                            $idScheduleHour = $scheduleHourInfo[0];
+                                            $time = $scheduleHourInfo[1];
+                                            $time_four= substr($time,0,5);
                                             echo '
-                                            <div class="item">
-                                            <a href="#0" class="time" style="color: white;">'.$time.'</a>
+                                            <div class="item" style="margin-left: 20px;">
+                                             <a href="index.php?act=seat-plan&idScheduleHour='.$idScheduleHour.'" class="time" style="color: white;">'.$time_four.'</a>
                                             </div>
                                             ';
                                         }

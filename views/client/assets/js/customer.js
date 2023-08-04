@@ -7,8 +7,9 @@ let price = 0
 seats.forEach(seat=>{
     seat.addEventListener('click',()=>{
         seat.classList.toggle('selected')
-        const seatKey = seat.id.slice(0,3).trim()
-        const seatPrice = Number(seat.id.slice(seat.id.length-2,seat.id.length))
+        seatData = seat.id.split("-")
+        const seatKey = seatData[0]
+        const seatPrice = Number(seatData[1])
         if(seat.classList.value.includes('selected')){
            selectedSeatList = [...selectedSeatList,seatKey];
            price +=seatPrice
@@ -17,7 +18,7 @@ seats.forEach(seat=>{
            price -=seatPrice
         }
         selectedSeat.innerText = selectedSeatList.join(",")
-        totalPrice.innerText = `${price} $`
+        totalPrice.innerText = `${price} VND`
     })
 })
 
@@ -40,5 +41,6 @@ function postData(idSchedule,idRoom){
     +`&s=${selectedSeatList}`
     +`&sh=${idSchedule}`
     +`&r=${idRoom}`
+    +`&total=${price}`
    }
 }

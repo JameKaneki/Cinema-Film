@@ -1,8 +1,7 @@
 <?php 
     function createSchedule($date,$idFilm){
         $sql = "INSERT INTO `schedules`( `date`, `idFilm`) VALUES ($date,$idFilm)";
-        echo $sql;
-        return pdo_execute($sql);
+        return  pdo_execute_return($sql);
     }
     function removeSchedule($idSchedule) {
         $sql = "DELETE FROM 'schedules' WHERE 'idSchedule' = $idSchedule";
@@ -48,7 +47,7 @@
     }
     
     function getAllSchedule_dateTime($date,$idFilm){
-        $sql = "SELECT DiSTINCT s.date,f.nameFilm,f.idFilm,c.nameCinema,c.idCinema FROM `schedules` as s  
+        $sql = "SELECT DiSTINCT s.date,f.idFilm,c.nameCinema FROM `schedules` as s  
         INNER JOIN `films` as f ON f.idFilm = s.idFilm
         INNER JOIN `schedule_hours` as sh On sh.idSchedule = s.idSchedule
         INNER JOIN `rooms` as r ON r.idRoom = sh.idRoom
@@ -69,10 +68,10 @@
     // } 
 
     // function groupSchedule_dateTime(array $carry , array $current){
-    //     if(isset($carry[$current["idCinema"]]) ){
-    //         return [...$carry,$current['idCinema']=> [...$carry,$current['idCinema']],$current['nameCinema']];
+    //     if(isset($carry[$current["nameCinema"]])){
+    //         return [...$carry,$current['nameCinema']=> [...$carry,$current['nameCinema'],$current['idScheduleHour']]];
     //     }else{
-    //         return [...$carry,$current["idCinema"]=>[$current['nameCinema']]];
+    //         return [...$carry,$current["nameCinema"]=>[$current['idScheduleHour']]];
     //     }
     //     }
 

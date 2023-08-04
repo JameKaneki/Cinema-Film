@@ -14,7 +14,6 @@
         $schedules = getAllSchedule('','');
     }
 
- 
 ?>
 <div class="wrapper"> 
     <h1>Schedule List</h1>
@@ -35,7 +34,7 @@
             </form>
         </div>
     </div>
-    <table style="min-width: 1500px;">
+    <table style="min-width: 1400px;">
         <thead>
             <tr>
                 <th>Film</th>
@@ -90,7 +89,9 @@
     }
     .wrapper{
         width: 70%;
-        margin: 0px auto;
+        /* margin: 0px auto;     */
+        margin-left: 400px;
+        float: none !important;
     }
     h1{
         margin-top: 30px;

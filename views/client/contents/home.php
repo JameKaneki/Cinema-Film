@@ -55,7 +55,7 @@
                             <h2 class="title">movies</h2>
                             <a class="view-all" href="index.php?act=movie-grid&id=playing">View All</a>
                         </div>
-                        <div class="row mb-30-none justify-content-center">
+                        <div class="row mb-30-none justify-content-start">
                             <?php
                                 $listFilm = loadtop3playing_film();
                                 foreach ($listFilm as $list){
@@ -91,7 +91,7 @@
                             <h2 class="title">Coming soon</h2>
                             <a class="view-all" href="index.php?act=movie-grid&id=coming">View All</a>
                         </div>
-                            <div class="row mb-30-none justify-content-center">
+                            <div class="row mb-30-none justify-content-start">
                                 <?php
                                     $listFilm = loadtop3coming_film();
                                     foreach ($listFilm as $list){

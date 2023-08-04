@@ -1,6 +1,20 @@
-<div class="row">
+<style>
+    .row{
+        margin: 30px;
+    }
+
+    label{
+        line-height: 40px; 
+    }
+
+    select, input{
+        padding: 10px 12px;
+    }
+</style>
+
+<div class="row" style="    text-align: center;">
     <div class="row fromtitle">
-        <h1>Add New Seat</h1>
+        <h1 style="margin-left: 0px">Add New Seat</h1>
     </div>
     <div class="row fromcontent">
         <form action="index.php?act=seat_add" method="post" enctype="multipart/form-data">
