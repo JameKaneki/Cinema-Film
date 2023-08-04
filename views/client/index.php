@@ -82,12 +82,14 @@ if(isset($_GET['act'])){
                     $bookedSeat = getBookedSeat($idScheduleHour);
                     include "./contents/movie-seat-plan.php";
                 }else{
-                    include "./contents/invalidateData.php";
+                   
                 }
             } 
         break;
         case 'movie-checkout':
         {
+ 
+            router_login();
             if(isset($_GET['s'])&& isset($_GET['sh'])  && isset($_GET['r']) && isset($_GET['total'])){
                     $seatList= $_GET['s'];
                     $idScheduleHour = $_GET['sh'];
@@ -102,6 +104,7 @@ if(isset($_GET['act'])){
         break;
         case 'my-ticket':
             {
+                router_login();
                 include "./contents/my-ticket.php";
             }
         break;
@@ -124,7 +127,13 @@ if(isset($_GET['act'])){
 
 
 include "./footer.php";
-
+function router_login()
+{
+    if (empty($_SESSION['userName'])){
+        $alert = "Please login first";
+        header('Location: index.php?act=sign-in&alert='.$alert);
+    }
+}
 
 
 ?>

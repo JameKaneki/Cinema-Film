@@ -1,6 +1,6 @@
 
 <?php  
-    $idUser = 1;
+    $idUser = $_SESSION['userName']['idUser'];
     $id_bill =  create_bill($amountPayable,$idUser);
     $_SESSION['id_bill'] = $id_bill;
     $orderType = 190000;
