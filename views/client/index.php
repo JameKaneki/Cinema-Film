@@ -42,26 +42,33 @@ if(isset($_GET['act'])){
             if (isset($_POST['sign-in']) && ($_POST['sign-in'])) {
                 $userName = $_POST['userName'];
                 $password = $_POST['password'];
-                $check = login_acount($userName,$password);
+                $login = login_acount($userName,$password);
                 if($userName == ""){   
                     $errors['userName'] = "Username can not be blank";
                 }   
                 if($password == ""){
                     $errors['password'] = "password can not be blank";
                 }
-                if(!isset($errors)){
-                if (is_array($check)) {
-                    $_SESSION['userName'] = $check;
-                    header('Location:http://localhost/Cinema-Film/views/client/index.php');
-                } else {
-                    $thongbao = "Tài khoản không tồn tại. Vui lòng kiểm tra lại";
+                if (!isset($errors)) {
+                    if (is_array($login)) {
+                        $_SESSION['userName'] = $login;
+                        header('Location: http://localhost/Cinema-Film/views/client/index.php');
+                    } else {
+                        $popup = "User name or password invalid";
+                        header("Location: index.php?act=sign-in&popup=$popup");
+                    }
+                }else{
+                    $popup = "User name or password invalid";
+                    header("Location: index.php?act=sign-in&popup=$popup");
                 }
-                $thongbao = "Chúc mừng bạn. Đã đăng ký thành công";
-            }
-        }else{
+                }
                 include "./contents/sign-in.php";
-        }
             break;
+        case 'exit':{
+            session_unset();
+            header('Location: http://localhost/Cinema-Film/views/client/index.php');
+        }
+        break;
         case 'movie-detail': {
                 include "./contents/movie-detail.php";
             }
@@ -88,6 +95,7 @@ if(isset($_GET['act'])){
         break;
         case 'movie-checkout':
         {
+            router_login();
             if(isset($_GET['s'])&& isset($_GET['sh'])  && isset($_GET['r']) && isset($_GET['total'])){
                     $seatList= $_GET['s'];
                     $idScheduleHour = $_GET['sh'];
@@ -112,7 +120,13 @@ if(isset($_GET['act'])){
 }else{
     include "./contents/home.php";
 }
-
+function router_login()
+{
+    if (empty($_SESSION['userName'])){
+        $alert = "Please login first";
+        header('Location: index.php?act=sign-in&alert='.$alert);
+    }
+}
 
 
 

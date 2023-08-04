@@ -40,7 +40,7 @@
             </div>
             <div class="input">
                 Poster<br>
-                <input type="file" name="poster" id="">
+                <input type="text" name="poster" id="">
             </div>
             <div class="input">
                 Rate<br>

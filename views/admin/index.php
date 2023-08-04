@@ -10,6 +10,7 @@
   // phần admin chỉ là xúc miệng để mn chuẩn bị cho client thôi nên cứ là clear nhất có thể nha
   // mong ae hợp tác , đúng giờ, mọi thắc mắc hay cần giúp đỡ có thể hỏi lại mình qua zalo trực mọi lúc có thể và rep sớm nhất cso thể
   session_start();
+  ob_start();
   include "../../modules/module.php";
   include "header.php";
   include "../../modules/cinema.php";
@@ -23,7 +24,7 @@
   include "../../modules/moduleScheduleHours.php";
   include "../../modules/moduleRoom.php";
   //controller
-  if(isset($_GET['act']) && isset($_SESSION['userName'])){
+  if(isset($_GET['act']) && isset($_SESSION['email'])){
     $act = $_GET['act'];
     switch ($act){
         case 'home':
@@ -38,7 +39,7 @@
               insert_cinema($nameCinema,$addressCinema);
               $tb="Thành công";
             }          
-            include "cinema/add.php";
+            include "cinema/add.php";         
             break;
 
           case 'cinema':
@@ -166,7 +167,7 @@
                 insert_room($nameRoom,$idCinema,$seatList);
               }
               include "room/add.php";
-              break;
+              break;    
 
             case 'room-delete':
               if(isset($_GET['idRoom'])&&($_GET['idRoom'])){
@@ -208,13 +209,13 @@
             $description = $_POST['description'];
             $category = $_POST['category'];
             $trailer = $_POST['trailer'];
-            $poster = $_FILES['poster']['tmp_name'];
-            $target_dir = "./upload/";
-            $target_file = $target_dir . basename($_FILES['poster']['name']);
-            if (move_uploaded_file($_FILES["poster"]["tmp_name"], $target_file)) {
-              // echo"The file". htmlspecialchars(basename($_FILES['img_sp']['name'])) . "has been upload ";
-          } else {
-          }
+            $poster = $_POST['poster'];
+            // $target_dir = "./upload/";
+            // $target_file = $target_dir . basename($_FILES['poster']['name']);
+          //   if (move_uploaded_file($_FILES["poster"]["tmp_name"], $target_file)) {
+          //     // echo"The file". htmlspecialchars(basename($_FILES['img_sp']['name'])) . "has been upload ";
+          // } else {
+          // }
             $rate = $_POST['rate'];
             $likeAmount = $_POST['likeAmount'];
           insert_film($nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate,$likeAmount);
@@ -258,13 +259,13 @@
             $description = $_POST['description'];
             $category = $_POST['category'];
             $trailer = $_POST['trailer'];
-            $poster = $_FILES['poster']['tmp_name'];
-            $target_dir = "./upload/";
-            $target_file = $target_dir . basename($_FILES['poster']['name']);
-            if (move_uploaded_file($_FILES["poster"]["tmp_name"], $target_file)) {
-              // echo"The file". htmlspecialchars(basename($_FILES['img_sp']['name'])) . "has been upload ";
-          } else {
-          }
+            $poster = $_POST['poster'];
+          //   $target_dir = "./upload/";
+          //   $target_file = $target_dir . basename($_FILES['poster']['name']);
+          //   if (move_uploaded_file($_FILES["poster"]["tmp_name"], $target_file)) {
+          //     // echo"The file". htmlspecialchars(basename($_FILES['img_sp']['name'])) . "has been upload ";
+          // } else {
+          // }
             $rate = $_POST['rate'];
             $likeAmount = $_POST['likeAmount'];
           update_film($idFilm,$nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate,$likeAmount);
@@ -288,11 +289,16 @@
           include "./user/list.php";
           }
           break;
+          case 'user_login':{
+            include "./user/login.php"; 
+          }
+          break;
           case 'user_exit':{
             session_unset();
             header("Location:index.php?act=login");
           }
           break;
+
           
 
 // controller user
@@ -419,20 +425,5 @@
           echo "unKnow router";
           }
   }
-  else{
-    include "./user/login.php";
-     if (isset($_POST['signin']) && ($_POST['signin'] > 0)) {
-      $userName = $_POST['userName'];
-      $password = $_POST['password'];
-      $check = check_acount($userName,$password);
-      if(is_array($check)){
-        $_SESSION['userName'] = $check;
-        header("Location:index.php?act=home");
-      }else{
-        header("Location:index.php?act=login");
-        $thongbao = "Tài khoản không tồn tại. Vui lòng kiểm tra lại tài khoản hoặc mật khẩu";
-  }              
-
-}
-  }
+  include 'user/login.php';
 ?> 

@@ -1,5 +1,13 @@
 
-<?php  
+<?php 
+ if (isset($_GET['alert'])) {
+    $alert = $_GET['alert'];
+    echo '<script type="text/javascript">
+
+        window.onload = function () { alert("' . $alert . '"); }
+
+</script>';
+}
     $idUser = 1;
     $id_bill =  create_bill($amountPayable,$idUser);
     $_SESSION['id_bill'] = $id_bill;
@@ -38,7 +46,6 @@
     foreach($seatArray as $seat){
     insert_ticket($idUser,$idScheduleHour,$seat['id_seat'],$id_bill);
     }
-
 ?>
 
 <div class="movie-facility padding-bottom padding-top ">

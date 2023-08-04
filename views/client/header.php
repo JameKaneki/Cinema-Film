@@ -90,7 +90,7 @@
                             <a href="index.php?act=exit">Thoát</a>
                         </li> -->
                     <li>
-                        
+                        <a href="#0"><?=$userName?></a>
                         <ul class="submenu" style="z-index:10;">
                             <li>
                                 <a href="index.php?act=my-ticket">My ticket</a>
@@ -98,7 +98,7 @@
                             <li>
                                 <a href="index.php?act=exit">Logout</a>
                             </li>
-                            <a href="#0"><?= $userName ?></a>
+                           
                         </ul>
                     </li>
                         <?php
