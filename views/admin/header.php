@@ -128,12 +128,10 @@
     </style>
 </head>
 
-
 <body>
-    
         <?php
-        if (isset($_SESSION['email'])) {
-            extract($_SESSION['email']);
+        if (isset($_SESSION['userName'])){
+            extract($_SESSION['userName']);
         ?>
         <div class="boxcenter">
         <div class="header">
