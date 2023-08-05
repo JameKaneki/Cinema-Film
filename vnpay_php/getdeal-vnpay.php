@@ -1,4 +1,6 @@
 <?php
+include "../modules/module.php";
+include "../modules/module_bill.php";
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
 $vnp_Returnurl = "http://localhost/Cinema-Film/vnpay_php/vnpay_return.php";
@@ -12,6 +14,7 @@ $vnp_Amount = $_POST['amount'] * 100;
 $vnp_Locale =  $_POST['language']; //
 $vnp_BankCode =  $_POST['bank_code']; // mã ngân hàng thanh toán
 $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];// 127.0.0.1
+
 //Add Params of 2.0.1 Version
 // $vnp_ExpireDate = $_POST['txtexpire'];
 //Billing
@@ -95,11 +98,16 @@ if (isset($vnp_HashSecret)) {
 $returnData = array('code' => '00'
     , 'message' => 'success'
     , 'data' => $vnp_Url);
-    if (isset($_POST['redirect'])) {
+    if (isset($_POST['paying-now'])) {
         header('Location: ' . $vnp_Url);
         die();
     } else {
-        echo json_encode($returnData);
+        add_link_bill($vnp_TxnRef, $vnp_Url);
+        echo "
+        <script type='text/javascript'>
+            alert('Your data has been saved  !!');
+            location.href =`http://localhost/Cinema-Film/views/client/index.php`
+        </script>";
     }
 	// vui lòng tham khảo thêm tại code demo
     

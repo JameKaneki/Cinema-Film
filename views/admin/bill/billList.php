@@ -1,190 +1,15 @@
 <?php
-// include "../../modules/module_bill.php";
-// include "../../modules/module.php";
 
-// modules
 
-/**
- * Mở kết nối đến CSDL sử dụng PDO
- */
-function pdo_get_connection(){
-    $dburl = "mysql:host=localhost;dbname=duan1";
-    $username = 'root';
-    $password = '';
-
-    $conn = new PDO($dburl,$username,$password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    return $conn;
-}
-/**
- * Thực thi câu lệnh sql thao tác dữ liệu (INSERT, UPDATE, DELETE)
- * @param string $sql câu lệnh sql
- * @param array $args mảng giá trị cung cấp cho các tham số của $sql
- * @throws PDOException lỗi thực thi câu lệnh
- */
-function pdo_execute($sql){
-    $sql_args = array_slice(func_get_args(), 1);
-    try{
-        $conn = pdo_get_connection();
-        $stmt = $conn->prepare($sql);
-        $stmt->execute($sql_args);
-        $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-    catch(PDOException $e){
-        throw $e;
-    }
-    finally{
-        unset($conn);
-    }
-}
-
-function pdo_execute_return($sql){
-    $sql_args = array_slice(func_get_args(), 1);
-    try{
-        $conn = pdo_get_connection();
-        $stmt = $conn->prepare($sql);
-        $stmt->execute($sql_args);
-        return $conn->lastInsertId();
-    }
-    catch(PDOException $e){
-        throw $e;
-    }
-    finally{
-        unset($conn);
-    }
-}
-
-/**
- * Thực thi câu lệnh sql truy vấn dữ liệu (SELECT)
- * @param string $sql câu lệnh sql
- * @param array $args mảng giá trị cung cấp cho các tham số của $sql
- * @return array mảng các bản ghi
- * @throws PDOException lỗi thực thi câu lệnh
- */
-function pdo_query($sql){
-    $sql_args = array_slice(func_get_args(), 1);
-    try{
-        $conn = pdo_get_connection();
-        $stmt = $conn->prepare($sql);
-        $stmt-> execute($sql_args);
-        $rows = $stmt->fetchAll();
-        return $rows;
-    }
-    catch(PDOException $e){
-        throw $e;
-    }
-    finally{
-        unset($conn);
-    }
-}
-/**
- * Thực thi câu lệnh sql truy vấn một bản ghi
- * @param string $sql câu lệnh sql
- * @param array $args mảng giá trị cung cấp cho các tham số của $sql
- * @return array mảng chứa bản ghi
- * @throws PDOException lỗi thực thi câu lệnh
- */
-function pdo_query_one($sql){
-    $sql_args = array_slice(func_get_args(), 1);
-    try{
-        $conn = pdo_get_connection();
-        $stmt = $conn->prepare($sql);
-        $stmt->execute($sql_args);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $row;
-    }
-    catch(PDOException $e){
-        throw $e;
-    }
-    finally{
-        unset($conn);
-    }
-}
-/**
- * Thực thi câu lệnh sql truy vấn một giá trị
- * @param string $sql câu lệnh sql
- * @param array $args mảng giá trị cung cấp cho các tham số của $sql
- * @return giá trị
- * @throws PDOException lỗi thực thi câu lệnh
- */
-function pdo_query_value($sql){
-    $sql_args = array_slice(func_get_args(), 1);
-    try{
-        $conn = pdo_get_connection();
-        $stmt = $conn->prepare($sql);
-        $stmt->execute($sql_args);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return array_values($row)[0];
-    }
-    catch(PDOException $e){
-        throw $e;
-    }
-    finally{
-        unset($conn);
-    }
-}
 
 // module-bill
 
-function getBill_By_idUser_nameFilm($idUser,$idFilm){
-    $sql=" SELECT DISTINCT b.id_bill,se.seat_key From `bill` as b
-    inner join `tickets` as t on t.id_bill = b.id_bill
-    inner join `schedule_hours` as sh on t.idScheduleHour = sh.idScheduleHour
-    inner join `schedules` as s on sh.idSchedule = s.idSchedule
-    inner join `seats` as se on t.id_seat = se.id_seat
-    inner join `users` as u On u.idUser = b.idUser
-    inner join `films` as f on s.idFilm = f.idFilm";
-    if($idUser != ''){
-        $sql .= " AND u.idUser = '$idUser' ";
-    }
-    if($idFilm != ''){
-        $sql .= " AND s.idFilm = '$idFilm' ";
-    }
-    $sql .= " ORDER BY se.seat_key asc";
-    return pdo_query($sql);
-}
 
-function groupData_bill($idUser,$idFilm){
-    $data = getBill_By_idUser_nameFilm($idUser,$idFilm);
-    return array_reduce($data,"groupData_bill_seat",[]);
-}
-
-function groupData_bill_seat($carry, array $current){
-    if(isset($carry[$current["id_bill"]])){
-        return [...$carry,$current["id_bill"]=>[...$carry[$current['id_bill']],$current['seat_key']]];
-    }else{
-        return [...$carry,$current["id_bill"]=>[$current['seat_key']]];
-    }
-    }
-function select_bill($idUser,$idFilm){
-    $sql=" SELECT DISTINCT b.id_bill,u.userName,b.status,b.create_at,b.price,f.nameFilm From `bill` as b
-    inner join `tickets` as t on t.id_bill = b.id_bill
-    inner join `schedule_hours` as sh on t.idScheduleHour = sh.idScheduleHour
-    inner join `schedules` as s on sh.idSchedule = s.idSchedule
-    inner join `seats` as se on t.id_seat = se.id_seat
-    inner join `users` as u On u.idUser = b.idUser
-    inner join `films` as f on s.idFilm = f.idFilm";
-    if($idUser != ''){
-        $sql .= " AND u.idUser = '$idUser' ";
-    }
-    if($idFilm != ''){
-        $sql .= " AND s.idFilm = '$idFilm' ";
-    }
-    $sql .= " ORDER BY b.id_bill";
-    return pdo_query($sql);{
-}
-}
 
 // user
-function loadall_acount(){
-    $sql = "SELECT * FROM `users` ORDER BY `idUser` DESC";
-    return pdo_query($sql);
-}
+
 //product   
-function loadIdFilm_nameFilm(){
-    $sql = "SELECT f.idFilm,f.nameFilm FROM `films` as f Order by `idFilm` asc";
-    return pdo_query($sql);
-}
+
 
 // billList
 
@@ -202,15 +27,16 @@ function loadIdFilm_nameFilm(){
         $seatList = getBill_By_idUser_nameFilm('','');
         $showSeatList = groupData_bill('','');
         $billList=select_bill('','');
-        print_r($showSeatList);
+        // print_r($showSeatList);
     }
 ?>
+<section action='index.php?act=bill'>
 <div class='wrapper'>
     <h1>Bill List</h1>
         <div class="select">
         <div class="btn btn-blue"><a href="index.php?act=">Add new Bill</a></div>
         <div class='search-bar'>
-            <form action='index.php?act=bill' method="POST">
+            <form  method="POST">
                 <select name="idFilm" placeholder="Film">
                 <option value="">----------</option>
                     <?php
@@ -295,6 +121,7 @@ function loadIdFilm_nameFilm(){
     </table>
 
 </div>
+</section>
 <style>
  :root{
         --red--color : rgb(223,69,45);

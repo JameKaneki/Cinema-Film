@@ -1,3 +1,16 @@
+<style>
+    .row{
+        margin: 30px;
+    }
+
+    label{
+        line-height: 40px; 
+    }
+
+    select, input{
+        padding: 10px 12px;
+    }
+</style>
 <div class="row">
 <div class="row fromtitle">
             <h1>Thêm vé phim</h1>

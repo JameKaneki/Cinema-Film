@@ -62,7 +62,7 @@
     }
     function getMovieCheckoutInfo($idScheduleHour){
         $sql = "SELECT f.nameFilm,c.nameCinema,r.nameRoom,s.date,sh.time,f.language FROM schedule_hours as sh 
-        INNER JOIN schedules as s ON s.idSchedule = sh.idScheduleHour
+        INNER JOIN schedules as s ON s.idSchedule = sh.idSchedule
         INNER JOIN rooms as r ON r.idRoom = sh.idRoom
         INNER JOIN films as f ON f.idFilm = s.idFilm
         INNER JOIN cinemas as c ON c.idCinema = r.idCinema

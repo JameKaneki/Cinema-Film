@@ -101,5 +101,6 @@ function loadIdFilm_nameFilm(){
     $sql = "SELECT f.idFilm,f.nameFilm FROM `films` as f Order by `idFilm` asc";
     return pdo_query($sql);
 }
+
 ?>
 

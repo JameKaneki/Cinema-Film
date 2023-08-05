@@ -1,5 +1,13 @@
 
-<?php  
+<?php 
+ if (isset($_GET['alert'])) {
+    $alert = $_GET['alert'];
+    echo '<script type="text/javascript">
+
+        window.onload = function () { alert("' . $alert . '"); }
+
+</script>';
+}
     $idUser = 1;
     $id_bill =  create_bill($amountPayable,$idUser);
     $_SESSION['id_bill'] = $id_bill;
@@ -18,27 +26,23 @@
         'language' => $lang,
         'bank_code'=> $bankCode,
         'txt_billing_fullname' => $userName,
-        'redirect' => 1
+        // 'redirect' => 1
     );
 // create ticket
     $seatArray = explode(',',$seatList);
-    $seatArray = array_reduce($seatArray,function ($carry,$item){
-        global $idRoom,$check,$total;
+
+    $seatArray = array_reduce($seatArray,function (array $carry, $item){
+        global $idRoom;
         $seatInfo = getSeatByIdRoomAndKey($idRoom,$item);
-        if(empty($seatInfo)){
-            $check = false;
-        }else if($carry == []){
-            $total += intval($seatInfo['price']);
+        if($carry == []){
             return [$item =>[...$seatInfo]];
         }else{
-            $total += intval($seatInfo['price']);
             return [...$carry,$item =>[...$seatInfo]];
         }
     } ,[]);
     foreach($seatArray as $seat){
-    insert_ticket($idUser,$idScheduleHour,$seat['id_seat'],$id_bill);
+        insert_ticket($idUser,$idScheduleHour,$seat['id_seat'],$id_bill);
     }
-
 ?>
 
 <div class="movie-facility padding-bottom padding-top ">
@@ -105,18 +109,18 @@
                                 echo "
                                     <h6 class='subtitle'><span>Amount Payable</span><span>{$amountPayable}</span></h6>
                                 ";
-                            ?>
-                                
+                            ?>  
                         <!-- handle post data  -->
                        
                             <?php 
                                 echo "<form action = '../../vnpay_php/getdeal-vnpay.php' method='POST'>";
                                 foreach($sendData as $key => $value ){
                                     echo "<input name={$key} value={$value} type='hidden'/>";
-                                }
-                                    
+                                } 
                                 echo "
-                                   <button type='submit' class='custom-button back-button'>proceed</button>
+
+                                    <input class='custom-button back-button' type='submit' name='paying-late' value='Paying late'/>
+                                    <input class='custom-button back-button' type='submit' name='paying-now' value='Paying now by Vnpay'/>
                                 </form>";
                             ?>
                                 
