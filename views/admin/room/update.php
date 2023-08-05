@@ -5,9 +5,26 @@
         }
     }
 ?>
-<div class="row">
+<style>
+    label{
+        margin: 10px;
+    }
+    .mb{
+        padding: 10px 0;
+    }
+    input{
+        margin: 10px 10px;
+        padding: 5px 10px;
+        font-size: 16px;
+    }
+    textarea{
+        padding: 7px;
+        font-size: 16px;
+    }
+</style>
+<div class="row" style="text-align: center;">
 <div class="row fromtitle">
-            <h1>Sửa phòng chiếu</h1>
+            <h1 style="margin-left: 0px; margin-bottom: 24px;">Sửa phòng chiếu</h1>
         </div>
         <div class="row fromcontent">
                 <form action="index.php?act=room-update" method="post">
@@ -20,8 +37,8 @@
                     <input type="text" name="seatList" value='<?php echo "$seatList" ?>'>
                 </div>
                 <div class="row mb10">
-                    <label for="">Tên Rạp Chiếu</label><br>
-                    <select name="idCinema" id="">
+                    <label style="padding-bottom: 20px;" for="">Tên Rạp Chiếu</label><br>
+                    <select name="idCinema" id="" style="margin: 10px 10px; padding: 10px 10px;" >
                     <option value="<?php echo "$idCinema" ?>" selected> <?php echo "$nameCinema" ?></option>
                     <?php
                         $listCinema = selectAll_cinema();
@@ -36,7 +53,6 @@
                 <div class="row mb10">
                     <input type="hidden" name="idRoom" value="<?= $idRoom ?>">
                     <input type="submit" name="updateRoom" value="Cập Nhật">
-                    <input type="reset" value="Nhập lại">
                     <a href="index.php?act=room"><input type="button" value="Danh Sách"></a>
                 </div>
                 </form>

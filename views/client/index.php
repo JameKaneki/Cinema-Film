@@ -42,7 +42,7 @@ if(isset($_GET['act'])){
             if (isset($_POST['sign-in']) && ($_POST['sign-in'])) {
                 $userName = $_POST['userName'];
                 $password = $_POST['password'];
-                $login = login_acount($userName,$password);
+                $client_login = client_login($userName,$password);
                 if($userName == ""){   
                     $errors['userName'] = "Username can not be blank";
                 }   
@@ -50,8 +50,8 @@ if(isset($_GET['act'])){
                     $errors['password'] = "password can not be blank";
                 }
                 if (!isset($errors)) {
-                    if (is_array($login)) {
-                        $_SESSION['userName'] = $login;
+                    if (is_array($client_login)) {
+                        $_SESSION['userName'] = $client_login;
                         header('Location: http://localhost/Cinema-Film/views/client/index.php');
                     } else {
                         $popup = "User name or password invalid";

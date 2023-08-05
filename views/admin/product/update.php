@@ -1,12 +1,28 @@
 
+<style>
+    .mb{
+        padding: 10px 0;
+    }
+    input{
+        margin: 10px 10px;
+        padding: 5px 10px;
+        font-size: 16px;
+    }
+    textarea{
+        padding: 7px;
+        font-size: 16px;
+    }
+</style>
+
 <?php
+
     if(is_array($film)){
         extract($film);
     }
 ?>
-<div class="row">
+<div class="row" style="text-align: center;">
     <div class="row fromtitle">
-        <h1>Cập nhật Phim</h1>
+        <h1 style="margin-left: 0px;">Cập nhật Phim</h1>
     </div>
     <div class="row fromcontent">
         <form action="index.php?act=film_update" method="post" enctype="multipart/form-data">
@@ -51,7 +67,7 @@
             </div>
             <div class="row mb">
                 Poster<br>
-                <input type="file" name="poster" id="" value="<?=$poster?>">
+                <input type="text" name="poster" id="" value="<?=$poster?>">
             </div>
             <div class="row mb">
                 Rate<br>
@@ -64,7 +80,6 @@
             <div class="row mb20">
                 <input type="hidden" name="idFilm" value="<?=$idFilm?>">
                 <input type="submit" name="capnhat" value="Cập nhật">
-                <input type="reset" value="Nhập Lại">
                 <a href="index.php?act=film"> <input type="button" value="Danh Sách"></a>
             </div>
             <?php
