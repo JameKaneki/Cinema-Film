@@ -18,25 +18,26 @@
         'language' => $lang,
         'bank_code'=> $bankCode,
         'txt_billing_fullname' => $userName,
-        'redirect' => 1
+        // 'redirect' => 1
     );
 // create ticket
     $seatArray = explode(',',$seatList);
-    $seatArray = array_reduce($seatArray,function ($carry,$item){
-        global $idRoom,$check,$total;
+
+    $seatArray = array_reduce($seatArray,function (array $carry, $item){
+        global $idRoom;
         $seatInfo = getSeatByIdRoomAndKey($idRoom,$item);
-        if(empty($seatInfo)){
-            $check = false;
-        }else if($carry == []){
-            $total += intval($seatInfo['price']);
+        print_r($seatInfo);
+        die;
+        if($carry == []){
             return [$item =>[...$seatInfo]];
         }else{
-            $total += intval($seatInfo['price']);
             return [...$carry,$item =>[...$seatInfo]];
         }
     } ,[]);
+    print_r($seatArray);
+    die;
     foreach($seatArray as $seat){
-    insert_ticket($idUser,$idScheduleHour,$seat['id_seat'],$id_bill);
+        insert_ticket($idUser,$idScheduleHour,$seat['id_seat'],$id_bill);
     }
 
 ?>
@@ -105,8 +106,7 @@
                                 echo "
                                     <h6 class='subtitle'><span>Amount Payable</span><span>{$amountPayable}</span></h6>
                                 ";
-                            ?>
-                                
+                            ?>  
                         <!-- handle post data  -->
                        
                             <?php 

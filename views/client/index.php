@@ -78,11 +78,17 @@ if(isset($_GET['act'])){
                 if(isset($_GET['idScheduleHour'])){
                     $idScheduleHour = $_GET['idScheduleHour'];
                     $scheduleHourInfo = getScheduleHoursById($idScheduleHour);
-                    $seatList = groupScheduleHoursById($scheduleHourInfo['idRoom']);
-                    $bookedSeat = getBookedSeat($idScheduleHour);
-                    include "./contents/movie-seat-plan.php";
-                }else{
+                    if($scheduleHourInfo == []){
+                        include "./contents/invalidateData.php";
+                    }else{
+                        $seatList = groupSeatById($scheduleHourInfo['idRoom']);
+                        // $seatList = array_reduce($seatList,'group_seat',[]);
+                        $bookedSeat = getBookedSeat($idScheduleHour);
+                        include "./contents/movie-seat-plan.php";
+                    }
                    
+                }else{
+                   include "./contents/invalidateData.php";
                 }
             } 
         break;
@@ -135,5 +141,14 @@ function router_login()
     }
 }
 
-
+function group_seat (array $carry,array $item) {
+    $seat_key = $item['seat_key'];
+    $key = substr($seat_key,0,1);
+    if(isset($carry[$key])){
+        return [...$carry, $key => [$item]];
+    }else  if(isset($carry[$key])){
+        return [...$carry, $key => [...$carry[$key]],$item];
+    }
+    return $carry;
+}
 ?>
