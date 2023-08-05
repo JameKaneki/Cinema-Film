@@ -10,24 +10,28 @@ if (isset($_GET['alert'])) {
 if (isset($_POST['signin']) && ($_POST['signin'] > 0)) {
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $login = admin_login($email, $password);
-    if (!empty($login)) {
-        $_SESSION['email'] = $login;
-        header("Location:index.php?act=home");
-    } else {
-        $alert = "Email or password incorrect.Please check again";
+    $admin_login = admin_login($email, $password);
+    if (is_array($admin_login)) {
+        extract($admin_login);
+        if ($role == 'admin') {
+          $_SESSION['email'] = $admin_login;
+          header("Location:index.php?act=home");
+        } else {
+          $alert = "Invalid role!";
+          header("Location:index.php?act=login&alert=".$alert);
+        }
+      } else {
+        $alert = "Email or password incorrect!";
         header("Location:index.php?act=login&alert=".$alert);
+      }
     }
-}
 ?>
 <style>
     .box {
         width: 450px;
         border: 1px solid gray;
         position: relative;
-        left: 850px;
-        top: 280px;
-            border-radius: 20px;
+        border-radius: 20px;
         padding: 10px;
     }
 
