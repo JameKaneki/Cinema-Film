@@ -85,16 +85,22 @@ if(isset($_GET['act'])){
                 if(isset($_GET['idScheduleHour'])){
                     $idScheduleHour = $_GET['idScheduleHour'];
                     $scheduleHourInfo = getScheduleHoursById($idScheduleHour);
-                    $seatList = groupScheduleHoursById($scheduleHourInfo['idRoom']);
-                    $bookedSeat = getBookedSeat($idScheduleHour);
-                    include "./contents/movie-seat-plan.php";
+                    if($scheduleHourInfo == []){
+                        include "./contents/invalidateData.php";
+                    }else{
+                        $seatList = groupSeatById($scheduleHourInfo['idRoom']);
+                        // $seatList = array_reduce($seatList,'group_seat',[]);
+                        $bookedSeat = getBookedSeat($idScheduleHour);
+                        include "./contents/movie-seat-plan.php";
+                    }
+                   
                 }else{
-                    include "./contents/invalidateData.php";
+                   include "./contents/invalidateData.php";
                 }
             } 
         break;
         case 'movie-checkout':
-        {
+        { 
             router_login();
             if(isset($_GET['s'])&& isset($_GET['sh'])  && isset($_GET['r']) && isset($_GET['total'])){
                     $seatList= $_GET['s'];
@@ -110,6 +116,7 @@ if(isset($_GET['act'])){
         break;
         case 'my-ticket':
             {
+                router_login();
                 include "./contents/my-ticket.php";
             }
         break;
@@ -128,17 +135,17 @@ function router_login()
     }
 }
 
-
-
-
 // content heaar
 
-
-
-
-
 include "./footer.php";
-
-
-
+function group_seat (array $carry,array $item) {
+    $seat_key = $item['seat_key'];
+    $key = substr($seat_key,0,1);
+    if(isset($carry[$key])){
+        return [...$carry, $key => [$item]];
+    }else  if(isset($carry[$key])){
+        return [...$carry, $key => [...$carry[$key]],$item];
+    }
+    return $carry;
+}
 ?>
