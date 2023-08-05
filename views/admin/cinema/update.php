@@ -6,9 +6,26 @@
     }
 }
  ?>
- <div class="row">
+ <style>
+    label{
+        margin: 10px;
+    }
+    .mb{
+        padding: 10px 0;
+    }
+    input{
+        margin: 10px 10px;
+        padding: 5px 10px;
+        font-size: 16px;
+    }
+    textarea{
+        padding: 7px;
+        font-size: 16px;
+    }
+</style>
+ <div class="row" style="text-align: center;">
         <div class="row fromtitle">
-            <h1>Cập nhập rạp phim</h1>
+            <h1 style="margin-left: 0px; margin-bottom: 24px;">Cập nhập rạp phim</h1>
         </div>
         <div class="row fromcontent">
                 <form action="index.php?act=cinema-update" method="POST">

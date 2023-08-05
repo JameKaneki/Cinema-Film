@@ -40,7 +40,7 @@
             </div>
             <div class="input">
                 Poster<br>
-                <input type="file" name="poster" id="">
+                <input type="text" name="poster" id="">
             </div>
             <div class="input">
                 Rate<br>
@@ -52,14 +52,8 @@
             </div>
             <div class="input">
                 <input type="submit" name="addnew" value="Thêm Mới">
-                <input type="reset" value="Nhập Lại">
                 <a href="index.php?act=film"> <input type="button" value="Danh Sách"></a>
             </div>
-            <?php
-            if (isset($thongbao) && ($thongbao != ""))
-                echo $thongbao;
-
-            ?>
         </form>
     </div>
 </div>

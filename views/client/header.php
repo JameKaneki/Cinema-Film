@@ -90,7 +90,7 @@
                             <a href="index.php?act=exit">Thoát</a>
                         </li> -->
                     <li>
-                        <a><?php echo $userInfo['userName'];?></a>
+                        <a href="#0"><?= $userInfo['userName']?></a>
                         <ul class="submenu" style="z-index:10;">
                             <li>
                                 <a href="index.php?act=my-ticket">My ticket</a>

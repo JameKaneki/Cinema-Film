@@ -30,8 +30,12 @@ function checkaccount($userName){
     $list_acount=pdo_query($sql);
     return $list_acount;
 }
-function login_acount($userName,$password){
+function client_login($userName,$password){
     $sql = "SELECT * FROM `users` WHERE userName = '$userName' AND `password` = '$password'";
+    return pdo_query_one($sql);
+}
+function admin_login($email, $password){
+    $sql = "SELECT * FROM `users` WHERE email = '$email' AND `password` = '$password'";
     return pdo_query_one($sql);
 }
 ?>
