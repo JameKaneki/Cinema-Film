@@ -34,4 +34,5 @@ function login_acount($userName,$password){
     $sql = "SELECT * FROM `users` WHERE userName = '$userName' AND `password` = '$password'";
     return pdo_query_one($sql);
 }
+
 ?>

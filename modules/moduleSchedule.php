@@ -62,18 +62,7 @@
         return pdo_query($sql);
     }
 
-    // function groupAllSchedule_dateTime($date, $idFilm){
-    //     $data= getAllSchedule_dateTime($date,$idFilm);
-    //     return array_reduce($data,"groupSchedule_dateTime",[]);
-    // } 
-
-    // function groupSchedule_dateTime(array $carry , array $current){
-    //     if(isset($carry[$current["nameCinema"]])){
-    //         return [...$carry,$current['nameCinema']=> [...$carry,$current['nameCinema'],$current['idScheduleHour']]];
-    //     }else{
-    //         return [...$carry,$current["nameCinema"]=>[$current['idScheduleHour']]];
-    //     }
-    //     }
+    
 
     function getScheduleByFilm($idFilm){
         $sql = "SELECT * FROM 'schedules' as s INNER JOIN 'schedule_hours' as sh ON s.idSchedule = sh.idScheduleHour INNER JOIN 'films' as f ON f.idFilm = s.idFilm WHERE s.idFilm = 6";

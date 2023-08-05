@@ -51,11 +51,6 @@ function groupData_id_film($carry, array $current){
     }
 }
 
-// function load_date_film($idFilm){
-//     $sql = "SELECT DISTINCT f.idFilm,s.date from `films` as f
-//     inner join `schedules` as s on f.idFilm = s.idFilm where f.idFilm= $idFilm and s.date = now()";
-//     return pdo_query($sql);
-// }
 
 function getDateTimeNow(){
     $now= new DateTime('now');
@@ -99,6 +94,11 @@ function loadall_playing_film(){
 
 function loadall_coming_film(){
     $sql="SELECT * FROM `films` WHERE `premiere` > NOW() ORDER BY `premiere` asc";
+    return pdo_query($sql);
+}
+
+function loadIdFilm_nameFilm(){
+    $sql = "SELECT f.idFilm,f.nameFilm FROM `films` as f Order by `idFilm` asc";
     return pdo_query($sql);
 }
 ?>

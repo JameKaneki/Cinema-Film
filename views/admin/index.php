@@ -25,6 +25,8 @@
   include "../../modules/moduleRoom.php";
   include "../../modules/bill.php";
 
+  // print_r($_SESSION['userName']);
+
   //controller
   if(isset($_GET['act']) && isset($_SESSION['userName'])){
     $act = $_GET['act'];
@@ -419,6 +421,13 @@
             case 'bill':
               {
                 include "./bill/billList.php";
+              }
+
+            case 'bill-delete':
+              {
+                $id = $_GET['id'];
+                delete_bill($id);
+                header('Location:index.php?ctx=bill');
               }
 
 // controller bill
