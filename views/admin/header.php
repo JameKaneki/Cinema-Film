@@ -1,209 +1,211 @@
+</body>
 <!DOCTYPE html>
-<html lang="en">
+<html dir="ltr" lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="css/themify-icons/themify-icons.css">
-    <style>
-        .boxcenter {
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        .sidebar {
-            max-width: 30%;
-            /* border: 1px solid gray;
-            box-shadow: 2px 2px 2px gray; */
-            margin-right: 20px;
-            position: fixed;
-        }
-
-        .user {
-            font-size: 18px;
-
-        }
-
-        .information {
-            margin: 20px 50px;
-            margin-left: 20px;
-        }
-        
-        .information h2 {
-            font-size: 20px;
-        }
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Ample lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Ample admin lite dashboard bootstrap 5 dashboard template">
+    <meta name="description" content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Boleto Cinemas Admin</title>
+    <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
 
-        .manager h2 {
-            margin-left: 25px;
-            font-size: 20px;
-            font-weight: 700;
-            color: gray;
-            text-shadow: 0.5px 0.5px gray;
-        }
+    <!-- Custom CSS -->
+    <link href="css/style.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" > -->
+    <link rel="stylesheet" href="css/menu.css">
 
-        .nav-arrow-down-head {
-            font-size: 18px;
-            margin-right: 15px;
-            font-weight: 700;
-        }
-
-        .nav {
-            list-style: none;
-        }
-
-        .nav li {
-            padding: 10px;
-            margin-left: -25px;
-            margin-right: 15px;
-        }
-
-        .nav {
-            margin-top: 10px;
-        }
-
-        .nav li a {
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: 600;
-            color: black;
-        }
-
-        .nav li:hover {
-            background-color: rgba(244, 228, 244, 0.833);
-            border-left: 2px solid blue;
-        }
-
-        .nav li a:hover {
-            color: blue;
-        }
-
-        .header {
-            display: flex;
-            width: 100%;
-            height: 70px;
-            border: 1px solid gray;
-            box-shadow: 2px 2px 2px gray;
-        }
-
-        .logout {
-            margin-left: 1500px;
-            line-height: 70px;
-        }
-
-        .logout a {
-            text-decoration: none;
-            font-size: 28px;
-            color: white;
-            border: 1px solid red;
-            background-color: red;
-            padding: 5px;
-        }
-
-        .logout a:hover {
-            background-color: gray;
-            color: black;
-            border: 1px solid gray;
-        }
-
-        .logo {
-            line-height: 70px;
-        }
-
-        .logo .icon-2 {
-            color: rgb(0, 72, 255);
-            font-size: 24px;
-        }
-
-        .logo a {
-            margin-left: 30px;
-            background-color: rgb(206, 230, 241);
-            text-decoration: none;
-            font-weight: 300;
-            font-size: 32px;
-            color: rgb(123, 59, 123);
-            padding: 5px;
-        }
-    </style>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
 </head>
 
 <body>
-
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <!-- <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div> -->
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <title>Boleto Cinema</title>
     <?php
     if (isset($_SESSION['email'])) {
         extract($_SESSION['email']);
     ?>
-        <div class="boxcenter">
-            <div class="header">
-                <div class="logo">
-                    <a href="index.php?act=home">
-                        <i class="icon-2 ti-joomla"></i>
-                        Beta Admin
-                    </a>
-                </div>
-                <div class="logout">
-                    <a href="index.php?act=user_exit">Logout</a>
-                </div>
-            </div>
-            <div class="sidebar" style="margin-left: 40px; margin-top: 40px;">      
-                <div class="information">
-                    <h2><span class="user">User: </span><?= $userName ?></h2>
-                </div>
-                <div class="manager">
-                    <h2> Manager </h2>
-                    <ul class="nav">
-                        <li><a href="index.php?act=home">
-                                <i class="nav-arrow-down-head ti-home"></i>
-                                Home
-                            </a></li>
-                        <li><a href="index.php?act=film">
-                                <i class="nav-arrow-down-head ti-video-clapper"></i>
-                                film
-                            </a></li>
-                        <li><a href="index.php?act=user">
-                                <i class="nav-arrow-down-head ti-user"></i>
-                                User
-                            </a></li>
-                        <li><a href="index.php?act=room">
-                                <i class="nav-arrow-down-head ti-layout-sidebar-2"></i>
-                                Room
-                            </a></li>
-                        <li><a href="index.php?act=seat">
-                                <i class="nav-arrow-down-head ti-car"></i>
-                                Seat
-                            </a></li>
-                        <li><a href="index.php?act=schedules">
-                                <i class="nav-arrow-down-head ti-time"></i>
-                                Schedules
-                            </a></li>
-                        <li><a href="index.php?act=schedule_hours">
-                                <i class="nav-arrow-down-head ti-timer"></i>
-                                Schedule Hours
-                            </a></li>
-                        <li><a href="index.php?act=ticket">
-                                <i class="nav-arrow-down-head ti-ticket"></i>
-                                Ticket
-                            </a></li>
-                        <li><a href="index.php?act=cinema">
-                                <i class="nav-arrow-down-head ti-blackboard"></i>
-                                Cinema
-                            </a></li>
-                        <li><a href="index.php?act=comment">
-                                <i class="nav-arrow-down-head ti-comment"></i>
-                                Comment
-                            </a></li>
-                            <li><a href="index.php?act=bill">
-                                <i class="nav-arrow-down-head ti-comment"></i>
-                                Bill
-                            </a></li>
+        <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full" data-sidebar-position="relative" data-header-position="absolute" data-boxed-layout="full">
+            <!-- ============================================================== -->
+            <!-- Topbar header - style you can find in pages.scss -->
+            <!-- ============================================================== -->
+            <div class="fix" style="display: flex;margin-top:10px;">
+                <header class="topbar" data-navbarbg="skin5">
+                    <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                        <div class="navbar-header" data-logobg="skin6">
+                            <!-- ============================================================== -->
+                            <!-- Logo -->
+                            <!-- ============================================================== -->
+                            <a class="navbar-brand" href="index.php">
+                                <!-- Logo icon -->
+                                <b class="logo-icon">
+                                    <!-- Dark Logo icon -->
+                                    <img src="plugins/images/logo-icon.png" alt="homepage" />
+                                </b>
+                                <!--End Logo icon -->
+                                <!-- Logo text -->
+                                <span class="logo-text">
+                                    <!-- dark Logo text -->
+                                    <img src="plugins/images/logo-text.png" alt="homepage" />
+                                </span>
+                            </a>
+                            <!-- ============================================================== -->
+                            <!-- End Logo -->
+                            <!-- ============================================================== -->
+                            <!-- ============================================================== -->
+                            <!-- toggle and nav items -->
+                            <!-- ============================================================== -->
+                            <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- End Logo -->
+                        <!-- ============================================================== -->
+                        <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
 
-                    </ul>
-                </div>
-            </div>
-        <?php
-    }
-        ?>
-</body>
+                            <!-- ============================================================== -->
+                            <!-- Right side toggle and nav items -->
+                            <!-- ============================================================== -->
+                            <ul class="navbar-nav ms-auto d-flex align-items-center">
+
+                                <!-- ============================================================== -->
+                                <!-- Search -->
+                                <!-- ============================================================== -->
+
+                                <!-- ============================================================== -->
+                                <!-- User profile and search -->
+                                <!-- ============================================================== -->
+                                <li>
+
+                                </li>
+                                <!-- <li class=" in">
+                            <a href="logout.php">Đăng xuất</a>
+                        </li> -->
+
+                                <!-- ============================================================== -->
+                                <!-- User profile and search -->
+                                <!-- ============================================================== -->
+                            </ul>
+                        </div>
+                    </nav>
+                </header>
+                <!-- ============================================================== -->
+                <!-- End Topbar header -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Left Sidebar - style you can find in sidebar.scss  -->
+                <!-- ============================================================== -->
+                <aside class="left-sidebar" data-sidebarbg="skin6">
+                    <!-- Sidebar scroll-->
+                    <div class="scroll-sidebar">
+                        <!-- Sidebar navigation-->
+                        <nav class="sidebar-nav">
+                            <ul id="sidebarnav">
+                                <!-- User Profile-->
+                                <div style="margin:8px 6px">
+                                    <h4>WELCOME <?= $userName ?></h4>
+                                </div>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=" aria-expanded="false">
+                                        <i class="fas fa-list"></i>
+                                        <span class="hide-menu">Category</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=film" aria-expanded="false">
+                                        <i class="fas fa-film" aria-hidden="true"></i>
+                                        <span class="hide-menu">Films</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=user" aria-expanded="false">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <span class="hide-menu">Users</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=room" aria-expanded="false">
+                                        <i class="fa fa-table" aria-hidden="true"></i>
+                                        <span class="hide-menu">Rooms</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=seat" aria-expanded="false">
+                                        <i class="fas fa-couch"></i>
+                                        <span class="hide-menu">Seats</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=schedules" aria-expanded="false">
+                                        <i class="fas fa-calendar"></i>
+                                        <span class="hide-menu">Schedules</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=schedule_hours" aria-expanded="false">
+                                        <i class="fas fa-clock"></i>
+                                        <span class="hide-menu">Schedule Hours</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=ticket" aria-expanded="false">
+                                        <i class="fas fa-ticket-alt"></i>
+                                        <span class="hide-menu">Tickets</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=cinema" aria-expanded="false">
+                                        <i class="fa fa-columns" aria-hidden="true"></i>
+                                        <span class="hide-menu">Cinemas</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=bill" aria-expanded="false">
+                                        <i class="fa fa-columns" aria-hidden="true"></i>
+                                        <span class="hide-menu">Bill</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=user_exit" aria-expanded="false">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        <span style="color: red;" class="hide-menu">Log out</span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </nav>
+                        <!-- End Sidebar navigation -->
+                    </div>
+                    <!-- End Sidebar scroll-->
+                </aside>
+            <?php
+        }
+            ?>
+            <style>
+                .hide-menu {
+                    font-family: 'Times New Roman', Times, serif;
+                    font-size: 20px;
+                }
+            </style>

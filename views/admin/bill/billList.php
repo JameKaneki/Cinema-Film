@@ -1,13 +1,8 @@
-<?php
-
-
-
-
-?>
 <div class='wrapper'>
-    <h1>Bill List</h1>
+<div class="row frmtitle mb-3" >
+        <h1 style="text-align: center;" class="title">Bill List</h1>
+    </div>
         <div class="select">
-        <div class="btn btn-blue"><a href="">Add new Bill</a></div>
         <div class='search-bar'>
             <form  action="index.php?act=bill"  method="POST">
                 <select name="idFilm" placeholder="Film">
@@ -84,8 +79,10 @@
                     echo "<td>Unpaid</td>";
                 }
                 echo "
-                <td><a href='index.php?act=bill-delete&id_bill={$bill['id_bill']}' class='btn btn-blue'>Pay</a></td>
-                <td><a href='index.php?act=bill-delete&id_bill={$bill['id_bill']}' class='btn btn-red'>Remove</a></td>
+                <td><a href='index.php?act=bill-delete&id_bill={$bill['id_bill']}'style='color: white;
+                background-color: blue;' >Pay</a></td>
+                <td><a href='index.php?act=bill-delete&id_bill={$bill['id_bill']}' style='color: white;
+                background-color: red;'>DELETE</a></td>
                 </tr>";
             }
             
@@ -94,40 +91,37 @@
     </table>
 </div>
 <style>
- :root{
-        --red--color : rgb(223,69,45);
-        --blue-color : rgb(65,99,232);
+    a,
+    li {
+        padding: 4px 8px;
+        text-decoration: none;
+        list-style-type: none;
     }
-    a,li{
-    text-decoration: none;
-    list-style-type: none;
-    }
-    .wrapper{
+
+    .wrapper {
         width: 70%;
         margin: 0px auto;
+        float: none !important;
     }
-    h1{
-        margin-top: 30px;
-        margin-left: 530px;
-    }
-    .select{
-        margin-left: 300px;
+
+    .select {
+        margin-left: 350px;
         margin-top: 10px;
         display: flex;
         font-size: 16px;
     }
-    select{
+
+    select {
         padding: 3px 0px 7px 0px;
         font-size: 16px;
     }
-    .select input{
+
+    .select input {
         font-size: 16px;
         padding-bottom: 5px;
     }
-    button{
-        font-size: 16px;
-    }
-    table{
+
+    table {
         margin: 10px auto;
         padding: 12px;
         box-shadow: 1px 1px 1px 1px #999;
@@ -136,61 +130,73 @@
         overflow-y: scroll;
         /* width: 90%; */
     }
-    td,th{
+
+    td,
+    th {
         padding: 8px 4px;
         text-align: start;
         min-width: 120px;
         max-width: 300px;
     }
-    th{
-        background-color: rgb(158, 105, 105);
+
+    th {
+        background-color: lightgreen;
         color: white;
         text-shadow: 1px 1px 1px gray;
         font-size: 18px;
 
     }
-    td{
+
+    td {
         font-size: 16px;
         font-weight: bold;
     }
-    table tr:nth-child(odd){
+
+    table tr:nth-child(odd) {
         background-color: rgb(228, 234, 241);
+        color: black;
     }
-    td.bigCol{
+
+    td.bigCol {
         width: 500px;
     }
-    .showTime{
+
+    .showTime {
         display: flex;
-        justify-content: start; 
+        justify-content: start;
         flex-wrap: wrap;
     }
-    .showTime-box{
+
+    .showTime-box {
         margin: 2px 4px;
-        border: 2px solid ;
+        border: 2px solid;
         padding: 4px 8px;
         border-radius: 3px;
         background-color: #666;
         color: white;
     }
-    .action-box{
+
+    .action-box {
         display: flex;
     }
-    .btn{
-        padding: 6px 16px;
+
+    .btn {
+        padding: 6px;
         margin: 2px 4px;
         border-radius: 3px;
         cursor: pointer;
         border: none;
     }
+
     .btn a {
-        color:white;
-    }
-    .btn-red{
         color: white;
-        background-color: var(--red--color);
     }
-    .btn-blue{
+
+    .btn-red {
         color: white;
-        background-color: var(--blue-color);
+        background-color: red;
+    }
+    .btn-blue {
+        background-color: lightgreen;
     }
 </style>

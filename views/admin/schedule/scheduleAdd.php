@@ -1,4 +1,3 @@
-s
 <?php
 $errors = [];
 if (isset($_POST['create'])) {
@@ -22,9 +21,9 @@ if (isset($_POST['create'])) {
 }
 ?>
 
-<div class=''>
+<div  class="Form-add-schedules">
     <h1>Add schedule</h1>
-    <div class='form-content'>
+    <div sty class='form-content'>
         <form action="index.php?act=schedule-create" method="POST">
             <div class="input-wrap">
                 <label>Date</label>
@@ -63,6 +62,10 @@ if (isset($_POST['create'])) {
     </div>
 </div>
 <style>
+    .Form-add-schedules{
+        margin-left: 500px;
+        margin-top:50px;
+    }
     :root {
         --red--color: rgb(223, 69, 45);
         --blue-color: rgb(65, 99, 232);
@@ -99,6 +102,11 @@ if (isset($_POST['create'])) {
     .btn-blue {
         color: white;
         background-color: var(--blue-color);
+    }
+
+    .btn-blue:hover {
+        color: white;
+        background-color: lightgreen;
     }
 
     .form-content {

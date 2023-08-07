@@ -36,7 +36,7 @@
      }}
 ?>
 
-<div>
+<div style="margin-left:500px;margin-top:50px">
     <h1>Edit schedule</h1>
    <div class="form-content">
     <form action="index.php?act=schedule-edit" method="POST">
@@ -102,6 +102,10 @@
     .btn-blue{
         color: white;
         background-color: var(--blue-color);
+    }
+    .btn-blue:hover{
+        color: white;
+        background-color: lightgreen;
     }
     .form-content{
     width: 600px;

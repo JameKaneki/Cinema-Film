@@ -1,18 +1,4 @@
 
-<style>
-    .mb{
-        padding: 10px 0;
-    }
-    input{
-        margin: 10px 10px;
-        padding: 5px 10px;
-        font-size: 16px;
-    }
-    textarea{
-        padding: 7px;
-        font-size: 16px;
-    }
-</style>
 
 <?php
 
@@ -20,79 +6,80 @@
         extract($film);
     }
 ?>
-<div class="row" style="text-align: center;">
-    <div class="row fromtitle">
-        <h1 style="margin-left: 0px;">Cập nhật Phim</h1>
+<div class="container mt-2">
+    <div class="row frmtitle">
+        <div class="">
+            <h1 class="title">UPDATE FILM</h1>
+        </div>
     </div>
-    <div class="row fromcontent">
-        <form action="index.php?act=film_update" method="post" enctype="multipart/form-data">
-            <div class="row mb">
-            Danh Mục Phim<br>
+    <form action="index.php?act=film_update" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="w-50 form-group my-3">
+                <label for="">Name</label> <br>
+                <input class="form-control" type="text" name="nameFilm" value="<?=$nameFilm?>">
+                <span style="color:red">
+                </span>
             </div>
-            <div class="row mb">
-                Name<br>
-                <input type="text" name="nameFilm" id="" value="<?=$nameFilm?>">
+            <div class="w-50 form-group my-3">
+                <label for="">Director</label>
+                <input class="form-control" type="text" name="director" value="<?=$director?>">
+                <span style="color:red">
+                </span>
             </div>
-            <div class="row mb">
-                Director<br>
-                <input type="text" name="director" id="" value="<?=$director?>">
+        </div>
+        <div class="row">
+            <div class="w-50 form-group my-3">
+                <label for="">Performer</label>
+                <input class="form-control" type="text" name="product_img" value="<?=$performer?>">
+                <span style="color:red">
+                    
+                </span>
             </div>
-            <div class="row mb">
-                Performer<br>
-                <input type="text" name="performer" id="" value="<?=$performer?>">
-            </div>
-            <div class="row mb">
-                Premiere<br>
-                <input type="date" name="premiere" id="" value="<?=$premiere?>">
-            </div>
-            <div class="row mb">
-                Duration<br>
-                <input type="number" name="duration" id="" value="<?=$duration?>">
-            </div>
-            <div class="row mb">
-                Language<br>
-                <input type="text" name="language" id="" value="<?=$language?>">
-            </div>
-            <div class="row mb">
-                Description <br>
-               <textarea name="description" id="" cols="50" rows="15"><?=$description?></textarea>
-            </div>
-            <div class="row mb">
-                Category<br>
-                <label for="action">Action</label>
-                <input type="checkbox" name="category" id="action" value="Action">
+            <div class="w-50 form-group my-3">
+                <label for="">Duration</label>
+                <input class="form-control" type="number" name="duration" value="<?=$duration?>" min="1" max="100">
+                <span style="color:red">
 
-                <label for="romantic">Romantic</label>
-                <input type="checkbox" name="category" id="romantic" value="Romantic">
-
-                <label for="sciencefiction">Science Fiction</label>
-                <input type="checkbox" name="category" id="sciencefiction" value="Science Fiction">
-
-                <label for="cartoon">Cartoon</label>
-                <input type="checkbox" name="category" id="cartoon" value="Cartoon">
-
-                <label for="mentality">Mentality</label>
-                <input type="checkbox" name="category" id="mentality" value="Mentality">
-
-                <label for="aventure">Aventure</label>
-                <input type="checkbox" name="category" id="aventure" value="Aventure">
-
-                <label for="horrified">Horrified</label>
-                <input type="checkbox" name="category" id="horrified" value="Horrified">
-
-                <label for="detective">Detective</label>
-                <input type="checkbox" name="category" id="detective" value="Detective">
+                </span>
             </div>
-            <div class="row mb">
-                Trailer<br>
-                <input type="text" name="trailer" id="" value="<?=$trailer?>" placeholder="link">
+        </div>
+
+        <div class="row">
+            <div class="w-50 form-group my-3">
+                <label for="">Premiere</label>
+                <input class="form-control" type="date" name="premiere" value="<?=$premiere?>">
+                <span style="color:red">
+
+                </span>
             </div>
-            <div class="row mb">
-                Poster<br>
-                <input type="text" name="poster" id="" value="<?=$poster?>" placeholder="link">
+            <div class="w-50 form-group my-3">
+                <label for="">Language</label>
+                <input class="form-control" type="text" name="language" value="<?=$language?>">
+                <span style="color:red">
+                    
+                </span>
             </div>
-            <div class="row mb">
-                Rate<br>
+            
+
+        </div>
+        <div class="row">
+            <div class="w-50 form-group my-3">
+                <label for="">Trailer</label>
+                <input class="form-control" type="text" name="trailer" value="<?=$trailer?>">
+                <span style="color:red">
+                    
+                </span>
+            </div>
+            <div class="w-50 form-group my-3">
+                <label for="">Poster</label>
+                <input class="form-control" type="text" name="poster" value="<?=$poster?>">
+                <span style="color:red">
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="w-25 form-group my-3">
+                <label for="">Rate</label>
                 <select name="rate" id="">
                     <?php
                         if($rate==0){
@@ -118,17 +105,42 @@
                     <option value="1">Trên 8 Tuổi</option>
                     <option value="0">Mọi độ Tuổi</option>
                 </select>
+                <span style="color:red">
+                </span>
             </div>
-            <div class="row mb20">
-                <input type="hidden" name="idFilm" value="<?=$idFilm?>">
-                <input type="submit" name="capnhat" value="Cập nhật">
-                <a href="index.php?act=film"> <input type="button" value="Danh Sách"></a>
+            <div class="w-25 form-group my-3" style="margin-left: 40px;">
+                <label for="">Category</label>
+                <select name="category" id="">
+                    <option value="<?=$category?>"><?=$category?></option>
+                    <option value="">-------</option>
+                    <option value="Action">Action</option>
+                    <option value="Romantic">Romantic</option>
+                    <option value="Science Fiction">Science Fiction</option>
+                    <option value="Cartoon">Cartoon</option>
+                    <option value="Mentality">Mentality</option>
+                    <option value="Aventure">Aventure</option>
+                    <option value="Horrified">Horrified</option>
+                    <option value="Detective">Detective</option>
+                </select>
+                <span style="color:red">
+                </span>
             </div>
-            <?php
-            if (isset($thongbao) && ($thongbao != ""))
-                echo $thongbao;
+        </div>
 
-            ?>
-        </form>
-    </div>
+        <div class="row">
+            <div class="form-group my-3">
+                <label for="">Description</label>
+                <textarea class="form-control" cols="30" rows="5" name="description"><?=$description?></textarea>
+                <span style="color:red">
+
+                </span>
+            </div>
+        </div>
+        <div class="col mb10 mt-3">
+            <input type="hidden" name="idFilm" value="<?=$idFilm?>">
+            <input class="btn btn-success text-white" type="submit" name="capnhat" value="UPDATE">
+            <input class="btn btn-danger text-white" type="reset" value="RESET">
+            <a href="index.php?act=film"><input class="btn btn-primary text-white" type="button" value="LIST"></a>
+        </div>
+    </form>
 </div>

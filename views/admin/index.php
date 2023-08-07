@@ -35,23 +35,18 @@
 
           // Cinema
           case 'cinema-add':
+            {
+            include "cinema/add.php";
             if(isset($_POST['addCinema'])&&($_POST['addCinema'])){
               if($_POST['nameCinema']!=""&&$_POST['addressCinema']!=""){
               $nameCinema=$_POST['nameCinema'];
               $addressCinema=$_POST['addressCinema'];
               insert_cinema($nameCinema,$addressCinema);
-              echo "Thêm thành công";
+              header("Location:index.php?act=cinema");
             }
-            else if($_POST['nameCinema']==""){
-              echo "Chưa nhập tên rạp chiếu";
-            }
-            else if($_POST['addressCinema']==""){
-              echo "Chưa nhập địa chỉ rạp chiếu";
-            }
-          }
-            include "cinema/add.php";         
+          }    
             break;
-
+        }
           case 'cinema':
             selectAll_cinema();
             include "cinema/list.php";
@@ -65,26 +60,21 @@
             include "cinema/update.php";
             break;
 
-          case 'cinema-update': 
+          case 'cinema-update': {
             if(isset($_POST['update'])&&($_POST['update'])){
               if($_POST['nameCinema']!=""&&$_POST['addressCinema']!=""){
               $idCinema=$_POST['idCinema'];
               $nameCinema=$_POST['nameCinema'];
               $addressCinema=$_POST['addressCinema'];
               update_cinema($idCinema,$nameCinema,$addressCinema);
-              echo "Sửa thành công";
+              header("Location:index.php?act=cinema");
             }
-            else if($_POST['nameCinema']==""){
-              echo "Chưa nhập tên rạp chiếu";
-            }
-            else if($_POST['addressCinema']==""){
-              echo "Chưa nhập địa chỉ rạp chiếu";
+            else{
+              header("Location:index.php?act=cinema-edit&idCinema=".$_POST['idCinema']);
             }
           }
-            selectAll_cinema();          
-            include "cinema/list.php";
             break;
-
+        }
           case 'cinema-delete':
           if(isset($_GET['idCinema'])&&(($_GET['idCinema']>0))){
             $idCinema = $_GET['idCinema'];
@@ -149,25 +139,16 @@
               break;
 
             case 'room-add':
+              include "room/add.php";
               if(isset($_POST['addRoom'])&&($_POST['addRoom'])){
                 if($_POST['nameRoom']!=""&&$_POST['idCinema']!=""&&$_POST['seatList']!=""){
                 $nameRoom = $_POST['nameRoom'];
                 $idCinema = $_POST['idCinema'];
                 $seatList = $_POST['seatList'];
                 insert_room($nameRoom,$idCinema,$seatList);
-                echo 'Thêm thành công';
-                }
-                else if($_POST['nameRoom']==""){
-                  echo "Chưa có tên phòng chiếu";
-                }
-                else if($_POST['idCinema']==""){
-                  echo "Chưa có tên rạp chiếu";
-                }
-                else if($_POST['seatList']==""){
-                  echo "Chưa có danh sách";
+                header("Location:index.php?act=room");
                 }
               }
-              include "room/add.php";
               break;    
 
             case 'room-delete':
@@ -194,27 +175,19 @@
                     $idCinema = $_POST['idCinema'];
                     $seatList = $_POST['seatList'];
                     update_room($idRoom,$nameRoom,$idCinema,$seatList);
-                    echo 'Thêm thành công';
+                    header("Location:index.php?act=room");
                     }
-                    else if($_POST['nameRoom']==""){
-                      echo "Chưa có tên phòng chiếu";
+                    else{
+                      header("Location:index.php?act=room-edit&idRoom=".$_POST['idRoom']);
                     }
-                    else if($_POST['idCinema']==""){
-                      echo "Chưa có tên rạp chiếu";
-                    }
-                    else if($_POST['seatList']==""){
-                      echo "Chưa có danh sách";
-                    }
-                selectAll_room();
-                include "room/list.php";
               }
             }
               break;
        //controller film
         case 'film_add':{
-            // kiem tra nguoi dung click vao nut add
+          include "./product/add.php";
           if(isset($_POST['addnew'])&& $_POST['addnew']){
-            if($_POST['premiere']>getDateTimeNow()&&$_POST['duration']>=60&&$_POST['nameFilm']!=""){
+            if($_POST['premiere']>getDateTimeNow()&&$_POST['duration']>=60&&$_POST['nameFilm']!=""&&$_POST['category']!=""){
               $nameFilm = $_POST['nameFilm'];
               $director = $_POST['director'];
               $performer = $_POST['performer'];
@@ -228,34 +201,10 @@
               $rate = $_POST['rate'];
               $likeAmount = 0;
               insert_film($nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate,$likeAmount);
-              echo "Thêm thành công";
+              header("Location:index.php?act=film");
             }
-            else if($_POST['nameFilm']==""){
-              echo "Chưa có tên phim";
-            }
-            else if($_POST['premiere']<getDateTimeNow()){
-              echo "Lịch khới chiếu phải lớn hơn ngày thêm phim";
-            }
-            else if($_POST['duration']<=60){
-              echo "Thời gian chiếu quá ngắn";
-            }
-            else{
-              echo "Thêm thất bại";
-            }
-            
-            // $target_dir = "./upload/";
-            // $target_file = $target_dir . basename($_FILES['poster']['name']);
-          //   if (move_uploaded_file($_FILES["poster"]["tmp_name"], $target_file)) {
-          //     // echo"The file". htmlspecialchars(basename($_FILES['img_sp']['name'])) . "has been upload ";
-          // } else {
-          // }
-            
-          
-          $result = "Create successfully";
         }
       }
-        $listfilm = loadall_film();
-        include "./product/add.php";
         break;
         // List film
         case 'film':{
@@ -281,7 +230,7 @@
         }
         case 'film_update':{
           if(isset($_POST['capnhat'])&& $_POST['capnhat']){
-            if($_POST['premiere']>getDateTimeNow()&&$_POST['duration']>=60&&$_POST['nameFilm']!=""){
+            if($_POST['premiere']>getDateTimeNow()&&$_POST['duration']>=60&&$_POST['nameFilm']!=""&&$_POST['category']!=""){
               $idFilm = $_POST['idFilm'];
               $nameFilm = $_POST['nameFilm'];
               $director = $_POST['director'];
@@ -296,33 +245,14 @@
               $rate = $_POST['rate'];
               $likeAmount = 0;
               update_film($idFilm,$nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate,$likeAmount);
-              echo "Thêm thành công";
-            }
-            else if($_POST['nameFilm']==""){
-              echo "Chưa có tên phim";
-            }
-            else if($_POST['premiere']<getDateTimeNow()){
-              echo "Lịch khới chiếu phải lớn hơn ngày thêm phim";
-            }
-            else if($_POST['duration']<=60){
-              echo "Thời gian chiếu quá ngắn";
+              header("Location:index.php?act=film");
             }
             else{
-              echo "Thêm thất bại";
+              header("Location:index.php?act=film_edit&idFilm=".$_POST['idFilm']);
             }
-            
-            // $target_dir = "./upload/";
-            // $target_file = $target_dir . basename($_FILES['poster']['name']);
-          //   if (move_uploaded_file($_FILES["poster"]["tmp_name"], $target_file)) {
-          //     // echo"The file". htmlspecialchars(basename($_FILES['img_sp']['name'])) . "has been upload ";
-          // } else {
-          // }
-          $result = "Update successfully";
-        }
-        $listfilm = loadall_film("", 0);
-        include "./product/list.php";
         break;
         }
+      }
         // controller user
           case 'user':{
             $list_user=loadall_acount();
@@ -359,24 +289,18 @@
           }
           break;
           case 'seat_add':{
+            include "./seat/add.php";
             if(isset($_POST['addnew'])&& $_POST['addnew']){
               if($_POST['seat_key']!=""&& $_POST['idRoom']!=""){
                 $seat_key = $_POST['seat_key'];
                 $idRoom = $_POST['idRoom'];
                 insert_seat($seat_key,$idRoom);
-                echo "Thêm thành công";
-              }
-              else if($_POST['seat_key']==""){
-                echo "Không để chống ghế";
-              }
-              else if($_POST['idRoom']==""){
-                echo "Chưa chọn phòng chiếu";
+                header("Location:index.php?act=seat");
               }
           }
-          }
-          include "./seat/add.php";
+          
           break;
-
+        }
           case 'seat_delete':{
             if (isset($_GET['id_seat']) && ($_GET['id_seat'] > 0)) {
               delete_seat($_GET['id_seat']);
@@ -399,18 +323,13 @@
               $seat_key = $_POST['seat_key'];
               $idRoom  = $_POST['idRoom'];
               update_seat($id_seat,$seat_key,$idRoom);
-              echo "Sửa thành công";
+              header("Location:index.php?act=seat");
               }
-              else if($_POST['seat_key']==""){
-                echo "Không để chống ghế";
+              else{
+                header("Location:index.php?act=seat_edit&id_seat=".$_POST['id_seat']);
               }
-              else if($_POST['idRoom']==""){
-                echo "Chưa chọn phòng chiếu";
-              }
+              break;
           }
-          $listseat=loadall_seat();
-          include "./seat/list.php";
-          break;
           }
           // controller seat
 
@@ -498,7 +417,7 @@
                   $seatList = getBill_By_idUser_nameFilm('','');
                   $showSeatList = groupData_bill('','');
                   $billList=select_bill('','');
-                  print_r($showSeatList);
+                  // print_r($showSeatList);
               }
               {
                 include "./bill/billList.php";

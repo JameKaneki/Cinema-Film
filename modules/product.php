@@ -9,7 +9,7 @@
 {
     $sql = "INSERT INTO `films`(`nameFilm`, `director`, `performer`, `premiere`, `duration`, `language`, `description`,
      `category`, `trailer`, `poster`, `rate`, `likeAmount`) VALUES ('$nameFilm','$director','$performer','$premiere','$duration','$language',
-     '$description','$category','$trailer','$poster','$rate','$likeAmount')";
+     '$description','$category','$trailer','$poster','$rate',$likeAmount)";
     pdo_execute($sql);
 }
 
@@ -58,9 +58,7 @@ function getDateTimeNow(){
 }
 
 function   update_film($idFilm,$nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate,$likeAmount){
-    $sql = "UPDATE `films` SET `nameFilm`='".$nameFilm."',`director`='".$director."',`performer`='".$performer."',`premiere`='".$premiere."',
-    `duration`='".$duration."',`language`='".$language."',`description`='".$description."',`category`='".$category."',`trailer`='".$trailer."',
-    `poster`='".$poster."',`rate`='".$rate."',`likeAmount`='".$likeAmount."' WHERE `idFilm`=". $idFilm; 
+    $sql= "UPDATE `films` SET `nameFilm`='$nameFilm',`director`='$director',`performer`='$performer',`premiere`='$premiere',`duration`='$duration',`language`='$language',`description`='$description',`category`='$category',`trailer`='$trailer',`poster`='$poster',`rate`='$rate',`likeAmount`='$likeAmount' WHERE `idFilm`=$idFilm";
     pdo_execute($sql);
 }
 function loadall_film(){

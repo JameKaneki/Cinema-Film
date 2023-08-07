@@ -45,7 +45,7 @@ if (isset($_POST['create'])) {
 ?>
 
 
-<div class=''>
+<div style="margin-left: 500px;margin-top: 50px;" class=''>
     <h1>Add schedule Hours</h1>
     <div class='form-content'>
         <form action="index.php?act=schedule_hours-create" method="POST">
