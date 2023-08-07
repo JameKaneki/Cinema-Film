@@ -2,41 +2,14 @@
 
 
 
-// module-bill
 
-
-
-// user
-
-//product   
-
-
-// billList
-
-    $showSeatList=[];
-    $billList=[];
-    $seatList=[];
-    if(isset($_POST['search'])){
-        $idUser = $_POST['idUser'];
-        $idFilm = $_POST['idFilm'];
-        $seatList = getBill_By_idUser_nameFilm($idUser,$idFilm);
-        $showSeatList = groupData_bill($idUser,$idFilm);
-        $billList=select_bill($idUser,$idFilm);
-    }
-    else{
-        $seatList = getBill_By_idUser_nameFilm('','');
-        $showSeatList = groupData_bill('','');
-        $billList=select_bill('','');
-        // print_r($showSeatList);
-    }
 ?>
-<section action='index.php?act=bill'>
 <div class='wrapper'>
     <h1>Bill List</h1>
         <div class="select">
-        <div class="btn btn-blue"><a href="index.php?act=">Add new Bill</a></div>
+        <div class="btn btn-blue"><a href="">Add new Bill</a></div>
         <div class='search-bar'>
-            <form  method="POST">
+            <form  action="index.php?act=bill"  method="POST">
                 <select name="idFilm" placeholder="Film">
                 <option value="">----------</option>
                     <?php
@@ -111,7 +84,7 @@
                     echo "<td>Unpaid</td>";
                 }
                 echo "
-                <td><a href='' class='btn btn-blue'>Pay</a></td>
+                <td><a href='index.php?act=bill-delete&id_bill={$bill['id_bill']}' class='btn btn-blue'>Pay</a></td>
                 <td><a href='index.php?act=bill-delete&id_bill={$bill['id_bill']}' class='btn btn-red'>Remove</a></td>
                 </tr>";
             }
@@ -119,9 +92,7 @@
         ?>
        </tbody>
     </table>
-
 </div>
-</section>
 <style>
  :root{
         --red--color : rgb(223,69,45);

@@ -29,9 +29,9 @@
                 </tr>';
             }
             ?>
-            <tr>
+            <!-- <tr>
                 <td><a href="index.php?act=comment-add"><input type="button" value="Nhập thêm"></a></td>
-            </tr>
+            </tr> -->
 
         </table>
     </div>

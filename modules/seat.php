@@ -20,7 +20,8 @@
     }
     function loadone_seat($id_seat)
     {
-    $sql = "select * from seats where id_seat= $id_seat";
+    $sql = "SELECT s.id_seat, s.seat_key,s.idRoom,r.nameRoom  FROM `seats` AS s INNER JOIN `rooms`
+    as r on s.idRoom = r.idRoom where id_seat= $id_seat";
     $listseat = pdo_query_one($sql);
     return $listseat;
     }

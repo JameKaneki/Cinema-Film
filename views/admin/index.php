@@ -36,11 +36,19 @@
           // Cinema
           case 'cinema-add':
             if(isset($_POST['addCinema'])&&($_POST['addCinema'])){
+              if($_POST['nameCinema']!=""&&$_POST['addressCinema']!=""){
               $nameCinema=$_POST['nameCinema'];
               $addressCinema=$_POST['addressCinema'];
               insert_cinema($nameCinema,$addressCinema);
-              $tb="Thành công";
-            }          
+              echo "Thêm thành công";
+            }
+            else if($_POST['nameCinema']==""){
+              echo "Chưa nhập tên rạp chiếu";
+            }
+            else if($_POST['addressCinema']==""){
+              echo "Chưa nhập địa chỉ rạp chiếu";
+            }
+          }
             include "cinema/add.php";         
             break;
 
@@ -59,12 +67,20 @@
 
           case 'cinema-update': 
             if(isset($_POST['update'])&&($_POST['update'])){
+              if($_POST['nameCinema']!=""&&$_POST['addressCinema']!=""){
               $idCinema=$_POST['idCinema'];
               $nameCinema=$_POST['nameCinema'];
               $addressCinema=$_POST['addressCinema'];
               update_cinema($idCinema,$nameCinema,$addressCinema);
-              $tb="Thành công";
-            } 
+              echo "Sửa thành công";
+            }
+            else if($_POST['nameCinema']==""){
+              echo "Chưa nhập tên rạp chiếu";
+            }
+            else if($_POST['addressCinema']==""){
+              echo "Chưa nhập địa chỉ rạp chiếu";
+            }
+          }
             selectAll_cinema();          
             include "cinema/list.php";
             break;
@@ -81,41 +97,12 @@
 
             // Ticket
 
-            // case 'ticket-add':
-            //     if(isset($_POST['addTicket'])&&($_POST['addTicket'])){
-            //       $price=$_POST['price'];
-            //       $idUser=$_POST['idUser'];
-            //       $idScheduleHour=$_POST['idScheduleHour'];
-            //       $seat=$_POST['seat'];
-            //       insert_ticket($price,$idUser,$idScheduleHour,$seat);
-            //     }
-            //     include "ticket/add.php";
-            //     break;
             
             case 'ticket':
                   selectAll_ticket();
                   include "ticket/list.php";
                   break;
             
-            // case 'ticket-edit':
-            //   if(isset($_GET['idTicket'])&&$_GET['idTicket']){
-            //     $listOne = selectOne_ticket($_GET['idTicket']);
-            //     $idCinema = $_GET['idTicket'];
-            //     include "ticket/update.php";
-            //     break;
-            //   }
-            // case 'ticket-update':        
-            //       if(isset($_POST['updateTicket'])&&($_POST['updateTicket'])){
-            //         $idTicket= $_POST['idTicket'];
-            //         $price=$_POST['price'];
-            //         $idScheduleHour=$_POST['idScheduleHour'];
-            //         $idUser=$_POST['idUser'];
-            //         $seat=$_POST['seat'];
-            //         update_ticket($idTicket,$price,$seat,$idUser,$idScheduleHour);
-            //       }
-            //       selectAll_ticket();
-            //       include "ticket/list.php";
-            //       break;
 
             case 'ticket-delete':
               if(isset($_GET['idTicket'])&&($_GET['idTicket'])){
@@ -163,10 +150,22 @@
 
             case 'room-add':
               if(isset($_POST['addRoom'])&&($_POST['addRoom'])){
+                if($_POST['nameRoom']!=""&&$_POST['idCinema']!=""&&$_POST['seatList']!=""){
                 $nameRoom = $_POST['nameRoom'];
                 $idCinema = $_POST['idCinema'];
                 $seatList = $_POST['seatList'];
                 insert_room($nameRoom,$idCinema,$seatList);
+                echo 'Thêm thành công';
+                }
+                else if($_POST['nameRoom']==""){
+                  echo "Chưa có tên phòng chiếu";
+                }
+                else if($_POST['idCinema']==""){
+                  echo "Chưa có tên rạp chiếu";
+                }
+                else if($_POST['seatList']==""){
+                  echo "Chưa có danh sách";
+                }
               }
               include "room/add.php";
               break;    
@@ -189,39 +188,69 @@
             case 'room-update':
               {
                 if(isset($_POST['updateRoom'])&&$_POST['updateRoom']){
-                  $idRoom = $_POST['idRoom'];
-                  $nameRoom = $_POST['nameRoom'];
-                  $idCinema = $_POST['idCinema'];
-                  $seatList = $_POST['seatList'];
-                  update_room($idRoom,$nameRoom,$idCinema,$seatList);
-                }
+                  if($_POST['nameRoom']!=""&&$_POST['idCinema']!=""&&$_POST['seatList']!=""){
+                    $idRoom = $_POST['idRoom'];
+                    $nameRoom = $_POST['nameRoom'];
+                    $idCinema = $_POST['idCinema'];
+                    $seatList = $_POST['seatList'];
+                    update_room($idRoom,$nameRoom,$idCinema,$seatList);
+                    echo 'Thêm thành công';
+                    }
+                    else if($_POST['nameRoom']==""){
+                      echo "Chưa có tên phòng chiếu";
+                    }
+                    else if($_POST['idCinema']==""){
+                      echo "Chưa có tên rạp chiếu";
+                    }
+                    else if($_POST['seatList']==""){
+                      echo "Chưa có danh sách";
+                    }
                 selectAll_room();
                 include "room/list.php";
               }
+            }
               break;
        //controller film
         case 'film_add':{
             // kiem tra nguoi dung click vao nut add
           if(isset($_POST['addnew'])&& $_POST['addnew']){
-            $nameFilm = $_POST['nameFilm'];
-            $director = $_POST['director'];
-            $performer = $_POST['performer'];
-            $premiere = $_POST['premiere'];
-            $duration = $_POST['duration'];
-            $language = $_POST['language'];
-            $description = $_POST['description'];
-            $category = $_POST['category'];
-            $trailer = $_POST['trailer'];
-            $poster = $_POST['poster'];
+            if($_POST['premiere']>getDateTimeNow()&&$_POST['duration']>=60&&$_POST['nameFilm']!=""){
+              $nameFilm = $_POST['nameFilm'];
+              $director = $_POST['director'];
+              $performer = $_POST['performer'];
+              $premiere = $_POST['premiere'];
+              $duration = $_POST['duration'];
+              $language = $_POST['language'];
+              $description = $_POST['description'];
+              $category = $_POST['category'];
+              $trailer = $_POST['trailer'];
+              $poster = $_POST['poster'];
+              $rate = $_POST['rate'];
+              $likeAmount = 0;
+              insert_film($nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate,$likeAmount);
+              echo "Thêm thành công";
+            }
+            else if($_POST['nameFilm']==""){
+              echo "Chưa có tên phim";
+            }
+            else if($_POST['premiere']<getDateTimeNow()){
+              echo "Lịch khới chiếu phải lớn hơn ngày thêm phim";
+            }
+            else if($_POST['duration']<=60){
+              echo "Thời gian chiếu quá ngắn";
+            }
+            else{
+              echo "Thêm thất bại";
+            }
+            
             // $target_dir = "./upload/";
             // $target_file = $target_dir . basename($_FILES['poster']['name']);
           //   if (move_uploaded_file($_FILES["poster"]["tmp_name"], $target_file)) {
           //     // echo"The file". htmlspecialchars(basename($_FILES['img_sp']['name'])) . "has been upload ";
           // } else {
           // }
-            $rate = $_POST['rate'];
-            $likeAmount = $_POST['likeAmount'];
-          insert_film($nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate,$likeAmount);
+            
+          
           $result = "Create successfully";
         }
       }
@@ -252,26 +281,42 @@
         }
         case 'film_update':{
           if(isset($_POST['capnhat'])&& $_POST['capnhat']){
-            $idFilm = $_POST['idFilm'];
-            $nameFilm = $_POST['nameFilm'];
-            $director = $_POST['director'];
-            $performer = $_POST['performer'];
-            $premiere = $_POST['premiere'];
-            $duration = $_POST['duration'];
-            $language = $_POST['language'];
-            $description = $_POST['description'];
-            $category = $_POST['category'];
-            $trailer = $_POST['trailer'];
-            $poster = $_POST['poster'];
-          //   $target_dir = "./upload/";
-          //   $target_file = $target_dir . basename($_FILES['poster']['name']);
+            if($_POST['premiere']>getDateTimeNow()&&$_POST['duration']>=60&&$_POST['nameFilm']!=""){
+              $idFilm = $_POST['idFilm'];
+              $nameFilm = $_POST['nameFilm'];
+              $director = $_POST['director'];
+              $performer = $_POST['performer'];
+              $premiere = $_POST['premiere'];
+              $duration = $_POST['duration'];
+              $language = $_POST['language'];
+              $description = $_POST['description'];
+              $category = $_POST['category'];
+              $trailer = $_POST['trailer'];
+              $poster = $_POST['poster'];
+              $rate = $_POST['rate'];
+              $likeAmount = 0;
+              update_film($idFilm,$nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate,$likeAmount);
+              echo "Thêm thành công";
+            }
+            else if($_POST['nameFilm']==""){
+              echo "Chưa có tên phim";
+            }
+            else if($_POST['premiere']<getDateTimeNow()){
+              echo "Lịch khới chiếu phải lớn hơn ngày thêm phim";
+            }
+            else if($_POST['duration']<=60){
+              echo "Thời gian chiếu quá ngắn";
+            }
+            else{
+              echo "Thêm thất bại";
+            }
+            
+            // $target_dir = "./upload/";
+            // $target_file = $target_dir . basename($_FILES['poster']['name']);
           //   if (move_uploaded_file($_FILES["poster"]["tmp_name"], $target_file)) {
           //     // echo"The file". htmlspecialchars(basename($_FILES['img_sp']['name'])) . "has been upload ";
           // } else {
           // }
-            $rate = $_POST['rate'];
-            $likeAmount = $_POST['likeAmount'];
-          update_film($idFilm,$nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate,$likeAmount);
           $result = "Update successfully";
         }
         $listfilm = loadall_film("", 0);
@@ -315,10 +360,18 @@
           break;
           case 'seat_add':{
             if(isset($_POST['addnew'])&& $_POST['addnew']){
-              $seat_key = $_POST['seat_key'];
-              $idRoom = $_POST['idRoom'];
-              insert_seat($seat_key,$idRoom);
-            $result = "Create successfully";
+              if($_POST['seat_key']!=""&& $_POST['idRoom']!=""){
+                $seat_key = $_POST['seat_key'];
+                $idRoom = $_POST['idRoom'];
+                insert_seat($seat_key,$idRoom);
+                echo "Thêm thành công";
+              }
+              else if($_POST['seat_key']==""){
+                echo "Không để chống ghế";
+              }
+              else if($_POST['idRoom']==""){
+                echo "Chưa chọn phòng chiếu";
+              }
           }
           }
           include "./seat/add.php";
@@ -341,11 +394,19 @@
           }
           case 'seat_update':{
             if(isset($_POST['capnhat'])&& $_POST['capnhat']){
+              if($_POST['seat_key']!=""&& $_POST['idRoom']!=""){
               $id_seat = $_POST['id_seat'];
               $seat_key = $_POST['seat_key'];
               $idRoom  = $_POST['idRoom'];
               update_seat($id_seat,$seat_key,$idRoom);
-            $result = "Update successfully";
+              echo "Sửa thành công";
+              }
+              else if($_POST['seat_key']==""){
+                echo "Không để chống ghế";
+              }
+              else if($_POST['idRoom']==""){
+                echo "Chưa chọn phòng chiếu";
+              }
           }
           $listseat=loadall_seat();
           include "./seat/list.php";
@@ -423,20 +484,36 @@
 
 
             case 'bill':
+              $showSeatList=[];
+              $billList=[];
+              $seatList=[];
+              if(isset($_POST['search'])){
+                  $idUser = $_POST['idUser'];
+                  $idFilm = $_POST['idFilm'];
+                  $seatList = getBill_By_idUser_nameFilm($idUser,$idFilm);
+                  $showSeatList = groupData_bill($idUser,$idFilm);
+                  $billList=select_bill($idUser,$idFilm);
+              }
+              else{
+                  $seatList = getBill_By_idUser_nameFilm('','');
+                  $showSeatList = groupData_bill('','');
+                  $billList=select_bill('','');
+                  print_r($showSeatList);
+              }
               {
                 include "./bill/billList.php";
               }
-
+              break;
             case 'bill-delete':
               {
-                if(isset($_POST['id_bill'])&&$_POST['id_bill']){
-                  $id = $_GET['id'];
+                if(isset($_GET['id_bill'])&&$_GET['id_bill']>0){
+                  $id = $_GET['id_bill'];
                 remove_bill($id);
                 }
-                
-                header('Location:index.php?ctx=bill');
-              }
-
+                header("Location:index.php?act=bill");
+                 }
+              
+              break;
 // controller bill
 
           default :

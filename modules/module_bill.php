@@ -31,7 +31,7 @@
         if($idFilm != ''){
             $sql .= " AND s.idFilm = '$idFilm' ";
         }
-        $sql .= " ORDER BY se.seat_key asc";
+        $sql .= " ORDER BY b.id_bill asc";
         return pdo_query($sql);
     }
     
@@ -61,7 +61,7 @@
         if($idFilm != ''){
             $sql .= " AND s.idFilm = '$idFilm' ";
         }
-        $sql .= " ORDER BY b.id_bill";
+        $sql .= " ORDER BY b.id_bill asc";
         return pdo_query($sql);{
     }
     }

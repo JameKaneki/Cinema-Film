@@ -23,7 +23,7 @@
                     echo '<tr>
                     <td>' . $idTicket . '</td>
                     <td>' . $nameFilm . '</td>
-                    <td>' . $price . ' $</td>
+                    <td>' . $price . '</td>
                     <td>' . $name . '</td>
                     <td>' . $time . ' ' . $date . '</td>
                     <td>' . $seat_key . '</td>

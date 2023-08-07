@@ -25,6 +25,11 @@
         return pdo_query_one($sql);
     }
 
+    function selectOneSchedule($idSchedule){
+        $sql = "SELECT s.idSchedule,s.date,s.idFilm,f.nameFilm FROM `schedules` as s INNER JOIN `films` as f ON f.idFilm = s.idFilm
+        where s.idSchedule = $idSchedule";
+        return pdo_query_one($sql);
+    }
     function getScheduleByDate($date){
         $formatedDate = date_format($date,"Y-m-d");
         $sql = "SELECT s.idSchedule,s.date,f.nameFilm,s.idFilm FROM 'schedules' as s INNER JOIN 'films' as f ON s.idFilm = f.idFilm WHERE s.'date' = $formatedDate";

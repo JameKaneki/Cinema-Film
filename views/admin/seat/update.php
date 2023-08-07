@@ -28,8 +28,18 @@
                 <input type="text" name="seat_key" id="" value="<?=$seat_key?>">
             </div>
             <div class="row mb">
-                ID ROOM<br>
-                <input type="text" name="idRoom" id="" value="<?=$idRoom?>">
+                ROOM<br>
+                <select name="idRoom" id="">
+                    <option value="<?=$idRoom?>"><?=$nameRoom?></option>
+                    <option value="">------</option>
+                <?php
+                    $listRoom=selectAll_room();
+                    foreach($listRoom as $list){
+                        extract($list);
+                        echo "<option value=".$idRoom.">$nameRoom</option>";
+                    }
+                 ?>
+                </select>
             </div>
             <div class="row mb20">
                 <input type="hidden" name="id_seat" value="<?=$id_seat?>">

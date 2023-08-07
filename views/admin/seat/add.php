@@ -23,8 +23,17 @@
                 <input type="text" name="seat_key" id="">
             </div>
             <div class="row mb">
-                ID ROOM<br>
-                <input type="text" name="idRoom" id="">
+                Room<br>
+                <select name="idRoom" id="">
+                    <option value="">------</option>
+                <?php
+                    $listRoom=selectAll_room();
+                    foreach($listRoom as $list){
+                        extract($list);
+                        echo "<option value=".$idRoom.">$nameRoom</option>";
+                    }
+                 ?>
+                </select>
             </div>
             <div class="row mb20">
                 <input type="submit" name="addnew" value="Thêm Mới">

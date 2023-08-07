@@ -195,7 +195,10 @@
                                 <i class="nav-arrow-down-head ti-comment"></i>
                                 Comment
                             </a></li>
-                        </li>
+                            <li><a href="index.php?act=bill">
+                                <i class="nav-arrow-down-head ti-comment"></i>
+                                Bill
+                            </a></li>
 
                     </ul>
                 </div>
