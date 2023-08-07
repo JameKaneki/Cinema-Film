@@ -1,5 +1,7 @@
-<div class='wrapper' style="margin-left: 20px;margin-top:50px">
-    <h1>Schedule Hours List</h1>
+<div class='wrapper'>
+<div class="row frmtitle mb-3" >
+        <h1 style="text-align: center;" class="title">Schedule Hours List</h1>
+    </div>
     <div class="select">
         <div style="background-color:lightgreen" class="btn btn-blue"><a href="index.php?act=schedule_hours-create">Add new Schedule hours</a></div>
         <div class='search-bar'>
@@ -62,7 +64,6 @@
         --red--color: rgb(223, 69, 45);
         --blue-color: rgb(65, 99, 232);
     }
-
     a,
     li {
         text-decoration: none;
@@ -71,13 +72,8 @@
 
     .wrapper {
         width: 70%;
-        margin-left: 400px;
+        margin-left: 100px;
         float: none !important;
-    }
-
-    h1 {
-        margin-top: 30px;
-        margin-left: 530px;
     }
 
     .select {
@@ -134,6 +130,7 @@
 
     table tr:nth-child(odd) {
         background-color: rgb(228, 234, 241);
+        color: black;
     }
 
     td.bigCol {

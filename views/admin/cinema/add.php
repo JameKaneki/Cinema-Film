@@ -11,7 +11,13 @@
                 <label for="">Name Cinema</label> <br>
                 <input class="form-control" type="text" name="nameCinema" value="">
                 <span style="color:red">
-                    
+                    <?php
+                    if(isset($_POST['addCinema'])&&($_POST['addCinema'])){
+                        if($_POST['nameCinema']==""){
+                            echo "Chưa nhập tên rạp chiếu";
+                          }
+                    }
+                    ?>
                 </span>
             </div>
 
@@ -19,7 +25,13 @@
                 <label for="">Address</label>
                 <input class="form-control" type="text" name="addressCinema" value="">
                 <span style="color:red">
-
+                <?php
+                if(isset($_POST['addCinema'])&&($_POST['addCinema'])){
+                    if($_POST['addressCinema']==""){
+                        echo "Chưa nhập địa chỉ rạp chiếu";
+                      }
+                }
+                ?>
                 </span>
             </div>
         </div>

@@ -10,15 +10,35 @@
                 <label for="">Seat Key</label> <br>
                 <input class="form-control" type="text" name="seat_key" value="">
                 <span style="color:red">
-                    
+                <?php
+                 if(isset($_POST['addnew'])&& $_POST['addnew']){
+                    if($_POST['seat_key']==""){
+                        echo "Không để chống ghế";
+                      }
+                 }
+                ?>
                 </span>
             </div>
-
-            <div class="w-50 form-group my-3">
-                <label for="">ID ROOM</label>
-                <input class="form-control" type="text" name="idRoom" value="">
+            <div class="w-50 form-group my-3" >
+            <label for="">Room</label> <br>
+                <select name="idRoom" id="" style="padding: 5px 30px;">
+                    <option value="">------</option>
+                <?php
+                    $listRoom=selectAll_room();
+                    foreach($listRoom as $list){
+                        extract($list);
+                        echo "<option value=".$idRoom.">$nameRoom</option>";
+                    }
+                 ?>
+                </select>
                 <span style="color:red">
-
+                <?php
+                 if(isset($_POST['addnew'])&& $_POST['addnew']){
+                    if($_POST['idRoom']==""){
+                        echo "Chưa chọn phòng chiếu";
+                      }
+                 }
+                ?>
                 </span>
             </div>
         </div>

@@ -182,6 +182,12 @@
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=bill" aria-expanded="false">
+                                        <i class="fa fa-columns" aria-hidden="true"></i>
+                                        <span class="hide-menu">Bill</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
                                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=user_exit" aria-expanded="false">
                                         <i class="fas fa-sign-out-alt"></i>
                                         <span style="color: red;" class="hide-menu">Log out</span>

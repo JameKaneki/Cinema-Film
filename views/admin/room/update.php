@@ -17,7 +17,6 @@
                 <label for="">Name Room</label> <br>
                 <input class="form-control" type="text" name="nameRoom" value="<?php if(isset($nameRoom)&&($nameRoom!="")) echo $nameRoom; ?>">
                 <span style="color:red">
-                    
                 </span>
             </div>
 
@@ -25,7 +24,6 @@
                 <label for="">Seat List</label>
                 <input class="form-control" type="text" name="seatList" value='<?php echo "$seatList" ?>' >
                 <span style="color:red">
-
                 </span>
             </div>
         </div>
@@ -44,7 +42,6 @@
                     ?>
                 </select>
                 <span style="color:red">
-                    
                 </span>
             </div>
         </div>
@@ -55,8 +52,3 @@
         </div>
     </form>
 </div>
-<?php
-        if (isset($tb) && $tb != "") {
-            echo $tb;
-        }
-        ?>

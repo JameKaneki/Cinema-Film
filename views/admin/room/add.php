@@ -10,15 +10,28 @@
                 <label for="">Name Room</label> <br>
                 <input class="form-control" type="text" name="nameRoom" value="">
                 <span style="color:red">
-                    
+                <?php 
+                if(isset($_POST['addRoom'])&&($_POST['addRoom'])){
+                if($_POST['nameRoom']==""){
+                    echo "Chưa có tên phòng chiếu";
+                  }
+                }
+                ?>
                 </span>
+                
             </div>
 
             <div class="w-50 form-group my-3">
                 <label for="">Seat List</label>
                 <input class="form-control" type="text" name="seatList" value="">
                 <span style="color:red">
-
+                <?php 
+                if(isset($_POST['addRoom'])&&($_POST['addRoom'])){
+                    if($_POST['seatList']==""){
+                        echo "Chưa có danh sách ghế";
+                      }
+                    }
+                ?>
                 </span>
             </div>
         </div>
@@ -26,7 +39,7 @@
             <div class="w-50 form-group my-3">
             <label for="">Tên Rạp Chiếu</label><br>
                 <select name="idCinema" id="">
-                    <option value="#" selected>Chọn</option>
+                    <option value="" selected>Chọn</option>
                     <?php
                     $listCinema = selectAll_cinema();
                     foreach ($listCinema as $list) {
@@ -37,7 +50,13 @@
                     ?>
                 </select>
                 <span style="color:red">
-                    
+                <?php 
+                if(isset($_POST['addRoom'])&&($_POST['addRoom'])){
+                    if($_POST['idCinema']==""){
+                        echo "Chưa có tên rạp chiếu";
+                      }
+                    }
+                ?>
                 </span>
             </div>
         </div>

@@ -14,8 +14,10 @@ if (isset($_POST['search'])) {
 }
 
 ?>
-<div class="wrapper" style="margin-left:0px;margin-top:50px">
-    <h1>Schedule List</h1>
+<div class="wrapper">
+<div class="row frmtitle mb-3" >
+        <h1 style="text-align: center;" class="title">Schedule List</h1>
+    </div>
     <div class="select">
         <div class="btn btn-blue"><a href="index.php?act=schedule-create" style="color:#ffffff">Add new Schedule</a></div>
         <div class='search-bar'>
@@ -100,10 +102,6 @@ if (isset($_POST['search'])) {
         float: none !important;
     }
 
-    h1 {
-        margin-top: 30px;
-        margin-left: 600px;
-    }
 
     .select {
         margin-left: 350px;
@@ -155,6 +153,7 @@ if (isset($_POST['search'])) {
 
     table tr:nth-child(odd) {
         background-color: rgb(228, 234, 241);
+        color: black;
     }
 
     td.bigCol {

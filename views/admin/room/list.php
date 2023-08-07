@@ -1,7 +1,10 @@
- <div class="wrapper" style="margin-left:20px;">
-        <h1 style="text-align: center;">Room list</h1>
+ <div class="wrapper">
+ <div class="row frmtitle mb-3" >
+        <h1 style="text-align: center;" class="title">Room List</h1>
+    </div>
     <div style="display: flex;">
     <table style="min-width: 1500px;">
+    <thead>
         <tr>
             <th>Mã phòng chiếu</th>
             <th>Tên Phòng Chiếu</th>
@@ -9,6 +12,8 @@
             <th style="">Danh Sách Ghế</th> 
             <th></th>
         </tr>
+        </thead>
+        <tbody>
         <?php
             $listRoom = selectAll_room();
             foreach ( $listRoom as $list){  
@@ -31,7 +36,8 @@
         ?>
         <tr>
             <td><a href="index.php?act=room-add"><input type="button" value="ADD"></a></td>
-        </tr>     
+        </tr>    
+        </tbody> 
     </table>
 </div>
 
@@ -55,95 +61,115 @@
     
 </div>
 <style>
-   :root{
-        --red--color : rgb(223,69,45);
-        --blue-color : rgb(65,99,232);
+    :root {
+        --red--color: rgb(223, 69, 45);
+        --blue-color: rgb(65, 99, 232);
     }
-    a,li{
-    text-decoration: none;
-    list-style-type: none;
+
+    a,
+    li {
+        text-decoration: none;
+        list-style-type: none;
     }
-    .wd{
+
+    .wd {
         width: 120px;
     }
-    .wrapper{
+    .row{
+        margin-left:0px ;
+    }
+
+    .wrapper {
         width: 75%;
         margin: 0px auto;
-        float: none !important;
+        float: right;
+        margin-right: 150px;
     }
-    h1{
-        margin-top: 50px;
-    }
-    table{
+
+
+    table {
         margin: 10px auto;
         padding: 12px;
         box-shadow: 1px 1px 1px 1px #999;
         border-radius: 6px;
         max-width: 100%;
         /* width: 90%; */
-        
+
     }
-    td,th{
+
+    td,
+    th {
         padding: 8px 4px;
         text-align: start;
         /* min-width: 120px; */
         max-width: 300px;
         overflow-x: hidden;
-        
+
     }
-    th{
+
+    th {
+        background-color: lightgreen;
         color: white;
         text-shadow: 1px 1px 1px gray;
         font-size: 18px;
     }
 
-    td{
+    td {
         font-size: 16px;
         font-weight: bold;
     }
-    /* tr{
-        border: none;
 
-    } */
-    table tr:nth-child(odd){
-        
+    table tr:nth-child(odd) {
+        background-color: rgb(228, 234, 241);
+        color: black;
     }
-    td.bigCol{
+
+    td.bigCol {
         width: 500px;
     }
-    .showTime{
+
+    .showTime {
         display: flex;
-        justify-content: start; 
+        justify-content: start;
         flex-wrap: wrap;
     }
-    .showTime-box{
+
+    .showTime-box {
         margin: 2px 4px;
-        border: 2px solid ;
+        border: 2px solid;
         padding: 4px 8px;
         border-radius: 3px;
         background-color: #666;
     }
-    .action-box{
+
+    .action-box {
         display: flex;
         height: 100%;
     }
-    .btn{
+
+    .btn {
         padding: 6px 16px;
         margin: 10px 4px;
         border-radius: 3px;
         cursor: pointer;
         border: none;
     }
+
     .btn a {
-        color:white;
+        color: white;
     }
-    .btn-red{
+
+    .btn-red {
         color: white;
         background-color: var(--red--color);
     }
-    .btn-blue{
+
+    .btn-blue {
         color: white;
         background-color: var(--blue-color);
     }
-
-</style>
+    table tbody tr:nth-child(odd) {
+        background-color: rgb(228, 234, 241);
+        color: black;
+    }
+ </style>

@@ -1,7 +1,10 @@
-<div class="wrapper" style="margin-left: 20px;">
-    <h1>Cinema List</h1>
+<div class="wrapper">
+    <div class="row frmtitle mb-3" >
+        <h1 style="text-align: center;" class="title">Cinema List</h1>
+    </div>
     <div style="display: flex;">
         <table style="min-width: 1400px;">
+        <thead>
             <tr>
 
                 <th>Mã Rạp</th>
@@ -9,6 +12,8 @@
                 <th>Địa chỉ</th>
                 <th></th>
             </tr>
+            </thead>
+            <tbody>
             <?php
             $listCinema = selectAll_cinema();
             foreach ($listCinema as $list) {
@@ -30,7 +35,7 @@
             <tr>
                 <td><a href="index.php?act=cinema-add"><input type="button" value="ADD"></a></td>   
             </tr>
-
+            </tbody>
         </table>
     </div>
     <script>
@@ -74,10 +79,6 @@
         margin-right: 50px;
     }
 
-    h1 {
-        margin-left: 700px;
-        margin-top: 50px;
-    }
 
     table {
         margin: 10px auto;
@@ -111,12 +112,9 @@
         font-weight: bold;
     }
 
-    /* tr{
-        border: none;
-
-    } */
     table tr:nth-child(odd) {
         background-color: rgb(228, 234, 241);
+        color: black;
     }
 
     td.bigCol {
