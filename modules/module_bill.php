@@ -16,4 +16,8 @@
         $sql = "SELECT * FROM `bill` WHERE id_bill = $id_bill";
         return pdo_query_one($sql);
     }
+    function add_link_bill($id_bill,$link){
+        $sql = "UPDATE `bill` SET `link`='$link' WHERE id_bill = '$id_bill'";
+        return pdo_execute($sql);
+    }
 ?>

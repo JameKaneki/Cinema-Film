@@ -11,8 +11,8 @@
   // mong ae hợp tác , đúng giờ, mọi thắc mắc hay cần giúp đỡ có thể hỏi lại mình qua zalo trực mọi lúc có thể và rep sớm nhất cso thể
   session_start();
   ob_start();
+  include "./header.php";
   include "../../modules/module.php";
-  include "header.php";
   include "../../modules/cinema.php";
   include "../../modules/ticket.php";
   include "../../modules/comment.php";
@@ -185,18 +185,19 @@
               break;
 
             case 'room-update':
-              if(isset($_POST['updateRoom'])&&$_POST['updateRoom']){
-                $idRoom = $_POST['idRoom'];
-                $nameRoom = $_POST['nameRoom'];
-                $idCinema = $_POST['idCinema'];
-                $seatList = $_POST['seatList'];
-                update_room($idRoom,$nameRoom,$idCinema,$seatList);
+              {
+                if(isset($_POST['updateRoom'])&&$_POST['updateRoom']){
+                  $idRoom = $_POST['idRoom'];
+                  $nameRoom = $_POST['nameRoom'];
+                  $idCinema = $_POST['idCinema'];
+                  $seatList = $_POST['seatList'];
+                  update_room($idRoom,$nameRoom,$idCinema,$seatList);
+                }
+                selectAll_room();
+                include "room/list.php";
               }
-              selectAll_room();
-              include "room/list.php";
               break;
-
-//controller film
+       //controller film
         case 'film_add':{
             // kiem tra nguoi dung click vao nut add
           if(isset($_POST['addnew'])&& $_POST['addnew']){
@@ -261,7 +262,7 @@
         include "./product/list.php";
         break;
         }
-// controller user
+        // controller user
           case 'user':{
             $list_user=loadall_acount();
             include "./user/list.php";
@@ -287,9 +288,9 @@
 
           
 
-// controller user
+      // controller user
 
-// controller seat
+      // controller seat
 
           case 'seat':{
             $listseat=loadall_seat();
@@ -334,14 +335,14 @@
           include "./seat/list.php";
           break;
           }
-// controller seat
+          // controller seat
 
-// controller room
+          // controller room
 
-// controller room
+          // controller room
 
 
-// controller schedules
+          // controller schedules
         case 'schedules' :
           {
             include "./schedule/scheduleList.php";
@@ -408,7 +409,7 @@
 
 
           default :
-          echo "unKnow router";
+            include "./home.php";
           }
   }
   include 'user/login.php';

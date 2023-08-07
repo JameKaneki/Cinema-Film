@@ -29,10 +29,10 @@
         return pdo_query_one($sql);
     }
     function getSeatListByIdRoom($idRoom){
-        $sql = "SELECT * FROM `seats` WHERE idRoom = 1";
+        $sql = "SELECT * FROM `seats` WHERE idRoom = $idRoom";
         return pdo_query($sql);
     }
-    function groupScheduleHoursById($idRoom){
+    function groupSeatById($idRoom){
         $seatList = getSeatListByIdRoom($idRoom);
         $groupedSeatList = array_reduce($seatList,function (array $carry,array $item){
             $seatKey = $item['seat_key'];
@@ -55,7 +55,7 @@
         INNER JOIN rooms as r ON r.idRoom = seats.idRoom
         INNER JOIN cinemas as c ON r.idCinema = c.idCinema
         INNER JOIN bill as b ON t.id_bill = b.id_bill
-        WHERE sh.idScheduleHour = $idScheduleHour  AND b.status = '1'";
+        WHERE sh.idScheduleHour = $idScheduleHour";
         // sử lí thêm đoạn vé đã đã đặt chưa bằng cách innerjoin vào bill 
         $result = pdo_query($sql);
         return array_map(function($seat){

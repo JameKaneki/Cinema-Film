@@ -77,8 +77,8 @@
                     </li>
                     <li class="header-button pr-0">
                         <?php
-                        if (isset($_SESSION['userName'])) {
-                            extract($_SESSION['userName']);
+                        if (!empty($_SESSION['userName'])) {
+                            $userInfo = $_SESSION['userName'];
                         ?>
                             <!-- <div>
                             
@@ -90,7 +90,7 @@
                             <a href="index.php?act=exit">Thoát</a>
                         </li> -->
                     <li>
-                        <a href="#0"><?=$userName?></a>
+                        <a href="#0"><?= $userInfo['userName']?></a>
                         <ul class="submenu" style="z-index:10;">
                             <li>
                                 <a href="index.php?act=my-ticket">My ticket</a>
