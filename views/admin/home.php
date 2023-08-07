@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 <style>
       .home {
             float: right;
@@ -19,3 +21,4 @@
       include "./user/login.php";
       ?>
 </div>
+>>>>>>> 81745a745022be42600b95c8cb54c98890fe8710

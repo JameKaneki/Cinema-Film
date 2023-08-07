@@ -5,11 +5,11 @@
      * @throws PDOException lỗi thêm mới
      */
 
-    function insert_film($nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate,$likeAmount)
+    function insert_film($nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate)
 {
     $sql = "INSERT INTO `films`(`nameFilm`, `director`, `performer`, `premiere`, `duration`, `language`, `description`,
      `category`, `trailer`, `poster`, `rate`, `likeAmount`) VALUES ('$nameFilm','$director','$performer','$premiere','$duration','$language',
-     '$description','$category','$trailer','$poster','$rate','$likeAmount')";
+     '$description','$category','$trailer','$poster','$rate')";
     pdo_execute($sql);
 }
 
@@ -62,10 +62,10 @@ function getDateTimeNow(){
     return $now->format('Y-m-d');
 }
 
-function   update_film($idFilm,$nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate,$likeAmount){
+function   update_film($idFilm,$nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate){
     $sql = "UPDATE `films` SET `nameFilm`='".$nameFilm."',`director`='".$director."',`performer`='".$performer."',`premiere`='".$premiere."',
     `duration`='".$duration."',`language`='".$language."',`description`='".$description."',`category`='".$category."',`trailer`='".$trailer."',
-    `poster`='".$poster."',`rate`='".$rate."',`likeAmount`='".$likeAmount."' WHERE `idFilm`=". $idFilm; 
+    `poster`='".$poster."',`rate`='".$rate."' WHERE `idFilm`=". $idFilm; 
     pdo_execute($sql);
 }
 function loadall_film(){
