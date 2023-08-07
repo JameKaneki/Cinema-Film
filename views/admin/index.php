@@ -210,15 +210,8 @@
             $category = $_POST['category'];
             $trailer = $_POST['trailer'];
             $poster = $_POST['poster'];
-            // $target_dir = "./upload/";
-            // $target_file = $target_dir . basename($_FILES['poster']['name']);
-          //   if (move_uploaded_file($_FILES["poster"]["tmp_name"], $target_file)) {
-          //     // echo"The file". htmlspecialchars(basename($_FILES['img_sp']['name'])) . "has been upload ";
-          // } else {
-          // }
             $rate = $_POST['rate'];
-            $likeAmount = $_POST['likeAmount'];
-          insert_film($nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate,$likeAmount);
+          insert_film($nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate);
           $result = "Create successfully";
         }
       }
@@ -260,15 +253,8 @@
             $category = $_POST['category'];
             $trailer = $_POST['trailer'];
             $poster = $_POST['poster'];
-          //   $target_dir = "./upload/";
-          //   $target_file = $target_dir . basename($_FILES['poster']['name']);
-          //   if (move_uploaded_file($_FILES["poster"]["tmp_name"], $target_file)) {
-          //     // echo"The file". htmlspecialchars(basename($_FILES['img_sp']['name'])) . "has been upload ";
-          // } else {
-          // }
             $rate = $_POST['rate'];
-            $likeAmount = $_POST['likeAmount'];
-          update_film($idFilm,$nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate,$likeAmount);
+          update_film($idFilm,$nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate);
           $result = "Update successfully";
         }
         $listfilm = loadall_film("", 0);

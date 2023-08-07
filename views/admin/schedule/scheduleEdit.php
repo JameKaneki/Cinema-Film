@@ -32,14 +32,14 @@
      }
 ?>
 
-<div>
+<div style="margin-left:500px;margin-top:50px">
     <h1>Edit schedule</h1>
    <div class="form-content">
     <form action="index.php?act=schedule-edit" method="POST">
             <div class="input-wrap">
                 <label>Film</label>
                 <select name="idfilm" value=<?php $scheduleInfo['idFilm']?> required>
-                            <option>đợi film module để đổ selected film</option>
+                            <option>----------</option>
                             <option value="1">Tà chú cấm</option>
                             <option value="2">Ma sơ trục quỷ</option>
                             <option value="3">Doraemon:Vùng đắt lý tưởng</option>
@@ -101,6 +101,10 @@
     .btn-blue{
         color: white;
         background-color: var(--blue-color);
+    }
+    .btn-blue:hover{
+        color: white;
+        background-color: lightgreen;
     }
     .form-content{
     width: 600px;

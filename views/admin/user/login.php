@@ -28,6 +28,8 @@ if (isset($_POST['signin']) && ($_POST['signin'] > 0)) {
 ?>
 <style>
     .box {
+        margin-top: 200px;
+        margin-left: 800px;
         width: 450px;
         border: 1px solid gray;
         position: relative;

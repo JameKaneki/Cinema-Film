@@ -1,41 +1,36 @@
-<style>
-    .row{
-        margin: 30px;
-    }
 
-    label{
-        line-height: 40px; 
-    }
-
-    select, input{
-        padding: 10px 12px;
-    }
-</style>
-
-<div class="row" style="    text-align: center;">
-<div class="row fromtitle">
-            <h1 style="margin-left: 0px;">Thêm rạp phim</h1>
+<div class="container mt-2">
+    <div class="row frmtitle">
+        <div class="">
+            <h1 class="title">ADD NEW CINEMA</h1>
         </div>
-        <div class="row fromcontent">
-                <form action="index.php?act=cinema-add" method="post">
-                <div class="row mb10">
-                    <label for="">Tên rạp chiếu</label> <br>
-                    <input type="text" name="nameCinema">
-                </div>
-                <div class="row mb10">
-                    <label for="">Địa chỉ </label><br>
-                    <input type="text" name="addressCinema">
-                </div>
-                <div class="row mb10">
-                    <input type="submit" name="addCinema" value="Thêm mới">
-                    <input type="reset" value="Nhập lại">
-                    <a href="index.php?act=cinema"><input type="button" value="Danh Sách"></a>
-                </div>
-                </form>
-                <?php
-                    if(isset($tb)&&$tb!=""){
-                        echo $tb;
-                    }
-                 ?>
+    </div>
+    <form action="index.php?act=cinema-add" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="w-50 form-group my-3">
+                <label for="">Name Cinema</label> <br>
+                <input class="form-control" type="text" name="nameCinema" value="">
+                <span style="color:red">
+                    
+                </span>
             </div>
+
+            <div class="w-50 form-group my-3">
+                <label for="">Address</label>
+                <input class="form-control" type="text" name="addressCinema" value="">
+                <span style="color:red">
+
+                </span>
+            </div>
+        </div>
+        <div class="col mb10 mt-3">
+            <input class="btn btn-success text-white" type="submit" name="addCinema" value="ADD">
+            <a href="index.php?act=cinema"><input class="btn btn-primary text-white" type="button" value="LIST"></a>
+        </div>
+    </form>
 </div>
+<?php
+        if (isset($tb) && $tb != "") {
+            echo $tb;
+        }
+        ?>

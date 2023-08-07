@@ -1,24 +1,23 @@
 <?php
-    $showTimeList = [];
-    $schedules = [];
-    if(isset($_POST['search']))
-    {
-        $date = $_POST['date'];
-        $id = $_POST['idFilm'];
-        $showTimeList = groupScheduleHours($date,$id);
-        $schedules = getAllSchedule($date,$id);  
-        // print_r($schedules);
-        // print_r($showTimeList);
-    }else{
-        $showTimeList = groupScheduleHours('','');
-        $schedules = getAllSchedule('','');
-    }
+$showTimeList = [];
+$schedules = [];
+if (isset($_POST['search'])) {
+    $date = $_POST['date'];
+    $id = $_POST['idFilm'];
+    $showTimeList = groupScheduleHours($date, $id);
+    $schedules = getAllSchedule($date, $id);
+    // print_r($schedules);
+    // print_r($showTimeList);
+} else {
+    $showTimeList = groupScheduleHours('', '');
+    $schedules = getAllSchedule('', '');
+}
 
 ?>
-<div class="wrapper"> 
+<div class="wrapper" style="margin-left:0px;margin-top:50px">
     <h1>Schedule List</h1>
-        <div class="select">
-        <div class="btn btn-blue" style="text-align: center;"><a href="index.php?act=schedule-create">Add new Schedule</a></div>
+    <div class="select">
+        <div class="btn btn-blue"><a href="index.php?act=schedule-create" style="color:#ffffff">Add new Schedule</a></div>
         <div class='search-bar'>
             <form action='index.php?act=schedules' method="POST">
                 <select name="idFilm" placeholder="Film">
@@ -38,80 +37,92 @@
         <thead>
             <tr>
                 <th>Film</th>
-                <th>date</th>
-                <th>showTime</th>
+                <th>Date</th>
+                <th>Show Time</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <?php 
-                
-                foreach($schedules as $schedule){
-                    // $date = date_format($schedule['date'],"Y-m-d");
-                    echo "
+            <?php
+
+            foreach ($schedules as $schedule) {
+                // $date = date_format($schedule['date'],"Y-m-d");
+                echo "
                     <tr>
                         <td>{$schedule['nameFilm']}</td>
                         <td>{$schedule['date']}</td>
                         <td>
                             <div class='showTime bigCol'>
                     ";
-                    if(isset($showTimeList[$schedule["idFilm"]])){    
-                        foreach($showTimeList[$schedule["idFilm"]] as $item){
-                            $time = substr($item,0,5);
-                            echo " <div class='showTime-box'>$time</div>";
-                        }
-                    }else{
-                        echo "<div>No schedule hour info</div>";
+                if (isset($showTimeList[$schedule["idFilm"]])) {
+                    foreach ($showTimeList[$schedule["idFilm"]] as $item) {
+                        $time = substr($item, 0, 5);
+                        echo " <div class='showTime-box'>$time</div>";
                     }
-                    echo " </div>
+                } else {
+                    echo "<div>No schedule hour info</div>";
+                }
+                echo " </div>
                     </td>";
-                    echo "
+                echo "
                         <td >
-                            <div class='btn btn-red'><a href='index.php?act=schedule-delete&id={$schedule['idSchedule']}' >Remove</a></div>
-                            <div class='btn btn-blue'><a href='index.php?act=schedule-edit&id={$schedule['idSchedule']}' >Edit</a></div>
+                            <a href='index.php?act=schedule-edit&id={$schedule['idSchedule']}' >Update</a>
+                            <a href='index.php?act=schedule-delete&id={$schedule['idSchedule']}' >DELETE</a>       
                         </td>
                     </tr>
                     ";
-                }
+            }
             ?>
         </tbody>
     </table>
-</div>  
+</div>
 
 <style>
-    :root{
-        --red--color : rgb(223,69,45);
-        --blue-color : rgb(65,99,232);
+    tr td a {
+        background-color: #F54748;
+        color: #ffffff;
     }
-    a,li{
-    text-decoration: none;
-    list-style-type: none;
+
+    tr td a:nth-child(1) {
+        background-color: blue;
     }
-    .wrapper{
+
+    a,
+    li {
+        padding: 4px 8px;
+        text-decoration: none;
+        list-style-type: none;
+    }
+
+    .wrapper {
         width: 70%;
-        /* margin: 0px auto;     */
-        margin-left: 400px;
+        margin: 0px auto;
         float: none !important;
     }
-    h1{
+
+    h1 {
         margin-top: 30px;
         margin-left: 600px;
     }
-    .select{
+
+    .select {
         margin-left: 350px;
         margin-top: 10px;
         display: flex;
         font-size: 16px;
     }
-    select{
+
+    select {
         padding: 3px 0px 7px 0px;
         font-size: 16px;
     }
-    .select input{
+
+    .select input {
         font-size: 16px;
         padding-bottom: 5px;
     }
-    table{
+
+    table {
         margin: 10px auto;
         padding: 12px;
         box-shadow: 1px 1px 1px 1px #999;
@@ -120,63 +131,73 @@
         overflow-y: scroll;
         /* width: 90%; */
     }
-    td,th{
+
+    td,
+    th {
         padding: 8px 4px;
         text-align: start;
         min-width: 120px;
         max-width: 300px;
     }
-    th{
-        background-color: rgb(158, 105, 105);
+
+    th {
+        background-color: lightgreen;
         color: white;
         text-shadow: 1px 1px 1px gray;
         font-size: 18px;
 
     }
-    td{
+
+    td {
         font-size: 16px;
         font-weight: bold;
     }
-    table tr:nth-child(odd){
+
+    table tr:nth-child(odd) {
         background-color: rgb(228, 234, 241);
     }
-    td.bigCol{
+
+    td.bigCol {
         width: 500px;
     }
-    .showTime{
+
+    .showTime {
         display: flex;
-        justify-content: start; 
+        justify-content: start;
         flex-wrap: wrap;
     }
-    .showTime-box{
+
+    .showTime-box {
         margin: 2px 4px;
-        border: 2px solid ;
+        border: 2px solid;
         padding: 4px 8px;
         border-radius: 3px;
         background-color: #666;
         color: white;
     }
-    .action-box{
+
+    .action-box {
         display: flex;
     }
-    .btn{
-        padding: 6px 16px;
+
+    .btn {
+        padding: 6px;
         margin: 2px 4px;
         border-radius: 3px;
         cursor: pointer;
         border: none;
     }
+
     .btn a {
-        color:white;
+        color: white;
     }
-    .btn-red{
+
+    .btn-red {
         color: white;
         background-color: var(--red--color);
     }
-    .btn-blue{
-        color: white;
-        background-color: var(--blue-color);
+
+    .btn-blue {
+        background-color: lightgreen;
     }
-
 </style>
-

@@ -124,7 +124,7 @@ function router_login()
 {
     if (empty($_SESSION['userName'])){
         $alert = "Please login first";
-        header('Location: index.php?act=sign-in&alert='.$alert);
+        header('Location:index.php?act=sign-in&alert='.$alert);
     }
 }
 

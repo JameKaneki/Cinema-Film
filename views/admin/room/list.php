@@ -1,5 +1,5 @@
- <div class="wrapper">
-        <h1>Room list</h1>
+ <div class="wrapper" style="margin-left:20px;">
+        <h1 style="text-align: center;">Room list</h1>
     <div style="display: flex;">
     <table style="min-width: 1500px;">
         <tr>
@@ -22,15 +22,15 @@
                 <td>'.$nameCinema.'</td>
                 <td>'.$seatList.'</td>
                 <td class="action-box">
-                <div class="btn btn-red"><a href="'.$deleteRoom.'" >Remove</a></div>
-                <div class="btn btn-blue"><a href="'.$updateRoom.'" >Edit</a></div>
+                <a href="' . $updateRoom . '"><input style="background-color:blue" type="button" value="Update"></a> <a href="' . $deleteRoom . '">
+                <input type="button" onclick="return confirm(`Do you want delete?`);" value="Delete"></a></td>   
                 </td>
             </tr>';
              
             }
         ?>
         <tr>
-            <td><a href="index.php?act=room-add"><input type="button" value="Nhập thêm"></a></td>
+            <td><a href="index.php?act=room-add"><input type="button" value="ADD"></a></td>
         </tr>     
     </table>
 </div>
@@ -67,13 +67,11 @@
         width: 120px;
     }
     .wrapper{
-        width: 85%;
+        width: 75%;
         margin: 0px auto;
-        float: right;
-        margin-right: 50px;
+        float: none !important;
     }
     h1{
-        margin-left: 700px;
         margin-top: 50px;
     }
     table{
@@ -94,7 +92,6 @@
         
     }
     th{
-        background-color: rgb(158, 105, 105);
         color: white;
         text-shadow: 1px 1px 1px gray;
         font-size: 18px;
@@ -109,7 +106,7 @@
 
     } */
     table tr:nth-child(odd){
-        background-color: rgb(228, 234, 241);
+        
     }
     td.bigCol{
         width: 500px;

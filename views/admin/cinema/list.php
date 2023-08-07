@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" style="margin-left: 20px;">
     <h1>Cinema List</h1>
     <div style="display: flex;">
         <table style="min-width: 1400px;">
@@ -21,14 +21,14 @@
                     <td>' . $nameCinema . '</td>
                     <td>' . $addressCinema . '</td>
                     <td>
-                    <div class="btn btn-red"><a href="' . $deleteCinema . '">Remove</a></div>
-                    <div class="btn btn-blue"><a href="' . $updateCinema . '">Edit</a></div>
+                    <div class="btn btn-blue"><a href="' . $updateCinema . '">Update</a></div> 
+                    <div class="btn btn-red"><a href="' . $deleteCinema . '">DELETE</a></div>
                     </td>
                 </tr>';
             }
             ?>
             <tr>
-                <td><a href="index.php?act=cinema-add"><input type="button" value="Nhập thêm"></a></td>
+                <td><a href="index.php?act=cinema-add"><input type="button" value="ADD"></a></td>   
             </tr>
 
         </table>
@@ -68,7 +68,7 @@
     }
 
     .wrapper {
-        width: 85%;
+        width: 75%;
         margin: 0px auto;
         float: right;
         margin-right: 50px;
@@ -100,7 +100,7 @@
     }
 
     th {
-        background-color: rgb(158, 105, 105);
+        background-color: lightgreen;
         color: white;
         text-shadow: 1px 1px 1px gray;
         font-size: 18px;
