@@ -23,6 +23,8 @@
   include "../../modules/moduleSchedule.php";
   include "../../modules/moduleScheduleHours.php";
   include "../../modules/moduleRoom.php";
+  include "../../modules/module_bill.php";
+
   //controller
   if(isset($_GET['act']) && isset($_SESSION['email'])){
     $act = $_GET['act'];
@@ -33,15 +35,18 @@
 
           // Cinema
           case 'cinema-add':
+            {
+            include "cinema/add.php";
             if(isset($_POST['addCinema'])&&($_POST['addCinema'])){
+              if($_POST['nameCinema']!=""&&$_POST['addressCinema']!=""){
               $nameCinema=$_POST['nameCinema'];
               $addressCinema=$_POST['addressCinema'];
               insert_cinema($nameCinema,$addressCinema);
-              $tb="Thành công";
-            }          
-            include "cinema/add.php";         
+              header("Location:index.php?act=cinema");
+            }
+          }    
             break;
-
+        }
           case 'cinema':
             selectAll_cinema();
             include "cinema/list.php";
@@ -55,18 +60,21 @@
             include "cinema/update.php";
             break;
 
-          case 'cinema-update': 
+          case 'cinema-update': {
             if(isset($_POST['update'])&&($_POST['update'])){
+              if($_POST['nameCinema']!=""&&$_POST['addressCinema']!=""){
               $idCinema=$_POST['idCinema'];
               $nameCinema=$_POST['nameCinema'];
               $addressCinema=$_POST['addressCinema'];
               update_cinema($idCinema,$nameCinema,$addressCinema);
-              $tb="Thành công";
-            } 
-            selectAll_cinema();          
-            include "cinema/list.php";
+              header("Location:index.php?act=cinema");
+            }
+            else{
+              header("Location:index.php?act=cinema-edit&idCinema=".$_POST['idCinema']);
+            }
+          }
             break;
-
+        }
           case 'cinema-delete':
           if(isset($_GET['idCinema'])&&(($_GET['idCinema']>0))){
             $idCinema = $_GET['idCinema'];
@@ -79,41 +87,12 @@
 
             // Ticket
 
-            // case 'ticket-add':
-            //     if(isset($_POST['addTicket'])&&($_POST['addTicket'])){
-            //       $price=$_POST['price'];
-            //       $idUser=$_POST['idUser'];
-            //       $idScheduleHour=$_POST['idScheduleHour'];
-            //       $seat=$_POST['seat'];
-            //       insert_ticket($price,$idUser,$idScheduleHour,$seat);
-            //     }
-            //     include "ticket/add.php";
-            //     break;
             
             case 'ticket':
                   selectAll_ticket();
                   include "ticket/list.php";
                   break;
             
-            // case 'ticket-edit':
-            //   if(isset($_GET['idTicket'])&&$_GET['idTicket']){
-            //     $listOne = selectOne_ticket($_GET['idTicket']);
-            //     $idCinema = $_GET['idTicket'];
-            //     include "ticket/update.php";
-            //     break;
-            //   }
-            // case 'ticket-update':        
-            //       if(isset($_POST['updateTicket'])&&($_POST['updateTicket'])){
-            //         $idTicket= $_POST['idTicket'];
-            //         $price=$_POST['price'];
-            //         $idScheduleHour=$_POST['idScheduleHour'];
-            //         $idUser=$_POST['idUser'];
-            //         $seat=$_POST['seat'];
-            //         update_ticket($idTicket,$price,$seat,$idUser,$idScheduleHour);
-            //       }
-            //       selectAll_ticket();
-            //       include "ticket/list.php";
-            //       break;
 
             case 'ticket-delete':
               if(isset($_GET['idTicket'])&&($_GET['idTicket'])){
@@ -160,13 +139,16 @@
               break;
 
             case 'room-add':
+              include "room/add.php";
               if(isset($_POST['addRoom'])&&($_POST['addRoom'])){
+                if($_POST['nameRoom']!=""&&$_POST['idCinema']!=""&&$_POST['seatList']!=""){
                 $nameRoom = $_POST['nameRoom'];
                 $idCinema = $_POST['idCinema'];
                 $seatList = $_POST['seatList'];
                 insert_room($nameRoom,$idCinema,$seatList);
+                header("Location:index.php?act=room");
+                }
               }
-              include "room/add.php";
               break;    
 
             case 'room-delete':
@@ -187,44 +169,42 @@
             case 'room-update':
               {
                 if(isset($_POST['updateRoom'])&&$_POST['updateRoom']){
-                  $idRoom = $_POST['idRoom'];
-                  $nameRoom = $_POST['nameRoom'];
-                  $idCinema = $_POST['idCinema'];
-                  $seatList = $_POST['seatList'];
-                  update_room($idRoom,$nameRoom,$idCinema,$seatList);
-                }
-                selectAll_room();
-                include "room/list.php";
+                  if($_POST['nameRoom']!=""&&$_POST['idCinema']!=""&&$_POST['seatList']!=""){
+                    $idRoom = $_POST['idRoom'];
+                    $nameRoom = $_POST['nameRoom'];
+                    $idCinema = $_POST['idCinema'];
+                    $seatList = $_POST['seatList'];
+                    update_room($idRoom,$nameRoom,$idCinema,$seatList);
+                    header("Location:index.php?act=room");
+                    }
+                    else{
+                      header("Location:index.php?act=room-edit&idRoom=".$_POST['idRoom']);
+                    }
               }
+            }
               break;
        //controller film
         case 'film_add':{
-            // kiem tra nguoi dung click vao nut add
+          include "./product/add.php";
           if(isset($_POST['addnew'])&& $_POST['addnew']){
-            $nameFilm = $_POST['nameFilm'];
-            $director = $_POST['director'];
-            $performer = $_POST['performer'];
-            $premiere = $_POST['premiere'];
-            $duration = $_POST['duration'];
-            $language = $_POST['language'];
-            $description = $_POST['description'];
-            $category = $_POST['category'];
-            $trailer = $_POST['trailer'];
-            $poster = $_POST['poster'];
-            // $target_dir = "./upload/";
-            // $target_file = $target_dir . basename($_FILES['poster']['name']);
-          //   if (move_uploaded_file($_FILES["poster"]["tmp_name"], $target_file)) {
-          //     // echo"The file". htmlspecialchars(basename($_FILES['img_sp']['name'])) . "has been upload ";
-          // } else {
-          // }
-            $rate = $_POST['rate'];
-            $likeAmount = $_POST['likeAmount'];
-          insert_film($nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate,$likeAmount);
-          $result = "Create successfully";
+            if($_POST['premiere']>getDateTimeNow()&&$_POST['duration']>=60&&$_POST['nameFilm']!=""&&$_POST['category']!=""){
+              $nameFilm = $_POST['nameFilm'];
+              $director = $_POST['director'];
+              $performer = $_POST['performer'];
+              $premiere = $_POST['premiere'];
+              $duration = $_POST['duration'];
+              $language = $_POST['language'];
+              $description = $_POST['description'];
+              $category = $_POST['category'];
+              $trailer = $_POST['trailer'];
+              $poster = $_POST['poster'];
+              $rate = $_POST['rate'];
+              $likeAmount = 0;
+              insert_film($nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate,$likeAmount);
+              header("Location:index.php?act=film");
+            }
         }
       }
-        $listfilm = loadall_film();
-        include "./product/add.php";
         break;
         // List film
         case 'film':{
@@ -250,32 +230,29 @@
         }
         case 'film_update':{
           if(isset($_POST['capnhat'])&& $_POST['capnhat']){
-            $idFilm = $_POST['idFilm'];
-            $nameFilm = $_POST['nameFilm'];
-            $director = $_POST['director'];
-            $performer = $_POST['performer'];
-            $premiere = $_POST['premiere'];
-            $duration = $_POST['duration'];
-            $language = $_POST['language'];
-            $description = $_POST['description'];
-            $category = $_POST['category'];
-            $trailer = $_POST['trailer'];
-            $poster = $_POST['poster'];
-          //   $target_dir = "./upload/";
-          //   $target_file = $target_dir . basename($_FILES['poster']['name']);
-          //   if (move_uploaded_file($_FILES["poster"]["tmp_name"], $target_file)) {
-          //     // echo"The file". htmlspecialchars(basename($_FILES['img_sp']['name'])) . "has been upload ";
-          // } else {
-          // }
-            $rate = $_POST['rate'];
-            $likeAmount = $_POST['likeAmount'];
-          update_film($idFilm,$nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate,$likeAmount);
-          $result = "Update successfully";
-        }
-        $listfilm = loadall_film("", 0);
-        include "./product/list.php";
+            if($_POST['premiere']>getDateTimeNow()&&$_POST['duration']>=60&&$_POST['nameFilm']!=""&&$_POST['category']!=""){
+              $idFilm = $_POST['idFilm'];
+              $nameFilm = $_POST['nameFilm'];
+              $director = $_POST['director'];
+              $performer = $_POST['performer'];
+              $premiere = $_POST['premiere'];
+              $duration = $_POST['duration'];
+              $language = $_POST['language'];
+              $description = $_POST['description'];
+              $category = $_POST['category'];
+              $trailer = $_POST['trailer'];
+              $poster = $_POST['poster'];
+              $rate = $_POST['rate'];
+              $likeAmount = 0;
+              update_film($idFilm,$nameFilm,$director,$performer,$premiere,$duration,$language,$description,$category,$trailer,$poster,$rate,$likeAmount);
+              header("Location:index.php?act=film");
+            }
+            else{
+              header("Location:index.php?act=film_edit&idFilm=".$_POST['idFilm']);
+            }
         break;
         }
+      }
         // controller user
           case 'user':{
             $list_user=loadall_acount();
@@ -312,16 +289,18 @@
           }
           break;
           case 'seat_add':{
+            include "./seat/add.php";
             if(isset($_POST['addnew'])&& $_POST['addnew']){
-              $seat_key = $_POST['seat_key'];
-              $idRoom = $_POST['idRoom'];
-              insert_seat($seat_key,$idRoom);
-            $result = "Create successfully";
+              if($_POST['seat_key']!=""&& $_POST['idRoom']!=""){
+                $seat_key = $_POST['seat_key'];
+                $idRoom = $_POST['idRoom'];
+                insert_seat($seat_key,$idRoom);
+                header("Location:index.php?act=seat");
+              }
           }
-          }
-          include "./seat/add.php";
+          
           break;
-
+        }
           case 'seat_delete':{
             if (isset($_GET['id_seat']) && ($_GET['id_seat'] > 0)) {
               delete_seat($_GET['id_seat']);
@@ -339,15 +318,18 @@
           }
           case 'seat_update':{
             if(isset($_POST['capnhat'])&& $_POST['capnhat']){
+              if($_POST['seat_key']!=""&& $_POST['idRoom']!=""){
               $id_seat = $_POST['id_seat'];
               $seat_key = $_POST['seat_key'];
               $idRoom  = $_POST['idRoom'];
               update_seat($id_seat,$seat_key,$idRoom);
-            $result = "Update successfully";
+              header("Location:index.php?act=seat");
+              }
+              else{
+                header("Location:index.php?act=seat_edit&id_seat=".$_POST['id_seat']);
+              }
+              break;
           }
-          $listseat=loadall_seat();
-          include "./seat/list.php";
-          break;
           }
           // controller seat
 
@@ -417,10 +399,41 @@
 // controller scheduleHours
 
 
-// controller ticket
+// controller bill
 
-// controller ticket
 
+            case 'bill':
+              $showSeatList=[];
+              $billList=[];
+              $seatList=[];
+              if(isset($_POST['search'])){
+                  $idUser = $_POST['idUser'];
+                  $idFilm = $_POST['idFilm'];
+                  $seatList = getBill_By_idUser_nameFilm($idUser,$idFilm);
+                  $showSeatList = groupData_bill($idUser,$idFilm);
+                  $billList=select_bill($idUser,$idFilm);
+              }
+              else{
+                  $seatList = getBill_By_idUser_nameFilm('','');
+                  $showSeatList = groupData_bill('','');
+                  $billList=select_bill('','');
+                  // print_r($showSeatList);
+              }
+              {
+                include "./bill/billList.php";
+              }
+              break;
+            case 'bill-delete':
+              {
+                if(isset($_GET['id_bill'])&&$_GET['id_bill']>0){
+                  $id = $_GET['id_bill'];
+                remove_bill($id);
+                }
+                header("Location:index.php?act=bill");
+                 }
+              
+              break;
+// controller bill
 
           default :
             include "./home.php";

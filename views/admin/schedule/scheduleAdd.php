@@ -1,4 +1,3 @@
-s
 <?php
 $errors = [];
 if (isset($_POST['create'])) {
@@ -22,9 +21,9 @@ if (isset($_POST['create'])) {
 }
 ?>
 
-<div class=''>
+<div  class="Form-add-schedules">
     <h1>Add schedule</h1>
-    <div class='form-content'>
+    <div sty class='form-content'>
         <form action="index.php?act=schedule-create" method="POST">
             <div class="input-wrap">
                 <label>Date</label>
@@ -40,18 +39,14 @@ if (isset($_POST['create'])) {
                 <label>Film</label>
                 <select name="idFilm" required>
                     <option value="">----------</option>
-                    <option value="1">Tà chú cấm</option>
-                    <option value="2">Ma sơ trục quỷ</option>
-                    <option value="3">Doraemon:Vùng đắt lý tưởng</option>
-                    <option value="4">TRANSFỎMER</option>
-                    <option value="5">jujutsu kaisen</option>
-                    <!-- <?php
+                     <?php
+                        $filmList = loadall_film();
                             foreach ($filmList as $film) {
                                 echo "
-                            <potion value='{$film['idFilm']}'>{$film['nameFilm']}</potion>
+                            <option value='{$film['idFilm']}'>{$film['nameFilm']}</option>
                         ";
                             }
-                            ?> -->
+                            ?>
                 </select>
                 <?php
                 if (isset($errors['idFilm'])) {
@@ -67,6 +62,10 @@ if (isset($_POST['create'])) {
     </div>
 </div>
 <style>
+    .Form-add-schedules{
+        margin-left: 500px;
+        margin-top:50px;
+    }
     :root {
         --red--color: rgb(223, 69, 45);
         --blue-color: rgb(65, 99, 232);
@@ -103,6 +102,11 @@ if (isset($_POST['create'])) {
     .btn-blue {
         color: white;
         background-color: var(--blue-color);
+    }
+
+    .btn-blue:hover {
+        color: white;
+        background-color: lightgreen;
     }
 
     .form-content {

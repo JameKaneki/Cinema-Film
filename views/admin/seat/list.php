@@ -1,13 +1,18 @@
 <div class="wrapper">
-    <h1>Seat List</h1>
+<div class="row frmtitle mb-3" >
+        <h1 style="text-align: center;" class="title">Seat List</h1>
+    </div>
     <div style="display: flex;">
         <table style="min-width: 1400px;">
+        <thead>
             <tr>
                 <th>Id seat</th>
                 <th>Seat Key</th>
                 <th>ID Room</th>
                 <th></th>
             </tr>
+            </thead>
+            <tbody>
             <?php
             $confirm = "return confirm('Bạn có chắc chắn muốn xóa')";
             $Seat_edit = "return confirm('Bạn có chắc chắn muốn sửa')";
@@ -27,34 +32,18 @@
                      
                             <td >' . $nameRoom . '</td>
                             <td class="action-box">
-                            <div class="btn btn-red"><a href="' . $deleteSeat . '">Remove</a></div>
-                            <div class="btn btn-blue"><a href="' . $editSeat . '">Edit</a></div>       
-                            </td>
+                            <a href="' . $editSeat . '"><input style="background-color:blue" type="button" value="Update"></a> <a href="' . $deleteSeat . '">
+                            <input type="button" onclick="return confirm(`Do you want delete?`);" value="Delete"></a></td>   
+                            
                           </tr>';
             }
             ?>
             <tr>
-                <td><a href="index.php?act=seat_add"><input type="button" value="Nhập thêm"></a></td>
+                <td><a href="index.php?act=seat_add"><input type="button" value="ADD"></a></td>
             </tr>
+            </tbody>
         </table>
     </div>
-    <script>
-        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        const selectAll = document.querySelector('#select-all');
-        const deselectAll = document.querySelector('#deselect-all');
-
-        selectAll.addEventListener('click', () => {
-            checkboxes.forEach(checkbox => {
-                checkbox.checked = true;
-            });
-        });
-
-        deselectAll.addEventListener('click', () => {
-            checkboxes.forEach(checkbox => {
-                checkbox.checked = false;
-            });
-        });
-    </script>
 </div>
 <style>
     :root {
@@ -73,16 +62,12 @@
     }
 
     .wrapper {
-        width: 85%;
+        width: 75%;
         margin: 0px auto;
         float: right;
         margin-right: 50px;
     }
 
-    h1 {
-        margin-left: 700px;
-        margin-top: 50px;
-    }
 
     table {
         margin: 10px auto;
@@ -105,7 +90,7 @@
     }
 
     th {
-        background-color: rgb(158, 105, 105);
+        background-color: lightgreen;
         color: white;
         text-shadow: 1px 1px 1px gray;
         font-size: 18px;
@@ -116,12 +101,9 @@
         font-weight: bold;
     }
 
-    /* tr{
-        border: none;
-
-    } */
     table tr:nth-child(odd) {
         background-color: rgb(228, 234, 241);
+        color: black;
     }
 
     td.bigCol {
@@ -168,4 +150,8 @@
         color: white;
         background-color: var(--blue-color);
     }
-</style>
+    table tbody tr:nth-child(odd) {
+        background-color: rgb(228, 234, 241);
+        color: black;
+    }
+ </style>

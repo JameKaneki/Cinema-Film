@@ -1,7 +1,10 @@
 <div class="wrapper">
-    <h1>Cinema List</h1>
+    <div class="row frmtitle mb-3" >
+        <h1 style="text-align: center;" class="title">Cinema List</h1>
+    </div>
     <div style="display: flex;">
         <table style="min-width: 1400px;">
+        <thead>
             <tr>
 
                 <th>Mã Rạp</th>
@@ -9,6 +12,8 @@
                 <th>Địa chỉ</th>
                 <th></th>
             </tr>
+            </thead>
+            <tbody>
             <?php
             $listCinema = selectAll_cinema();
             foreach ($listCinema as $list) {
@@ -21,16 +26,16 @@
                     <td>' . $nameCinema . '</td>
                     <td>' . $addressCinema . '</td>
                     <td>
-                    <div class="btn btn-red"><a href="' . $deleteCinema . '">Remove</a></div>
-                    <div class="btn btn-blue"><a href="' . $updateCinema . '">Edit</a></div>
+                    <div class="btn btn-blue"><a href="' . $updateCinema . '">Update</a></div> 
+                    <div class="btn btn-red"><a href="' . $deleteCinema . '">DELETE</a></div>
                     </td>
                 </tr>';
             }
             ?>
             <tr>
-                <td><a href="index.php?act=cinema-add"><input type="button" value="Nhập thêm"></a></td>
+                <td><a href="index.php?act=cinema-add"><input type="button" value="ADD"></a></td>   
             </tr>
-
+            </tbody>
         </table>
     </div>
     <script>
@@ -68,16 +73,12 @@
     }
 
     .wrapper {
-        width: 85%;
+        width: 75%;
         margin: 0px auto;
         float: right;
         margin-right: 50px;
     }
 
-    h1 {
-        margin-left: 700px;
-        margin-top: 50px;
-    }
 
     table {
         margin: 10px auto;
@@ -100,7 +101,7 @@
     }
 
     th {
-        background-color: rgb(158, 105, 105);
+        background-color: lightgreen;
         color: white;
         text-shadow: 1px 1px 1px gray;
         font-size: 18px;
@@ -111,12 +112,9 @@
         font-weight: bold;
     }
 
-    /* tr{
-        border: none;
-
-    } */
     table tr:nth-child(odd) {
         background-color: rgb(228, 234, 241);
+        color: black;
     }
 
     td.bigCol {
