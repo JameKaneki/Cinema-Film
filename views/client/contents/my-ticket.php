@@ -65,6 +65,7 @@ $ticket_infos = group_ticket_seat($userInfo['idUser']);
                                     $date = $ticket['date'];
                                     $time = substr($ticket['time'],0,5);
                                     $seats = join(',',$ticket['seat_key']);
+                                    $status = $ticket['status'] == 1 ? 'Paid' : 'Unpaid';
                                     echo "
                                     <div class='ticket-wrapper'>
                                     <div class='ticket-qr-code' >
@@ -99,6 +100,11 @@ $ticket_infos = group_ticket_seat($userInfo['idUser']);
                                                 <div class='title'>SEATS</div>
                                                 <div class='content'>{$seats}</div>
                                             </div>
+                                            <div class='ticket-info-line '>
+                                                 <div class='title '>STATUS</div>
+                                                 <div class='content {$status}'>{$status}</div>
+                                            </div>
+                                        
                                         </div>
                                     </div>
                                </div>
@@ -156,6 +162,7 @@ $ticket_infos = group_ticket_seat($userInfo['idUser']);
  }
  .ticket-info-wrap{
     padding: 16px;
+    width: 100%;
  }
  .ticket-info{
     margin-top: 16px;
@@ -174,6 +181,9 @@ $ticket_infos = group_ticket_seat($userInfo['idUser']);
  .ticket-info-line{
     display: flex;
     justify-content: space-between;
+ }
+ .Unpaid{
+    color: red;
  }
 
 </style>

@@ -8,7 +8,7 @@
 
 </script>';
 }
-    $idUser = 1;
+    $idUser = $_SESSION['userName']['idUser'];
     $id_bill =  create_bill($amountPayable,$idUser);
     $_SESSION['id_bill'] = $id_bill;
     $orderType = 190000;
@@ -118,9 +118,10 @@
                                     echo "<input name={$key} value={$value} type='hidden'/>";
                                 } 
                                 echo "
-
+                                   <div class='button-wrapper'>
                                     <input class='custom-button back-button' type='submit' name='paying-late' value='Paying late'/>
                                     <input class='custom-button back-button' type='submit' name='paying-now' value='Paying now by Vnpay'/>
+                                   </div>
                                 </form>";
                             ?>
                                 
@@ -129,3 +130,9 @@
             </div>
         </div>
     </div>
+
+    <style>
+        .button-wrapper{
+            display: flex;
+        }
+    </style>

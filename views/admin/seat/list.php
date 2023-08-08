@@ -22,10 +22,9 @@
                 // } else {
                 //     $anh = "Không có hình ảnh ";
                 // }
-                echo '<tr >
-                            
+                echo '<tr > 
                             <td >' . $id_seat . '</td>
-                            <td >' . $seat_key . '</td>
+                     
                             <td >' . $nameRoom . '</td>
                             <td class="action-box">
                             <div class="btn btn-red"><a href="' . $deleteSeat . '">Remove</a></div>

@@ -99,6 +99,8 @@ $returnData = array('code' => '00'
     , 'message' => 'success'
     , 'data' => $vnp_Url);
     if (isset($_POST['paying-now'])) {
+        json_encode($vnp_url);
+        die();
         header('Location: ' . $vnp_Url);
         die();
     } else {
