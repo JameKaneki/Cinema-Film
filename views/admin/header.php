@@ -127,6 +127,9 @@
                                 <div style="margin:8px 6px">
                                     <h4>WELCOME <?= $userName ?></h4>
                                 </div>
+                            <?php
+                            if($role == 'admin'){
+                            ?>
                                 <li class="sidebar-item">
                                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=" aria-expanded="false">
                                         <i class="fas fa-list"></i>
@@ -170,17 +173,41 @@
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=cinema" aria-expanded="false">
+                                        <i class="fa fa-columns" aria-hidden="true"></i>
+                                        <span class="hide-menu">Cinemas</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
                                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=ticket" aria-expanded="false">
                                         <i class="fas fa-ticket-alt"></i>
                                         <span class="hide-menu">Tickets</span>
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=cinema" aria-expanded="false">
-                                        <i class="fa fa-columns" aria-hidden="true"></i>
-                                        <span class="hide-menu">Cinemas</span>
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=ticket" aria-expanded="false">
+                                        <i class="fas fa-ticket-alt"></i>
+                                        <span class="hide-menu">Bills</span>
                                     </a>
                                 </li>
+                                <?php
+                                }else if($role == 'staff'){
+                            ?>
+                            <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=ticket" aria-expanded="false">
+                                        <i class="fas fa-ticket-alt"></i>
+                                        <span class="hide-menu">Tickets</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=ticket" aria-expanded="false">
+                                        <i class="fas fa-ticket-alt"></i>
+                                        <span class="hide-menu">Bills</span>
+                                    </a>
+                                </li>
+                            <?php
+                                }
+                                ?>
                                 <li class="sidebar-item">
                                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=user_exit" aria-expanded="false">
                                         <i class="fas fa-sign-out-alt"></i>
@@ -194,6 +221,7 @@
                     </div>
                     <!-- End Sidebar scroll-->
                 </aside>
+
             <?php
         }
             ?>
