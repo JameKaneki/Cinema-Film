@@ -30,6 +30,10 @@
          }
  
      }
+     if(isset($_GET['id'])){
+        if(is_array(selectOneSchedule($_GET['id']))){
+            extract(selectOneSchedule($_GET['id']));
+     }}
 ?>
 
 <div style="margin-left:500px;margin-top:50px">
@@ -38,26 +42,23 @@
     <form action="index.php?act=schedule-edit" method="POST">
             <div class="input-wrap">
                 <label>Film</label>
-                <select name="idfilm" value=<?php $scheduleInfo['idFilm']?> required>
-                            <option>----------</option>
-                            <option value="1">Tà chú cấm</option>
-                            <option value="2">Ma sơ trục quỷ</option>
-                            <option value="3">Doraemon:Vùng đắt lý tưởng</option>
-                            <option value="4">TRANSFỎMER</option>
-                            <option value="5">jujutsu kaisen</option>
+                <select name="idFilm" required>
+                    <option value="<?=$idFilm?>"><?=$nameFilm?></option>
+                    <option>--------</option>
                 <?php 
-                    //  foreach($filmList as $film){
-                    //     echo "
-                    //          <potion value='{$film['idFilm']}'>{$film['nameFilm']}</potion>
-                    //     ";
-                    //  }
+                    $filmList = loadall_film();
+                     foreach($filmList as $film){
+                        echo "
+                             <option value='{$film['idFilm']}'>{$film['nameFilm']}</option>
+                        ";
+                     }
                 ?>
                 </select>
             </div>
             <div class="input-wrap">
                 <label>Date</label>
                 <?php 
-                    echo " <input type='date' name='date' value='{$scheduleInfo['date']}'  required/>";
+                    echo " <input type='date' name='date'  required/>";
                     if(isset($errors['date'])){
                         echo "<span style='color: red;'>{$errors['date']}</span> ";
                     }

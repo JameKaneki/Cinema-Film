@@ -18,15 +18,12 @@
                 <label for="">Name</label> <br>
                 <input class="form-control" type="text" name="nameFilm" value="<?=$nameFilm?>">
                 <span style="color:red">
-                    
                 </span>
             </div>
-
             <div class="w-50 form-group my-3">
                 <label for="">Director</label>
                 <input class="form-control" type="text" name="director" value="<?=$director?>">
                 <span style="color:red">
-
                 </span>
             </div>
         </div>
@@ -62,17 +59,6 @@
                 </span>
             </div>
             
-            
-            <!-- <div class="w-25 form-group mt-3">
-                <label for="">Category</label>
-                <select class="form-control" name="cate" id="">
-                    <?php foreach ($listcate as $cate) : ?>
-                        <option value="<?= $cate['cate_id'] ?>">
-                            <?= $cate['cate_name'] ?>
-                        </option>
-                    <?php endforeach ?>
-                </select>
-            </div> -->
 
         </div>
         <div class="row">
@@ -93,9 +79,49 @@
         <div class="row">
             <div class="w-25 form-group my-3">
                 <label for="">Rate</label>
-                <input class="form-control" type="text" name="rate" value="<?=$rate?>">
+                <select name="rate" id="">
+                    <?php
+                        if($rate==0){
+                           echo ' <option value="0">Mọi độ Tuổi</option>';
+                        }
+                        if($rate==1){
+                           echo'<option value="1">Trên 8 Tuổi</option>';
+                        }
+                        if($rate==2){
+                           echo'<option value="2">Trên 12 Tuổi</option>';
+                        }
+                        if($rate==3){
+                            echo '<option value="3">Trên 16 Tuổi</option>';
+                        }
+                        else{
+                            echo '<option value="4">Trên 18 Tuổi</option>';
+                        }
+                    ?>
+                    <option value="">-----</option>
+                    <option value="4">Trên 18 Tuổi</option>
+                    <option value="3">Trên 16 Tuổi</option>
+                    <option value="2">Trên 12 Tuổi</option>
+                    <option value="1">Trên 8 Tuổi</option>
+                    <option value="0">Mọi độ Tuổi</option>
+                </select>
                 <span style="color:red">
-                    
+                </span>
+            </div>
+            <div class="w-25 form-group my-3" style="margin-left: 40px;">
+                <label for="">Category</label>
+                <select name="category" id="">
+                    <option value="<?=$category?>"><?=$category?></option>
+                    <option value="">-------</option>
+                    <option value="Action">Action</option>
+                    <option value="Romantic">Romantic</option>
+                    <option value="Science Fiction">Science Fiction</option>
+                    <option value="Cartoon">Cartoon</option>
+                    <option value="Mentality">Mentality</option>
+                    <option value="Aventure">Aventure</option>
+                    <option value="Horrified">Horrified</option>
+                    <option value="Detective">Detective</option>
+                </select>
+                <span style="color:red">
                 </span>
             </div>
         </div>

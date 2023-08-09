@@ -39,18 +39,14 @@ if (isset($_POST['create'])) {
                 <label>Film</label>
                 <select name="idFilm" required>
                     <option value="">----------</option>
-                    <option value="1">Tà chú cấm</option>
-                    <option value="2">Ma sơ trục quỷ</option>
-                    <option value="3">Doraemon:Vùng đắt lý tưởng</option>
-                    <option value="4">TRANSFỎMER</option>
-                    <option value="5">jujutsu kaisen</option>
-                    <!-- <?php
+                     <?php
+                        $filmList = loadall_film();
                             foreach ($filmList as $film) {
                                 echo "
-                            <potion value='{$film['idFilm']}'>{$film['nameFilm']}</potion>
+                            <option value='{$film['idFilm']}'>{$film['nameFilm']}</option>
                         ";
                             }
-                            ?> -->
+                            ?>
                 </select>
                 <?php
                 if (isset($errors['idFilm'])) {

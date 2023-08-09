@@ -37,9 +37,5 @@
         </div>
     </form>
 </div>
-<?php
-        if (isset($tb) && $tb != "") {
-            echo $tb;
-        }
-        ?>
+
 

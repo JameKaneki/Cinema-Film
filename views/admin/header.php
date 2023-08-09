@@ -185,7 +185,7 @@
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=ticket" aria-expanded="false">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=bill" aria-expanded="false">
                                         <i class="fas fa-ticket-alt"></i>
                                         <span class="hide-menu">Bills</span>
                                     </a>
@@ -200,7 +200,7 @@
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=ticket" aria-expanded="false">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=bill" aria-expanded="false">
                                         <i class="fas fa-ticket-alt"></i>
                                         <span class="hide-menu">Bills</span>
                                     </a>

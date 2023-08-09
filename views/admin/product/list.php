@@ -1,30 +1,10 @@
-
-<style>
-    tr td:nth-child(11) {
-        padding: 8px 4px;
-        text-align: start;
-        /* min-width: 120px; */
-        max-width: 300px;
-        overflow-x: hidden;
-    }
-
-    tr td:last-child {
-        display: flex;
-        text-align: center;
-    }
-
-    .fix {
-        display: block !important;
-    }
-    table{
-        margin-right: 10px;
-    }
-</style>
-<div class="wrapper" style="margin-left: 280px;">
-    <h1 style="text-align: center;">Film list</h1>
+<div class="wrapper">
+<div class="row frmtitle mb-3" style="margin-top: 30px;">
+        <h1 style="text-align: center;" class="title">Film List</h1>
+    </div>
     <div style="display: flex; overflow-x: scroll;">
         <table>
-            <tbody>
+            <thead>
                 <tr>
                     <th>IdFilm</th>
                     <th style='width: 150px; padding:0 100px;'>NameFilm</th>
@@ -38,8 +18,10 @@
                     <th style="width: 100px;">Trailer</th>
                     <th>Poster</th>
                     <th>Rate</th>
-                    <th>ACtion</th>
+                    <th>Action</th>
                 </tr>
+            </thead>
+            <tbody>
                 <?php
                 $confirm = "return confirm('Bạn có chắc chắn muốn xóa')";
                 $film_edit = "return confirm('Bạn có chắc chắn muốn sửa')";
@@ -75,12 +57,40 @@
                           </tr> ';
                 }
                 ?>
-            </tbody>
+            
             <tr>
                 <td> <a href="index.php?act=film_add"><input type="button" value="ADD"></a></td>    
             </tr>
-
+            </tbody>
     </div>
     </table>
 </div>
 </div>
+<style>
+    .wrapper{
+        margin-left: 280px;
+    }
+    tr td:nth-child(11) {
+        padding: 8px 4px;
+        text-align: start;
+        /* min-width: 120px; */
+        max-width: 300px;
+        overflow-x: hidden;
+    }
+    table tbody tr:nth-child(odd) {
+        background-color: rgb(228, 234, 241);
+        color: black;
+    }
+
+    tr td:last-child {
+        display: flex;
+        text-align: center;
+    }
+
+    .fix {
+        display: block !important;
+    }
+    table{
+        margin-right: 10px;
+    }
+</style>
