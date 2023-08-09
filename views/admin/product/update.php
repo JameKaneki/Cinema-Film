@@ -56,7 +56,6 @@
                 <label for="">Language</label>
                 <input class="form-control" type="text" name="language" value="<?=$language?>">
                 <span style="color:red">
-                    
                 </span>
             </div>
             
