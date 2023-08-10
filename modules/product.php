@@ -36,6 +36,11 @@ function load_id_film($idFilm){
     WHERE f.idFilm = $idFilm and s.date >= now()  Order by s.date  asc";
     return pdo_query($sql);
 }
+function loadall_film(){
+    $sql="SELECT * FROM `films` ORDER BY `idFilm` DESC"; 
+    $listfilm = pdo_query($sql);
+    return $listfilm;
+}
 
 function group_id_film($idFilm){
     $data = load_id_film($idFilm);
@@ -61,11 +66,7 @@ function   update_film($idFilm,$nameFilm,$director,$performer,$premiere,$duratio
     $sql= "UPDATE `films` SET `nameFilm`='$nameFilm',`director`='$director',`performer`='$performer',`premiere`='$premiere',`duration`='$duration',`language`='$language',`description`='$description',`category`='$category',`trailer`='$trailer',`poster`='$poster',`rate`='$rate',`likeAmount`='$likeAmount' WHERE `idFilm`=$idFilm";
     pdo_execute($sql);
 }
-function loadall_film(){
-    $sql="SELECT * FROM `films` ORDER BY `idFilm` DESC"; 
-    $listfilm = pdo_query($sql);
-    return $listfilm;
-}
+
 
 function loadtop5_film(){
     $sql="SELECT DISTINCT f.nameFilm,f.idFilm,f.director,f.performer,f.premiere,f.duration,f.language,f.description,f.category,f.trailer,f.poster,f.rate,f.likeAmount from `films` as f

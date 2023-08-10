@@ -6,10 +6,9 @@
     <table style="min-width: 1500px;">
     <thead>
         <tr>
-            <th>Mã phòng chiếu</th>
-            <th>Tên Phòng Chiếu</th>
-            <th>Tên Rạp Chiếu</th>
-            <th style="">Danh Sách Ghế</th> 
+            <th>id Room</th>
+            <th>Room name</th>
+            <th>Cinema name</th>
             <th></th>
         </tr>
         </thead>
@@ -25,7 +24,6 @@
                 <td>'.$idRoom.'</td>
                 <td>'.$nameRoom.'</td>
                 <td>'.$nameCinema.'</td>
-                <td>'.$seatList.'</td>
                 <td class="action-box">
                 <a href="' . $updateRoom . '"><input style="background-color:blue" type="button" value="Update"></a> <a href="' . $deleteRoom . '">
                 <input type="button" onclick="return confirm(`Do you want delete?`);" value="Delete"></a></td>   

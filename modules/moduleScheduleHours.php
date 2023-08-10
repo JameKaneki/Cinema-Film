@@ -8,16 +8,19 @@
         return pdo_query($sql);
     }
     function getScheduleHoursWithDateIdFilmIdRoom($time,$idFilm,$idRoom){
-        $sql = "SELECT sh.idScheduleHour, s.date,sh.time,f.nameFilm,r.nameRoom,f.idFilm FROM `schedule_hours` as sh INNER JOIN schedules as s ON sh.idSchedule = s.idSchedule INNER JOIN films as f ON f.idFilm = s.idSchedule INNER JOIN rooms as r on r.idRoom = sh.idRoom WHERE 1";
+        $sql = "SELECT sh.idScheduleHour, s.date,sh.time,f.nameFilm,r.nameRoom,f.idFilm FROM `schedule_hours` as sh 
+        INNER JOIN schedules as s ON s.idSchedule = sh.idScheduleHour
+        INNER JOIN rooms as r ON r.idRoom = sh.idRoom
+        INNER JOIN films as f ON f.idFilm = s.idFilm";
         if(!empty($time)){
             $hour = substr($time,0,2);
             $sql .= " AND sh.time like '$hour%'";
         }
         if(!empty($idFilm)){
-            $sql .= " AND f.idFilm = $idFilm";
+            $sql .= " AND f.idFilm = '$idFilm' ";
         }
         if(!empty($idRoom)){
-            $sql .= " AND  r.idRoom = $idRoom";
+            $sql .= " AND  r.idRoom = '$idRoom' ";
         }
         return pdo_query($sql);
     }
@@ -61,7 +64,7 @@
         return pdo_execute(($sql));
     }
     function removeScheduleHoursById($idScheduleHour){
-        $sql = "DELETE FROM `schedule_hours` WHERE `idScheduleHour` = $idScheduleHour";
+        $sql = "DELETE FROM `schedule_hours` WHERE `idScheduleHour` = '$idScheduleHour'";
         return pdo_execute($sql);
     }
     function removeScheduleHoursByIdSchedule($idSchedule){

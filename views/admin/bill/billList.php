@@ -1,91 +1,76 @@
 <div class='wrapper'>
-<div class="row frmtitle mb-3" >
+    <div class="row frmtitle mb-3" >
         <h1 style="text-align: center;" class="title">Bill List</h1>
     </div>
-        <div class="select">
-        <div class='search-bar'>
-            <form  action="index.php?act=bill"  method="POST">
-                <select name="idFilm" placeholder="Film">
-                <option value="">----------</option>
-                    <?php
-                        $listFilm = loadIdFilm_nameFilm();
-                        foreach ($listFilm as $list) {
-                            extract($list);
-                            echo "<option value=".$idFilm.">$nameFilm</option>";
-                        }
-                    ?>
-                </select>
-                <select name='idUser'>
-                <option value="">-------</option>
-                <?php
-                        
-                        $listAcount = loadall_acount();
-                        foreach ($listAcount as $list) {
-                            extract($list);
-                            echo "<option value=".$idUser.">$userName</option>";
-                        }
-                    ?>
-                </select>
+            <form  action="index.php?act=bill"  method="POST" class='horizontal-form'>
+                <div>
+                    <label>Film</label>
+                    <div>
+                        <select name="idFilm" placeholder="Film">
+                            <option value="">----------</option>
+                                <?php
+                                    $listFilm = loadIdFilm_nameFilm();
+                                    foreach ($listFilm as $list) {
+                                        extract($list);
+                                        echo "<option value=".$idFilm.">$nameFilm</option>";
+                                    }
+                                ?>
+                         </select>
+                    </div>
+                </div>
                 <button class="btn btn-blue" type="submit" name="search">Search</button>
             </form>
-        </div>
-        
-    </div>
     <table>
        <thead>
             <tr>
-                <th>Id Bill</th>
-                <th>Create at</th>
+                <th>id Bill</th>
+                <th>Schedule</th>
                 <th>Price</th>
                 <th>User Name</th>
                 <th>Name Film</th>
                 <th>Seat</th>
                 <th>Status</th>
+                <th>CreateAt</th>
                 <th>Payment</th>
-                <th></th>
             </tr>
        </thead>
        <tbody>
 
         <?php 
                 foreach($billList as $bill){
-                    extract($bill);
-                echo 
-                "<tr>
+                $status = $bill['status'] === 1 ? 'Paid' : 'UnPay';
+                $schedule = $bill['date'] . ' ' . substr($bill['time'],0,5);
+                $seat_key = join(',',$bill['seat_key']);
+                $id_Bill = $bill['id_bill'];
+                echo   "<tr>
                     <td>{$bill['id_bill']}</td>
-                    <td>{$bill['create_at']}</td>
+                    <td>{$schedule}</td>
                     <td>{$bill['price']}</td>
                     <td>{$bill['userName']}</td>
                     <td>{$bill['nameFilm']}</td>
-                    <td>";
-                // foreach($seatList as $List){
-                // extract($List);
-                if(isset($showSeatList[$bill['id_bill']])){
-                    foreach ($showSeatList[$bill['id_bill']] as $seatL){
-                    $seat= substr($seatL,0,3);
+                    <td>{$seat_key}</td>
+                    <td>$status</td>
+                    <td>{$bill['create_at']}</td>";
+                if($status === 'UnPay'){
                     echo "
-                    <div class='showTime bigCol showTime-box'>
-                    {$seat}
-                    </div>
+                    <td>
+                        <a href='index.php?act=bill-qrpay&id=$id_Bill' class = 'btn btn-blue' >
+                            QR Pay  
+                        </a>
+                        <div  class = 'btn btn-blue'
+                            onClick='confirmChangeBillStatus($id_Bill)'
+                        >
+                        Change to Paid
+                        </div>
+                    </td>"; 
+                }else{
+                    echo "
+                        <td></td>
                     ";
                 }
-                }
-            // }
-                echo "</div>";	
-                if($bill['status']==1){
-                    echo "<td>Paid</td>";
-                }
-                else{
-                    echo "<td>Unpaid</td>";
-                }
                 echo "
-                <td><a href='index.php?act=bill-delete&id_bill={$bill['id_bill']}'style='color: white;
-                background-color: blue;' >Pay</a></td>
-                <td><a href='index.php?act=bill-delete&id_bill={$bill['id_bill']}' style='color: white;
-                background-color: red;'>DELETE</a></td>
                 </tr>";
-            }
-            
+            }        
         ?>
        </tbody>
     </table>
@@ -181,11 +166,13 @@
     }
 
     .btn {
-        padding: 6px;
-        margin: 2px 4px;
+        padding: 6px 12px;
+        margin: auto 4px;
+        margin-bottom: 1px  ;
         border-radius: 3px;
         cursor: pointer;
         border: none;
+        height: fit-content;
     }
 
     .btn a {
@@ -197,6 +184,21 @@
         background-color: red;
     }
     .btn-blue {
-        background-color: lightgreen;
+        background-color: blue;
+        color: white;
+    }
+    .horizontal-form{
+        display: flex;
+        margin: 0px auto;
+        justify-content: center;
     }
 </style>
+<script>
+    const confirmChangeBillStatus = (id) =>{
+        const result = confirm(`Change bill -${id}- status to Paid`);
+        if(result){
+            location.href = `http://localhost/Cinema-Film/views/admin/index.php?act=bill-pay&id=${id}` 
+        }
+    }
+
+</script>

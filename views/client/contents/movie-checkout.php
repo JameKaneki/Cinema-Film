@@ -3,7 +3,6 @@
  if (isset($_GET['alert'])) {
     $alert = $_GET['alert'];
     echo '<script type="text/javascript">
-
         window.onload = function () { alert("' . $alert . '"); }
 
 </script>';
@@ -13,7 +12,7 @@
     $_SESSION['id_bill'] = $id_bill;
     $orderType = 190000;
     $lang = 'vn';
-    $bankCode = 'NCB';
+    $bankCode = 'VNPAYQR';
     $time = date("Y-m-d H:i:s");
     $order_des = 'MS:' .$id_bill.' ' .$_GET['s']. ' ' . $time ;
 // get userinfo form SESSION
@@ -120,7 +119,7 @@
                                 echo "
                                    <div class='button-wrapper'>
                                     <input class='custom-button back-button' type='submit' name='paying-late' value='Paying late'/>
-                                    <input class='custom-button back-button' type='submit' name='paying-now' value='Paying now by Vnpay'/>
+                                    <input class='custom-button back-button' type='submit'  name='paying-now' value='QR Paying now'/>
                                    </div>
                                 </form>";
                             ?>

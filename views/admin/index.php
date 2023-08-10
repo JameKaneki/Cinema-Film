@@ -283,54 +283,54 @@
 
       // controller seat
 
-          case 'seat':{
-            $listseat=loadall_seat();
-            include "./seat/list.php";
-          }
-          break;
-          case 'seat_add':{
-            include "./seat/add.php";
-            if(isset($_POST['addnew'])&& $_POST['addnew']){
-              if($_POST['seat_key']!=""&& $_POST['idRoom']!=""){
-                $seat_key = $_POST['seat_key'];
-                $idRoom = $_POST['idRoom'];
-                insert_seat($seat_key,$idRoom);
-                header("Location:index.php?act=seat");
-              }
-          }
+        //   case 'seat':{
+        //     $listseat=loadall_seat();
+        //     include "./seat/list.php";
+        //   }
+        //   break;
+        //   case 'seat_add':{
+        //     include "./seat/add.php";
+        //     if(isset($_POST['addnew'])&& $_POST['addnew']){
+        //       if($_POST['seat_key']!=""&& $_POST['idRoom']!=""){
+        //         $seat_key = $_POST['seat_key'];
+        //         $idRoom = $_POST['idRoom'];
+        //         insert_seat($seat_key,$idRoom);
+        //         header("Location:index.php?act=seat");
+        //       }
+        //   }
           
-          break;
-        }
-          case 'seat_delete':{
-            if (isset($_GET['id_seat']) && ($_GET['id_seat'] > 0)) {
-              delete_seat($_GET['id_seat']);
-          }
-          $listseat = loadall_seat();
-          include "./seat/list.php";
-          }
-          break;
-          case 'seat_edit':{
-            if (isset($_GET['id_seat']) && ($_GET['id_seat'] > 0)){
-          $listseat = loadone_seat($_GET['id_seat']);
-          }
-          include "./seat/update.php";
-          break;
-          }
-          case 'seat_update':{
-            if(isset($_POST['capnhat'])&& $_POST['capnhat']){
-              if($_POST['seat_key']!=""&& $_POST['idRoom']!=""){
-              $id_seat = $_POST['id_seat'];
-              $seat_key = $_POST['seat_key'];
-              $idRoom  = $_POST['idRoom'];
-              update_seat($id_seat,$seat_key,$idRoom);
-              header("Location:index.php?act=seat");
-              }
-              else{
-                header("Location:index.php?act=seat_edit&id_seat=".$_POST['id_seat']);
-              }
-              break;
-          }
-          }
+        //   break;
+        // }
+        //   case 'seat_delete':{
+        //     if (isset($_GET['id_seat']) && ($_GET['id_seat'] > 0)) {
+        //       delete_seat($_GET['id_seat']);
+        //   }
+        //   $listseat = loadall_seat();
+        //   include "./seat/list.php";
+        //   }
+        //   break;
+        //   case 'seat_edit':{
+        //     if (isset($_GET['id_seat']) && ($_GET['id_seat'] > 0)){
+        //   $listseat = loadone_seat($_GET['id_seat']);
+        //   }
+        //   include "./seat/update.php";
+        //   break;
+        //   }
+        //   case 'seat_update':{
+        //     if(isset($_POST['capnhat'])&& $_POST['capnhat']){
+        //       if($_POST['seat_key']!=""&& $_POST['idRoom']!=""){
+        //       $id_seat = $_POST['id_seat'];
+        //       $seat_key = $_POST['seat_key'];
+        //       $idRoom  = $_POST['idRoom'];
+        //       update_seat($id_seat,$seat_key,$idRoom);
+        //       header("Location:index.php?act=seat");
+        //       }
+        //       else{
+        //         header("Location:index.php?act=seat_edit&id_seat=".$_POST['id_seat']);
+        //       }
+        //       break;
+        //   }
+        //   }
           // controller seat
 
           // controller room
@@ -368,20 +368,19 @@
           case 'schedule_hours':
             {
               $schedule_hours = [];
-              $time = '';$idRoom = '';$idFilm = '';
+              $time = '';$idRoom = 0;$idFilm = 0;
               if(isset($_POST['search'])){
                 $time = $_POST['time'];
-                $idFilm = empty($_POST['$idFilm']) ? "" : $_POST['$idFilm'];
-                $idRoom = empty($_POST['idRoom']) ? "" : $_POST['idRoom'];
+                $idFilm = isset($_POST['idFilm']) ? $_POST['idFilm'] : 0  ;
+                $idRoom = isset($_POST['idRoom']) ? $_POST['idRoom'] : 0  ;
               }
               $schedule_hours = getScheduleHoursWithDateIdFilmIdRoom($time,$idFilm,$idRoom);
-
               include "./scheduleHours/scheduleHoursList.php";
             }
           break;
           case 'schedule_hours-delete':
             {
-              $id = $_POST['id'];
+              $id = $_GET['id'];
               removeScheduleHoursById($id);
               header("Location:index.php?act=schedule_hours");
             }
@@ -407,17 +406,11 @@
               $billList=[];
               $seatList=[];
               if(isset($_POST['search'])){
-                  $idUser = $_POST['idUser'];
                   $idFilm = $_POST['idFilm'];
-                  $seatList = getBill_By_idUser_nameFilm($idUser,$idFilm);
-                  $showSeatList = groupData_bill($idUser,$idFilm);
-                  $billList=select_bill($idUser,$idFilm);
+                  $billList=groupData_bill('',$idFilm);
               }
               else{
-                  $seatList = getBill_By_idUser_nameFilm('','');
-                  $showSeatList = groupData_bill('','');
-                  $billList=select_bill('','');
-                  // print_r($showSeatList);
+                  $billList=groupData_bill('','');
               }
               {
                 include "./bill/billList.php";
@@ -431,8 +424,25 @@
                 }
                 header("Location:index.php?act=bill");
                  }
-              
               break;
+              case 'bill-qrpay':
+                {
+                  if(isset($_GET['id'])){
+                    include "./bill/handlePaying.php";
+                  }else{
+                    echo "
+                      <script>
+                      location.href =`http://localhost/Cinema-Film/views/admin/index.php?act=bill`;
+                      window.onload = function(){alert('Don't try to skip any step');}
+                      </script>
+                    ";
+                  }
+                }
+              break;
+              case 'bill-pay':
+                {
+                  include "./bill/change_bill_status.php";
+                }
 // controller bill
 
           default :
