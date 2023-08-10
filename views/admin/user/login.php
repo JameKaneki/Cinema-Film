@@ -13,7 +13,7 @@ if (isset($_POST['signin']) && ($_POST['signin'] > 0)) {
     $admin_login = admin_login($email, $password);
     if (is_array($admin_login)) {
         extract($admin_login);
-        if ($role == 'admin') {
+        if ($role == 'admin' || $role == 'staff') {
           $_SESSION['email'] = $admin_login;
           header("Location:index.php?act=home");
         } else {

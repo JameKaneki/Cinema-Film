@@ -13,14 +13,14 @@
     <title>Boleto Cinemas Admin</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="asset/plugins/images/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
 
     <!-- Custom CSS -->
-    <link href="css/style.min.css" rel="stylesheet">
+    <link href="asset/css/style.min.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" > -->
-    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="asset/css/menu.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -63,13 +63,13 @@
                                 <!-- Logo icon -->
                                 <b class="logo-icon">
                                     <!-- Dark Logo icon -->
-                                    <img src="plugins/images/logo-icon.png" alt="homepage" />
+                                    <img src="asset/plugins/images/logo-icon.png" alt="homepage" />
                                 </b>
                                 <!--End Logo icon -->
                                 <!-- Logo text -->
                                 <span class="logo-text">
                                     <!-- dark Logo text -->
-                                    <img src="plugins/images/logo-text.png" alt="homepage" />
+                                    <img src="asset/plugins/images/logo-text.png" alt="homepage" />
                                 </span>
                             </a>
                             <!-- ============================================================== -->
@@ -127,6 +127,9 @@
                                 <div style="margin:8px 6px">
                                     <h4>WELCOME <?= $userName ?></h4>
                                 </div>
+                            <?php
+                            if($role == 'admin'){
+                            ?>
                                 <li class="sidebar-item">
                                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=" aria-expanded="false">
                                         <i class="fas fa-list"></i>
@@ -170,23 +173,41 @@
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=ticket" aria-expanded="false">
-                                        <i class="fas fa-ticket-alt"></i>
-                                        <span class="hide-menu">Tickets</span>
-                                    </a>
-                                </li>
-                                <li class="sidebar-item">
                                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=cinema" aria-expanded="false">
                                         <i class="fa fa-columns" aria-hidden="true"></i>
                                         <span class="hide-menu">Cinemas</span>
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=bill" aria-expanded="false">
-                                        <i class="fa fa-columns" aria-hidden="true"></i>
-                                        <span class="hide-menu">Bill</span>
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=ticket" aria-expanded="false">
+                                        <i class="fas fa-ticket-alt"></i>
+                                        <span class="hide-menu">Tickets</span>
                                     </a>
                                 </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=bill" aria-expanded="false">
+                                        <i class="fas fa-ticket-alt"></i>
+                                        <span class="hide-menu">Bills</span>
+                                    </a>
+                                </li>
+                                <?php
+                                }else if($role == 'staff'){
+                            ?>
+                            <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=ticket" aria-expanded="false">
+                                        <i class="fas fa-ticket-alt"></i>
+                                        <span class="hide-menu">Tickets</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=bill" aria-expanded="false">
+                                        <i class="fas fa-ticket-alt"></i>
+                                        <span class="hide-menu">Bills</span>
+                                    </a>
+                                </li>
+                            <?php
+                                }
+                                ?>
                                 <li class="sidebar-item">
                                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=user_exit" aria-expanded="false">
                                         <i class="fas fa-sign-out-alt"></i>
@@ -200,6 +221,7 @@
                     </div>
                     <!-- End Sidebar scroll-->
                 </aside>
+
             <?php
         }
             ?>
