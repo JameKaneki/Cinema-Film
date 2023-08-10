@@ -154,12 +154,12 @@
                                         <span class="hide-menu">Rooms</span>
                                     </a>
                                 </li>
-                                <li class="sidebar-item">
+                                <!-- <li class="sidebar-item">
                                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=seat" aria-expanded="false">
                                         <i class="fas fa-couch"></i>
                                         <span class="hide-menu">Seats</span>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li class="sidebar-item">
                                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php?act=schedules" aria-expanded="false">
                                         <i class="fas fa-calendar"></i>

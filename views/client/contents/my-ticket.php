@@ -20,43 +20,6 @@ $ticket_infos = group_ticket_seat($userInfo['idUser']);
                     <div class="">
                             <h2 class="title">Your Ticket</h2>
                         <div class='ticket-list'>
-                           <!-- <div class='ticket-wrapper'>
-                                <div class='ticket-qr-code' >
-                                    <div class='logo'>
-                                            <img src="./assets/images/logo/logo.png"/>
-                                    </div>
-                                    <div>
-                                        <h4 class=''>TICKET QR</h4>
-                                        <img  src='./assets/images/Qr.png' style="background-color: white;"/>
-                                    </div>
-                                </div>
-                                <div class='ticket-info-wrap'>
-                                    <div class='logo'>
-                                        <img src="./assets/images/logo/logo.png"/>
-                                    </div>
-                                    <div class='ticket-info'>
-                                        <h3>PHIM ĐIỆN ẢNH DORAEMON: NOBITA VÀ VÙNG ĐẤT LÝ TƯỞNG TRÊN BẦU TRỜI</h3>
-                                        <h4>Beta Mỹ Đình</h4>
-                                        <div class='ticket-info-line'>
-                                            <div class='title'>ROOM</div>
-                                            <div class='content'>BetaMD1</div>
-                                        </div>
-                                        <div class='ticket-info-line'>
-                                            <div class='ticket-info-title'>DATE</div>
-                                            <div class='ticket-info-content'>2023/12/11</div>
-                                        </div>
-                                        <div class='ticket-info-line'>
-                                            <div class='title'>TIME</div>
-                                            <div class='content'>12:00</div>
-                                        </div>
-                                        <div class='ticket-info-line'>
-                                            <div class='title'>SEATS</div>
-                                            <div class='content'>F11,F12</div>
-                                        </div>
-                                    </div>
-                                </div>
-                           </div>
-                            -->
                            <?php 
                             if(count($ticket_infos) == 0){
                                 echo "<h1>Chưa có vé nào được đặt</h1>";
@@ -65,6 +28,7 @@ $ticket_infos = group_ticket_seat($userInfo['idUser']);
                                     $date = $ticket['date'];
                                     $time = substr($ticket['time'],0,5);
                                     $seats = join(',',$ticket['seat_key']);
+                                    $status = $ticket['status'] == 1 ? 'Paid' : 'Unpaid';
                                     echo "
                                     <div class='ticket-wrapper'>
                                     <div class='ticket-qr-code' >
@@ -99,6 +63,11 @@ $ticket_infos = group_ticket_seat($userInfo['idUser']);
                                                 <div class='title'>SEATS</div>
                                                 <div class='content'>{$seats}</div>
                                             </div>
+                                            <div class='ticket-info-line '>
+                                                 <div class='title '>STATUS</div>
+                                                 <div class='content {$status}'>{$status}</div>
+                                            </div>
+                                        
                                         </div>
                                     </div>
                                </div>
@@ -156,6 +125,7 @@ $ticket_infos = group_ticket_seat($userInfo['idUser']);
  }
  .ticket-info-wrap{
     padding: 16px;
+    width: 100%;
  }
  .ticket-info{
     margin-top: 16px;
@@ -174,6 +144,9 @@ $ticket_infos = group_ticket_seat($userInfo['idUser']);
  .ticket-info-line{
     display: flex;
     justify-content: space-between;
+ }
+ .Unpaid{
+    color: red;
  }
 
 </style>

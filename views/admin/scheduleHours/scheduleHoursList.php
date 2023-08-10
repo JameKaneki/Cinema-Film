@@ -1,3 +1,6 @@
+<?php
+    $listfilm = loadall_film();
+?>
 <div class='wrapper'>
 <div class="row frmtitle mb-3" >
         <h1 style="text-align: center;" class="title">Schedule Hours List</h1>
@@ -6,14 +9,19 @@
         <div style="background-color:lightgreen" class="btn btn-blue"><a href="index.php?act=schedule_hours-create">Add new Schedule hours</a></div>
         <div class='search-bar'>
             <form action='index.php?act=schedule_hours' method="POST">
-                <select name="idFilm" placeholder="Film">
-                    <option value="">----------</option>
-                    <option value="1">Tà chú cấm</option>
-                    <option value="2">Ma sơ trục quỷ</option>
-                    <option value="3">Doraemon:Vùng đắt lý tưởng</option>
-                    <option value="4">TRANSFỎMER</option>
-                    <option value="5">jujutsu kaisen</option>
+                <?php 
+                    echo "
+                    <select name='idFilm' placeholder='Film'>
+                    <option value='0'>-------</option>
+                    ";
+                    foreach($listfilm as $film){
+                        echo "
+                            <option value='{$film['idFilm']}'>{$film['nameFilm']}</option>
+                        ";
+                      }
+                    ?>
                 </select>
+              
                 <select name='idRoom'>
                     <option value="">-------</option>
                     <option value='1'>BetaMD1</option>
@@ -42,6 +50,7 @@
             <?php
             foreach ($schedule_hours as $sHour) {
                 $time = substr($sHour['time'], 0, 5);
+                $data = json_encode($sHour);
                 echo
                 "<tr>
                     <td>{$sHour['nameFilm']}</td>
@@ -49,15 +58,13 @@
                     <td>$time</td>
                     <td>{$sHour['nameRoom']}</td>
                     <td class='action-box'>
-                    <div class='btn btn-blue'><a href='index.php?act=schedule_hours-edit&id={$sHour['idScheduleHour']}' >Update</a></div>
-                    <div class='btn btn-red'><a href='index.php?act=schedule_hours-delete&id={$sHour['idScheduleHour']}' >DELETE</a></div>
+                        <div class='btn btn-red' onClick='removeScheduleHour($data)'>Remove</div>
                     </td>
                 </tr>";
             }
             ?>
         </tbody>
     </table>
-
 </div>
 <style>
     :root {
@@ -178,3 +185,11 @@
         background-color: blue;
     }
 </style>
+<script>
+    const removeScheduleHour = (data) =>{
+        const result = confirm(`Remove ${data.nameFilm} at ${data.date}-${data.time.slice(0,5)}`);
+        if(result){
+            location.href = `http://localhost/Cinema-Film/views/admin/index.php?act=schedule_hours-delete&id=${data.idFilm}` 
+        }
+    }
+</script>

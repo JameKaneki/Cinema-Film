@@ -59,7 +59,7 @@
                 <ul class="menu">
                     <li>
                         
-                        <a href="#0">Movie</a>
+                        <a href="index.php?act=home">Movie</a>
                         <ul class="submenu" style="z-index:10;">
                             <li>
                                 <a href="index.php?act=movie-grid&id=playing">Movie playing now</a>

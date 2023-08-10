@@ -16,22 +16,25 @@
         $sql = "SELECT * FROM `bill` WHERE id_bill = $id_bill";
         return pdo_query_one($sql);
     }
-
     function getBill_By_idUser_nameFilm($idUser,$idFilm){
-        $sql=" SELECT DISTINCT b.id_bill,se.seat_key From `bill` as b
-        inner join `tickets` as t on t.id_bill = b.id_bill
-        inner join `schedule_hours` as sh on t.idScheduleHour = sh.idScheduleHour
-        inner join `schedules` as s on sh.idSchedule = s.idSchedule
-        inner join `seats` as se on t.id_seat = se.id_seat
-        inner join `users` as u On u.idUser = b.idUser
-        inner join `films` as f on s.idFilm = f.idFilm";
-        if($idUser != ''){
+        $sql="SELECT 
+        c.nameCinema,s.date,sh.time,seats.seat_key,f.nameFilm,b.status,b.id_bill,r.nameRoom,b.create_at,u.userName,b.price
+        FROM `bill` as b 
+        INNER JOIN tickets as t ON t.id_bill = b.id_bill
+        INNER JOIN schedule_hours as sh ON t.idScheduleHour = sh.idScheduleHour 
+        INNER JOIN rooms as r ON r.idRoom = sh.idRoom 
+        INNER JOIN schedules as s ON s.idSchedule = sh.idSchedule
+        INNER JOIN films as f ON f.idFilm = s.idFilm
+        INNER JOIN seats ON seats.id_seat = t.id_seat
+        INNER JOIN users as u ON u.idUser = t.idUser
+        INNER JOIN cinemas as c ON c.idCinema = r.idCinema"; 
+        if($idUser){
             $sql .= " AND u.idUser = '$idUser' ";
         }
         if($idFilm != ''){
             $sql .= " AND s.idFilm = '$idFilm' ";
         }
-        $sql .= " ORDER BY b.id_bill asc";
+        $sql .= " WHERE b.status != 2";
         return pdo_query($sql);
     }
     
@@ -40,13 +43,17 @@
         return array_reduce($data,"groupData_bill_seat",[]);
     }
     
-    function groupData_bill_seat($carry, array $current){
-        if(isset($carry[$current["id_bill"]])){
-            return [...$carry,$current["id_bill"]=>[...$carry[$current['id_bill']],$current['seat_key']]];
+    function groupData_bill_seat( array $carry, array $item){
+        $seat_key = $item['seat_key'];
+        $id_bill = $item['id_bill']; 
+        if(isset($carry[$id_bill])){
+            $seat_key_list = $carry[$id_bill]['seat_key'];
+            $seat_key_list = [...$seat_key_list,$seat_key];
+            $carry[$id_bill] = [...$carry[$id_bill], 'seat_key' => $seat_key_list];
+            return $carry;
         }else{
-            return [...$carry,$current["id_bill"]=>[$current['seat_key']]];
-        }
-        }
+            return [...$carry,$id_bill => [...$item,'seat_key' => [$seat_key]]] ;
+        }}
     function select_bill($idUser,$idFilm){
         $sql=" SELECT DISTINCT b.id_bill,u.userName,b.status,b.create_at,b.price,f.nameFilm From `bill` as b
         inner join `tickets` as t on t.id_bill = b.id_bill

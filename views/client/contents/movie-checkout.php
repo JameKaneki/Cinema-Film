@@ -3,17 +3,16 @@
  if (isset($_GET['alert'])) {
     $alert = $_GET['alert'];
     echo '<script type="text/javascript">
-
         window.onload = function () { alert("' . $alert . '"); }
 
 </script>';
 }
-    $idUser = 1;
+    $idUser = $_SESSION['userName']['idUser'];
     $id_bill =  create_bill($amountPayable,$idUser);
     $_SESSION['id_bill'] = $id_bill;
     $orderType = 190000;
     $lang = 'vn';
-    $bankCode = 'NCB';
+    $bankCode = 'VNPAYQR';
     $time = date("Y-m-d H:i:s");
     $order_des = 'MS:' .$id_bill.' ' .$_GET['s']. ' ' . $time ;
 // get userinfo form SESSION
@@ -118,9 +117,10 @@
                                     echo "<input name={$key} value={$value} type='hidden'/>";
                                 } 
                                 echo "
-
+                                   <div class='button-wrapper'>
                                     <input class='custom-button back-button' type='submit' name='paying-late' value='Paying late'/>
-                                    <input class='custom-button back-button' type='submit' name='paying-now' value='Paying now by Vnpay'/>
+                                    <input class='custom-button back-button' type='submit'  name='paying-now' value='QR Paying now'/>
+                                   </div>
                                 </form>";
                             ?>
                                 
@@ -129,3 +129,9 @@
             </div>
         </div>
     </div>
+
+    <style>
+        .button-wrapper{
+            display: flex;
+        }
+    </style>

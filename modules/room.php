@@ -15,7 +15,7 @@
     }
 
     function selectAll_room(){
-        $sql="SELECT `rooms`.`idRoom`,`nameRoom`,`seatList`,`cinemas`.`idCinema`,`nameCinema` FROM `rooms`
+        $sql="SELECT `rooms`.`idRoom`,`nameRoom`,`cinemas`.`idCinema`,`nameCinema` FROM `rooms`
         inner join `cinemas` on `cinemas`.`idCinema` = `rooms`.`idCinema`  order by idRoom desc";
         return pdo_query($sql);
     }

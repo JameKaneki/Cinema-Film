@@ -7,38 +7,37 @@ $vnp_Returnurl = "http://localhost/Cinema-Film/vnpay_php/vnpay_return.php";
 $vnp_TmnCode = "D7GEL8KH";//Mã website tại VNPAY 
 $vnp_HashSecret = "SOEALHLHQFMXSHXYZXFBZQRKXFOAYMST"; //Chuỗi bí mật
 
-$vnp_TxnRef = $_POST['order_id']; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
-$vnp_OrderInfo = $_POST['order_desc'];
-$vnp_OrderType = $_POST['order_type'] ; // mã loại hàng
-$vnp_Amount = $_POST['amount'] * 100;
-$vnp_Locale =  $_POST['language']; //
+$vnp_TxnRef = $_GET['order_id']; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+$vnp_OrderInfo = $_GET['order_desc'];
+$vnp_OrderType = $_GET['order_type'] ; // mã loại hàng
+$vnp_Amount = $_GET['amount'] * 100;
+$vnp_Locale =  $_GET['language']; //
+$vnp_BankCode =  $_GET['bank_code']; // mã ngân hàng thanh toán
 $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];// 127.0.0.1
-$vnp_BankCode =  $_POST['bank_code']; // mã ngân hàng thanh toán
-
 
 //Add Params of 2.0.1 Version
-// $vnp_ExpireDate = $_POST['txtexpire'];
+// $vnp_ExpireDate = $_GET['txtexpire'];
 //Billing
-// $vnp_Bill_Mobile = $_POST['txt_billing_mobile'];
-// $vnp_Bill_Email = $_POST['txt_billing_email'];
-$fullName = trim($_POST['txt_billing_fullname']);
+// $vnp_Bill_Mobile = $_GET['txt_billing_mobile'];
+// $vnp_Bill_Email = $_GET['txt_billing_email'];
+$fullName = trim($_GET['txt_billing_fullname']);
 if (isset($fullName) && trim($fullName) != '') {
     $name = explode(' ', $fullName);
     $vnp_Bill_FirstName = array_shift($name);
     $vnp_Bill_LastName = array_pop($name);
 }
-// $vnp_Bill_Address=$_POST['txt_inv_addr1'];
-// $vnp_Bill_City=$_POST['txt_bill_city'];
-// $vnp_Bill_Country=$_POST['txt_bill_country'];
-// $vnp_Bill_State=$_POST['txt_bill_state'];
+// $vnp_Bill_Address=$_GET['txt_inv_addr1'];
+// $vnp_Bill_City=$_GET['txt_bill_city'];
+// $vnp_Bill_Country=$_GET['txt_bill_country'];
+// $vnp_Bill_State=$_GET['txt_bill_state'];
 // Invoice
-// $vnp_Inv_Phone=$_POST['txt_inv_mobile'];
-// $vnp_Inv_Email=$_POST['txt_inv_email'];
-// $vnp_Inv_Customer=$_POST['txt_inv_customer'];
-// $vnp_Inv_Address=$_POST['txt_inv_addr1'];
-// $vnp_Inv_Company=$_POST['txt_inv_company'];
-// $vnp_Inv_Taxcode=$_POST['txt_inv_taxcode'];
-// $vnp_Inv_Type=$_POST['cbo_inv_type'];
+// $vnp_Inv_Phone=$_GET['txt_inv_mobile'];
+// $vnp_Inv_Email=$_GET['txt_inv_email'];
+// $vnp_Inv_Customer=$_GET['txt_inv_customer'];
+// $vnp_Inv_Address=$_GET['txt_inv_addr1'];
+// $vnp_Inv_Company=$_GET['txt_inv_company'];
+// $vnp_Inv_Taxcode=$_GET['txt_inv_taxcode'];
+// $vnp_Inv_Type=$_GET['cbo_inv_type'];
 $inputData = array(
     "vnp_Version" => "2.1.0",
     "vnp_TmnCode" => $vnp_TmnCode,
@@ -99,10 +98,11 @@ if (isset($vnp_HashSecret)) {
 $returnData = array('code' => '00'
     , 'message' => 'success'
     , 'data' => $vnp_Url);
-    if (isset($_POST['paying-now'])) {  
+    if (isset($_GET['paying-now'])) {  
         header('Location: ' . $vnp_Url);
         die();
     } else {
+        add_link_bill($vnp_TxnRef, $vnp_Url);
         echo "
         <script type='text/javascript'>
             alert('Your data has been saved  !!');

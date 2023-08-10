@@ -18,27 +18,12 @@
                 }
                 ?>
                 </span>
-                
-            </div>
-
-            <div class="w-50 form-group my-3">
-                <label for="">Seat List</label>
-                <input class="form-control" type="text" name="seatList" value="">
-                <span style="color:red">
-                <?php 
-                if(isset($_POST['addRoom'])&&($_POST['addRoom'])){
-                    if($_POST['seatList']==""){
-                        echo "Chưa có danh sách ghế";
-                      }
-                    }
-                ?>
-                </span>
             </div>
         </div>
         <div class="row">
             <div class="w-50 form-group my-3">
-            <label for="">Tên Rạp Chiếu</label><br>
-                <select name="idCinema" id="">
+                <label for="">Tên Rạp Chiếu</label><br>
+                <select name="idCinema" id="" class='p-1 w-50'>
                     <option value="" selected>Chọn</option>
                     <?php
                     $listCinema = selectAll_cinema();

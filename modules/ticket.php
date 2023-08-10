@@ -41,7 +41,7 @@
         INNER JOIN seats ON seats.id_seat = t.id_seat
         INNER JOIN users as u ON u.idUser = t.idUser
         INNER JOIN cinemas as c ON c.idCinema = r.idCinema
-        WHERE t.idUser = $id AND b.status = 1 ORDER BY id_bill DESC";
+        WHERE t.idUser = $id  ORDER BY id_bill DESC";
         return pdo_query($sql);
     }
     function selectOne_ticket($idTicket){
