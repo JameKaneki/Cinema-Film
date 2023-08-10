@@ -13,14 +13,14 @@
     <title>Boleto Cinemas Admin</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="asset/plugins/images/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
 
     <!-- Custom CSS -->
-    <link href="css/style.min.css" rel="stylesheet">
+    <link href="asset/css/style.min.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" > -->
-    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="asset/css/menu.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -63,13 +63,13 @@
                                 <!-- Logo icon -->
                                 <b class="logo-icon">
                                     <!-- Dark Logo icon -->
-                                    <img src="plugins/images/logo-icon.png" alt="homepage" />
+                                    <img src="asset/plugins/images/logo-icon.png" alt="homepage" />
                                 </b>
                                 <!--End Logo icon -->
                                 <!-- Logo text -->
                                 <span class="logo-text">
                                     <!-- dark Logo text -->
-                                    <img src="plugins/images/logo-text.png" alt="homepage" />
+                                    <img src="asset/plugins/images/logo-text.png" alt="homepage" />
                                 </span>
                             </a>
                             <!-- ============================================================== -->
