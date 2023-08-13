@@ -103,6 +103,7 @@ $returnData = array('code' => '00'
         header('Location: ' . $vnp_Url);
         die();
     } else {
+        update_status_bill($vnp_TxnRef,0);
         echo "
         <script type='text/javascript'>
             alert('Your data has been saved  !!');

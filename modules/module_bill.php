@@ -76,4 +76,36 @@
         $sql = "UPDATE `bill` SET `link`='$link' WHERE id_bill = '$id_bill'";
         return pdo_execute($sql);
     }
+    function remove_undefine_ticket_bill(){
+        $sql_select_undefine_bill = "SELECT id_bill FROM `bill` WHERE status = 2 ";
+        $undefine_bill = pdo_query($sql_select_undefine_bill);
+        if(count($undefine_bill) > 0){
+            $id_bills = array_map(function (array $bill) {
+                return $bill['id_bill'];
+            },$undefine_bill);
+            foreach ( $id_bills as $id_bill) {
+                delete_ticket_by_id_bill($id_bill);
+                remove_bill($id_bill);
+            }
+        }
+    }
+    function remove_unpaid_bill() {
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $now = date('Y-m-d H:m');
+        $date = substr($now,0,10);
+        $time = substr($now,11,16);
+        $sql = "SELECT b.id_bill FROM `tickets` as t
+        INNER JOIN schedule_hours as sh ON t.idScheduleHour = sh.idScheduleHour
+        INNER JOIN schedules as s ON s.idSchedule = sh.idSchedule
+        INNER JOIN bill as b ON b.id_bill = t.id_bill
+        WHERE sh.time < '$time' AND s.date = '$date' AND b.status = 0";
+        $id_bills = pdo_query($sql);
+        if(count($id_bills) > 0 ) {
+            foreach($id_bills as $id_bill){
+                extract($id_bill);
+                delete_ticket_by_id_bill($id_bill);
+                remove_bill($id_bill);   
+            }
+        }
+    }
 ?>

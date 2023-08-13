@@ -1,3 +1,6 @@
+<?php 
+    remove_unpaid_bill();
+?>
 <div class='wrapper'>
     <div class="row frmtitle mb-3" >
         <h1 style="text-align: center;" class="title">Bill List</h1>
