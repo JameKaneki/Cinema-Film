@@ -89,7 +89,6 @@
         }else{
             return [...$carry,$id_bill => [...$item,'seat_key' => [$seat_key]]] ;
         }}
-        
 ?>
 
 

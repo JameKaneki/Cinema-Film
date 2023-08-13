@@ -3,9 +3,8 @@
  if (isset($_GET['alert'])) {
     $alert = $_GET['alert'];
     echo '<script type="text/javascript">
-        window.onload = function () { alert("' . $alert . '"); }
-
-</script>';
+          window.onload = function () { alert("' . $alert . '"); }
+        </script>';
 }
     $idUser = $_SESSION['userName']['idUser'];
     $id_bill =  create_bill($amountPayable,$idUser);

@@ -16,8 +16,7 @@ include "../../modules/moduleScheduleHours.php";
 include "../../modules/moduleRoom.php";
 include "../../modules/module_bill.php";
 
-
-
+remove_undefine_ticket_bill();
 if(isset($_GET['act'])){
     $feature = $_GET['act'];
     switch ($feature) {
@@ -101,7 +100,7 @@ if(isset($_GET['act'])){
         break;
         case 'movie-checkout':
         { 
-            router_login();
+            router_login("You need to login first");
             if(isset($_GET['s'])&& isset($_GET['sh'])  && isset($_GET['r']) && isset($_GET['total'])){
                     $seatList= $_GET['s'];
                     $idScheduleHour = $_GET['sh'];
@@ -116,7 +115,7 @@ if(isset($_GET['act'])){
         break;
         case 'my-ticket':
             {
-                router_login();
+                router_login("You need to login first");
                 include "./contents/my-ticket.php";
             }
         break;
@@ -127,13 +126,7 @@ if(isset($_GET['act'])){
 }else{
     include "./contents/home.php";
 }
-function router_login()
-{
-    if (empty($_SESSION['userName'])){
-        $alert = "Please login first";
-        header('Location:index.php?act=sign-in&alert='.$alert);
-    }
-}
+
 
 // content heaar
 
@@ -147,5 +140,16 @@ function group_seat (array $carry,array $item) {
         return [...$carry, $key => [...$carry[$key]],$item];
     }
     return $carry;
+}
+function router_login($message)
+{
+    if (empty($_SESSION['userName'])){
+        echo "
+        <script type='text/javascript'>
+            alert('You need to login first!!');
+            location.href =`http://localhost/Cinema-Film/views/client/index.php?act=sign-in`
+        </script>
+        ";
+    }
 }
 ?>

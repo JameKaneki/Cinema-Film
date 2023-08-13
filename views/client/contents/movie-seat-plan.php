@@ -3,33 +3,34 @@
 chọn ghế xong thì trả ra giá luôn - giá để default cũng đc
 
 khi ấn proceed thì kiểm tra xem đã đăng nhập chưa nếu chauw thì ra màn login  -->
-
-
-
-<section class="details-banner hero-area bg_img seat-plan-banner" data-background="assets/images/banner/banner04.jpg">
-        <div class="container">
-            <div class="details-banner-wrapper">
-                <div class="details-banner-content style-two">
-                    <h3 class="title">Venus</h3>
-                    <div class="tags">
-                        <a href="#0">City Walk</a>
-                        <a href="#0">English - 2D</a>
-
-                        <div class="item date-item">
-                            <span class="date">MON, SEP 09 2020 - 09:40</span>
-                        </div>
-
-                        <div class="item md-order-1 pt-4">
-                            <a href="movie-ticket-plan.html" class="custom-button back-button">
-                                <i class="flaticon-double-right-arrows-angles"></i>back
-                            </a>
-                        </div>
+<?php 
+    extract($scheduleHourInfo);
+    $hour = substr($time,0,5);
+    $link = $_SERVER['HTTP_REFERER'];
+    echo "
+    <section class='details-banner hero-area bg_img seat-plan-banner' data-background='assets/images/banner/banner04.jpg'>
+    <div class='container'>
+        <div class='details-banner-wrapper'>
+            <div class='details-banner-content style-two'>
+                <h3 class='title'>$nameFilm</h3>
+                <div class='tags'>
+                    <span>$nameCinema | $nameRoom</span>
+                    <div class='item date-item'>
+                        <span class='date'>$date - $hour</span>
+                    </div>
+                    <div class='item md-order-1 pt-4'>
+                        <a href='$link' class='custom-button back-button'>
+                            <i class='flaticon-double-right-arrows-angles'></i>back
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </section>
-<div class="seat-plan-section padding-bottom padding-top margin-bottom">
+    ";
+?>
+<div class="seat-plan-section padding-bottom margin-bottom">
         <div class="container">
             <div class="screen-area">
                 <h4 class="screen">screen</h4>
@@ -76,7 +77,7 @@ khi ấn proceed thì kiểm tra xem đã đăng nhập chưa nếu chauw thì r
                     </div>
                     <div class="book-item">
                         <span>total price</span>
-                        <h3 class="title" id='total-price'>0 VND</h3>
+                        <h4 class="" id='total-price'>0 đ</h4>
                     </div>
                     <div class="book-item">
                         <button <?php echo " onclick='postData($idScheduleHour,{$scheduleHourInfo['idRoom']})'"; ?> class="custom-button">proceed</button>
