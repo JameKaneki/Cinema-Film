@@ -141,11 +141,10 @@
             case 'room-add':
               include "room/add.php";
               if(isset($_POST['addRoom'])&&($_POST['addRoom'])){
-                if($_POST['nameRoom']!=""&&$_POST['idCinema']!=""&&$_POST['seatList']!=""){
+                if($_POST['nameRoom']!=""&&$_POST['idCinema']!=""){
                 $nameRoom = $_POST['nameRoom'];
                 $idCinema = $_POST['idCinema'];
-                $seatList = $_POST['seatList'];
-                insert_room($nameRoom,$idCinema,$seatList);
+                insert_room($nameRoom,$idCinema);
                 header("Location:index.php?act=room");
                 }
               }
@@ -169,12 +168,11 @@
             case 'room-update':
               {
                 if(isset($_POST['updateRoom'])&&$_POST['updateRoom']){
-                  if($_POST['nameRoom']!=""&&$_POST['idCinema']!=""&&$_POST['seatList']!=""){
+                  if($_POST['nameRoom']!=""&&$_POST['idCinema']!=""){
                     $idRoom = $_POST['idRoom'];
                     $nameRoom = $_POST['nameRoom'];
                     $idCinema = $_POST['idCinema'];
-                    $seatList = $_POST['seatList'];
-                    update_room($idRoom,$nameRoom,$idCinema,$seatList);
+                    update_room($idRoom,$nameRoom,$idCinema);
                     header("Location:index.php?act=room");
                     }
                     else{

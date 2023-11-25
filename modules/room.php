@@ -1,6 +1,6 @@
 <?php 
-    function insert_room($nameRoom,$idCinema,$seatList){
-        $sql="INSERT INTO `rooms`(`nameRoom`, `idCinema`, `seatList`) VALUES ('$nameRoom','$idCinema','$seatList')";
+    function insert_room($nameRoom,$idCinema){
+        $sql="INSERT INTO `rooms`(`nameRoom`, `idCinema`) VALUES ('$nameRoom','$idCinema')";
         pdo_execute($sql);
     }
 
@@ -9,8 +9,8 @@
         pdo_execute($sql);
     }
 
-    function update_room($idRoom,$nameRoom,$idCinema,$seatList){
-        $sql="UPDATE `rooms` SET `nameRoom`='$nameRoom',`idCinema`='$idCinema',`seatList`='$seatList' WHERE idRoom=".$idRoom;
+    function update_room($idRoom,$nameRoom,$idCinema){
+        $sql="UPDATE `rooms` SET `nameRoom`='$nameRoom',`idCinema`='$idCinema' WHERE idRoom=".$idRoom;
         pdo_execute($sql);
     }
 

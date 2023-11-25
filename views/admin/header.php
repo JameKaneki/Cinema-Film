@@ -125,7 +125,7 @@
                             <ul id="sidebarnav">
                                 <!-- User Profile-->
                                 <div style="margin:8px 6px">
-                                    <h4>WELCOME <?= $userName ?></h4>
+                                    <h4>WELCOME <?= $email ?></h4>
                                 </div>
                             <?php
                             if($role == 'admin'){
