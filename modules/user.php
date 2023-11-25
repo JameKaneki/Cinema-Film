@@ -7,17 +7,17 @@ function insert_user($userName,$password,$email)
 
 function update_account($idUser,$userName,$password,$email,$name,$phoneNumber,$address){
     $sql="UPDATE `users` SET `userName`='$userName',`password`='$password',`email`='$email',`name`='$name',
-    `phoneNumber`='$phoneNumber',`address`='$address' WHERE `idUser`='$idUser'";
+    `phoneNumber`='$phoneNumber',`address`='$address' WHERE `id`='$idUser'";
     pdo_execute($sql);
 }
 
 function delete_account($idUser){
-    $sql = "DELETE FROM `users` WHERE `idUser`=".$idUser;
+    $sql = "DELETE FROM `users` WHERE `id`=".$idUser;
     pdo_execute($sql);
 }
 
 function loadall_acount(){
-    $sql = "SELECT * FROM `users` ORDER BY `idUser` DESC";
+    $sql = "SELECT * FROM `users` ORDER BY `id` DESC";
     return pdo_query($sql);
 }
 function check_acount($userName,$email){

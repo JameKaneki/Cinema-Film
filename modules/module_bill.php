@@ -1,7 +1,7 @@
 <?php 
     function create_bill (int $price,int $idUser){
         $now = date("Y-m-d H:i:s");
-        $sql = "INSERT INTO `bill`(`create_at`,`price`,`idUser`) VALUES ('$now' ,$price,$idUser)";
+        $sql = "INSERT INTO `bill`(`create_at`,`price`,`isUser`) VALUES ('$now' ,$price,$idUser)";
         return pdo_execute_return($sql);
     }
     function remove_bill($id){
@@ -18,7 +18,7 @@
     }
     function getBill_By_idUser_nameFilm($idUser,$idFilm){
         $sql="SELECT 
-        c.nameCinema,s.date,sh.time,seats.seat_key,f.nameFilm,b.status,b.id_bill,r.nameRoom,b.create_at,u.userName,b.price
+        c.nameCinema,s.date,sh.time,seats.seat_key,f.nameFilm,b.status,b.id_bill,r.nameRoom,b.create_at,u.name,b.price
         FROM `bill` as b 
         INNER JOIN tickets as t ON t.id_bill = b.id_bill
         INNER JOIN schedule_hours as sh ON t.idScheduleHour = sh.idScheduleHour 
@@ -26,10 +26,10 @@
         INNER JOIN schedules as s ON s.idSchedule = sh.idSchedule
         INNER JOIN films as f ON f.idFilm = s.idFilm
         INNER JOIN seats ON seats.id_seat = t.id_seat
-        INNER JOIN users as u ON u.idUser = t.idUser
+        INNER JOIN users as u ON u.id = t.idUser
         INNER JOIN cinemas as c ON c.idCinema = r.idCinema"; 
         if($idUser){
-            $sql .= " AND u.idUser = '$idUser' ";
+            $sql .= " AND u.id = '$idUser' ";
         }
         if($idFilm != ''){
             $sql .= " AND s.idFilm = '$idFilm' ";
@@ -60,10 +60,10 @@
         inner join `schedule_hours` as sh on t.idScheduleHour = sh.idScheduleHour
         inner join `schedules` as s on sh.idSchedule = s.idSchedule
         inner join `seats` as se on t.id_seat = se.id_seat
-        inner join `users` as u On u.idUser = b.idUser
+        inner join `users` as u On u.id = b.idUser
         inner join `films` as f on s.idFilm = f.idFilm";
         if($idUser != ''){
-            $sql .= " AND u.idUser = '$idUser' ";
+            $sql .= " AND u.id = '$idUser' ";
         }
         if($idFilm != ''){
             $sql .= " AND s.idFilm = '$idFilm' ";
