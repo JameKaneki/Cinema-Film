@@ -1,7 +1,7 @@
 <?php 
 //    $user_id = $_SESSION['user_id'];
 $userInfo = $_SESSION['userName'];
-$ticket_infos = group_ticket_seat($userInfo['idUser']);
+$ticket_infos = group_ticket_seat($userInfo['id']);
 ?>
 <section class="banner-section">
         <div class="banner-bg bg_img bg-fixed" data-background="assets/images/banner/banner01.jpg"></div>

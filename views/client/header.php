@@ -80,17 +80,8 @@
                         if (!empty($_SESSION['userName'])) {
                             $userInfo = $_SESSION['userName'];
                         ?>
-                            <!-- <div>
-                            
-                        </div>
-                        <li>
-                            <a href="">My ticket</a>
-                        </li>
-                        <li>
-                            <a href="index.php?act=exit">Thoát</a>
-                        </li> -->
                     <li>
-                        <a href="#0"><?= $userInfo['userName']?></a>
+                        <a href="#0"><?= $userInfo['email']?></a>
                         <ul class="submenu" style="z-index:10;">
                             <li>
                                 <a href="index.php?act=my-ticket">My ticket</a>
