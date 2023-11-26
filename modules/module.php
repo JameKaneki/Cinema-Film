@@ -24,13 +24,10 @@ function pdo_execute($sql){
         $conn = pdo_get_connection();
         $stmt = $conn->prepare($sql);
         $stmt->execute($sql_args);
-        $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->fetch(PDO::FETCH_ASSOC); 
     }
     catch(PDOException $e){
         throw $e;
-    }
-    finally{
-        unset($conn);
     }
 }
 

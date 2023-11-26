@@ -85,14 +85,15 @@ function loadtop3coming_film(){
     return pdo_query($sql);
 }
 
-function loadall_playing_film(){
-    $sql="SELECT DISTINCT f.nameFilm,f.idFilm,f.director,f.performer,f.premiere,f.duration,f.language,f.description,f.category,f.trailer,f.poster,f.rate,f.likeAmount from `films` as f
-    inner join `schedules` as s on s.idFilm = f.idFilm  WHERE s.date >= NOW() and f.premiere <= now() Order by `premiere` desc";
+function load_all_playing_film(){
+    $today = date('Y-m-d');
+    $sql="SELECT * FROM `films` as f INNER JOIN schedules as s on f.idFilm = s.idFilm WHERE s.date > '$today' GROUP BY f.nameFilm";
     return  pdo_query($sql);
 }
 
 function loadall_coming_film(){
-    $sql="SELECT * FROM `films` WHERE `premiere` > NOW() ORDER BY `premiere` asc";
+    $today = date('Y-m-d');
+    $sql="SELECT * FROM `films` WHERE `premiere` > '$today' ORDER BY `premiere` asc";
     return pdo_query($sql);
 }
 

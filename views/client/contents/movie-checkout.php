@@ -6,7 +6,7 @@
           window.onload = function () { alert("' . $alert . '"); }
         </script>';
 }
-    $idUser = $_SESSION['userName']['idUser'];
+    $idUser = $_SESSION['userName']['id'];
     $id_bill =  create_bill($amountPayable,$idUser);
     $_SESSION['id_bill'] = $id_bill;
     $orderType = 190000;

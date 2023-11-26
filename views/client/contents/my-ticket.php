@@ -8,7 +8,7 @@ $ticket_infos = group_ticket_seat($userInfo['id']);
         <div class="container">
             <div class="banner-content" height='300px'>
                 <h1 class="title  cd-headline clip">
-                    <span> <?php echo "{$userInfo['userName']}"; ?> </span>
+                    <span> <?php echo "{$userInfo['name']}"; ?> </span>
                 </h1>
                 <h2 class='color-theme'>HAVE A BEST EXPERIENCE AT BELETO CINEMA</h2>
             </div>

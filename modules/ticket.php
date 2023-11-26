@@ -17,9 +17,9 @@
     }
 
     function selectAll_ticket(){
-        $sql="SELECT `tickets`.`idTicket`,`schedule_hours`.`idScheduleHour`,`time`,`users`.`idUser`,`name`,`cinemas`.`idCinema`,`nameCinema`,`films`.`idFilm`,`nameFilm`,`schedules`.`idSchedule`,`date`,`rooms`.`idRoom`,`nameRoom`,`seats`.`id_seat`,`seat_key`,`price` FROM `tickets`
+        $sql="SELECT `tickets`.`idTicket`,`schedule_hours`.`idScheduleHour`,`time`,`users`.`id`,`name`,`cinemas`.`idCinema`,`nameCinema`,`films`.`idFilm`,`nameFilm`,`schedules`.`idSchedule`,`date`,`rooms`.`idRoom`,`nameRoom`,`seats`.`id_seat`,`seat_key`,`price` FROM `tickets`
         Inner join `schedule_hours` On `schedule_hours`.`idScheduleHour` = `tickets`.`idScheduleHour`
-        Inner join `users` On `users`.`idUser` = `tickets`.`idUser`
+        Inner join `users` On `users`.`id` = `tickets`.`idUser`
         Inner join `schedules` On `schedule_hours`.`idSchedule` = `schedules`.`idSchedule`
         Inner join `films` On `schedules`.`idFilm` = `films`.`idFilm`
         Inner join `rooms` On `schedule_hours`.`idRoom` = `rooms`.`idRoom`
@@ -39,7 +39,7 @@
         INNER JOIN schedules as s ON s.idSchedule = sh.idSchedule
         INNER JOIN films as f ON f.idFilm = s.idFilm
         INNER JOIN seats ON seats.id_seat = t.id_seat
-        INNER JOIN users as u ON u.idUser = t.idUser
+        INNER JOIN users as u ON u.id = t.idUser
         INNER JOIN cinemas as c ON c.idCinema = r.idCinema
         WHERE t.idUser = $id  ORDER BY id_bill DESC";
         return pdo_query($sql);
@@ -47,7 +47,7 @@
     function selectOne_ticket($idTicket){
         $sql="SELECT `tickets`.`idTicket`,`price`,`seat`,`schedule_hours`.`idScheduleHour`,`time`,`users`.`idUser`,`name` FROM `tickets`
         Inner join `schedule_hours` On `schedule_hours`.`idScheduleHour` = `tickets`.`idScheduleHour`
-        Inner join `users` On `users`.`idUser` = `tickets`.`idUser` Where idTicket=".$idTicket;
+        Inner join `users` On `users`.`id` = `tickets`.`idUser` Where idTicket=".$idTicket;
         return pdo_query_one($sql);
     }
 
@@ -57,7 +57,7 @@
     }
 
     function selectAll_user(){
-        $sql="SELECT * FROM `users` Order by 'idUser' desc";
+        $sql="SELECT * FROM `users` Order by 'id' desc";
         return pdo_query($sql);
     }
     function getMovieCheckoutInfo($idScheduleHour){

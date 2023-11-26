@@ -48,7 +48,7 @@
     function getBookedSeat($idScheduleHour){
         $sql =
         "SELECT seats.seat_key,seats.price,seats.id_seat,sh.idScheduleHour,sh.time,f.nameFilm,s.date,r.idRoom,c.nameCinema FROM `tickets` as t 
-        INNER JOIN users as u on t.idUser=u.idUser 
+        INNER JOIN users as u on t.idUser=u.id 
         INNER JOIN schedule_hours as sh ON t.idScheduleHour=sh.idScheduleHour 
         INNER JOIN seats ON seats.id_seat = t.id_seat 
         INNER JOIN schedules as s on s.idSchedule = sh.idSchedule 

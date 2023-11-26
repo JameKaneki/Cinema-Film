@@ -23,14 +23,14 @@
                 $confilm = "return confirm('Bạn có chắc chắn muốn xóa')";
                 foreach ($list_user as $user) {
                     extract($user);
-                    $delete = "index.php?act=user_delete&idUser=" .$idUser;
+                    $delete = "index.php?act=user_delete&idUser=" .$id;
                     echo '<tr>
-                            <td>' . $idUser . '</td>
-                            <td>' . $userName  . '</td>
+                            <td>' . $id . '</td>
+                            <td>' . $name . '</td>
                             <td>' . $password . '</td>
                             <td>' . $email . '</td>
                             <td>' . $name . '</td>
-                            <td>' . $phoneNumber . '</td>
+                            <td>' . $phone . '</td>
                             <td>' . $address . '</td>
                             <td>' . $role . '</td>
                             <td>  

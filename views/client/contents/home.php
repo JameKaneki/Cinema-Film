@@ -57,7 +57,7 @@
                         </div>
                         <div class="row mb-30-none justify-content-start">
                             <?php
-                                $listFilm = loadtop3playing_film();
+                                $listFilm = load_all_playing_film();
                                 foreach ($listFilm as $list){
                                     extract($list);
                                     echo '<div class="col-sm-6 col-lg-4">
@@ -93,7 +93,8 @@
                         </div>
                             <div class="row mb-30-none justify-content-start">
                                 <?php
-                                    $listFilm = loadtop3coming_film();
+                                    // $listFilm = loadtop3coming_film();
+                                    $listFilm = loadall_coming_film();
                                     foreach ($listFilm as $list){
                                         extract($list);
                                         echo '<div class="col-sm-6 col-lg-4">

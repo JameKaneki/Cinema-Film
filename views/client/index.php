@@ -23,7 +23,7 @@ if(isset($_GET['act'])){
         case 'movie-grid':{
         $praham= $_GET['id'];
         if($praham === 'playing'){
-            $listFilm = loadall_playing_film();
+            $listFilm = load_all_playing_film();
             $name = "playing now";
             include "./contents/movie-grid.php";
         }
